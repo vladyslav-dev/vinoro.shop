@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { Category } from './schemas/category.schema';
 

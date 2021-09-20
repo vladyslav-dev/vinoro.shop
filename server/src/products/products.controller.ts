@@ -10,7 +10,6 @@ export class ProductsController {
 
     @Get()
     getAllProducts(): Promise<Product[]> {
-        console.log("getAllProducts")
         this.ProductsService.getAllProducts().then(res => console.log(res))
         return this.ProductsService.getAllProducts();
     }
@@ -18,6 +17,11 @@ export class ProductsController {
     @Get(":id")
     getProductById(@Param("id") id: string): Promise<Product> {
         return this.ProductsService.getProductById(id)
+    }
+
+    @Get("/category/:id")
+    getProductByCategory(@Param("id") id: string): Promise<Product[]> {
+        return this.ProductsService.getProductByCategory(id)
     }
 
 }

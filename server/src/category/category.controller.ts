@@ -1,8 +1,8 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { Category } from './schemas/category.schema';
 
-@Controller('category')
+@Controller()
 export class CategoryController {
 
     constructor(private readonly CategoryService: CategoryService) { }
@@ -10,5 +10,10 @@ export class CategoryController {
     @Get()
     getAllCategory(): Promise<Category[]> {
         return this.CategoryService.getAllCategory();
+    }
+
+    @Get(":id")
+    getCategoryByCategory_Id(@Param("id") id: string): Promise<Category> {
+        return this.CategoryService.getCategoryByCategory_Id(id)
     }
 }

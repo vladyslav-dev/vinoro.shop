@@ -11,4 +11,8 @@ export class CategoryService {
     async getAllCategory(): Promise<Category[]>{
         return this.CategoryModel.find().exec();
     }
+
+    async getCategoryByCategory_Id(id: string): Promise<Category> {
+        return this.CategoryModel.findOne({category_id : Number(id)}).exec();
+    }
 }

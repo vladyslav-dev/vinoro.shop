@@ -12,7 +12,7 @@ export class CategoryController {
         return this.CategoryService.getAllCategory();
     }
 
-    @Get(":id")
+    @Get("category/:id")
     getCategoryByCategory_Id(@Param("id") id: string): Promise<Category> {
         return this.CategoryService.getCategoryByCategory_Id(id)
     }

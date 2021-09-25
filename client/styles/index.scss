@@ -1,1 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 @import "./reset.scss";
+
+@function ptr($px) {
+    @return #{$px/16}rem;
+}
+
+// ------------ Variables ------------
+
+$UI-color1: #232021;
+$UI-color2: #595755;
+$UI-color3: #BBBBBB;
+$UI-color4: #E8E8E8;
+$UI-color5: #FDFDFD;
+
+.container {
+    max-width: 1110px;
+    padding: 0 12px;
+    margin: 0 auto;
+}
+
+// ------------ Mixins ------------
+
+@mixin sm {
+    @media (max-width: 580px) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media (max-width: 992px) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media (max-width: 1200px) {
+        @content;
+    }
+}

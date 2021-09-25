@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import Head from 'next/head';
 
 import Footer from '../Footer';
+import Slider from '../Slider';
 
 
 export interface LayoutProps {
@@ -20,7 +21,8 @@ const Layout: FC<LayoutProps> = ({ children }) => {
                 <link rel="icon" href="/favicon.ico" />
                 {/* {description && <meta name="description" content={description}></meta>} */}
             </Head>
-
+            
+            <Slider></Slider>
             <div className="container">{children}</div>
             <Footer />
         </div>

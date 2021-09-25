@@ -3,6 +3,8 @@ import Head from 'next/head';
 
 import Footer from '../Footer';
 
+import Navbar from '../Navbar';
+
 
 export interface LayoutProps {
     children?: ReactNode;
@@ -18,8 +20,8 @@ const Layout: FC<LayoutProps> = ({ children }) => {
                 <meta name="description" content="this is youtube tutorial for next" />
                 <meta charSet="utf-8" />
                 <link rel="icon" href="/favicon.ico" />
-                {/* {description && <meta name="description" content={description}></meta>} */}
             </Head>
+            <Navbar />
 
             <div className="container">{children}</div>
             <Footer />

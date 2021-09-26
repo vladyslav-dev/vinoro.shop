@@ -1,0 +1,143 @@
+@import "../../styles/index.scss";
+
+.popularCategory {
+
+    .list {
+        margin: 70px 0;
+
+        .item {
+            display: flex;
+            margin-bottom: 70px;
+
+            @include md {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            &:nth-child(even) {
+                .itemImage {
+                    order: 2;
+
+                    @include md {
+                        order: 1;
+                    }
+                }
+
+                .itemInfo {
+                    order: 1;
+                    margin-left: 0;
+
+                    @include md {
+                        padding-top: 35px;
+                        order: 2;
+                    }
+                }
+            }
+
+            .itemImage {
+                width: 100%;
+                box-shadow: 0px 8px 24px rgba(149, 157, 165, 0.3);
+                flex: 1;
+
+                @include md {
+                    width: 85%;
+                    height: 717px;
+                }
+
+                @include sm {
+                    width: 100%;
+                }
+
+                & > img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .itemInfo {
+                flex: 1;
+                margin-left: 70px;
+                padding-top: 40px;
+                color: $UI-color1;
+
+                @include lg {
+                    margin-left: 30px;
+                    padding-top: 20px;
+                }
+
+                @include md {
+                    margin-left: 0;
+                    padding-top: 40px;
+                    width: 85%;
+                }
+
+                @include sm {
+                    padding-top: 30px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.title, .titleMobile {
+    font-size: ptr(28);
+    font-weight: 600;
+}
+
+.title {
+    display: block;
+
+    @include md {
+        display: none;
+    }
+}
+
+.titleMobile {
+    display: none;
+    width: 85%;
+    margin-bottom: 20px;
+
+    @include md {
+        display: block;
+    }
+
+    @include sm {
+        width: 100%;
+    }
+}
+
+.description {
+    font-size: ptr(16);
+    line-height: ptr(28);
+    margin-top: 20px;
+    max-width: 350px;
+
+    @include md {
+        margin-top: 0;
+        max-width: none;
+    }
+}
+
+.brands {
+    margin-top: 50px;
+
+    & > p {
+        font-weight: 500;
+    }
+
+    .brandsList {
+        margin-top: 24px;
+        padding-left: 15px;
+
+        .brandsItem {
+            text-transform: uppercase;
+            font-size: ptr(15);
+
+            &:not(:last-child) {
+                margin-bottom: 18px;
+            }
+        }
+    }
+}

@@ -1,17 +1,16 @@
 import React, { FC, ReactNode } from 'react';
 import Head from 'next/head';
-
 import Footer from '../Footer';
-import Slider from '../Slider';
-
 import Navbar from '../Navbar';
+import { ICategory } from '../../interfaces/ICategory';
 
 
 export interface LayoutProps {
     children?: ReactNode;
+    category: Array<ICategory>;
 }
 
-const Layout: FC<LayoutProps> = ({ children }) => {
+const Layout: FC<LayoutProps> = ({ children, category }) => {
 
     return (
         <div>
@@ -22,10 +21,8 @@ const Layout: FC<LayoutProps> = ({ children }) => {
                 <meta charSet="utf-8" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Navbar />
-            <Slider></Slider>
-
-            <div className="container">{children}</div>
+            <Navbar category={category} />
+            {children}
             <Footer />
         </div>
     );

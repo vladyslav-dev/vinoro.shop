@@ -1,7 +1,15 @@
 @import "../../styles/index.scss";
 
+.navbarContainer {
+    max-width: 1760px;
+    padding: 0 12px;
+    margin: 0 auto;
+}
+
 .navbar {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 74px;
 }

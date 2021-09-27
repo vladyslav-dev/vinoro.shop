@@ -1,4 +1,4 @@
-import React, { FC, CSSProperties } from 'react';
+import React, { FC, CSSProperties, useState } from 'react';
 import Slick, { Settings } from "react-slick";
 import { SliderDesctopArrowSvg, SliderMobileArrowSvg } from '../Icons/Arrow';
 
@@ -26,32 +26,30 @@ const SliderButton: FC<SliderButtonProps> = ({className, style, onClick, isArrow
 }
   
 const Slider: FC<SliderProps> = ({}) => {
+
+    const [currentSlide, setCurrentSlide] = useState(0)
     
     const slickSettings: Settings = {
         dots: true,
         infinite: true,
         speed: 1000,
+        fade: true,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 5000,
-        nextArrow: <SliderButton />,
         prevArrow: <SliderButton isArrowLeft/>,
+        nextArrow: <SliderButton />,
+        beforeChange: (prev, next) => {
+            setCurrentSlide(next)
+        },
         appendDots: dots => (
             <div>
               <ul style={{ marginLeft: "10px" }}> {dots} </ul>
             </div>
           ),
-          customPaging: () => (
-            <div
-              style={{
-                width: "14px",
-                height: "14px", 
-                backgroundColor: "white",
-                borderRadius: "50%"
-              }}
-            >
-            </div>
+          customPaging: (index) => (
+            <div className={ index === currentSlide ? "dots-active" : "dots-default"}/>
           ),
           responsive: [
             {

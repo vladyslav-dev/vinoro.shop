@@ -1,7 +1,12 @@
 @import "../../styles/index.scss";
 
-
 .wrapper {
+    background-color: $UI-color5;
+    padding: 50px 0;
+    border-top: 1px solid $UI-color4;
+}
+
+.content__wrapper {
     display: grid; 
     grid-template-columns: 40% 60%; 
     grid-template-rows: 100%; 
@@ -10,14 +15,13 @@
     width: auto; 
     height: auto; 
     font-family: Montserrat;
-    margin: 50px 0;
 
     .content__left {
         grid-area: content__left;
         width: 75%;
         h1 {
             font-weight: 300;
-            font-size: 60px;
+            font-size: ptr(60);
             line-height: 73px;
             letter-spacing: 0.13em;
             color: #595755;
@@ -27,13 +31,13 @@
 
         .content__left__text {
             font-weight: 300;
-            font-size: 16px;
+            font-size: ptr(16);
             line-height: 28px;
             color: #232021;
         }
 
         .content__left__tet {
-            font-size: 17px;
+            font-size: ptr(17);
             line-height: 28px;
             color: #232021;
         }
@@ -45,12 +49,14 @@
         .content__left__icon :nth-child(2) {
             margin: 0 30px;
         }
+
     }
 
     .content__right {
         display: flex;
         grid-area: content__right;
         justify-content: space-between;
+
         h1 {
             font-weight: 600;
             font-size: 18px;
@@ -59,11 +65,8 @@
         }
 
         a {
-            font-size: 16px;
+            font-size: ptr(16);
             line-height: 20px;
-            font-family: Montserrat;
-            font-style: normal;
-            font-weight: normal;
             color: rgba(21, 21, 21, 0.7);
         }
 
@@ -71,11 +74,16 @@
             margin-bottom: 15px;
         }
     }
+    h4 {
+        font-weight: 100;
+        font-size: ptr(16);
+    }
 }
 
 
+
 @include md  {
-    .wrapper {
+    .content__wrapper {
         display: grid;
         grid-auto-columns: 1fr; 
         grid-template-columns: 100%; 

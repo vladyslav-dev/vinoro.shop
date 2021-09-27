@@ -40,6 +40,21 @@
     max-width: 1300px;
 }
 
+.dots-default {
+    height: 14px;
+    width: 14px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.dots-active {
+    height: 8px;
+    width: 8px;
+    border: 3px solid white;
+    background-color: $UI-color2;
+    border-radius: 50%;
+}
+
 .slider__container {
     height: 100vh;
 
@@ -85,6 +100,8 @@
         }
           
     }
+
+    
     
 }
 

@@ -1,1 +1,53 @@
 @import "../../styles/index.scss";
+
+
+.navbarMenu {
+    display: flex;
+    height: 100%;
+    position: relative;
+}
+
+.category {
+    font-size: ptr(17);
+    height: 100%;
+    width: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+
+    a {
+        cursor: pointer;
+    }
+}
+
+.subCategory{
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 74px;
+    left: 0;
+}
+
+.subCategotyWrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    a {
+        text-decoration: none;
+        color: $UI-color1;
+    }
+
+    li {
+        margin: 20px;
+    }
+}
+
+.category:hover {
+    background-color: $UI-color4;
+}
+
+.category:hover .subCategory{
+    display: block;
+    background-color: $UI-color4;
+}

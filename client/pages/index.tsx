@@ -23,6 +23,7 @@ Index.getInitialProps = async () => {
     popularCategory: data.popularCategory,
     category: data.category,
   }
+
 }
 
 export default Index;

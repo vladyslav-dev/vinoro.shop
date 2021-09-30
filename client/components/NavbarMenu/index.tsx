@@ -30,12 +30,12 @@ const NavbarMenu: FC<NavbarMenuProps> = ({ category }) => {
                 <div className={styles.navbarMenu}>
                     {Object.values(Catalog).map((item, key) => {
                         return typeof item === "string" && (
-                            <>
-                                <div key={key}>{item}</div>
+                            <div key={key}>
+                                <div >{item}</div>
                                 <div>
                                     {getCatalog(item)}
                                 </div>
-                            </>
+                            </div>
                         )
                     })}
                 </div>

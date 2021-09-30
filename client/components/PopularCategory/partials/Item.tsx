@@ -1,4 +1,5 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
+import Image from 'next/image'
 import styles from '../PopularCategory.module.scss';
 
 import { IPopularCategory } from '../../../interfaces/IPopularCategory';
@@ -19,7 +20,9 @@ const Item: FC<IPopularCategory> = (
         <div className={styles.item}>
             <h3 className={styles.titleMobile}>{title}</h3>
             <div className={styles.itemImage}>
-                <img src={imageURL} alt={`Категория ${title}`} />
+                {console.log(imageURL)}
+                {/* <Image src={imageURL} alt="tes" layout='fill' quality={100} /> */}
+                <img src={imageURL} alt="test" />
             </div>
             <div className={styles.itemInfo}>
                 <h3 className={styles.title}>{title}</h3>

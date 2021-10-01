@@ -14,7 +14,7 @@ const PopularCategory: FC<PopularCategoryProps> = ({ children, data }) => (
     <section className={styles.popularCategory}>
         <div className={styles.container}>
             <div className={styles.list}>
-                {data.map(item => (
+                {data.length && data.map(item => (
                     <Item key={item._id} {...item} />
                 ))}
             </div>

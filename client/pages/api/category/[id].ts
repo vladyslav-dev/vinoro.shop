@@ -12,10 +12,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const products = await ProductModel
             .find({ category: req.query.id })
             .sort([['availability', -1], ['order_id', 0]]);
-        console.log(products)
         return res.status(200).json({ success: true, products })
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 
 }

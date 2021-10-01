@@ -20,9 +20,7 @@ const Item: FC<IPopularCategory> = (
         <div className={styles.item}>
             <h3 className={styles.titleMobile}>{title}</h3>
             <div className={styles.itemImage}>
-                {console.log(imageURL)}
-                {/* <Image src={imageURL} alt="tes" layout='fill' quality={100} /> */}
-                <img src={imageURL} alt="test" />
+                <Image src={imageURL} layout="fill" className={styles.image} quality={100} />
             </div>
             <div className={styles.itemInfo}>
                 <h3 className={styles.title}>{title}</h3>

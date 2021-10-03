@@ -1,16 +1,16 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styles from './Navbar.module.scss';
-import axios from 'axios';
+import Link from 'next/link'
 
-import { HeaderLogoSvg } from '../Icons/Logo';
-import { HeartSvg } from '../Icons/Heart';
-import { CartSvg } from '../Icons/Cart';
-import { WorldSvg } from '../Icons/World';
+import { HeaderLogoSvg } from '@/icons/Logo';
+import { HeartSvg } from '@/icons/Heart';
+import { CartSvg } from '@/icons/Cart';
+import { WorldSvg } from '@/icons/World';
 
-import NavbarMenu from '../NavbarMenu';
-import HeaderIcon from '../HeaderIcon';
+import NavbarMenu from '@/components/NavbarMenu';
+import HeaderIcon from '@/components/HeaderIcon';
 
-import { ICategory } from '../../interfaces/ICategory';
+import { ICategory } from '@/interfaces/ICategory';
 
 
 export interface NavbarProps {
@@ -20,12 +20,17 @@ export interface NavbarProps {
 const Navbar = (props: NavbarProps) => {
 
     const { category } = props;
-
     return (
         <div className={styles.navbarWrapper}>
             <div className={styles.navbarContainer}>
                 <div className={styles.navbar}>
-                    <HeaderLogoSvg />
+                    <div className={styles.navbarLogo}>
+                        <Link href="/">
+                            <a>
+                                <HeaderLogoSvg />
+                            </a>
+                        </Link>
+                    </div>
                     <NavbarMenu category={category} />
                     <div>
                         <HeaderIcon label={"ИЗБРАННОЕ"}>

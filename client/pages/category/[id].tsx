@@ -1,26 +1,19 @@
 import React from 'react';
 import axios from 'axios';
-import Layout from '../../components/Layout';
-import CategoryList from '../../components/CategoryList';
-
+import CategoryList from '@/components/CategoryList';
 
 const Category = ({ products }) => {
-
     return (
-        <Layout category={[]}>
-            <CategoryList products={products} />
-        </Layout>
+        <CategoryList products={products} />
     )
 }
 
-
-
-Category.getInitialProps = async ({ query }) => {
-    // console.log(query)
+export const getServerSideProps = async ({ query }) => {
     const { data } = await axios.get(`http://localhost:3000/api/category/${query.id}`);
-    // console.log(data)
     return {
-        products: data.products,
+        props: {
+            products: data.products
+        },
     }
 
 }

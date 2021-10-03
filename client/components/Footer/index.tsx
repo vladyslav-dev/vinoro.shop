@@ -1,7 +1,7 @@
-import React, { FC,useState } from 'react';
+import React, { FC } from 'react';
 import styles from './Footer.module.scss';
-import {FaceBookSvg, InstSvg, ViberSvg} from '../Icons/Footer'
-
+// import { FacebookSvg, InstSvg, ViberSvg } from '@/icons/SocialMedia';
+import SocialMedia from '@/components/SocialMedia';
 
 export interface FooterProps { };
 
@@ -18,7 +18,7 @@ const Footer: FC<FooterProps> = () => {
             },
             {
                 id: 2,
-                value: "Продукты питания", 
+                value: "Продукты питания",
                 path: '.'
             },
             {
@@ -44,7 +44,7 @@ const Footer: FC<FooterProps> = () => {
             },
             {
                 id: 2,
-                value: "Доставка и оплата", 
+                value: "Доставка и оплата",
                 path: '.'
             },
             {
@@ -70,7 +70,7 @@ const Footer: FC<FooterProps> = () => {
             },
             {
                 id: 2,
-                value: "Проблемы с отображением", 
+                value: "Проблемы с отображением",
                 path: '.'
             }
         ]
@@ -90,9 +90,7 @@ const Footer: FC<FooterProps> = () => {
                             </h4>
                         </div>
                         <div className={styles.content__left__icon}>
-                            <FaceBookSvg></FaceBookSvg>
-                            <InstSvg></InstSvg>
-                            <ViberSvg></ViberSvg>
+                            <SocialMedia />
                         </div>
                         <div className={styles.content__left__tet}>
                             <h4>© Все права защищены. Vinoro - 2020</h4>
@@ -101,16 +99,16 @@ const Footer: FC<FooterProps> = () => {
 
                     <div className={styles.content__right}>
                         {
-                            state.map( el => (
+                            state.map(el => (
                                 <div key={el.id}>
                                     <h1>{el.name}</h1>
-                                        <ul>
+                                    <ul>
                                         {
-                                            el.context.map( el => (
-                                                <li key={el.id }><a>{el.value}</a></li>
+                                            el.context.map(el => (
+                                                <li key={el.id}><a>{el.value}</a></li>
                                             ))
                                         }
-                                        </ul>
+                                    </ul>
                                 </div>
                             ))
                         }

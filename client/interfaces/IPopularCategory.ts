@@ -4,5 +4,5 @@ export interface IPopularCategory {
     description: string;
     imageURL: string;
     brands: Array<string>;
-    categoryId: number;
+    categoryId: string;
 };

@@ -1,5 +1,4 @@
 import mongoose, { Schema } from 'mongoose';
-import CategoryModel from './PopularCategoryModel';
 
 const ProductModel = new Schema({
     _id: {

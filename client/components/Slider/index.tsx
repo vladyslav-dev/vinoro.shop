@@ -1,9 +1,13 @@
 import React, { FC, CSSProperties, useState } from 'react';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import styles from './Slider.module.scss'
+import { jsxStyles } from "./jsxStyles";
 import Slick, { Settings } from "react-slick";
-import { SliderDesctopArrowSvg, SliderMobileArrowSvg } from '../Icons/Arrow';
+import { SliderDesctopArrowSvg, SliderMobileArrowSvg } from '@/icons/Arrow';
 
 export interface SliderProps { };
-export interface SliderButtonProps {    
+export interface SliderButtonProps {
     className?: string;
     style?: CSSProperties;
     onClick?: () => void;
@@ -11,24 +15,23 @@ export interface SliderButtonProps {
     isDesktop?: boolean
 };
 
-
-const SliderButton: FC<SliderButtonProps> = ({className, style, onClick, isArrowLeft, isDesktop}) => {
+const SliderButton: FC<SliderButtonProps> = ({ className, style, onClick, isArrowLeft, isDesktop }) => {
 
     return (
         <div
             className={className}
-            style={{ ...style}}
+            style={{ ...style }}
             onClick={onClick}
         >
-            {!isDesktop ? <SliderDesctopArrowSvg isArrowLeft={isArrowLeft} /> : <SliderMobileArrowSvg isArrowLeft={isArrowLeft}/>}
+            {!isDesktop ? <SliderDesctopArrowSvg isArrowLeft={isArrowLeft} /> : <SliderMobileArrowSvg isArrowLeft={isArrowLeft} />}
         </div>
     );
 }
-  
-const Slider: FC<SliderProps> = ({}) => {
+
+const Slider: FC<SliderProps> = ({ }) => {
 
     const [currentSlide, setCurrentSlide] = useState(0)
-    
+
     const slickSettings: Settings = {
         dots: true,
         infinite: true,
@@ -38,27 +41,27 @@ const Slider: FC<SliderProps> = ({}) => {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 5000,
-        prevArrow: <SliderButton isArrowLeft/>,
+        prevArrow: <SliderButton isArrowLeft />,
         nextArrow: <SliderButton />,
         beforeChange: (prev, next) => {
             setCurrentSlide(next)
         },
         appendDots: dots => (
             <div>
-              <ul style={{ marginLeft: "10px" }}> {dots} </ul>
+                <ul style={{ marginLeft: "10px" }}> {dots} </ul>
             </div>
-          ),
-          customPaging: (index) => (
-            <div className={ index === currentSlide ? "dots-active" : "dots-default"}/>
-          ),
-          responsive: [
+        ),
+        customPaging: (index) => (
+            <div className={index === currentSlide ? "dots-active" : "dots-default"} />
+        ),
+        responsive: [
             {
-              breakpoint: 780,
-              settings: {
-                nextArrow: <SliderButton isDesktop/>,
-                prevArrow: <SliderButton isArrowLeft isDesktop/>,
-                dots: false
-              }
+                breakpoint: 780,
+                settings: {
+                    nextArrow: <SliderButton isDesktop />,
+                    prevArrow: <SliderButton isArrowLeft isDesktop />,
+                    dots: false
+                }
             }
         ]
     }
@@ -82,18 +85,18 @@ const Slider: FC<SliderProps> = ({}) => {
     ]
 
     return (
-        <div className="slider__container">
+        <div className={styles.slider__container}>
             <Slick {...slickSettings}>
                 {
                     slides.map(el => (
-                        <div key={el.id}> 
-                            <div style={{ backgroundImage: `url( ${el.imageURL})`}} className="slider-item">
-                                <div className="container">
-                                    <div className="wrapper">
-                                        <div className="slider__content">
+                        <div key={el.id}>
+                            <div style={{ backgroundImage: `url( ${el.imageURL})` }} className="slider-item">
+                                <div className={styles.container}>
+                                    <div className={styles.wrapper}>
+                                        <div className={styles.slider__content}>
                                             <h1>{el.content}</h1>
                                         </div>
-                                        <div className="slider__button">
+                                        <div className={styles.slider__button}>
                                             <button>СМОТРЕТЬ</button>
                                         </div>
                                     </div>
@@ -103,6 +106,7 @@ const Slider: FC<SliderProps> = ({}) => {
                     ))
                 }
             </Slick>
+            <style jsx global>{jsxStyles}</style>
         </div>
     );
 };

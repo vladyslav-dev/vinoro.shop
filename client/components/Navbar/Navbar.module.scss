@@ -1,5 +1,15 @@
 @import "../../styles/index.scss";
 
+.navbarWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: #fff;
+}
+
 .navbarContainer {
     max-width: 1760px;
     padding: 0 12px;
@@ -12,4 +22,6 @@
     justify-content: space-between;
     align-items: center;
     height: 74px;
+
+    .navbarLogo {}
 }

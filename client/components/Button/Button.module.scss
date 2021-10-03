@@ -1,0 +1,21 @@
+@import "../../styles/index.scss";
+
+.button {
+    font-family: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    background-color: $UI-color1;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+
+    .buttonChildren {
+
+    }
+
+    .buttonIcon {
+
+    }
+}

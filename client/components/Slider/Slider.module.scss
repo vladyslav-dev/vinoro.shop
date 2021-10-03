@@ -1,0 +1,49 @@
+@import "../../styles/index.scss";
+
+.slider__container {
+    height: calc(100vh - 74px);
+    margin-top: 74px;
+
+    .container {
+        max-width: 1110px;
+        height: 100%;
+        padding: 0 12px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        h1 {
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            font-size: 64px;
+            line-height: 78px;
+        }
+    
+        button {
+            padding: 0;
+            border: none;
+            font: inherit;
+            color: inherit;
+            background-color: transparent;
+            cursor: pointer;
+            color: white;
+            backdrop-filter: blur(2px);
+            background: rgba(255, 255, 255, 0.22);
+            border: 2px solid white;
+            height: 68px;
+            width: 283px;
+            transform: translateY(-40px);
+        }
+    
+        .wrapper {
+            text-align: center;
+        }
+    
+        .slider__content {
+            transform: translateY(-100px);
+        }
+          
+    }   
+}

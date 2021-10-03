@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import dbConnect from '../../utils/dbConnect';
-import CategoryModel from '../../models/CategoryModel';
-import PopularCategoryModel from '../../models/PopularCategoryModel';
+import dbConnect from '@/utils/dbConnect';
+import CategoryModel from '@/models/CategoryModel';
+import PopularCategoryModel from '@/models/PopularCategoryModel';
 
 
 dbConnect();
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const api = async (req: NextApiRequest, res: NextApiResponse) => {
     console.log("Index API worked")
 
     const popularCategory = await PopularCategoryModel.find({});
@@ -16,3 +16,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(200).json({ success: true, popularCategory, category })
 
 }
+
+export default api

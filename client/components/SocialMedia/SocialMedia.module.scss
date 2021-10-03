@@ -1,0 +1,10 @@
+.socialMedia {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 180px;
+
+    & > svg {
+        width: 32px;
+    }
+}

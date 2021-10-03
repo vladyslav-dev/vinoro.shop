@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Link from 'next/link'
 
 import styles from './NavbarMenu.module.scss';
-import { ICategory } from '../../interfaces/ICategory';
+import { ICategory } from '@/interfaces/ICategory';
 
 export interface NavbarMenuProps {
     category: Array<ICategory>

@@ -24,4 +24,32 @@
     height: 74px;
 
     .navbarLogo {}
+
+    .navbarIcons {
+        & > div:first-child {
+            margin-right: 10px;
+        }
+    }
+}
+
+.basket {
+    position: fixed;
+    top: 0;
+    right: -500px;
+    width: 500px;
+    height: 100%;
+    z-index: 25;
+    transition: all .4s ease-in-out;
+    cursor: default;
+}
+
+.basketIcon {
+    cursor: pointer;
+}
+
+.basketIcon:hover .basket  {
+     background-color: red;
+        right: 0;
+    
+   
 }

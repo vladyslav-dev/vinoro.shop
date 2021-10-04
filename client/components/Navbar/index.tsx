@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Navbar.module.scss';
 import Link from 'next/link'
 
 import { HeaderLogoSvg } from '@/icons/Logo';
 import { HeartSvg } from '@/icons/Heart';
-import { CartSvg } from '@/icons/Cart';
+import { BagSvg } from '@/icons/Bag';
 import { WorldSvg } from '@/icons/World';
 
 import NavbarMenu from '@/components/NavbarMenu';
 import HeaderIcon from '@/components/HeaderIcon';
+import Basket from '@/components/Basket';
 
 import { ICategory } from '@/interfaces/ICategory';
 
@@ -20,6 +21,9 @@ export interface NavbarProps {
 const Navbar = (props: NavbarProps) => {
 
     const { category } = props;
+
+    const [basketIsOpen, setBasketIsOpen] = useState(false)
+
     return (
         <div className={styles.navbarWrapper}>
             <div className={styles.navbarContainer}>
@@ -32,19 +36,24 @@ const Navbar = (props: NavbarProps) => {
                         </Link>
                     </div>
                     <NavbarMenu category={category} />
-                    <div>
+                    <div className={styles.navbarIcons}>
                         <HeaderIcon label={"ИЗБРАННОЕ"}>
                             <HeartSvg />
                         </HeaderIcon>
-                        <HeaderIcon label={"КОРЗИНА"}>
-                            <CartSvg />
+                        <HeaderIcon label={"КОРЗИНА"} className={styles.basketIcon}>
+                            <BagSvg />
+                            <div className={styles.basket}>
+                                <Basket />
+                            </div>
                         </HeaderIcon>
                         <HeaderIcon label={"ЯЗЫК"}>
                             <WorldSvg />
                         </HeaderIcon>
+
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };

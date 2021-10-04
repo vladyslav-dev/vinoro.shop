@@ -1,0 +1,63 @@
+@import "../../styles/index.scss";
+
+.card {
+    display: inline-block;
+    
+    .cardImage {
+        position: relative;
+        width: 100%;
+        > div {
+          position: unset !important;
+        }
+      
+        .image {
+          object-fit: cover;
+          width: 100% !important;
+          position: relative !important;
+          height: unset !important;
+        }
+    }   
+
+    .cardInfo {
+        .cardAvailability {
+            border-bottom: 2px solid $UI-color4;
+
+            p {
+                font-weight: 500;
+                font-size: ptr(15);
+                line-height: ptr(20);
+                margin: 14px 0 7px 0;
+            }
+
+            .cardAvailabilityRed {
+                color: $red-color;
+            }
+
+            .cardAvailabilityGreen {
+                color: $green-color;
+            }
+        }
+
+        .cardName  {
+            font-size: ptr(17);
+            color: $UI-color1;
+            line-height: ptr(28);
+            font-weight: normal;
+            margin-top: 14px;
+            word-wrap: break-word;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            height: 60px;
+        }
+
+        .cardCost {
+            font-size: ptr(20);
+            line-height: ptr(20);
+            text-align: center;
+            font-weight: 400;
+            margin-top: 40px;
+        }
+    }
+}

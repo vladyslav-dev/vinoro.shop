@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import CategoryList from '@/components/CategoryList';
+import CardList from '@/components/CardList';
 
 const Category = ({ products }) => {
     return (
-        <CategoryList products={products} />
+        <CardList products={products} />
     )
 }
 

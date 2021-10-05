@@ -3,23 +3,18 @@ import Link from 'next/link'
 
 import styles from './NavbarMenu.module.scss';
 import { ICategory } from '@/interfaces/ICategory';
+import { Catalog as CatalogEnum } from '@/enums/Catalog';
 
 export interface NavbarMenuProps {
     category: Array<ICategory>
 };
-
-enum Catalog {
-    "Продукты питания" = 0,
-    "Алкогольные напитки" = 1,
-    "Бытовая химия" = 2,
-}
 
 const NavbarMenu: FC<NavbarMenuProps> = ({ category }) => {
 
 
     const getCatalog = (key: string) => {
         return category.map(item => {
-            if (Catalog[key] === item.catalog) {
+            if (CatalogEnum[key] === item.catalog) {
                 return (
                     <li key={item._id}>
                         <Link href={`/category/[id]`} as={`/category/${item._id}`} >
@@ -35,7 +30,7 @@ const NavbarMenu: FC<NavbarMenuProps> = ({ category }) => {
         <>
             {category && (
                 <div className={styles.navbarMenu}>
-                    {Object.values(Catalog).map((item, key) => {
+                    {Object.values(CatalogEnum).map((item, key) => {
                         return typeof item === "string" && (
                             <div key={key} className={styles.category}>
                                 <a> {item}</a>

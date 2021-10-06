@@ -7,13 +7,7 @@
     right: 0;
     width: 100%;
     z-index: 10;
-    background-color: #fff;
-}
-
-.navbarContainer {
-    max-width: 1760px;
-    padding: 0 12px;
-    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
 }
 
 .navbar {
@@ -48,8 +42,9 @@
 }
 
 .basketIcon:hover .basket  {
-     background-color: red;
         right: 0;
-    
-   
+}
+
+.navbarSimulator {
+    height: 74px;
 }

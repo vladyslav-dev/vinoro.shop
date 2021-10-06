@@ -25,36 +25,37 @@ const Navbar = (props: NavbarProps) => {
     const [basketIsOpen, setBasketIsOpen] = useState(false)
 
     return (
-        <div className={styles.navbarWrapper}>
-            <div className={styles.navbarContainer}>
-                <div className={styles.navbar}>
-                    <div className={styles.navbarLogo}>
-                        <Link href="/">
-                            <a>
-                                <HeaderLogoSvg />
-                            </a>
-                        </Link>
-                    </div>
-                    <NavbarMenu category={category} />
-                    <div className={styles.navbarIcons}>
-                        <HeaderIcon label={"ИЗБРАННОЕ"}>
-                            <HeartSvg />
-                        </HeaderIcon>
-                        <HeaderIcon label={"КОРЗИНА"} className={styles.basketIcon}>
-                            <BagSvg />
-                            <div className={styles.basket}>
-                                <Basket />
-                            </div>
-                        </HeaderIcon>
-                        <HeaderIcon label={"ЯЗЫК"}>
-                            <WorldSvg />
-                        </HeaderIcon>
-
+        <>
+            <div className={styles.navbarWrapper}>
+                <div className={styles["container-xl"]}>
+                    <div className={styles.navbar}>
+                        <div className={styles.navbarLogo}>
+                            <Link href="/">
+                                <a>
+                                    <HeaderLogoSvg />
+                                </a>
+                            </Link>
+                        </div>
+                        <NavbarMenu category={category} />
+                        <div className={styles.navbarIcons}>
+                            <HeaderIcon label={"ИЗБРАННОЕ"}>
+                                <HeartSvg />
+                            </HeaderIcon>
+                            <HeaderIcon label={"КОРЗИНА"} className={styles.basketIcon}>
+                                <BagSvg />
+                                <div className={styles.basket}>
+                                    <Basket />
+                                </div>
+                            </HeaderIcon>
+                            <HeaderIcon label={"ЯЗЫК"}>
+                                <WorldSvg />
+                            </HeaderIcon>
+                        </div>
                     </div>
                 </div>
             </div>
-
-        </div>
+            <div className={styles.navbarSimulator} />
+        </>
     );
 };
 

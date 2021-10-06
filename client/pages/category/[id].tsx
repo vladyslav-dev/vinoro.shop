@@ -1,16 +1,28 @@
 import React from 'react';
 import axios from 'axios';
+import styles from './category.module.scss';
 import CardList from '@/components/CardList';
 import CardFilter from '@/components/CardFilter'
-import CategoryTree from '@/components/CategoryTree'
+import Ranger from '@/components/Ranger';
 
 const Category = ({ products, category }) => {
     return (
-        <>
-            <CardFilter />
-            <CategoryTree category={category}/>
-            <CardList products={products} />
-        </>
+        <div className={styles["container-xl"]}>
+            <div className={styles.categoryWrapper}>
+                <div className={styles.categoryTree}>
+                    Component Tree
+                </div>
+                <div className={styles.categoryContent}>
+                    <div className={styles.categoryToolbar}>
+                        <CardFilter />
+                        <Ranger />
+                    </div>
+                    <div className={styles.categoryList}>
+                        <CardList products={products} customStyles={{}} />
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 

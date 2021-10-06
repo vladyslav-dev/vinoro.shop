@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 const CategoryModel = new Schema({
     _id: {
-        type: Schema.Types.ObjectId,
+        type: String,
     },
     category_id: {
         type: Number,

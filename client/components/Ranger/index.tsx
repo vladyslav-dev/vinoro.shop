@@ -2,14 +2,14 @@ import React from 'react';
 import styles from './Ranger.module.scss'
 import { useRanger } from "react-ranger";
 
-const Ranger = () => {
+const Ranger = ({ rangeHandler }) => {
 
     const [values, setValues] = React.useState([4]);
 
     const { getTrackProps, handles } = useRanger({
         min: 3,
         max: 6,
-        stepSize: 1,
+        stepSize: 0.1,
         values,
         onChange: setValues
     });
@@ -18,7 +18,7 @@ const Ranger = () => {
 
     return (
         <div className={styles.rangerWrapper}>
-            <div
+            {/* <div
                 {...getTrackProps({
                     style: {
                         height: "4px",
@@ -43,7 +43,10 @@ const Ranger = () => {
                         })}
                     />
                 ))}
-            </div>
+            </div> */}
+            <button name="sm" onClick={rangeHandler}>sm</button>
+            <button name="md" onClick={rangeHandler}>md</button>
+            <button name="lg" onClick={rangeHandler}>lg</button>
         </div>
     )
 }

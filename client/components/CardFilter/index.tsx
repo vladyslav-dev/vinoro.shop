@@ -3,7 +3,7 @@ import styles from './CardFilter.module.scss'
 
 import FilterSelect from '../FilterSelect/index'
 
-const index = () => {
+const CardFilter = () => {
     return (
         <div className={styles.content}>
             <FilterSelect />
@@ -11,4 +11,4 @@ const index = () => {
     )
 }
 
-export default index
+export default CardFilter

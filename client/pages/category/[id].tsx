@@ -4,8 +4,15 @@ import styles from './category.module.scss';
 import CardList from '@/components/CardList';
 import CardFilter from '@/components/CardFilter'
 import Ranger from '@/components/Ranger';
+import CategoryTree from '@/components/CategoryTree';
+  
+const Category = ({ products, category }) => {
 
-const Category = ({ products }) => {
+    const [hideTree, setHideTree] = useState(false)
+
+    const hideHandler = () => {
+        setHideTree(!hideTree)
+    }
 
     type RangeType = "sm" | "md" | "lg"
 
@@ -56,9 +63,7 @@ const Category = ({ products }) => {
     return (
         <div className={styles["container-xl"]}>
             <div className={styles.categoryWrapper}>
-                <div className={styles.categoryTree}>
-                    Component Tree
-                </div>
+                <CategoryTree category={category} hideTree={hideTree} hideHandler={hideHandler} />
                 <div className={styles.categoryContent}>
                     <div className={styles.categoryToolbar}>
                         <CardFilter />
@@ -73,15 +78,14 @@ const Category = ({ products }) => {
     )
 }
 
-
 export const getServerSideProps = async ({ query }) => {
     const { data } = await axios.get(`http://localhost:3000/api/category/${query.id}`);
     return {
         props: {
-            products: data.products
-        },
+            products: data.products,
+            category: data.category
+        }
     }
-
 }
 
 export default Category;

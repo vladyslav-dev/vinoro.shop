@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './category.module.scss';
 import CardList from '@/components/CardList';
 import CardFilter from '@/components/CardFilter'
 import Ranger from '@/components/Ranger';
+import CategoryTree from '@/components/CategoryTree';
 
 const Category = ({ products, category }) => {
+    const [hideTree, setHideTree] = useState(false)
+
+    const hideHandler = () => {
+        setHideTree(!hideTree)
+    }
+
     return (
         <div className={styles["container-xl"]}>
             <div className={styles.categoryWrapper}>
-                <div className={styles.categoryTree}>
-                    Component Tree
-                </div>
+                <CategoryTree category={category} hideTree={hideTree} hideHandler={hideHandler} />
                 <div className={styles.categoryContent}>
                     <div className={styles.categoryToolbar}>
                         <CardFilter />

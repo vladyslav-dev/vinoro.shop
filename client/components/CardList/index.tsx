@@ -9,7 +9,6 @@ export interface CardListProps {
 }
 
 const CardList = ({ products, customStyles }: CardListProps) => {
-
     return (
         <div className={styles.cardList} style={customStyles}>
             {products.map((item, key) => <Card product={item} key={key} />)}

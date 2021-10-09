@@ -18,7 +18,7 @@ const Ranger = () => {
 
     return (
         <div className={styles.rangerWrapper}>
-            <div
+            {/* <div
                 {...getTrackProps({
                     style: {
                         height: "4px",
@@ -43,7 +43,7 @@ const Ranger = () => {
                         })}
                     />
                 ))}
-            </div>
+            </div> */}
         </div>
     )
 }

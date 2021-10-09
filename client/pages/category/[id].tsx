@@ -16,7 +16,7 @@ const Category = ({ products, category }) => {
     return (
         <div className={styles["container-xl"]}>
             <div className={styles.categoryWrapper}>
-                <CategoryTree category={category} hideTree={hideTree} hideHandler={hideHandler} />
+                <CategoryTree category={category} hideTree={hideTree} hideHandler={hideHandler} currentCategoryId={products[0].category}/>
                 <div className={styles.categoryContent}>
                     <div className={styles.categoryToolbar}>
                         <CardFilter />

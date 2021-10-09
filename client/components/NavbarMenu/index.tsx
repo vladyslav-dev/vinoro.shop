@@ -11,7 +11,6 @@ export interface NavbarMenuProps {
 
 const NavbarMenu: FC<NavbarMenuProps> = ({ category }) => {
 
-
     const getCatalog = (key: string) => {
         return category.map(item => {
             if (CatalogEnum[key] === item.catalog) {

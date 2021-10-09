@@ -22,8 +22,6 @@ const Navbar = (props: NavbarProps) => {
 
     const { category } = props;
 
-    const [basketIsOpen, setBasketIsOpen] = useState(false)
-
     return (
         <>
             <div className={styles.navbarWrapper}>

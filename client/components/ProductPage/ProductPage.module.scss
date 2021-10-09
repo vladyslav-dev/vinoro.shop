@@ -1,0 +1,53 @@
+@import "../../styles/index.scss";
+
+.content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 76px;
+    height: 1000px;
+
+    .leftPart {
+        width: 584px;
+        height: 788px;
+        position: relative;
+
+    }
+    .rightPart {
+        width: 46%;
+        margin-top: 50px;
+
+        .productNamePrice {
+            font-size: ptr(22);
+            line-height: auto;
+            margin-bottom: 50px;
+        }
+
+        .productNamePrice :last-child {
+            font-size: ptr(18);
+            line-height: auto;
+            margin-top: 12px;
+        }
+
+        .productAvailability {
+            border-bottom: 1px solid $UI-color4;
+            padding-bottom: 7px;
+            .cardAvailabilityRed {
+                color: $red-color;
+            }
+        
+            .cardAvailabilityGreen {
+                color: $green-color;
+            }
+        }
+
+        .addButtons {
+            margin: 45px 0;
+        }
+
+        .productDescriptions {
+            font-size: ptr(16);
+            line-height: ptr(28);
+        }
+    }
+}

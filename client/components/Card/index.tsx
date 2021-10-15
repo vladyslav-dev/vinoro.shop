@@ -3,13 +3,15 @@ import Link from 'next/link'
 import React from 'react'
 import styles from './Card.module.scss'
 
-import {IProduct} from '@/interfaces/IProduct'
+import { IProduct } from '@/interfaces/IProduct'
 
-interface Card {
-    product :  IProduct
+interface CardProps {
+    product: IProduct;
+    animate: boolean;
 }
 
-const Card = ({product}) => {
+const CardComponent = ({ product, animate }: CardProps) => {
+    console.log("animate ", animate)
     return (
         <Link href={`/product/[id]`} as={`/product/${product._id}`}>
             <div className={styles.card}>
@@ -31,5 +33,7 @@ const Card = ({product}) => {
         </Link>
     )
 }
+
+const Card = React.memo(CardComponent)
 
 export default Card

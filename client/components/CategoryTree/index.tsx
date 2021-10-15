@@ -9,14 +9,26 @@ interface CategoryTreeProps {
     hideTree?: boolean;
     hideHandler: () => void;
     currentCategoryId: String;
+    isTreeOpen: boolean;
+    handler: () => void;
 }
 
 const CategoryTree = (props: CategoryTreeProps) => {
-    const { category, hideHandler, hideTree, currentCategoryId } = props
+    const { category, hideHandler, handler, isTreeOpen, hideTree, currentCategoryId } = props
+
+//     return (
+//         <div className={styles.wrraper}>
+//             <div className={hideTree ? styles.hideContent : styles.fullConetnt}>
+//     isTreeOpen?: boolean;
+//     handler: () => void;
+// }
+
+{/* const CategoryTree = (props: CategoryTreeProps) => {
+    const { category, handler, isTreeOpen } = props */}
 
     return (
-        <div className={styles.wrraper}>
-            <div className={hideTree ? styles.hideContent : styles.fullConetnt}>
+        <div className={isTreeOpen ? styles.fullConetnt : styles.hideContent}>
+            <div onClick={() => handler()}>
                 <div className={styles.content}>
                     <h3 onClick={() => hideHandler()}>{Catalog[category[0].catalog]}</h3>
                     <div className={styles.categoryContent}>

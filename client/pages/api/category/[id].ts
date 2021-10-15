@@ -6,6 +6,7 @@ import CategoryModel from '@/models/CategoryModel';
 dbConnect();
 
 const api = async (req: NextApiRequest, res: NextApiResponse) => {
+
     try {
 
         const products = await ProductModel

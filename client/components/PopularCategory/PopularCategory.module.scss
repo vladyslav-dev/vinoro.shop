@@ -9,9 +9,12 @@
             display: flex;
             margin-bottom: 90px;
 
+            @include lg {
+                align-items: center;
+            } 
+
             @include md {
                 flex-direction: column;
-                align-items: center;
             }
 
             &:nth-child(even) {

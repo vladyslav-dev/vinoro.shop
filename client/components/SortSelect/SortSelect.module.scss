@@ -1,0 +1,84 @@
+@import "../../styles/index.scss";
+
+.selectWrapper {
+    position: relative;
+
+    .selectTitle {
+        color: $UI-color1;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .selectTitleArrow {
+            transform: rotate(180deg);
+            transition: all .4s ease;
+        }
+
+        .selectTitleArrowActive {
+            transform: rotate(0);
+            transition: all .4s ease;
+        }
+        
+        & > span {
+            font-weight: 500;
+            font-size: ptr(16);
+            line-height: ptr(20);
+            display: inherit;
+            align-items: inherit;
+
+            &:first-child {
+                margin-right: 14px;
+            }
+        }
+    }
+
+    .selectList, .selectListActive {
+        background: #FFFFFF;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.11);
+        position: absolute;
+        top: 34px;
+        width: 225px;
+        max-height: 0;
+        z-index: 5;
+        border: 1px solid $UI-color4;
+        overflow: hidden;
+     
+        transition: all .4s ease-in-out;
+
+        .selectListItem {
+            height: 42px;
+            cursor: pointer;
+            line-height: 42px;
+            padding-left: 17px;
+            transition: .4s ease-in-out;
+            border-left: 2px solid transparent;
+
+            &:first-child {
+                margin-top: 14px;
+            }
+
+            &:last-child {
+                margin-bottom: 14px;
+            }
+
+            &:hover {
+                border-left: 2px solid #232021;
+            }
+        }
+
+        .selectListItemActive {
+            background-color: $UI-color4;
+        }
+    }
+
+    .selectList {
+        border: 1px solid transparent;
+        box-shadow: none;
+        background: transparent;
+    }
+
+    .selectListActive {
+        max-height: 225px;
+    }
+}

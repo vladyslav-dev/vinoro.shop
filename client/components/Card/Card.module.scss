@@ -4,24 +4,10 @@
 .card {
     display: inline-block;
     animation: fadeIn .4s cubic-bezier(.25, .25, .25, 1.25) forwards;
-
-    // @for $i from 1 through 40 {
-    //     &:nth-child(#{$i}) {
-    //         animation-delay: $i * (1s / 18);
-    //     }
-    // }
       
     &.animate {
         animation: fadeIn2 .4s cubic-bezier(.25, .25, .25, 1.25) forwards;
-
-        // @for $i from 1 through 40 {
-        //     &:nth-child(#{$i}) {
-        //         animation-delay: $i * (1s / 18);
-        //     }
-        // }
     }
-
-
 
       @keyframes fadeIn{
         0% {
@@ -48,18 +34,7 @@
       
     
     .cardImage {
-        position: relative;
         width: 100%;
-        > div {
-          position: unset !important;
-        }
-      
-        .image {
-          object-fit: cover;
-          width: 100% !important;
-          position: relative !important;
-          height: unset !important;
-        }
     }   
 
     .cardInfo {

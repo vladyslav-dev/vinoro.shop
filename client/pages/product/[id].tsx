@@ -4,7 +4,6 @@ import axios from 'axios';
 import ProductPage from '@/components/ProductPage';
 
 const Product = ({ product }) => {
-    console.log(product)
     return (
         <div className={styles.container}>
             <ProductPage product={product} />

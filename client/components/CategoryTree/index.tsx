@@ -3,46 +3,32 @@ import Link from 'next/link'
 import styles from './CategoryTree.module.scss'
 import { ICategory } from '@/interfaces/ICategory'
 import { Catalog } from '../../enums/Catalog'
+import { TreeArrowSvg } from '@/icons/Arrow';
 
 interface CategoryTreeProps {
     category?: Array<ICategory>;
-    hideTree?: boolean;
-    hideHandler: () => void;
-    currentCategoryId: String;
-    isTreeOpen: boolean;
-    handler: () => void;
+    treeHandler?: () => void;
+    currentCategoryId?: string;
+    isTreeOpen?: boolean;
 }
 
 const CategoryTree = (props: CategoryTreeProps) => {
-    const { category, hideHandler, handler, isTreeOpen, hideTree, currentCategoryId } = props
-
-//     return (
-//         <div className={styles.wrraper}>
-//             <div className={hideTree ? styles.hideContent : styles.fullConetnt}>
-//     isTreeOpen?: boolean;
-//     handler: () => void;
-// }
-
-{/* const CategoryTree = (props: CategoryTreeProps) => {
-    const { category, handler, isTreeOpen } = props */}
-
+    const { category, treeHandler, isTreeOpen, currentCategoryId } = props
     return (
         <div className={isTreeOpen ? styles.fullConetnt : styles.hideContent}>
-            <div onClick={() => handler()}>
-                <div className={styles.content}>
-                    <h3 onClick={() => hideHandler()}>{Catalog[category[0].catalog]}</h3>
-                    <div className={styles.categoryContent}>
-                        {
-                            category.map((el) => (
-                                <Link href={`/category/[id]`} as={`/category/${el._id}`} key={el._id}>
-                                    <p style={currentCategoryId === el._id ? { fontWeight: 600 } : {}}>{el.category_name}</p>
-                                </Link>
-                            ))
-                        }
-                    </div>
-                </div>
+            <div className={styles.content}>
+                <h3>{Catalog[category[0].catalog]}</h3>
+                <ul className={styles.categoryList}>
+                    {category.map((el) => (
+                        <Link href={`/category/[id]`} as={`/category/${el._id}`} key={el._id}>
+                            <li className={styles.categoryListItem} style={currentCategoryId === el._id ? { fontWeight: 600 } : {}}>{el.category_name}</li>
+                        </Link>
+                    ))}
+                </ul>
             </div>
-
+            <div className={isTreeOpen ? styles.treeArrow : styles.treeArrowClosed} onClick={() => treeHandler()}>
+                <TreeArrowSvg />
+            </div>
         </div>
     )
 }

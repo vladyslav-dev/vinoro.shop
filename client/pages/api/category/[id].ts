@@ -8,7 +8,6 @@ dbConnect();
 const api = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
-
         const products = await ProductModel
             .find({ category: req.query.id })
             .sort([['availability', -1], ['order_id', 0]]);

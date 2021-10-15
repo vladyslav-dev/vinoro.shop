@@ -1,20 +1,7 @@
 import React from 'react';
 import styles from './Ranger.module.scss'
-import { useRanger } from "react-ranger";
 
 const Ranger = ({ rangeHandler }) => {
-
-    const [values, setValues] = React.useState([4]);
-
-    const { getTrackProps, handles } = useRanger({
-        min: 3,
-        max: 6,
-        stepSize: 0.1,
-        values,
-        onChange: setValues
-    });
-
-
 
     return (
         <div className={styles.rangerWrapper}>

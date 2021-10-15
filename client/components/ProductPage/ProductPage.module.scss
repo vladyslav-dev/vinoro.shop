@@ -8,21 +8,9 @@
     height: 1000px;
 
     .leftPart {
-        position: relative;
         width: 520px;
-
-        &> div {
-            position: unset !important;
-          }
-        
-          .imageProduct {
-            object-fit: cover;
-            width: 100% !important;
-            position: relative !important;
-            height: unset !important;
-          }
-
     }
+    
     .rightPart {
         width: 46%;
         margin-top: 50px;

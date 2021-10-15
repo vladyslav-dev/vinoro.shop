@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './category.module.scss';
 import CardList from '@/components/CardList';
@@ -13,13 +13,18 @@ interface CategoryProps {
     category: Array<ICategory>;
 }
 
+let index = 0;
+
 const Category = ({ products, category }: CategoryProps) => {
 
+    console.log("Props from category ", index)
 
-    const [isTreeOpen, setIsTreeOpen] = useState<boolean>(false)
+    const [isTreeOpen, setIsTreeOpen] = useState<boolean>(true)
     const [animate, setAnimate] = useState(false);
 
     const [productList, setProductList] = useState<Array<IProduct>>(products);
+
+    useEffect(() => setProductList(products), [products])
 
     const categoryTreeHandler = () => {
         setIsTreeOpen(!isTreeOpen)
@@ -35,9 +40,7 @@ const Category = ({ products, category }: CategoryProps) => {
 
     }
 
-
     const getCurrentRange = () => {
-
         switch (range) {
             case "lg":
                 return {
@@ -56,18 +59,20 @@ const Category = ({ products, category }: CategoryProps) => {
                     gridTemplateColumns: `repeat(${isTreeOpen ? 4 : 5}, 1fr)`
                 }
         }
-
     }
-
 
     return (
         <div className={styles["container-xl"]}>
             <div className={styles.categoryWrapper}>
-                {/* <CategoryTree category={category} hideTree={hideTree} hideHandler={hideHandler} currentCategoryId={products[0].category}/> */}
-                <CategoryTree category={category} isTreeOpen={isTreeOpen} handler={categoryTreeHandler} />
+                <CategoryTree
+                    category={category}
+                    isTreeOpen={isTreeOpen}
+                    treeHandler={categoryTreeHandler}
+                    currentCategoryId={products[0].category}
+                />
                 <div className={styles.categoryContent}>
                     <div className={styles.categoryToolbar}>
-                        <SortSelect updateProductList={setProductList} defaultProductList={products} />
+                        <SortSelect updateProductList={setProductList} defaultProductList={products} setAnimate={setAnimate} />
                         <Ranger rangeHandler={rangeHandler} />
                     </div>
                     <div className={styles.categoryList}>
@@ -81,6 +86,7 @@ const Category = ({ products, category }: CategoryProps) => {
 
 export const getServerSideProps = async ({ query }) => {
     const { data } = await axios.get(`http://localhost:3000/api/category/${query.id}`);
+    // console.log("server side props ", data)
     return {
         props: {
             products: data.products,

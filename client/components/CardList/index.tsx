@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './CardList.module.scss'
 import { IProduct } from '@/interfaces/IProduct';
 import Card from '../Card/index'
@@ -9,13 +9,11 @@ export interface CardListProps {
     animate?: boolean;
 }
 
-const CardList = ({ products, customStyles, animate }: CardListProps) => {
-    return (
-        <div className={`${styles.cardList}`} style={customStyles}>
-            {products.map((item, key) => <Card animate={animate} product={item} key={key} />)}
-        </div>
-    )
-}
+const CardList = ({ products, customStyles, animate }: CardListProps) => (
+    <div className={`${styles.cardList}`} style={customStyles}>
+        {products.map(product => <Card animate={animate} product={product} key={product._id} />)}
+    </div>
+)
 
 
 export default CardList;

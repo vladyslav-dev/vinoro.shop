@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from 'next/image'
+import Img from '@/components/Img';
 import styles from './ProductPage.module.scss'
 import Button from '../Button'
 
@@ -16,7 +16,7 @@ const ProductPage = ({ product }) => {
     return (
         <div className={styles.content}>
             <div className={styles.leftPart}>
-                <Image src={product.image} alt={product.name} layout='fill' className={styles.imageProduct} quality={100} />
+                <Img src={product.image} />
             </div>
             <div className={styles.rightPart}>
                 <div className={styles.productNamePrice}>

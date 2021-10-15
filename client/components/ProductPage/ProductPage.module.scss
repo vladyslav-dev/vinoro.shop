@@ -8,9 +8,19 @@
     height: 1000px;
 
     .leftPart {
-        width: 584px;
-        height: 788px;
         position: relative;
+        width: 520px;
+
+        &> div {
+            position: unset !important;
+          }
+        
+          .imageProduct {
+            object-fit: cover;
+            width: 100% !important;
+            position: relative !important;
+            height: unset !important;
+          }
 
     }
     .rightPart {

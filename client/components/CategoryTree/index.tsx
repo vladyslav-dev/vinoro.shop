@@ -5,13 +5,13 @@ import { ICategory } from '@/interfaces/ICategory'
 import { Catalog } from '../../enums/Catalog'
 
 interface CategoryTreeProps {
-    category? : Array<ICategory>;
-    hideTree? : boolean;
+    category?: Array<ICategory>;
+    hideTree?: boolean;
     hideHandler: () => void;
     currentCategoryId: String;
 }
 
-const CategoryTree = (props : CategoryTreeProps) => {
+const CategoryTree = (props: CategoryTreeProps) => {
     const { category, hideHandler, hideTree, currentCategoryId } = props
 
     return (
@@ -22,15 +22,15 @@ const CategoryTree = (props : CategoryTreeProps) => {
                     <div className={styles.categoryContent}>
                         {
                             category.map((el) => (
-                                <Link href={`/category/[id]`} as={`/category/${el._id}`}  key={el._id}>
-                                    <p style={currentCategoryId === el._id ? {fontWeight: "600"} : null}>{el.category_name}</p>
+                                <Link href={`/category/[id]`} as={`/category/${el._id}`} key={el._id}>
+                                    <p style={currentCategoryId === el._id ? { fontWeight: 600 } : {}}>{el.category_name}</p>
                                 </Link>
                             ))
                         }
                     </div>
                 </div>
             </div>
-            
+
         </div>
     )
 }

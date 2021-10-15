@@ -3,10 +3,11 @@ import styles from './product.module.scss'
 import axios from 'axios';
 import ProductPage from '@/components/ProductPage';
 
-const Product = ({product}) => {
+const Product = ({ product }) => {
+    console.log(product)
     return (
         <div className={styles.container}>
-            <ProductPage product={product}/>
+            <ProductPage product={product} />
         </div>
     )
 }
@@ -14,6 +15,7 @@ const Product = ({product}) => {
 export const getServerSideProps = async ({ query }) => {
 
     const { data } = await axios.get(`http://localhost:3000/api/product/${query.id}`);
+
     return {
         props: {
             product: data.product

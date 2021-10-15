@@ -5,18 +5,54 @@
     display: grid;
     //grid-template-columns: repeat(auto-fill, minmax(auto, 24%));
     justify-content: space-around;
-    grid-row-gap: 8px;
+    grid-row-gap: 20px;
     grid-column-gap: 8px;
 
-    // @media (max-width: 1100px) {
-    //     grid-template-columns: repeat(auto-fill, minmax(auto, 31%));
+    // animation-name: listAnimation;
+    // animation-duration: 1s;
+    // animation-fill-mode: forwards;
+
+    // &.animate {
+    //     animation-name: listAnimationReverse;
+    //     animation-duration: 1s;
+    //     animation-fill-mode: forwards;
     // }
+
+    @media (max-width: 1100px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
       
-    // @media (max-width: 645px) {
-    //     grid-template-columns: repeat(auto-fill, minmax(auto, 48%));
-    // }
+    @media (max-width: 645px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
       
-    // @media (max-width: 500px) {
-    //     grid-template-columns: repeat(auto-fill, minmax(auto, 48%));
-    // }
+    @media (max-width: 500px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
+
+
+
+@keyframes listAnimation{
+    from {
+        opacity: 0;
+        max-width: 50%;
+    }
+    to {
+        opacity: 1;
+        max-width: 100%;
+    }	
+  }
+
+  @keyframes listAnimationReverse{
+ 
+    0% {
+        opacity: 0;
+        max-width: 50%;
+    }
+    100% {
+        opacity: 1;
+        max-width: 100%;
+    }	
+  }
+  

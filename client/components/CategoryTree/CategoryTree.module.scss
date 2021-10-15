@@ -1,13 +1,16 @@
 .hideContent {
+    
     width: 90px;
-    background-color: rgb(206, 206, 206);
     overflow: hidden;
+    transition: all .5s ease-in-out;
     .categoryContent { 
         display: none;
+      
     }
 
     .content {
         transform: rotate(270deg) translateX(-200px);
+     
 
         h3 {
             width: 300px;
@@ -17,7 +20,8 @@
 
 .fullConetnt {
     width: 300px;
-    background-color: rgb(206, 206, 206);
+
+    transition: all .5s ease-in-out;
 }
 
 

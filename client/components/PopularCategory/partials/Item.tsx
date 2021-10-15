@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import Image from 'next/image'
 import { useRouter } from 'next/router';
 import styles from '../PopularCategory.module.scss';
 import Button from '@/components/Button';
+import Img from '@/components/Img';
 
 import { IPopularCategory } from '../../../interfaces/IPopularCategory';
 
@@ -25,7 +25,7 @@ const Item: FC<IPopularCategory> = (
         <div className={styles.item}>
             <h3 className={styles.titleMobile}>{title}</h3>
             <div className={styles.itemImage}>
-                <Image src={imageURL} layout="fill" className={styles.image} quality={100} alt={"Image not found"} />
+                <Img src={imageURL} />
             </div>
             <div className={styles.itemInfo}>
                 <h3 className={styles.title}>{title}</h3>

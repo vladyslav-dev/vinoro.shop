@@ -14,7 +14,7 @@ const Ranger = ({ rangeHandler }) => {
         onChange: setValues
     });
 
-    console.log(values)
+
 
     return (
         <div className={styles.rangerWrapper}>

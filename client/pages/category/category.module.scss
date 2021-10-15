@@ -3,13 +3,18 @@
 .categoryWrapper {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 50px;
 
     .categoryContent {
         flex: 1;
 
         .categoryToolbar {
             width: 100%;
-            height: 90px;
+            height: 70px;
+            position: sticky;
+            top: 74px;
+            z-index: 5;
+            background-color: #fff;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -19,4 +24,9 @@
 
         }
     }
+}
+
+.range {
+    width: 90px;
+    margin-right: 300px;
 }

@@ -1,44 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './category.module.scss';
 import CardList from '@/components/CardList';
-import CardFilter from '@/components/CardFilter'
+import SortSelect from '@/components/SortSelect'
 import Ranger from '@/components/Ranger';
 import CategoryTree from '@/components/CategoryTree';
-  
-const Category = ({ products, category }) => {
+import { IProduct } from '@/interfaces/IProduct';
+import { ICategory } from '@/interfaces/ICategory';
 
-    const [hideTree, setHideTree] = useState(false)
+interface CategoryProps {
+    products: Array<IProduct>;
+    category: Array<ICategory>;
+}
 
-    const hideHandler = () => {
-        setHideTree(!hideTree)
+const Category = ({ products, category }: CategoryProps) => {
+
+
+    const [isTreeOpen, setIsTreeOpen] = useState<boolean>(false)
+    const [animate, setAnimate] = useState(false);
+
+    const [productList, setProductList] = useState<Array<IProduct>>(products);
+
+    const categoryTreeHandler = () => {
+        setIsTreeOpen(!isTreeOpen)
     }
 
     type RangeType = "sm" | "md" | "lg"
 
     const [range, setRange] = useState<RangeType>("lg")
-    const [isTreeOpen, setIsTreeOpen] = useState(true)
 
     const rangeHandler = e => {
-        console.log(e.target.name)
+        setAnimate(prevState => !prevState);
         setRange(e.target.name)
+
     }
 
-    // useEffect(() => {
-    //     console.log("Use effect range is ", range)
-
-    //     if (range === "lg") {
-
-    //     }
-    //     if (range === "md") {
-
-    //     }
-    //     if (range === "sm") {
-
-    //     }
-    // }, [range])
 
     const getCurrentRange = () => {
+
         switch (range) {
             case "lg":
                 return {
@@ -57,20 +56,21 @@ const Category = ({ products, category }) => {
                     gridTemplateColumns: `repeat(${isTreeOpen ? 4 : 5}, 1fr)`
                 }
         }
+
     }
 
 
     return (
         <div className={styles["container-xl"]}>
             <div className={styles.categoryWrapper}>
-                <CategoryTree category={category} hideTree={hideTree} hideHandler={hideHandler} />
+                <CategoryTree category={category} isTreeOpen={isTreeOpen} handler={categoryTreeHandler} />
                 <div className={styles.categoryContent}>
                     <div className={styles.categoryToolbar}>
-                        <CardFilter />
+                        <SortSelect updateProductList={setProductList} defaultProductList={products} />
                         <Ranger rangeHandler={rangeHandler} />
                     </div>
                     <div className={styles.categoryList}>
-                        <CardList products={products} customStyles={getCurrentRange()} />
+                        <CardList products={productList} animate={animate} customStyles={getCurrentRange()} />
                     </div>
                 </div>
             </div>

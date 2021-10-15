@@ -7,7 +7,6 @@ import PopularCategoryModel from '@/models/PopularCategoryModel';
 dbConnect();
 
 const api = async (req: NextApiRequest, res: NextApiResponse) => {
-    console.log("Index API worked")
 
     const popularCategory = await PopularCategoryModel.find({});
     const category = await CategoryModel.find({}).sort({ "category_id": 1 });

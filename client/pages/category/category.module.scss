@@ -4,6 +4,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
+    min-height: calc(100vh - 68px);
 
     .categoryContent {
         flex: 1;
@@ -12,7 +13,7 @@
             width: 100%;
             height: 70px;
             position: sticky;
-            top: 74px;
+            top: 68px;
             z-index: 5;
             background-color: #fff;
             display: flex;

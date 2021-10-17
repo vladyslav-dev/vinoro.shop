@@ -3,20 +3,10 @@
 .cardList {
     width: 100%;
     display: grid;
-    //grid-template-columns: repeat(auto-fill, minmax(auto, 24%));
     justify-content: space-around;
     grid-row-gap: 20px;
     grid-column-gap: 8px;
-
-    // animation-name: listAnimation;
-    // animation-duration: 1s;
-    // animation-fill-mode: forwards;
-
-    // &.animate {
-    //     animation-name: listAnimationReverse;
-    //     animation-duration: 1s;
-    //     animation-fill-mode: forwards;
-    // }
+    overflow: hidden;
 
     @media (max-width: 1100px) {
         grid-template-columns: repeat(3, 1fr);
@@ -30,7 +20,6 @@
         grid-template-columns: repeat(4, 1fr);
     }
 }
-
 
 
 @keyframes listAnimation{

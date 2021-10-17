@@ -20,7 +20,7 @@ const CategoryTree = (props: CategoryTreeProps) => {
                 <h3>{Catalog[category[0].catalog]}</h3>
                 <ul className={styles.categoryList}>
                     {category.map((el) => (
-                        <Link href={`/category/[id]`} as={`/category/${el._id}`} key={el._id}>
+                        <Link href={`/category/[id]`} as={`/category/${el._id}`} key={el._id} passHref>
                             <li className={styles.categoryListItem} style={currentCategoryId === el._id ? { fontWeight: 600 } : {}}>{el.category_name}</li>
                         </Link>
                     ))}

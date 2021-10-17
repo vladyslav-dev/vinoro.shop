@@ -1,4 +1,4 @@
-import { IProduct } from '@/interfaces/IProduct';
+import { IBasketProduct, BasketAction, BasketHandler } from '@/interfaces/IBasket';
 import {
     addProduct,
     removeProductById,
@@ -6,8 +6,9 @@ import {
     decreaseCountById,
 } from './action-creators';
 
-export const getBasketHandlers = (dispatch) => ({
-    addProduct: (product: IProduct) => {
+
+export const getBasketHandlers: BasketHandler = (dispatch: React.Dispatch<BasketAction>) => ({
+    addProduct: (product: IBasketProduct) => {
         dispatch(addProduct(product));
     },
     removeProductById: (productId: string) => {

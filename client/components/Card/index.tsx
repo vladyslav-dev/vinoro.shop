@@ -12,7 +12,7 @@ interface CardProps {
 
 const CardComponent = ({ product, animate }: CardProps) => (
     <div className={`${styles.card} ${animate ? styles.animate : ""}`}>
-        <Link href={`/product/[id]`} as={`/product/${product._id}`}>
+        <Link href={`/product/[id]`} as={`/product/${product._id}`} passHref>
             <div>
                 <div className={styles.cardImage}>
                     <Img src={product.image} />

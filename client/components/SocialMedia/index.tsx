@@ -4,6 +4,7 @@ import styles from './SocialMedia.module.scss'
 import { FacebookSvg, InstSvg, ViberSvg } from '@/icons/SocialMedia';
 
 const SocialMedia = () => {
+
     return (
         <div className={styles.socialMedia}>
             <Link href={process.env.FACEBOOK_LINK || "/"} >

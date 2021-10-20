@@ -35,6 +35,16 @@
     
     .cardImage {
         width: 100%;
+        overflow: hidden;
+        & > div {
+            will-change: transform; 
+            transition: all .3s;
+        }
+        &:hover {
+            & > div {
+                transform: scale(1.19);
+            }
+        }
     }   
 
     .cardInfo {

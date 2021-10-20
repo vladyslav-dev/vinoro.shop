@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import App, { AppProps, AppContext } from 'next/app';
 import axios from 'axios';
 import '@/styles/reset.scss';

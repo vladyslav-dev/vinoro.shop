@@ -22,12 +22,35 @@ const Button = (props: ButtonProps) => {
         styles,
     } = props;
 
+    let backgroudStyle = "#232021" // default background
+    let borderStyle = "2px solid #232021" // default border
+    let colorStyle = "#FFFFFF" // default color
+    let eventStyle = "auto"
+
+    if (type === "outlined") {
+        backgroudStyle = "#FFFFFF"
+        colorStyle = "#232021"
+    }
+    if (type === "disabled") {
+        backgroudStyle = "#BBBBBB"
+        borderStyle = "2px solid #BBBBBB"
+        eventStyle = "none"
+    }
+
+    const initialStyles = {
+        ...styles,
+        background: backgroudStyle,
+        border: borderStyle,
+        color: colorStyle,
+        //   ["pointer-events"]: eventStyle // make sure that it's work correctly
+    }
+
     return (
         <button
             className={moduleStyles.button}
             onClick={click}
             type="button"
-            style={styles}
+            style={initialStyles}
         >
             <span className={moduleStyles.buttonChildren}>{label}</span>
             {icon && <span className={moduleStyles.buttonIcon}>{icon}</span>}

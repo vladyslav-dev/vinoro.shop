@@ -1,32 +1,37 @@
-import { BasketState, BasketAction, ACTION_TYPES } from '@/interfaces/IBasket';
+import { IBasketState, BasketAction, ACTION_TYPES } from '@/interfaces/IBasket';
 
-export const basketInitialState: BasketState = {
+export const basketInitialState: IBasketState = {
     products: []
 };
 
-export const basketReducer = (state: BasketState, action: BasketAction) => {
+export const basketReducer = (state: IBasketState, action: BasketAction): IBasketState => {
     switch (action.type) {
+        case ACTION_TYPES.INIT_STATE:
+            return {
+                products: action.payload
+            };
         case ACTION_TYPES.ADD_PRODUCT:
             return {
-                ...state,
                 products: [...state.products, { ...action.payload, quantity: 1 }],
             };
 
         case ACTION_TYPES.REMOVE_PRODUCT:
             return {
-                ...state,
                 products: [...state.products.filter(product => product._id !== action.payload)],
             };
 
         case ACTION_TYPES.INCREASE_COUNT:
             return {
-                ...state,
-                // products: [...state.products.find(product => product._id)]
+                products: [...state.products.map(product => (
+                    product._id === action.payload ? { ...product, quantity: product.quantity + 1 } : { ...product }
+                ))]
             };
 
         case ACTION_TYPES.DECREASE_COUNT:
             return {
-                ...state,
+                products: [...state.products.map(product => (
+                    product._id === action.payload ? { ...product, quantity: product.quantity - 1 } : { ...product }
+                ))]
             };
 
         default:

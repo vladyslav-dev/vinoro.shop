@@ -1,12 +1,15 @@
 import React, { createContext, useReducer, useMemo } from 'react';
-import { BasketState, BasketHandlers } from '@/interfaces/IBasket';
+import { IBasketState, BasketHandlers } from '@/interfaces/IBasket';
 
 import { basketReducer, basketInitialState, getBasketHandlers } from './basket';
 
 interface IContext {
-    basket: {
-        state: BasketState;
+    BASKET: {
+        state: IBasketState;
         handlers: BasketHandlers;
+    };
+    FAVORITES: {
+        state: string;
     }
 }
 
@@ -21,10 +24,13 @@ const GlobalContextProvider = ({ children }) => {
     return (
         <Provider
             value={{
-                basket: {
+                BASKET: {
                     state: basketState,
                     handlers: basketHandlers,
                 },
+                FAVORITES: {
+                    state: "favorites state"
+                }
             }}
         >
             {children}

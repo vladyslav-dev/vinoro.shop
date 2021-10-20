@@ -1,5 +1,6 @@
 import { IBasketProduct, BasketAction, BasketHandler } from '@/interfaces/IBasket';
 import {
+    initState,
     addProduct,
     removeProductById,
     increaseCountById,
@@ -8,6 +9,9 @@ import {
 
 
 export const getBasketHandlers: BasketHandler = (dispatch: React.Dispatch<BasketAction>) => ({
+    initState: (state: Array<IBasketProduct>) => {
+        dispatch(initState(state));
+    },
     addProduct: (product: IBasketProduct) => {
         dispatch(addProduct(product));
     },

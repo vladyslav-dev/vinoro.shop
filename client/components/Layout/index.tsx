@@ -1,8 +1,10 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, useEffect, useContext } from 'react';
 import Head from 'next/head';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { ICategory } from '@/interfaces/ICategory';
+import { GlobalContext } from '@/store/index';
+import { IBasketProduct } from '@/interfaces/IBasket';
 
 export interface LayoutProps {
     children?: ReactNode;
@@ -10,6 +12,34 @@ export interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = ({ children, category }) => {
+
+    const state = useContext(GlobalContext)
+
+    useEffect(() => {
+        console.log("App is rendered. Init state from localStorage")
+        for (let key in state) {
+            if (localStorage.hasOwnProperty(key)) {
+
+                let value = localStorage.getItem(key);
+
+                if (key === "BASKET") {
+                    try {
+                        let storageValue = JSON.parse(value);
+                        state.BASKET.handlers.initState([...storageValue.products]);
+                    } catch (err) {
+                        throw new Error(err)
+                    }
+                }
+                if ((key === "FAVORITES")) {
+                    // the same logic
+                }
+
+            } else {
+                localStorage.setItem(key, JSON.stringify(state[key].state))
+            }
+        }
+    }, [])
+
     return (
         <>
             <Head>

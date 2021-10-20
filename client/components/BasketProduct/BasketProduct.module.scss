@@ -1,0 +1,66 @@
+@import "../../styles/index.scss";
+
+.product {
+    border-bottom: 1px solid $UI-color4;
+    padding-bottom: 22px;
+    margin-bottom: 22px;
+    position: relative;
+    display: flex;
+    
+    .productImage {
+        max-width: 130px;
+    }
+
+    .productInfo {
+        color: $UI-color1;
+        margin-left: 16px;
+
+        .productInfoTitle {
+            font-weight: normal;
+            font-size: ptr(15);
+            line-height: ptr(20);
+        }
+
+        .productInfoCost {
+            font-size: ptr(16);
+            line-height: ptr(20);
+            margin-top: 10px;
+        }
+
+        .productQuantity {
+            display: flex;
+            align-items: center;
+            margin-top: 18px;
+
+            .productQuantityButton {
+                border: none;
+                background: none;
+                cursor: pointer;
+                width: 14px;
+                height: 14px;
+                padding: 0;
+
+                & > svg {
+                    width: 14px;
+                    height: 14px;
+                }
+            }
+
+            .productQuantityNumber {
+                margin: 0 21px;
+                font-size: ptr(16);
+                width: 22px;
+                text-align: center;
+            }
+        }
+    }
+
+    .productRemove {
+        position: absolute;
+        right: 0;
+        bottom: 22px;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+}

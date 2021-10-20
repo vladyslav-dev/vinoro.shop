@@ -4,15 +4,21 @@ export interface IBasketProduct extends Omit<IProduct, "category" | "order_id" |
     quantity?: number;
 }
 
-export interface BasketState {
+export interface IBasketState {
     products: Array<IBasketProduct>;
 }
 
 export enum ACTION_TYPES {
+    INIT_STATE = 'basket/init-state',
     ADD_PRODUCT = 'basket/add-product',
     REMOVE_PRODUCT = 'basket/remove-product',
     INCREASE_COUNT = 'basket/increase-count',
     DECREASE_COUNT = 'basket/decrease-count',
+}
+
+interface IInitStateAction {
+    type: ACTION_TYPES.INIT_STATE;
+    payload: Array<IBasketProduct>
 }
 
 interface IAddProductAction {
@@ -36,12 +42,14 @@ interface IDecreaseCountByIdAction {
 }
 
 export type BasketAction =
-    IAddProductAction
+    IInitStateAction
+    | IAddProductAction
     | IRemoveProductAction
     | IIncreaseCountByIdAction
     | IDecreaseCountByIdAction
 
 export interface BasketHandlers {
+    initState: (state: Array<IBasketProduct>) => void;
     addProduct: (product: IBasketProduct) => void;
     removeProductById: (productId: string) => void;
     increaseCountById: (productId: string) => void;

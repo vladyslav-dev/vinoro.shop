@@ -6,6 +6,10 @@ export const favoritesInitialState: FavoriteState = {
 
 export const favoritesReducer = (state: FavoriteState, action: FavoriteAction) => {
     switch (action.type) {
+        case ACTION_TYPES.INIT_STATE:
+            return {
+                products: action.payload
+            };
         case ACTION_TYPES.ADD_PRODUCT:
             return {
                 ...state,

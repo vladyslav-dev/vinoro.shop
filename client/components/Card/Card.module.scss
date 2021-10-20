@@ -4,7 +4,7 @@
 .card {
     display: inline-block;
     animation: fadeIn .4s cubic-bezier(.25, .25, .25, 1.25) forwards;
-      
+
     &.animate {
         animation: fadeIn2 .4s cubic-bezier(.25, .25, .25, 1.25) forwards;
     }
@@ -36,6 +36,7 @@
     .cardImage {
         width: 100%;
         overflow: hidden;
+ 
         & > div {
             will-change: transform; 
             transition: all .3s;

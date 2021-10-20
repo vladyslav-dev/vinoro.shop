@@ -4,27 +4,42 @@ import styles from './ProductPage.module.scss'
 import Button from '../Button'
 import { IProduct } from '@/interfaces/IProduct';
 import { IBasketProduct } from '@/interfaces/IBasket';
+import { IFavoriteProduct } from '@/interfaces/IFavorite'
 import { GlobalContext } from '@/store/index';
 
 
 
 const ProductPage: React.FC<{ product: IProduct }> = ({ product }) => {
 
-    const { BASKET } = useContext(GlobalContext)
+    const { BASKET, FAVORITES } = useContext(GlobalContext)
 
-    const [isLoaded, setIsLoaded] = useState(false)
+    const [isLoaded, setIsLoaded] = useState({
+        basket: false,
+        favorite: false
+    })
 
     const isProductInBasket = BASKET.state.products.some(item => item._id === product._id)
 
+    const isPrductInFavorites = FAVORITES.state.products.some(item => item._id === product._id)
+
     useEffect(() => {
-        if (isLoaded) {
+        if (isLoaded.basket) {
 
             localStorage.setItem("BASKET", JSON.stringify(BASKET.state))
         } else {
-            setIsLoaded(true)
+            setIsLoaded({...isLoaded, basket: true})
         }
 
     }, [BASKET])
+
+    useEffect(() => {
+        if (isLoaded.favorite) {
+
+            localStorage.setItem("FAVORITES", JSON.stringify(FAVORITES.state))
+        } else {
+            setIsLoaded({...isLoaded, favorite: true})
+        }
+    }, [FAVORITES])
 
     const addToBasket = () => BASKET.handlers.addProduct({
         _id: product._id,
@@ -33,12 +48,12 @@ const ProductPage: React.FC<{ product: IProduct }> = ({ product }) => {
         image: product.image,
     } as IBasketProduct)
 
-    const addFavorites = () => {
-        console.log('fav')
-    }
-
-
-
+    const addFavorites = () => FAVORITES.handlers.addProduct({
+        _id: product._id,
+        name: product.name,
+        cost: product.cost,
+        image: product.image,
+    } as IFavoriteProduct)
 
     return (
         <div className={styles.content}>
@@ -64,10 +79,10 @@ const ProductPage: React.FC<{ product: IProduct }> = ({ product }) => {
                         styles={{ width: "100%", margin: '15px 0' }}
                     />
                     <Button
-                        label="ДОБАВИТЬ В ИЗБРАННОЕ"
+                        label={isPrductInFavorites ? "УЖЕ В ИЗБРАННОМ" : "ДОБАВИТЬ В ИЗБРАННОЕ"}
                         type="outlined"
                         styles={{ width: "100%", margin: '15px 0' }}
-                        click={addFavorites}
+                        click={() => { !isProductInBasket ? addFavorites() : null }}
                     />
                 </div>
                 <div className={styles.productDescriptions}>

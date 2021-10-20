@@ -16,7 +16,6 @@ const Layout: FC<LayoutProps> = ({ children, category }) => {
     const state = useContext(GlobalContext)
 
     useEffect(() => {
-        console.log("App is rendered. Init state from localStorage")
         for (let key in state) {
             if (localStorage.hasOwnProperty(key)) {
 
@@ -30,8 +29,14 @@ const Layout: FC<LayoutProps> = ({ children, category }) => {
                         throw new Error(err)
                     }
                 }
-                if ((key === "FAVORITES")) {
-                    // the same logic
+                
+                if (key === "FAVORITES") {
+                    try {
+                        let storageValue = JSON.parse(value);
+                        state.FAVORITES.handlers.initState([...storageValue.products]);
+                    } catch (err) {
+                        throw new Error(err)
+                    }
                 }
 
             } else {

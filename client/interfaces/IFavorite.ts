@@ -7,8 +7,14 @@ export interface FavoriteState {
 }
 
 export enum ACTION_TYPES {
+    INIT_STATE = 'favorite/init-state',
     ADD_PRODUCT = 'favorite/add-product',
     REMOVE_PRODUCT = 'favorite/remove-product'
+}
+
+interface IInitState {
+    type: ACTION_TYPES.INIT_STATE;
+    payload: Array<IFavoriteProduct>
 }
 
 interface IAddProduct {
@@ -21,9 +27,10 @@ interface IRemoveProduct {
     payload: string
 }
 
-export type FavoriteAction = IAddProduct | IRemoveProduct
+export type FavoriteAction = IInitState | IAddProduct | IRemoveProduct 
 
 export interface FavoriteHandlers {
+    initState: (state: Array<IFavoriteProduct>) => void;
     addProduct: (product: IFavoriteProduct) => void;
     removeProduct: (productId: string) => void;
 }

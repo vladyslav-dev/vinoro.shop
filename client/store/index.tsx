@@ -1,10 +1,10 @@
 import React, { createContext, useReducer, useMemo } from 'react';
 import { IBasketState, BasketHandlers } from '@/interfaces/IBasket';
 
-import { BasketState, BasketHandlers } from '@/interfaces/IBasket';
 import { basketReducer, basketInitialState, getBasketHandlers } from './basket';
 
-import {FavoriteState, FavoriteHandlers} from '@/interfaces/IFavorite'
+import { FavoriteState, FavoriteHandlers} from '@/interfaces/IFavorite'
+
 import {favoritesReducer, favoritesInitialState, getFavoritesHandler} from './favorite'
 
 
@@ -14,7 +14,8 @@ interface IContext {
         handlers: BasketHandlers;
     };
     FAVORITES: {
-        state: string;
+        state: FavoriteState;
+        handlers: FavoriteHandlers;
     }
 }
 
@@ -37,7 +38,8 @@ const GlobalContextProvider = ({ children }) => {
                     handlers: basketHandlers,
                 },
                 FAVORITES: {
-                    state: "favorites state"
+                    state: favoriteState,
+                    handlers: favoriteHAndlers,
                 }
             }}
         >

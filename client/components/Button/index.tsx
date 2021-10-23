@@ -6,7 +6,7 @@ type ButtonSize = "desktop" | "mobile";
 
 export interface ButtonProps {
     label?: string;
-    click?: () => void;
+    click?: (e: any) => void;
     type?: ButtonType;
     size?: ButtonSize;
     icon?: React.ReactNode;
@@ -23,12 +23,13 @@ const Button = (props: ButtonProps) => {
     } = props;
 
     let backgroudStyle = "#232021" // default background
-    let borderStyle = "2px solid #232021" // default border
+    let borderStyle = "none" // default border
     let colorStyle = "#FFFFFF" // default color
     let eventStyle = "auto"
 
     if (type === "outlined") {
         backgroudStyle = "#FFFFFF"
+        borderStyle = "2px solid #232021"
         colorStyle = "#232021"
     }
     if (type === "disabled") {
@@ -48,7 +49,7 @@ const Button = (props: ButtonProps) => {
     return (
         <button
             className={moduleStyles.button}
-            onClick={click}
+            onClick={(e) => click(e)}
             type="button"
             style={initialStyles}
         >

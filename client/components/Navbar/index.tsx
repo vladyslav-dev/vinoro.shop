@@ -36,9 +36,14 @@ const Navbar = (props: NavbarProps) => {
                         </div>
                         <NavbarMenu category={category} />
                         <div className={styles.navbarIcons}>
-                            <HeaderIcon label={"ИЗБРАННОЕ"}>
-                                <HeartSvg />
-                            </HeaderIcon>
+                                <Link href="/favorite/">
+                                    <div  className={styles.favoriteIcon}>
+                                        <HeaderIcon label={"ИЗБРАННОЕ"}>
+                                                <HeartSvg />
+                                        </HeaderIcon>
+                                    </div>
+                                </Link>
+
                             <HeaderIcon label={"КОРЗИНА"} className={styles.basketIcon}>
                                 <BagSvg />
                                 <div className={styles.basket}>

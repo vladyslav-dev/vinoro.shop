@@ -4,7 +4,7 @@ import styles from './ProductPage.module.scss'
 import Button from '../Button'
 import { IProduct } from '@/interfaces/IProduct';
 import { IBasketProduct } from '@/interfaces/IBasket';
-import { IFavoriteProduct } from '@/interfaces/IFavorite'
+import { IProductCard } from '@/interfaces/IFavorite'
 import { GlobalContext } from '@/store/index';
 
 
@@ -20,11 +20,10 @@ const ProductPage: React.FC<{ product: IProduct }> = ({ product }) => {
 
     const isProductInBasket = BASKET.state.products.some(item => item._id === product._id)
 
-    const isPrductInFavorites = FAVORITES.state.products.some(item => item._id === product._id)
+    const isPrductInFavorites = FAVORITES.state.products?.some(item => item._id === product._id)
 
     useEffect(() => {
         if (isLoaded.basket) {
-
             localStorage.setItem("BASKET", JSON.stringify(BASKET.state))
         } else {
             setIsLoaded({...isLoaded, basket: true})
@@ -34,7 +33,6 @@ const ProductPage: React.FC<{ product: IProduct }> = ({ product }) => {
 
     useEffect(() => {
         if (isLoaded.favorite) {
-
             localStorage.setItem("FAVORITES", JSON.stringify(FAVORITES.state))
         } else {
             setIsLoaded({...isLoaded, favorite: true})
@@ -53,7 +51,8 @@ const ProductPage: React.FC<{ product: IProduct }> = ({ product }) => {
         name: product.name,
         cost: product.cost,
         image: product.image,
-    } as IFavoriteProduct)
+        availability: product.availability
+    } as IProductCard)
 
     return (
         <div className={styles.content}>
@@ -82,7 +81,7 @@ const ProductPage: React.FC<{ product: IProduct }> = ({ product }) => {
                         label={isPrductInFavorites ? "УЖЕ В ИЗБРАННОМ" : "ДОБАВИТЬ В ИЗБРАННОЕ"}
                         type="outlined"
                         styles={{ width: "100%", margin: '15px 0' }}
-                        click={() => { !isProductInBasket ? addFavorites() : null }}
+                        click={() => { !isPrductInFavorites ? addFavorites() : null }}
                     />
                 </div>
                 <div className={styles.productDescriptions}>

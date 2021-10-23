@@ -1,9 +1,9 @@
 import { IProduct } from '@/interfaces/IProduct';
 
-export interface IFavoriteProduct extends Omit<IProduct, "category" | "order_id" | "description" > {}
+export interface IProductCard extends Omit<IProduct, "category" | "order_id" | "description"> {}
 
 export interface FavoriteState {
-    products: Array<IFavoriteProduct>;
+    products: Array<IProductCard>;
 }
 
 export enum ACTION_TYPES {
@@ -14,12 +14,12 @@ export enum ACTION_TYPES {
 
 interface IInitState {
     type: ACTION_TYPES.INIT_STATE;
-    payload: Array<IFavoriteProduct>
+    payload: Array<IProductCard>
 }
 
 interface IAddProduct {
     type: ACTION_TYPES.ADD_PRODUCT;
-    payload: IFavoriteProduct
+    payload: IProductCard
 }
 
 interface IRemoveProduct {
@@ -30,8 +30,8 @@ interface IRemoveProduct {
 export type FavoriteAction = IInitState | IAddProduct | IRemoveProduct 
 
 export interface FavoriteHandlers {
-    initState: (state: Array<IFavoriteProduct>) => void;
-    addProduct: (product: IFavoriteProduct) => void;
+    initState: (state: Array<IProductCard>) => void;
+    addProduct: (product: IProductCard) => void;
     removeProduct: (productId: string) => void;
 }
 

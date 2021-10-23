@@ -1,4 +1,4 @@
-import { IFavoriteProduct, FavoriteAction, FavoriteHandler } from '@/interfaces/IFavorite'
+import { IProductCard, FavoriteAction, FavoriteHandler } from '@/interfaces/IFavorite'
 import {
     initState,
     addFavoriteProduct,
@@ -6,10 +6,10 @@ import {
 } from './actions-creators'
 
 export const getFavoritesHandler: FavoriteHandler = (dispatch: React.Dispatch<FavoriteAction>) => ({
-    initState: (product: Array<IFavoriteProduct>) => {
+    initState: (product: Array<IProductCard>) => {
         dispatch(initState(product))
     },
-    addProduct: (product: IFavoriteProduct) => {
+    addProduct: (product: IProductCard) => {
         dispatch(addFavoriteProduct(product));
     },
     removeProduct: (productId: string) => {

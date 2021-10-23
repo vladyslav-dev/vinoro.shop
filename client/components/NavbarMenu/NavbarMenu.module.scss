@@ -32,6 +32,7 @@
 .subCategotyWrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 
     a {
         text-decoration: none;
@@ -39,7 +40,8 @@
     }
 
     li {
-        margin: 20px;
+        margin: 10px;
+        width: 39%;
     }
 }
 

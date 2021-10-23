@@ -13,11 +13,7 @@ interface CategoryProps {
     category: Array<ICategory>;
 }
 
-let index = 0;
-
 const Category = ({ products, category }: CategoryProps) => {
-
-    console.log("Props from category ", index)
 
     const [isTreeOpen, setIsTreeOpen] = useState<boolean>(true)
     const [animate, setAnimate] = useState(false);
@@ -32,12 +28,11 @@ const Category = ({ products, category }: CategoryProps) => {
 
     type RangeType = "sm" | "md" | "lg"
 
-    const [range, setRange] = useState<RangeType>("lg")
+    const [range, setRange] = useState<RangeType>("md")
 
     const rangeHandler = e => {
         setAnimate(prevState => !prevState);
         setRange(e.target.name)
-
     }
 
     const getCurrentRange = () => {
@@ -77,7 +72,7 @@ const Category = ({ products, category }: CategoryProps) => {
                     </div>
                     <div className={styles.categoryList}>
                         <CardList products={productList} animate={animate} customStyles={getCurrentRange()} />
-                    </div>
+                    </div>  
                 </div>
             </div>
         </div>
@@ -86,7 +81,7 @@ const Category = ({ products, category }: CategoryProps) => {
 
 export const getServerSideProps = async ({ query }) => {
     const { data } = await axios.get(`http://localhost:3000/api/category/${query.id}`);
-    // console.log("server side props ", data)
+
     return {
         props: {
             products: data.products,

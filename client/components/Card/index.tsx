@@ -1,38 +1,62 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './Card.module.scss'
 
 import Img from '@/components/Img';
-import { IProduct } from '@/interfaces/IProduct'
+import Button from '@/components/Button'
+import { IProductCard } from '@/interfaces/IFavorite'
+
+import { GlobalContext } from '@/store/index';
 
 interface CardProps {
-    product: IProduct;
+    product: IProductCard;
     animate: boolean;
+    removeButton?: boolean;
 }
 
-const CardComponent = ({ product, animate }: CardProps) => (
-    <div className={`${styles.card} ${animate ? styles.animate : ""}`}>
-        <Link href={`/product/[id]`} as={`/product/${product._id}`} passHref>
-            <div>
-                <div className={styles.cardImage}>
-                    <Img src={product.image} />
-                </div>
-                <div className={styles.cardInfo}>
-                    <div className={styles.cardAvailability}>
-                        {product.availability ? <p className={styles.cardAvailabilityGreen}>Есть в наличии &#10004;</p> : <p className={styles.cardAvailabilityRed}>Нет в наличии &#10008;</p>}
-                    </div>
-                    <div className={styles.cardName}>
-                        <span>{product.name}</span>
-                    </div>
-                    <div className={styles.cardCost}>
-                        <span>{product.cost} UAH</span>
-                    </div>
-                </div>
-            </div>
-        </Link>
-    </div >
-)
+const CardComponent = ({ product, animate, removeButton }: CardProps) => {
 
+    const { FAVORITES } = useContext(GlobalContext)
+
+    const removeFromFavotite = (e) => {
+        e.stopPropagation()
+        FAVORITES.handlers.removeProduct(product._id)
+    }
+
+    return (
+        <div className={`${styles.card} ${animate ? styles.animate : ""}`}>
+            <Link href={`/product/[id]`} as={`/product/${product._id}`} passHref>
+                <div>
+                    <div className={styles.cardImage}>
+                        <Img src={product.image} />
+                        {
+                            removeButton ?
+                             <div className={styles.imageButton}> 
+                                <Button 
+                                    label="Удалить товар" 
+                                    click={removeFromFavotite}  
+                                    styles={{backgroundColor: 'rgba(35, 32, 33, 0.8)', width: '100%', border: 'none'}}
+                                /> 
+                            </div> : 
+                            null
+                        } 
+                    </div>
+                    <div className={styles.cardInfo}>
+                        <div className={styles.cardAvailability}>
+                            {product.availability ? <p className={styles.cardAvailabilityGreen}>Есть в наличии &#10004;</p> : <p className={styles.cardAvailabilityRed}>Нет в наличии &#10008;</p>}
+                        </div>
+                        <div className={styles.cardName}>
+                            <span>{product.name}</span>
+                        </div>
+                        <div className={styles.cardCost}>
+                            <span>{product.cost} UAH</span>
+                        </div>
+                    </div>
+                </div>
+            </Link>
+        </div>
+    )
+}
 const Card = React.memo(CardComponent)
 
 export default Card

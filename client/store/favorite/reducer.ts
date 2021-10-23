@@ -12,14 +12,12 @@ export const favoritesReducer = (state: FavoriteState, action: FavoriteAction) =
             };
         case ACTION_TYPES.ADD_PRODUCT:
             return {
-                ...state,
-                products: [...state.products, { ...action.payload}],
+                products: [...state.products, { ...action.payload}]
             };
 
         case ACTION_TYPES.REMOVE_PRODUCT:
             return {
-                ...state,
-                products: [...state.products.filter(product => product._id !== action.payload)],
+                products: [...state.products.filter(product => product._id !== action.payload)]
             };
 
         default:

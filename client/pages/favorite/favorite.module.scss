@@ -1,0 +1,8 @@
+@import '../../styles/index.scss';
+
+
+.favoriteList { 
+    min-height: calc(100vh - 68px);
+    margin-top: ptr(20);
+    margin-bottom: ptr(20);
+}

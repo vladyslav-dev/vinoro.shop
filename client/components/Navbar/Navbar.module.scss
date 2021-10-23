@@ -18,13 +18,16 @@
     align-items: center;
     height: 68px;
 
-    .navbarLogo {}
-
     .navbarIcons {
         & > div:first-child {
             margin-right: 10px;
         }
     }
+}
+
+.favoriteIcon {
+    cursor: pointer;
+    display: inline-block;
 }
 
 .basket {
@@ -43,7 +46,7 @@
 }
 
 .basketIcon:hover .basket  {
-        right: 0;
+    right: 0;
 }
 
 .navbarSimulator {

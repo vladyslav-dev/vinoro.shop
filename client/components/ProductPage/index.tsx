@@ -13,31 +13,10 @@ const ProductPage: React.FC<{ product: IProduct }> = ({ product }) => {
 
     const { BASKET, FAVORITES } = useContext(GlobalContext)
 
-    const [isLoaded, setIsLoaded] = useState({
-        basket: false,
-        favorite: false
-    })
-
     const isProductInBasket = BASKET.state.products.some(item => item._id === product._id)
 
     const isPrductInFavorites = FAVORITES.state.products?.some(item => item._id === product._id)
 
-    useEffect(() => {
-        if (isLoaded.basket) {
-            localStorage.setItem("BASKET", JSON.stringify(BASKET.state))
-        } else {
-            setIsLoaded({...isLoaded, basket: true})
-        }
-
-    }, [BASKET])
-
-    useEffect(() => {
-        if (isLoaded.favorite) {
-            localStorage.setItem("FAVORITES", JSON.stringify(FAVORITES.state))
-        } else {
-            setIsLoaded({...isLoaded, favorite: true})
-        }
-    }, [FAVORITES])
 
     const addToBasket = () => BASKET.handlers.addProduct({
         _id: product._id,

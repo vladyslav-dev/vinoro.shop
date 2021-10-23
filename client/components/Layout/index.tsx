@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useContext } from 'react';
+import React, { FC, ReactNode, useEffect, useContext, useState } from 'react';
 import Head from 'next/head';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
@@ -44,6 +44,31 @@ const Layout: FC<LayoutProps> = ({ children, category }) => {
             }
         }
     }, [])
+
+    const [isLoaded, setIsLoaded] = useState({
+        basket: false,
+        favorite: false
+    })
+
+    useEffect(() => {
+        if (isLoaded.basket) {
+            localStorage.setItem("BASKET", JSON.stringify(state.BASKET.state))
+        } else {
+            setIsLoaded({...isLoaded, basket: true})
+        }
+
+    }, [state.BASKET])
+
+    useEffect(() => {
+        if (isLoaded.favorite) {
+            localStorage.setItem("FAVORITES", JSON.stringify(state.FAVORITES.state))
+        } else {
+            setIsLoaded({...isLoaded, favorite: true})
+        }
+    }, [state.FAVORITES])
+
+
+
 
     return (
         <>

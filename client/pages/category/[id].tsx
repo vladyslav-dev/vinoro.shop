@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './category.module.scss';
 import CardList from '@/components/CardList';
-import SortSelect from '@/components/SortSelect'
-import Ranger from '@/components/Ranger';
 import CategoryTree from '@/components/CategoryTree';
+import ToolBar from '@/components/ToolBar'
 import { IProduct } from '@/interfaces/IProduct';
 import { ICategory } from '@/interfaces/ICategory';
 
@@ -20,6 +19,8 @@ const Category = ({ products, category }: CategoryProps) => {
 
     const [productList, setProductList] = useState<Array<IProduct>>(products);
 
+    const [range, setRange] = useState<RangeType>("md")
+
     useEffect(() => setProductList(products), [products])
 
     const categoryTreeHandler = () => {
@@ -28,12 +29,6 @@ const Category = ({ products, category }: CategoryProps) => {
 
     type RangeType = "sm" | "md" | "lg"
 
-    const [range, setRange] = useState<RangeType>("md")
-
-    const rangeHandler = e => {
-        setAnimate(prevState => !prevState);
-        setRange(e.target.name)
-    }
 
     const getCurrentRange = () => {
         switch (range) {
@@ -66,10 +61,7 @@ const Category = ({ products, category }: CategoryProps) => {
                     currentCategoryId={products[0].category}
                 />
                 <div className={styles.categoryContent}>
-                    <div className={styles.categoryToolbar}>
-                        <SortSelect updateProductList={setProductList} defaultProductList={products} setAnimate={setAnimate} />
-                        <Ranger rangeHandler={rangeHandler} />
-                    </div>
+                    <ToolBar products={products} setAnimate={setAnimate} setRange={setRange}  updateProductList={setProductList}/>
                     <div className={styles.categoryList}>
                         <CardList products={productList} animate={animate} customStyles={getCurrentRange()} />
                     </div>  

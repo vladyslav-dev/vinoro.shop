@@ -35,7 +35,7 @@ const CardComponent = ({ product, animate, removeButton }: CardProps) => {
                                 <Button 
                                     label="Удалить товар" 
                                     click={removeFromFavotite}  
-                                    styles={{backgroundColor: 'rgba(35, 32, 33, 0.8)', width: '100%', border: 'none'}}
+                                    styles={{width: '100%', border: 'none', opacity: '0.7'}}
                                 /> 
                             </div> : 
                             null

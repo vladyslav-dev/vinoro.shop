@@ -1,0 +1,15 @@
+.categoryToolbar {
+    width: 100%;
+    height: 70px;
+    position: sticky;
+    top: 68px;
+    z-index: 5;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rangerTotalItem {
+    display: flex;
+}

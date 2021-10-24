@@ -52,17 +52,6 @@
                 @include sm {
                     width: 100%;
                 }
-              
-                > div {
-                  position: unset !important;
-                }
-              
-                .image {
-                  object-fit: cover;
-                  width: 100% !important;
-                  position: relative !important;
-                  height: unset !important;
-                }
               }
 
             .itemInfo {

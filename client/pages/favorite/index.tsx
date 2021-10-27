@@ -1,4 +1,3 @@
-import FavoriteMenu from '@/components/FavoriteMenu'
 import React, { useContext, useState, useEffect } from 'react'
 import { GlobalContext } from '@/store/index';
 import styles from './favorite.module.scss'

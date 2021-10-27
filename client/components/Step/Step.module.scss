@@ -1,0 +1,41 @@
+@import "../../styles/index.scss";
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    position: relative;
+    cursor: pointer;
+}
+
+.content:not(:last-child)::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 70%;
+    background: black;
+    position: absolute;
+    top: 32px;
+    right: calc(-70%  / 2);
+    z-index: 1;
+    border-radius: 2px;
+}
+
+.icon {
+    border-radius: 50%;
+    border: 2px solid black;
+    width: auto;
+    padding: 15px;
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+}
+
+.lable {
+    font-size: 13px;
+    margin-top: 20px;
+}

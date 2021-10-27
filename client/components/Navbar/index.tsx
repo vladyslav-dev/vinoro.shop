@@ -37,7 +37,7 @@ const Navbar = (props: NavbarProps) => {
                         <NavbarMenu category={category} />
                         <div className={styles.navbarIcons}>
                                 <Link href="/favorite/">
-                                    <div  className={styles.favoriteIcon}>
+                                    <div className={styles.favoriteIcon}>
                                         <HeaderIcon label={"ИЗБРАННОЕ"}>
                                                 <HeartSvg />
                                         </HeaderIcon>

@@ -67,9 +67,6 @@ const Layout: FC<LayoutProps> = ({ children, category }) => {
         }
     }, [state.FAVORITES])
 
-
-
-
     return (
         <>
             <Head>

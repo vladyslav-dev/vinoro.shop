@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import styles from './Basket.module.scss';
 import { GlobalContext } from '@/store/index';
 import BasketProduct from '@/components/BasketProduct';
-
-// import {IProduct} from '@/interfaces/IProduct';
+import Button from '../Button';
+import Link from 'next/link';
+import TotalPrice from '../TotalPrice';
 
 export interface BasketProps {
     // products?: Array<IProduct>;
@@ -12,14 +13,7 @@ export interface BasketProps {
 const Basket = (props: BasketProps) => {
 
     const { BASKET } = useContext(GlobalContext)
-
-    // useEffect(() => {
-    //     console.log("context ", basket)
-
-    // }, [basket])
-
-    //  const { products } = props;
-
+    
     return (
         <div className={styles.basket}>
             <h3 className={styles.basektTitle}>Корзина</h3>
@@ -28,9 +22,14 @@ const Basket = (props: BasketProps) => {
                     <BasketProduct product={item} key={item._id} />
                 ))}
             </ul>
-
+            <Link  href="/stepper/">
+                <div className={styles.confirmOrder}>
+                    <TotalPrice products={BASKET.state.products}/>
+                    <Button label = "Оплатить заказ" styles={{ width: '50%'}} click={() => null}/>
+                </div>
+            </Link>
         </div>
-    );
-};
+    )
+}
 
 export default Basket;

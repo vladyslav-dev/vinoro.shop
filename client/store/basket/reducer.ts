@@ -4,12 +4,14 @@ export const basketInitialState: IBasketState = {
     products: []
 };
 
+
 export const basketReducer = (state: IBasketState, action: BasketAction): IBasketState => {
     switch (action.type) {
         case ACTION_TYPES.INIT_STATE:
             return {
-                products: action.payload
+                products: action.payload,
             };
+
         case ACTION_TYPES.ADD_PRODUCT:
             return {
                 products: [...state.products, { ...action.payload, quantity: 1 }],

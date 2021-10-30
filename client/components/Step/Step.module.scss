@@ -6,7 +6,6 @@
     align-items: center;
     width: 25%;
     position: relative;
-    cursor: pointer;
 }
 
 .content:not(:last-child)::after {
@@ -32,7 +31,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    z-index: 999;
+    z-index: 1;
 }
 
 .lable {

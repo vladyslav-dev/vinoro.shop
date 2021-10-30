@@ -5,17 +5,19 @@ import styles from './StepperComponent.module.scss'
 import Button from '../Button'
 import Step from '../Step'
 
-const StepperComponent = ({stepsContent, step, nextButtonHandler, children, chooseStep}) => {
+const StepperComponent = ({stepsContent, nextButtonHandler, children}) => {
     return (
         <div className={styles.content}>
             <div className={styles.steps}>
                 {
                     stepsContent.map(el => {
-                        return <Step data={el} chooseStep={chooseStep} key={el.id}/>
+                        return <Step data={el} key={el.id}/>
                     })
                 }
             </div>
+
             {children}
+
             <div className={styles.buttonFiled}>
                 <Button label="Продолжить" click={nextButtonHandler}/>
             </div>

@@ -52,14 +52,11 @@ const Stepper = () => {
         setStep(step === stepsContent.length - 1 ? stepsContent.length - 1 : step + 1) 
     }
     
-    const chooseStep = (id) => {
-        setStep(id)
-    }
     console.log('render')
     return (
         <div className={styles["container-xl"]}>
             <div className={styles.wrraper}>
-                <StepperComponent stepsContent={stepsContent} step={step} nextButtonHandler={nextButtonHandler} chooseStep={chooseStep}>
+                <StepperComponent stepsContent={stepsContent} nextButtonHandler={nextButtonHandler}>
                     {
                         stepsContent.map(el => {
                             return (

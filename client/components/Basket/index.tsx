@@ -22,7 +22,7 @@ const Basket = (props: BasketProps) => {
                     <BasketProduct product={item} key={item._id} />
                 ))}
             </ul>
-            <Link  href="/stepper/">
+            <Link  href="/order/">
                 <div className={styles.confirmOrder}>
                     <TotalPrice products={BASKET.state.products}/>
                     <Button label = "Оплатить заказ" styles={{ width: '50%'}} click={() => null}/>

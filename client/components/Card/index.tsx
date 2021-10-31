@@ -7,6 +7,7 @@ import Button from '@/components/Button'
 import { IProductCard } from '@/interfaces/IFavorite'
 
 import { GlobalContext } from '@/store/index';
+import { motion } from "framer-motion"
 
 interface CardProps {
     product: IProductCard;
@@ -24,22 +25,40 @@ const CardComponent = ({ product, animate, removeButton }: CardProps) => {
     }
 
     return (
-        <div className={`${styles.card} ${animate ? styles.animate : ""}`}>
+        // <div className={`${styles.card} ${animate ? styles.animate : ""}`}>
+        <motion.div
+            className={`${styles.card}`}
+            initial="hidden"
+            animate="visible"
+            variants={{
+                hidden: {
+                    scale: .8,
+                    opacity: 0
+                },
+                visible: {
+                    scale: 1,
+                    opacity: 1,
+                    transition: {
+                        delay: 9000
+                    }
+                }
+            }}
+        >
             <Link href={`/product/[id]`} as={`/product/${product._id}`} passHref>
                 <div>
                     <div className={styles.cardImage}>
                         <Img src={product.image} />
                         {
                             removeButton ?
-                             <div className={styles.imageButton}> 
-                                <Button 
-                                    label="Удалить товар" 
-                                    click={removeFromFavotite}  
-                                    styles={{width: '100%', border: 'none', opacity: '0.7'}}
-                                /> 
-                            </div> : 
-                            null
-                        } 
+                                <div className={styles.imageButton}>
+                                    <Button
+                                        label="Удалить товар"
+                                        click={removeFromFavotite}
+                                        styles={{ width: '100%', border: 'none', opacity: '0.7' }}
+                                    />
+                                </div> :
+                                null
+                        }
                     </div>
                     <div className={styles.cardInfo}>
                         <div className={styles.cardAvailability}>
@@ -54,7 +73,7 @@ const CardComponent = ({ product, animate, removeButton }: CardProps) => {
                     </div>
                 </div>
             </Link>
-        </div>
+        </motion.div>
     )
 }
 const Card = React.memo(CardComponent)

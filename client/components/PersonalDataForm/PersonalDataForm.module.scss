@@ -1,0 +1,176 @@
+@import "../../styles/index.scss";
+
+.container {
+    position: relative;
+}
+
+.wrapper {
+    background-color: #FBFBFB;
+    background-image: url("/static/images/business-hand-with-mobile-phone.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    width: 100%;
+    height: 475px;
+    margin: 100px 0;
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 735px;
+        height: 100%;
+        top: 0;
+        right: 0;
+        background: linear-gradient(90.41deg, #FBFBFB 0.35%, rgba(251, 251, 251, 0) 98.4%);
+    }
+
+    @include sm {
+        height: 570px;
+        background-image: none;
+        &::before {
+            background: none
+        }
+    }
+
+    @include md {
+        background-size: cover;
+        &::before {
+            width: 100%;
+        }
+    }
+
+    @include xl {
+        &::before {
+            background: linear-gradient(90.41deg, #FBFBFB 0.35%, rgba(251, 251, 251, 0.54) 98.4%);
+        }
+    }
+
+    .formWrapper {
+        max-width: 660px;
+        width: 100%;
+        padding: 30px 0;
+
+        .formHeader {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            @include sm {
+                gap: 30px;
+                flex-direction: column;
+            }
+
+            .formHeaderItem {
+
+                & > h3 {
+                    color: $UI-color1;
+                    font-size: ptr(22);
+                    font-weight: normal;
+                }
+
+                .formHeaderItemText {
+                    color: $UI-color1;
+                    font-size: ptr(15);
+                }
+
+                .formSavedUser {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 10px;
+                    z-index: 20;
+
+                    & > svg {
+                        margin-right: 6px;
+                        width: 20px;
+                        height: 20px;
+                    }
+
+                    & > p {
+                        color: $UI-color2;
+                        font-weight: 600;
+                        font-size: ptr(13);
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        .form {
+            width: 100%;
+            margin-top: 50px;
+
+            .formRowWrapper {
+
+                display: flex;
+                justify-content: space-between;
+                gap: 40px;
+
+                @include md {
+                    flex-direction: column;
+                    gap: 0;
+                }
+
+                .formRow {
+                    position: relative;
+                    width: 100%;
+                    margin-bottom: 10px;     
+                    
+                    @include sm {
+                        margin-bottom: 22px;  
+                    }
+                  
+                    .formRowInput {
+                        width: 100%;
+                        height: 32px;
+                        box-sizing: border-box;
+                        background-color: transparent;
+                        border-color: transparent;
+                        border-bottom: 1px solid $UI-color1;
+                        margin-bottom: 5px;
+                        outline: none;
+                        padding: 0 5px;
+    
+                        color: $UI-color1;
+                        font-size: ptr(16);     
+                        
+                        &:focus ~ .formRowLabel {
+                          top: -25px;
+                          font-size: ptr(13);
+                        }
+                    }
+                    
+                    .formRowLabel {
+                        color: $UI-color2;
+                        font-size: ptr(16);
+                        line-height: ptr(34);
+                        position: absolute;
+                        top: 0;   
+                        left: 5px;
+                        transition: all .4s;
+                        user-select: none;
+                    }
+    
+                    .formRowLabelActive {
+                        top: -25px;
+                        font-size: ptr(13);
+                    }
+    
+                    .formRowError {
+                        color: #DC143C;
+                        font-size: ptr(13);
+                        width: 100%;
+                        height: 13px;
+                        text-align: right;
+                        line-height: ptr(18);
+
+                        @include sm {
+                            font-size: ptr(12);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

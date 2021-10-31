@@ -1,0 +1,32 @@
+{
+    "theme_color": "#232021",
+    "background_color": "#232021",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "Vinoro",
+    "short_name": "Vinoro",
+    "description": "\u0418\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u043c\u0430\u0433\u0430\u0437\u0438\u043d Vinoro - \u0422\u043e\u0432\u0430\u0440\u044b \u0438\u0437 \u0415\u0432\u0440\u043e\u043f\u044b. ",
+    "icons": [
+        {
+            "src": "/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

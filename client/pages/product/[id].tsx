@@ -2,12 +2,16 @@ import React from 'react'
 import styles from './product.module.scss'
 import axios from 'axios';
 import ProductPage from '@/components/ProductPage';
+import PersonalDataForm from '@/components/PersonalDataForm';
 
 const Product = ({ product }) => {
     return (
-        <div className={styles.container}>
-            <ProductPage product={product} />
-        </div>
+        <>
+            <div className={styles.container}>
+                <ProductPage product={product} />
+            </div>
+            <PersonalDataForm />
+        </>
     )
 }
 

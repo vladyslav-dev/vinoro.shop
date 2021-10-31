@@ -9,18 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.8.2",
     "@types/mongoose": "^5.11.97",
     "@types/node-sass": "4.11.2",
     "@types/react-slick": "^0.23.5",
     "axios": "^0.21.4",
+    "framer-motion": "^4.1.17",
     "mongoose": "^6.0.7",
     "next": "11.1.2",
+    "next-pwa": "^5.4.0",
     "node-sass": "4.14",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.17.5",
     "react-select": "^5.1.0",
     "react-slick": "^0.28.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/node": "^16.9.6",

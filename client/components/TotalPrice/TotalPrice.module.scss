@@ -1,5 +1,8 @@
 .orderPrice {
-    width: 50%;
     font-size: ptr(17);
     line-height: ptr(20);
+
+    p {
+        margin: 3px;
+    }
 }

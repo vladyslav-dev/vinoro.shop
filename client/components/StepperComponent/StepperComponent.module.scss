@@ -1,16 +1,30 @@
+@import '../../styles/index.scss';
+
 .content {
     margin-top: 60px;
-}
+    height: auto;
 
-.steps {
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
-    margin: 0 auto;
-}
+    .steps {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        margin: 0 auto;
+    }
 
-.buttonFiled {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+    .stepContent {
+        margin: 100px 0;
+    }
+    
+    .buttonFiled {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 100px;
+        .nextButton {
+            display: flex;
+            justify-content: space-between;
+            width: 23%;
+        }
+    }
 }

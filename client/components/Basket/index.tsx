@@ -24,7 +24,7 @@ const Basket = (props: BasketProps) => {
             </ul>
             <Link  href="/order/">
                 <div className={styles.confirmOrder}>
-                    <TotalPrice products={BASKET.state.products}/>
+                    <TotalPrice products={BASKET.state.products} title="Итого: "/>
                     <Button label = "Оплатить заказ" styles={{ width: '50%'}} click={() => null}/>
                 </div>
             </Link>

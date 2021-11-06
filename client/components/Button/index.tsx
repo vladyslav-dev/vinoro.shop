@@ -1,7 +1,7 @@
 import React from 'react';
 import moduleStyles from './Button.module.scss';
 
-type ButtonType = "default" | "outlined" | "disabled";
+type ButtonType = "default" | "outlined" | "disabled" | "without";
 type ButtonSize = "desktop" | "mobile";
 
 export interface ButtonProps {
@@ -36,6 +36,12 @@ const Button = (props: ButtonProps) => {
         backgroudStyle = "#BBBBBB"
         borderStyle = "2px solid #BBBBBB"
         eventStyle = "none"
+    }
+    if(type === "without"){
+        backgroudStyle = "none"
+        borderStyle = "none"
+        eventStyle = "none"
+        colorStyle = "#232021"
     }
 
     const initialStyles = {

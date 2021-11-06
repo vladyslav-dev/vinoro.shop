@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styles from './Stepper.module.scss'
+import { GlobalContext } from '@/store/index';
 
 //Components
 import { StepperCart, StepperUser, StepperMoney, StepperCheckMark} from '@/components/StepperIcon'
 import StepperComponent from '@/components/StepperComponent'
+import PersonalDataForm from '@/components/PersonalDataForm'
+import BasketProduct from '@/components/BasketProduct';
 
 const Stepper = () => {
+
+    const { BASKET } = useContext(GlobalContext)
 
     const [step, setStep] = useState(0) //current step
     
@@ -14,15 +19,16 @@ const Stepper = () => {
             id: 0,
             label: 'КОРЗИНА',
             icon: <StepperCart />,
-            component: <StepperCart />,
+            component: <StepperBasketList />,
             isActive: false,
-            isPassed: false
+            isPassed: false,
+            isLast: false
         },
         {
             id: 1,
             label: 'ЛИЧНЫЕ ДАННЫЕ',
             icon: <StepperUser />,
-            component: <StepperUser />,
+            component: <PersonalDataForm />,
             isActive: false,
             isPassed: false
         },
@@ -32,7 +38,8 @@ const Stepper = () => {
             icon: <StepperMoney />,
             component: <StepperMoney />,
             isActive: false,
-            isPassed: false
+            isPassed: false,
+            isLast: false
         },
         {
             id: 3,
@@ -40,7 +47,8 @@ const Stepper = () => {
             icon: <StepperCheckMark />,
             component: <StepperCheckMark />,
             isActive: false,
-            isPassed: false
+            isPassed: false,
+            isLast: true
         }
     ]) //steps data
 
@@ -51,12 +59,15 @@ const Stepper = () => {
     const nextButtonHandler = () => {
         setStep(step === stepsContent.length - 1 ? stepsContent.length - 1 : step + 1) 
     }
+
+    const backButtonHandler = () => {
+        setStep(step > 0 ?  step - 1 : 0) 
+    }
     
-    console.log('render')
     return (
         <div className={styles["container-xl"]}>
             <div className={styles.wrraper}>
-                <StepperComponent stepsContent={stepsContent} nextButtonHandler={nextButtonHandler}>
+                <StepperComponent stepsContent={stepsContent} nextButtonHandler={nextButtonHandler} backButtonHandler={backButtonHandler}products={BASKET.state.products}>
                     {
                         stepsContent.map(el => {
                             return (
@@ -73,3 +84,22 @@ const Stepper = () => {
 }
 
 export default Stepper
+
+
+export const StepperBasketList = () => {
+    const { BASKET } = useContext(GlobalContext)
+    return (
+        <div className={styles["container-xl"]}>
+            <div className={styles.basketText}>
+                <p>КОРЗИНА</p>
+            </div>
+            <div className={styles.basketActual}>
+                { BASKET.state.products.map(item => (
+                    <div className={styles.tets}>
+                        <BasketProduct product={item} key={item._id} />
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
+}

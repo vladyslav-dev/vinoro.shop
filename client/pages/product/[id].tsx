@@ -10,7 +10,6 @@ const Product = ({ product }) => {
             <div className={styles.container}>
                 <ProductPage product={product} />
             </div>
-            <PersonalDataForm />
         </>
     )
 }

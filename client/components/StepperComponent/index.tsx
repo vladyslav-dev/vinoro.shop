@@ -4,8 +4,9 @@ import styles from './StepperComponent.module.scss'
 //Components
 import Button from '../Button'
 import Step from '../Step'
+import TotalPrice from '../TotalPrice'
 
-const StepperComponent = ({stepsContent, nextButtonHandler, children}) => {
+const StepperComponent = ({stepsContent, nextButtonHandler, backButtonHandler, products, children}) => {
     return (
         <div className={styles.content}>
             <div className={styles.steps}>
@@ -15,11 +16,17 @@ const StepperComponent = ({stepsContent, nextButtonHandler, children}) => {
                     })
                 }
             </div>
-
-            {children}
-
+            <div className={styles.stepContent}>
+                {children}
+            </div>
             <div className={styles.buttonFiled}>
-                <Button label="Продолжить" click={nextButtonHandler}/>
+                <div className={styles.prevButton}>
+                    <Button label="Назад" type="without" styles={{fontSize: "15px"}} click={backButtonHandler}/>
+                </div>
+                <div className={styles.nextButton}>
+                    <TotalPrice products={products} title="Общая стоимость: "/>
+                    <Button label="Продолжить" click={nextButtonHandler} styles={{width: "220px"}}/>
+                </div>
             </div>
         </div>
     )

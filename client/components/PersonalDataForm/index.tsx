@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { SavedUserSvg } from '@/icons/User'
 import * as yup from "yup";
 
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/ //fix reg
 
 const schema = yup.object().shape({
     name: yup.string()
@@ -23,20 +23,18 @@ const schema = yup.object().shape({
 }).required();
 
 const PersonalDataForm = () => {
+
     const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm({
         mode: 'onChange',
-        // defaultValues: {
-        //     name: "",
-        //     surname: "",
-        // },
         resolver: yupResolver(schema)
-    });
+    })
+
     const savedUser = {
         isSaved: true,
         user: {
             name: "Владислав Григоренко"
         }
-    };
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -152,11 +150,6 @@ const PersonalDataForm = () => {
                                 </p>
                             </div>
                         </div>
-                        {/* {isValid ? (
-                            <div>You can go on !!!!!!!!</div>
-                        ) : (
-                                <div>Fill the fields</div>
-                            )} */}
                     </form>
                 </div>
             </div>

@@ -4,6 +4,10 @@ const OrderModel = new Schema({
     _id: {
         type: String,
     },
+    order_id: {
+        type: String,
+        required: true,
+    },
     name: {
         type: String,
         required: true,
@@ -24,9 +28,17 @@ const OrderModel = new Schema({
         type: String,
         required: true,
     },
+    zpAddress: {
+        type: String,
+        default: null,
+    },
     delivery: {
         type: String,
         required: true,
+    },
+    postDepartment: {
+        type: String,
+        default: null,
     },
     payment: {
         type: String,

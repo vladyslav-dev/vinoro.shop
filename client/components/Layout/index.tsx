@@ -10,9 +10,10 @@ export interface LayoutProps {
     children?: ReactNode;
     category: Array<ICategory>;
     router?: any;
+    isOrderLayout?: boolean;
 }
 
-const Layout: FC<LayoutProps> = ({ children, category, router }) => {
+const Layout: FC<LayoutProps> = ({ children, category, router, isOrderLayout }) => {
 
     const state = useContext(GlobalContext)
 
@@ -77,7 +78,8 @@ const Layout: FC<LayoutProps> = ({ children, category, router }) => {
                 <meta charSet="utf-8" />
                 <link rel="icon" href="/favicon.ico" />
             </Head> */}
-            <Navbar category={category} />
+            {!isOrderLayout && <Navbar category={category} />}
+
             <AnimatePresence exitBeforeEnter>
                 <motion.div
                     key={router.route}
@@ -100,8 +102,7 @@ const Layout: FC<LayoutProps> = ({ children, category, router }) => {
                     {children}
                 </motion.div>
             </AnimatePresence>
-
-            <Footer />
+            {!isOrderLayout && <Footer />}
         </>
     );
 }

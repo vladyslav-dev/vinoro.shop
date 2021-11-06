@@ -3,17 +3,19 @@ import styles from './Stepper.module.scss'
 import { GlobalContext } from '@/store/index';
 
 //Components
-import { StepperCart, StepperUser, StepperMoney, StepperCheckMark} from '@/components/StepperIcon'
+import { StepperCart, StepperUser, StepperMoney, StepperCheckMark } from '@/components/StepperIcon'
 import StepperComponent from '@/components/StepperComponent'
 import PersonalDataForm from '@/components/PersonalDataForm'
 import BasketProduct from '@/components/BasketProduct';
+import OrderDeliveryForm from '@/components/OrderDeliveryForm'
+
 
 const Stepper = () => {
 
     const { BASKET } = useContext(GlobalContext)
 
     const [step, setStep] = useState(0) //current step
-    
+
     const [stepsContent, setStepsContent] = useState([
         {
             id: 0,
@@ -36,7 +38,7 @@ const Stepper = () => {
             id: 2,
             label: 'ДОСТАВКА И ОПЛАТА',
             icon: <StepperMoney />,
-            component: <StepperMoney />,
+            component: <OrderDeliveryForm />,
             isActive: false,
             isPassed: false,
             isLast: false
@@ -53,11 +55,11 @@ const Stepper = () => {
     ]) //steps data
 
     useEffect(() => {
-        setStepsContent([...stepsContent.map(el => el.id === step ? {...el, isActive: true, isPassed: true} : {...el, isActive: false})])
+        setStepsContent([...stepsContent.map(el => el.id === step ? { ...el, isActive: true, isPassed: true } : { ...el, isActive: false })])
     }, [step])
 
     const nextButtonHandler = () => {
-        setStep(step === stepsContent.length - 1 ? stepsContent.length - 1 : step + 1) 
+        setStep(step === stepsContent.length - 1 ? stepsContent.length - 1 : step + 1)
     }
 
     const backButtonHandler = () => {
@@ -71,14 +73,15 @@ const Stepper = () => {
                     {
                         stepsContent.map(el => {
                             return (
-                                <div key={el.id}>
-                                   {el.id === step ? el.component : null}
+                                <div key={el.id} style={{ color: "red" }}>
+                                    {el.id === step ? el.component : null}
                                 </div>
                             )
                         })
                     }
                 </StepperComponent>
-            </div>    
+            </div>
+
         </div>
     )
 }

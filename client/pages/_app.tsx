@@ -33,7 +33,6 @@ function MyApp(props: MyAppProps) {
 }
 
 MyApp.getInitialProps = async (context: AppContext) => {
-  console.log(context)
   const defaultAppProps = await App.getInitialProps(context);
   const { data } = await axios.get('http://localhost:3000/api');
   return {

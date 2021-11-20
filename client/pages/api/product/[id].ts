@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from '@/utils/dbConnect';
 import ProductModel from '@/models/ProductModel';
 
-dbConnect();
+// dbConnect();
 
 const api = async (req: NextApiRequest, res: NextApiResponse) => {
     try {

@@ -12,9 +12,11 @@ import OrderDeliveryForm from '@/components/OrderDeliveryForm'
 
 const Stepper = () => {
 
-    const { BASKET } = useContext(GlobalContext)
+    const { BASKET, ORDER } = useContext(GlobalContext)
 
-    const [step, setStep] = useState(0) //current step
+    const { isPersonDataValid, isPaymentValid } = ORDER.state
+
+    const [step, setStep] = useState(2) //current step
 
     const [stepsContent, setStepsContent] = useState([
         {
@@ -24,25 +26,28 @@ const Stepper = () => {
             component: <StepperBasketList />,
             isActive: false,
             isPassed: false,
-            isLast: false
+            isLast: false,
+            isButtonDisabled: false,
         },
         {
             id: 1,
             label: 'ЛИЧНЫЕ ДАННЫЕ',
             icon: <StepperUser />,
-            component: <PersonalDataForm />,
+            component: <PersonalDataForm updateButtonDisabled={updateButtonDisabled} />,
             isActive: false,
             isPassed: false,
-            isLast: false
+            isLast: false,
+            isButtonDisabled: !ORDER.state.isPersonDataValid,
         },
         {
             id: 2,
             label: 'ДОСТАВКА И ОПЛАТА',
             icon: <StepperMoney />,
-            component: <OrderDeliveryForm />,
+            component: <OrderDeliveryForm updateButtonDisabled={updateButtonDisabled} />,
             isActive: false,
             isPassed: false,
-            isLast: false
+            isLast: false,
+            isButtonDisabled: !ORDER.state.isPaymentValid,
         },
         {
             id: 3,
@@ -51,7 +56,8 @@ const Stepper = () => {
             component: <StepperCheckMark />,
             isActive: false,
             isPassed: false,
-            isLast: true
+            isLast: true,
+            isButtonDisabled: false,
         }
     ]) //steps data
 
@@ -59,22 +65,31 @@ const Stepper = () => {
         setStepsContent([...stepsContent.map(el => el.id === step ? { ...el, isActive: true, isPassed: true } : { ...el, isActive: false })])
     }, [step])
 
+    function updateButtonDisabled(bool: boolean) {
+        setStepsContent((prevState) => prevState.map(item => item.isActive ? { ...item, isButtonDisabled: bool } : item))
+    }
+
     const nextButtonHandler = () => {
         setStep(step === stepsContent.length - 1 ? stepsContent.length - 1 : step + 1)
     }
 
     const backButtonHandler = () => {
-        setStep(step > 0 ?  step - 1 : 0) 
+        setStep(step > 0 ? step - 1 : 0)
     }
-    
+
     return (
-        <div className={styles["container-xl"]} style={{padding: 0}}>
+        <div className={styles["container-xl"]} style={{ padding: 0 }}>
             <div className={styles.wrraper}>
-                <StepperComponent stepsContent={stepsContent} nextButtonHandler={nextButtonHandler} backButtonHandler={backButtonHandler}products={BASKET.state.products}>
+                <StepperComponent
+                    stepsContent={stepsContent}
+                    nextButtonHandler={nextButtonHandler}
+                    backButtonHandler={backButtonHandler}
+                    products={BASKET.state.products}
+                >
                     {
                         stepsContent.map(el => {
                             return (
-                                <div key={el.id} style={{ color: "red" }}>
+                                <div key={el.id}>
                                     {el.id === step ? el.component : null}
                                 </div>
                             )
@@ -82,7 +97,7 @@ const Stepper = () => {
                     }
                 </StepperComponent>
             </div>
-                
+
         </div>
     )
 }
@@ -99,7 +114,7 @@ export const StepperBasketList = () => {
                 <p>КОРЗИНА</p>
             </div>
             <div className={styles.basketActual}>
-                { BASKET.state.products.map(item => (
+                {BASKET.state.products.map(item => (
                     <div className={styles.productWrapper} key={item._id}>
                         <BasketProduct product={item} key={item._id} />
                     </div>

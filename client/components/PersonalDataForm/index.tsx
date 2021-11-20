@@ -23,7 +23,7 @@ const schema = yup.object().shape({
         .required("Введите ваш город"),
 }).required();
 
-const PersonalDataForm = () => {
+const PersonalDataForm = ({ updateButtonDisabled }) => {
 
     const { register, getValues, setValue, watch, formState: { errors, isValid } } = useForm({
         mode: 'onChange',
@@ -47,6 +47,11 @@ const PersonalDataForm = () => {
             console.log("Set person data")
             ORDER.handlers.updateState(getValues())
             ORDER.handlers.setPersonDataValid(true)
+            updateButtonDisabled(false)
+        } else {
+            console.log("Is valid = ", isValid)
+            ORDER.handlers.setPersonDataValid(false)
+            updateButtonDisabled(true)
         }
     }, [isValid]);
 

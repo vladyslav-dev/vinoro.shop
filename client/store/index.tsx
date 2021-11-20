@@ -1,11 +1,12 @@
 import React, { createContext, useReducer, useMemo } from 'react';
+
 import { IBasketState, BasketHandlers } from '@/interfaces/IBasket';
+import { FavoriteState, FavoriteHandlers } from '@/interfaces/IFavorite';
+import { IOrderState, OrderHandlers } from '@/interfaces/IOrder';
 
 import { basketReducer, basketInitialState, getBasketHandlers } from './basket';
-
-import { FavoriteState, FavoriteHandlers} from '@/interfaces/IFavorite'
-
-import {favoritesReducer, favoritesInitialState, getFavoritesHandler} from './favorite'
+import { favoritesReducer, favoritesInitialState, getFavoriteHandlers } from './favorite';
+import { orderReducer, orderInitialState, getOrderHandlers } from './order';
 
 
 interface IContext {
@@ -16,6 +17,10 @@ interface IContext {
     FAVORITES: {
         state: FavoriteState;
         handlers: FavoriteHandlers;
+    };
+    ORDER: {
+        state: IOrderState;
+        handlers: OrderHandlers
     }
 }
 
@@ -28,7 +33,10 @@ const GlobalContextProvider = ({ children }) => {
     const basketHandlers: BasketHandlers = useMemo(() => getBasketHandlers(basketDispatch), [])
 
     const [favoriteState, favoriteDispatch] = useReducer(favoritesReducer, favoritesInitialState)
-    const favoriteHAndlers: FavoriteHandlers = useMemo(() => getFavoritesHandler(favoriteDispatch), [])
+    const favoriteHandlers: FavoriteHandlers = useMemo(() => getFavoriteHandlers(favoriteDispatch), [])
+
+    const [orderState, orderDispatch] = useReducer(orderReducer, orderInitialState)
+    const orderHandlers: OrderHandlers = useMemo(() => getOrderHandlers(orderDispatch), [])
 
     return (
         <Provider
@@ -39,8 +47,12 @@ const GlobalContextProvider = ({ children }) => {
                 },
                 FAVORITES: {
                     state: favoriteState,
-                    handlers: favoriteHAndlers,
-                }
+                    handlers: favoriteHandlers,
+                },
+                ORDER: {
+                    state: orderState,
+                    handlers: orderHandlers,
+                },
             }}
         >
             {children}

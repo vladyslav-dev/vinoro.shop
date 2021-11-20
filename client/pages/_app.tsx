@@ -11,6 +11,8 @@ interface MyAppProps extends AppProps {
   category: Array<ICategory>;
 }
 
+
+
 function MyApp(props: MyAppProps) {
   const { Component, pageProps, category, router } = props
 
@@ -26,7 +28,6 @@ function MyApp(props: MyAppProps) {
 }
 
 MyApp.getInitialProps = async (context: AppContext) => {
-  console.log(context)
   const defaultAppProps = await App.getInitialProps(context);
   const { data } = await axios.get('http://localhost:3000/api');
   return {

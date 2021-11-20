@@ -3,9 +3,10 @@ import styles from './PersonalDataForm.module.scss'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SavedUserSvg } from '@/icons/User'
+import { GlobalContext } from '@/store/index';
 import * as yup from "yup";
 
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/ //fix reg
+const phoneRegExp = /^\+?3?8?(0\d{9})$/
 
 const schema = yup.object().shape({
     name: yup.string()
@@ -24,10 +25,34 @@ const schema = yup.object().shape({
 
 const PersonalDataForm = () => {
 
-    const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm({
+    const { register, getValues, setValue, watch, formState: { errors, isValid } } = useForm({
         mode: 'onChange',
         resolver: yupResolver(schema)
     })
+
+    const { ORDER } = useContext(GlobalContext)
+
+    useEffect(() => {
+        if (!Object.keys(getValues())) {
+            setValue("name", ORDER.state.personData?.name || "")
+            setValue("surname", ORDER.state.personData?.surname || "")
+            setValue("email", ORDER.state.personData?.email || "")
+            setValue("phone", ORDER.state.personData?.phone || "")
+            setValue("city", ORDER.state.personData?.city || "")
+        }
+    }, [])
+
+    useEffect(() => {
+        if (isValid) {
+            console.log("Set person data")
+            ORDER.handlers.updateState(getValues())
+            ORDER.handlers.setPersonDataValid(true)
+        }
+    }, [isValid]);
+
+    useEffect(() => {
+        console.log("state", ORDER.state)
+    }, [ORDER])
 
     const savedUser = {
         isSaved: true,

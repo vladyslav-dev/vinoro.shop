@@ -5,9 +5,10 @@ const Ranger = ({ rangeHandler }) => {
 
     return (
         <div className={styles.rangerWrapper}>
-            <button name="sm" onClick={rangeHandler}>5</button>
-            <button name="md" onClick={rangeHandler}>4</button>
-            <button name="lg" onClick={rangeHandler}>3</button>
+            <span>Вид: </span>
+            <button name="sm" onClick={rangeHandler}>S</button>
+            <button name="md" onClick={rangeHandler}>M</button>
+            <button name="lg" onClick={rangeHandler}>L</button>
         </div>
     )
 }

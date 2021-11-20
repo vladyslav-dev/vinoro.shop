@@ -43,7 +43,7 @@ const Favorite = () => {
             <div className={styles.wrraper}>
             <ToolBar products={favoriteItem} setAnimate={setAnimate} setRange={setRange}  updateProductList={setProductList}/>
                 <div className={styles.favoriteList}>
-                    {favoriteItem?.length ? <CardList products={productList} animate={animate} customStyles={getCurrentRange()} removeButton={true}/> : <a>Люблю маму</a>}
+                    {favoriteItem?.length ? <CardList products={productList} animate={animate} customStyles={getCurrentRange()} removeButton={true}/> : <a>Пусто...</a>}
                 </div>
             </div>
         </div>

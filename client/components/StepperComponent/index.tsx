@@ -1,12 +1,15 @@
 import React from 'react'
 import styles from './StepperComponent.module.scss'
-
+import Link from 'next/link'
 //Components
 import Button from '../Button'
 import Step from '../Step'
 import TotalPrice from '../TotalPrice'
 
 const StepperComponent = ({stepsContent, nextButtonHandler, backButtonHandler, products, children}) => {
+
+    const lastSection = stepsContent.some(item => item.isLast && item.isActive) //find last  element
+
     return (
         <div className={styles.content}>
             <div className={styles.steps}>
@@ -19,15 +22,30 @@ const StepperComponent = ({stepsContent, nextButtonHandler, backButtonHandler, p
             <div className={styles.stepContent}>
                 {children}
             </div>
-            <div className={styles.buttonFiled}>
-                <div className={styles.prevButton}>
-                    <Button label="Назад" type="without" styles={{fontSize: "15px"}} click={backButtonHandler}/>
+
+            {lastSection ? 
+
+                <div className={styles.buttonFiled}>
+                    <div className={styles.finalButton}>
+                        <Link href={`/`}>
+                            <div>
+                                <Button label="На главную"  click={() => null } styles={{width: "220px"}}/>
+                            </div>
+                        </Link>
+                    </div>
+                </div> :
+
+                <div className={styles.buttonFiled}>
+                    <div className={styles.prevButton}>
+                        <Button label="Назад" type="without" styles={{fontSize: "15px"}} click={backButtonHandler}/>
+                    </div>
+                     <div className={styles.nextButton}>
+                        <TotalPrice products={products} title="Общая стоимость: "/>
+                        <Button label="Продолжить" click={nextButtonHandler} styles={{width: "220px"}}/>
+                    </div>
                 </div>
-                <div className={styles.nextButton}>
-                    <TotalPrice products={products} title="Общая стоимость: "/>
-                    <Button label="Продолжить" click={nextButtonHandler} styles={{width: "220px"}}/>
-                </div>
-            </div>
+            }
+
         </div>
     )
 }

@@ -78,7 +78,7 @@ const Layout: FC<LayoutProps> = ({ children, category, router, isOrderLayout }) 
                 <meta charSet="utf-8" />
                 <link rel="icon" href="/favicon.ico" />
             </Head> */}
-            {!isOrderLayout && <Navbar category={category} />}
+            <Navbar category={category} />
 
             <AnimatePresence exitBeforeEnter>
                 <motion.div

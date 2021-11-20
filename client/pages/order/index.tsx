@@ -32,7 +32,8 @@ const Stepper = () => {
             icon: <StepperUser />,
             component: <PersonalDataForm />,
             isActive: false,
-            isPassed: false
+            isPassed: false,
+            isLast: false
         },
         {
             id: 2,
@@ -67,7 +68,7 @@ const Stepper = () => {
     }
     
     return (
-        <div className={styles["container-xl"]}>
+        <div className={styles["container-xl"]} style={{padding: 0}}>
             <div className={styles.wrraper}>
                 <StepperComponent stepsContent={stepsContent} nextButtonHandler={nextButtonHandler} backButtonHandler={backButtonHandler}products={BASKET.state.products}>
                     {
@@ -81,7 +82,7 @@ const Stepper = () => {
                     }
                 </StepperComponent>
             </div>
-
+                
         </div>
     )
 }
@@ -91,6 +92,7 @@ export default Stepper
 
 export const StepperBasketList = () => {
     const { BASKET } = useContext(GlobalContext)
+
     return (
         <div className={styles["container-xl"]}>
             <div className={styles.basketText}>
@@ -98,7 +100,7 @@ export const StepperBasketList = () => {
             </div>
             <div className={styles.basketActual}>
                 { BASKET.state.products.map(item => (
-                    <div className={styles.tets}>
+                    <div className={styles.productWrapper} key={item._id}>
                         <BasketProduct product={item} key={item._id} />
                     </div>
                 ))}

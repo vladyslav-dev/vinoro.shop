@@ -7,7 +7,7 @@ interface OrderDeliveryFormProps { }
 const OrderDeliveryForm = ({ }: OrderDeliveryFormProps) => {
 
     type PaymentType = "Оплата на карту" | "Наличными" | "Наложенный платёж"
-
+    console.log('yes');
     const [delivery, setDelivery] = useState("");
     const [payment, setPayment] = useState("")
 

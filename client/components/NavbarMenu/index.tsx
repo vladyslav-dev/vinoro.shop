@@ -17,7 +17,7 @@ const NavbarMenu: FC<NavbarMenuProps> = ({ category }) => {
                 return (
                     <li key={item._id}>
                         <Link href={`/category/[id]`} as={`/category/${item._id}`} >
-                            <a>{item.category_name}</a>
+                            <a className={styles.categoryListItem}>{item.category_name}</a>
                         </Link>
                     </li>
                 )

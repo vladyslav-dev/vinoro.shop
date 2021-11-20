@@ -18,16 +18,26 @@ const Basket = (props: BasketProps) => {
         <div className={styles.basket}>
             <h3 className={styles.basektTitle}>Корзина</h3>
             <ul className={styles.basketList}>
-                {BASKET.state.products.map(item => (
-                    <BasketProduct product={item} key={item._id} />
-                ))}
+                {!BASKET.state.products.length ?
+                    <p>Корзина пуста...</p> :
+                    BASKET.state.products.map(item => (
+                        <BasketProduct product={item} key={item._id} />
+                    ))
+                }
             </ul>
-            <Link  href="/order/">
                 <div className={styles.confirmOrder}>
                     <TotalPrice products={BASKET.state.products} title="Итого: "/>
-                    <Button label = "Оплатить заказ" styles={{ width: '50%'}} click={() => null}/>
+                    {BASKET.state.products.length ? 
+
+                        <Link href="/order/">
+                            <div className={styles.buttonWrapper}>
+                                <Button label = "Оплатить заказ" styles={{ width: '100%'}} click={() => null} type="default"/>
+                            </div>
+                        </Link>:
+
+                        <Button label = "Оплатить заказ" styles={{ width: '50%'}} click={() => null} type="disabled"/>
+                    }
                 </div>
-            </Link>
         </div>
     )
 }

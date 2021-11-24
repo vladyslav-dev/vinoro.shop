@@ -44,22 +44,16 @@ const PersonalDataForm = ({ updateButtonDisabled }) => {
 
     useEffect(() => {
         if (isValid) {
-            console.log("Set person data")
             ORDER.handlers.updateState(getValues())
             ORDER.handlers.setPersonDataValid(true)
             updateButtonDisabled(false)
         } else {
-            console.log("Is valid = ", isValid)
             ORDER.handlers.setPersonDataValid(false)
             updateButtonDisabled(true)
         }
     }, [isValid]);
 
-    useEffect(() => {
-        console.log("state", ORDER.state)
-    }, [ORDER])
-
-    const savedUser = {
+    const savedUser = { // fix it later
         isSaved: true,
         user: {
             name: "Владислав Григоренко"

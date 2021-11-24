@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import Img from '@/components/Img';
 import styles from './ProductPage.module.scss'
 import Button from '../Button'
@@ -7,16 +7,17 @@ import { IBasketProduct } from '@/interfaces/IBasket';
 import { IProductCard } from '@/interfaces/IFavorite'
 import { GlobalContext } from '@/store/index';
 
+interface ProductPageProps {
+    product: IProduct
+}
 
-
-const ProductPage: React.FC<{ product: IProduct }> = ({ product }) => {
+const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
 
     const { BASKET, FAVORITES } = useContext(GlobalContext)
 
     const isProductInBasket = BASKET.state.products.some(item => item._id === product._id)
 
     const isPrductInFavorites = FAVORITES.state.products?.some(item => item._id === product._id)
-
 
     const addToBasket = () => BASKET.handlers.addProduct({
         _id: product._id,
@@ -40,12 +41,8 @@ const ProductPage: React.FC<{ product: IProduct }> = ({ product }) => {
             </div>
             <div className={styles.rightPart}>
                 <div className={styles.productNamePrice}>
-                    <p>
-                        {product.name}
-                    </p>
-                    <p>
-                        {product.cost} UAH
-                    </p>
+                    <p>{product.name}</p>
+                    <p>{product.cost} UAH</p>
                 </div>
                 <div className={styles.productAvailability}>
                     {product.availability ? <p className={styles.cardAvailabilityGreen}>Есть в наличии &#10004;</p> : <p className={styles.cardAvailabilityRed}>Нет в наличии &#10008;</p>}
@@ -64,9 +61,7 @@ const ProductPage: React.FC<{ product: IProduct }> = ({ product }) => {
                     />
                 </div>
                 <div className={styles.productDescriptions}>
-                    <p>
-                        {product.description}
-                    </p>
+                    <p>{product.description}</p>
                 </div>
             </div>
         </div>

@@ -6,14 +6,10 @@ import Button from '../Button';
 import Link from 'next/link';
 import TotalPrice from '../TotalPrice';
 
-export interface BasketProps {
-    // products?: Array<IProduct>;
-};
-
-const Basket = (props: BasketProps) => {
+const Basket = () => {
 
     const { BASKET } = useContext(GlobalContext)
-    
+
     return (
         <div className={styles.basket}>
             <h3 className={styles.basektTitle}>Корзина</h3>
@@ -22,24 +18,25 @@ const Basket = (props: BasketProps) => {
                     <p>Корзина пуста...</p> :
                     BASKET.state.products.map(item => (
                         <BasketProduct product={item} key={item._id} />
-                    ))
-                }
+                    ))}
             </ul>
-                <div className={styles.confirmOrder}>
-                    <TotalPrice products={BASKET.state.products} title="Итого: "/>
-                    {BASKET.state.products.length ? 
+            <div className={styles.confirmOrder}>
+                <TotalPrice products={BASKET.state.products} title="Итого: " />
+                {BASKET.state.products.length ?
 
-                        <Link href="/order/">
-                            <div className={styles.buttonWrapper}>
-                                <Button label = "Оплатить заказ" styles={{ width: '100%'}} click={() => null} type="default"/>
-                            </div>
-                        </Link>:
+                    <Link href="/order/">
+                        <div className={styles.buttonWrapper}>
+                            <Button label="Оплатить заказ" styles={{ width: '100%' }} click={() => null} type="default" />
+                        </div>
+                    </Link> :
 
-                        <Button label = "Оплатить заказ" styles={{ width: '50%'}} click={() => null} type="disabled"/>
-                    }
-                </div>
+                    <Button label="Оплатить заказ" styles={{ width: '50%' }} click={() => null} type="disabled" />
+                }
+            </div>
         </div>
     )
 }
 
 export default Basket;
+
+

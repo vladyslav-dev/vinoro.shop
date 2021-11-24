@@ -14,9 +14,7 @@ const Stepper = () => {
 
     const { BASKET, ORDER } = useContext(GlobalContext)
 
-    const { isPersonDataValid, isPaymentValid } = ORDER.state
-
-    const [step, setStep] = useState(2) //current step
+    const [step, setStep] = useState(0) //current step
 
     const [stepsContent, setStepsContent] = useState([
         {

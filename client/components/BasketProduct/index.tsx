@@ -6,7 +6,6 @@ import { GlobalContext } from '@/store/index';
 
 import { TrashSvg } from '@/icons/Trash';
 import { MinusSvg, PlusSvg } from '@/icons/Operator';
-// import {IProduct} from '@/interfaces/IProduct';
 
 
 interface BasketProductProps {

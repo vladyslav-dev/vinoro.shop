@@ -9,7 +9,7 @@ export interface IOrder {
     phone?: string,
     city?: string,
     zpAddress?: string | null; // Zaporizhzhia address
-    postDepartment?: string; // post address
+    postDepartment?: string | null; // post address
     payment?: string,
     createdAt?: Date,
     products?: IProduct[]

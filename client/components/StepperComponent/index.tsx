@@ -20,17 +20,10 @@ const StepperComponent = (
 
     const [currentStep, setCurrentStep] = React.useState(null)
 
-
-
-    console.log("stepsContent", stepsContent);
-
     React.useEffect(() => {
         setCurrentStep(stepsContent.find(item => item.isActive))
-        // updateButtonDisabled(false)
     }, [stepsContent])
 
-
-    console.log("currentStep", currentStep);
 
 
     return (

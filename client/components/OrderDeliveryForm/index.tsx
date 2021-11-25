@@ -31,7 +31,7 @@ const OrderDeliveryForm = ({ updateButtonDisabled }) => {
         if (delivery && payment) {
             ORDER.handlers.updateState({
                 zpAddress: zpAddress || null,
-                postDepartment: postAddress || null,
+                postDepartment: `${postAddress} ${postNumber}` || null,
                 payment: payment,
             })
             ORDER.handlers.setPaymentDataValid(true)

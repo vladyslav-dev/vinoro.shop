@@ -11,7 +11,7 @@ export interface IOrder {
     zpAddress?: string | null; // Zaporizhzhia address
     postDepartment?: string | null; // post address
     payment?: string,
-    createdAt?: Date,
+    createdAt?: string,
     products?: IProduct[]
 }
 

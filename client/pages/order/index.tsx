@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react'
-import styles from './Stepper.module.scss'
+import styles from './Stepper.module.scss';
 import { GlobalContext } from '@/store/index';
 
 //Components
-import { StepperCart, StepperUser, StepperMoney, StepperCheckMark } from '@/components/StepperIcon'
-import StepperComponent from '@/components/StepperComponent'
-import PersonalDataForm from '@/components/PersonalDataForm'
+import { StepperCart, StepperUser, StepperMoney, StepperCheckMark } from '@/components/StepperIcon';
+import StepperComponent from '@/components/StepperComponent';
+import PersonalDataForm from '@/components/PersonalDataForm';
 import BasketProduct from '@/components/BasketProduct';
-import OrderDeliveryForm from '@/components/OrderDeliveryForm'
+import OrderDeliveryForm from '@/components/OrderDeliveryForm';
+import PlacedOrder from '@/components/PlacedOrder';
 
 
 const Stepper = () => {
 
     const { BASKET, ORDER } = useContext(GlobalContext)
 
-    const [step, setStep] = useState(0) //current step
+    const [step, setStep] = useState(3) //current step
 
     const [stepsContent, setStepsContent] = useState([
         {
@@ -51,7 +52,7 @@ const Stepper = () => {
             id: 3,
             label: 'ЗАКАЗ ОФОРМЛЕН',
             icon: <StepperCheckMark />,
-            component: <StepperCheckMark />,
+            component: <PlacedOrder />,
             isActive: false,
             isPassed: false,
             isLast: true,

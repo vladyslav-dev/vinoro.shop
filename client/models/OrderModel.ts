@@ -41,7 +41,7 @@ const OrderModel = new Schema({
         required: true,
     },
     createdAt: {
-        type: Date,
+        type: String,
         required: true,
     },
     products: [

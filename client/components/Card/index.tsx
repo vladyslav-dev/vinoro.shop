@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import styles from './Card.module.scss'
 
 import Img from '@/components/Img';
@@ -18,6 +18,14 @@ interface CardProps {
 const CardComponent = ({ product, animate, removeButton }: CardProps) => {
 
     const { FAVORITES } = useContext(GlobalContext)
+
+    const [isImageReady, setIsImageReady] = useState(false);
+
+    const onLoadCallBack = (e) => {
+        setIsImageReady(true)
+        console.log("Image uploaded: ", e)
+        // typeof onLoad === "function" && onLoad(e)
+     }
 
     const removeFromFavotite = (e) => {
         e.stopPropagation()
@@ -47,7 +55,7 @@ const CardComponent = ({ product, animate, removeButton }: CardProps) => {
             <Link href={`/product/[id]`} as={`/product/${product._id}`} passHref>
                 <div>
                     <div className={styles.cardImage}>
-                        <Img src={product.image} />
+                        <Img src={product.image} onLoadHandler={onLoadCallBack} />
                         {
                             removeButton ?
                                 <div className={styles.imageButton}>

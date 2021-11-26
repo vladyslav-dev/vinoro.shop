@@ -15,7 +15,7 @@ const Basket = () => {
             <h3 className={styles.basektTitle}>Корзина</h3>
             <ul className={styles.basketList}>
                 {!BASKET.state.products.length ?
-                    <p>Корзина пуста...</p> :
+                    <p>У вас нет добавленных товаров в корзине</p> :
                     BASKET.state.products.map(item => (
                         <BasketProduct product={item} key={item._id} />
                     ))}

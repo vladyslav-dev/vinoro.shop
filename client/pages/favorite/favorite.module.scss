@@ -2,9 +2,15 @@
 
 
 .favoriteList { 
-    min-height: calc(100vh - 68px);
+    min-height: calc(100vh - 706px);
     margin-top: ptr(20);
     margin-bottom: ptr(20);
+
+    & > p {
+        font-size: ptr(14);
+        text-align: center;
+        margin-top: 26px;
+    }
 }
 
 .wrraper {

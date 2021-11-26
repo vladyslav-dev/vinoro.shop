@@ -1,8 +1,9 @@
 import React from 'react';
+import dynamic from 'next/dynamic'
 import styles from './CardList.module.scss'
-import { IProductCard } from '@/interfaces/IFavorite';
-import Card from '../Card/index'
+import { IProductCard } from '@/interfaces/IFavorite'
 
+const Card = dynamic(() => import('@/components/Card'), { ssr: false })
 export interface CardListProps {
     products?: Array<IProductCard>;
     customStyles?: React.CSSProperties;

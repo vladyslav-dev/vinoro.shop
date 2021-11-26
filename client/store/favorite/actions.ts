@@ -5,7 +5,7 @@ import {
     removeFavoriteProduct,
 } from './actions-creators'
 
-export const getFavoritesHandler: FavoriteHandler = (dispatch: React.Dispatch<FavoriteAction>) => ({
+export const getFavoriteHandlers: FavoriteHandler = (dispatch: React.Dispatch<FavoriteAction>) => ({
     initState: (product: Array<IProductCard>) => {
         dispatch(initState(product))
     },

@@ -3,7 +3,7 @@ import dbConnect from '@/utils/dbConnect';
 import ProductModel from '@/models/ProductModel';
 import CategoryModel from '@/models/CategoryModel';
 
-dbConnect();
+// dbConnect();
 
 const api = async (req: NextApiRequest, res: NextApiResponse) => {
 

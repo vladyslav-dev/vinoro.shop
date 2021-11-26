@@ -1,12 +1,149 @@
 @import "../../styles/index.scss";
 
+
+
 .formRow {
     display: flex;
     width: 1100px;
     margin: 0 auto;
-    border: 1px solid red;
 
     .formCol {
         flex: 1;
+
+        .formTitle {
+            margin-bottom: 32px;
+            font-size: ptr(22);
+            line-height: ptr(27);
+        }
+
+        .radioGroup {
+
+            .deliveryInfo {
+                padding-left: 30px;
+                margin-top: 24px;
+                margin-right: 60px;
+
+                .deliveryInfoText {
+                    font-size: ptr(14);
+                    line-height: ptr(26);
+                    color: $UI-color2;
+                    margin-bottom: 30px;
+                }
+
+                .deliveryWrapper {
+                    display: flex;
+
+                    .deliveryInfoInput {
+                        position: relative;
+                        width: 100%;
+                        margin-bottom: 10px;     
+                        
+                        @include sm {
+                            margin-bottom: 22px;  
+                        }
+
+                        &:last-child {
+                            width: 100px;
+                            margin-left: 20px;
+                        }
+
+                        &:first-child {
+                            width: 100%;
+                            margin-left: 0;
+                        }
+                      
+                        & > input {
+                            width: 100%;
+                            height: 32px;
+                            box-sizing: border-box;
+                            background-color: transparent;
+                            border-color: transparent;
+                            border-bottom: 1px solid $UI-color1;
+                            margin-bottom: 5px;
+                            outline: none;
+                            padding: 0 5px;
+        
+                            color: $UI-color1;
+                            font-size: ptr(16);     
+                            
+                            &:focus ~ label {
+                              top: -25px;
+                              font-size: ptr(13);
+                            }
+    
+                        }
+                        
+                        & > label {
+                            color: $UI-color2;
+                            font-size: ptr(16);
+                            line-height: ptr(34);
+                            position: absolute;
+                            top: 0;   
+                            left: 5px;
+                            transition: all .4s;
+                            user-select: none;
+                        }
+        
+                        .labelActive {
+                            top: -25px;
+                            font-size: ptr(13);
+                        }
+                    }
+                }
+
+                
+            }
+
+            .radioItem {
+                position: relative;
+                margin-bottom: 30px;
+
+                .radioLabel {    
+                    
+                    .radioInput {
+                        position: absolute;
+                        left: -9999px;
+                    }
+
+                    .radioInput:checked + .radioText:after {
+                        content: "";
+                        transform: scale(1);
+                        transition: all 0.2s ease-in-out;
+                        width: 11px;
+                        height: 11px;
+                        background-color: $UI-color2;
+                        border-radius: 50%;
+                        position: absolute;
+                        left: 4px;
+                        top: 4px;
+                        cursor: pointer;
+                    }
+
+                    .radioText {
+                        cursor: pointer;
+                        display: inline;
+                        padding-left: 30px;
+                        padding-top: 2px;
+
+                        &::before {
+                            content: "";
+                            border: 2px solid $UI-color3;
+                            width: 15px;
+                            height: 15px;
+                            display: flex;
+                            position: absolute;
+                            left: 0;
+                            border-radius: 50%;
+                            cursor: pointer;
+                        }
+                        
+                        &::after {
+                            transform: scale(0);
+	                        content: "";
+                        }
+                    }
+                }
+            }
+        }
     }
 }

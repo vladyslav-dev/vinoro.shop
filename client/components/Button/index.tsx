@@ -37,7 +37,7 @@ const Button = (props: ButtonProps) => {
         borderStyle = "2px solid #BBBBBB"
         eventStyle = "none"
     }
-    if(type === "without"){
+    if (type === "without") {
         backgroudStyle = "none"
         borderStyle = "none"
         eventStyle = "none"
@@ -49,6 +49,7 @@ const Button = (props: ButtonProps) => {
         background: backgroudStyle,
         border: borderStyle,
         color: colorStyle,
+        cursor: type === "disabled" ? "default" : "pointer"
         //   ["pointer-events"]: eventStyle // make sure that it's work correctly
     }
 
@@ -57,6 +58,7 @@ const Button = (props: ButtonProps) => {
             className={moduleStyles.button}
             onClick={(e) => click(e)}
             type="button"
+            disabled={type === "disabled"}
             style={initialStyles}
         >
             <span className={moduleStyles.buttonChildren}>{label}</span>

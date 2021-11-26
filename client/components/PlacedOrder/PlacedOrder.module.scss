@@ -1,0 +1,55 @@
+@import "../../styles/index.scss";
+
+.wrapper {
+
+    .container {
+
+        .orderTitle {
+            font-weight: normal;
+            font-size: ptr(24);
+            line-height: ptr(28);
+            text-align: center;
+        }
+
+        .orderDescription {
+            margin-top: 36px;
+            margin-bottom: 50px;
+            font-size: ptr(16);
+            line-height: ptr(28);
+        }
+
+        .infoBlock {
+            margin-bottom: 40px;
+
+            .infoBlockTitle {
+                display: flex;
+                align-items: center;
+
+                & > h2 {
+                    font-weight: normal;
+                    font-size: ptr(18);
+                    line-height: ptr(22);
+                    margin-left: 15px;
+                }
+            }
+
+            .infoBlockContent {
+                margin-top: 25px;
+
+                .contentRow {
+                    display: flex;
+                    align-items: center;
+                    border-bottom: 1px solid $UI-color3;
+                    height: 42px;
+
+                    .contentColumn {
+
+                        &:not(:last-child) {
+                           min-width: 200px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

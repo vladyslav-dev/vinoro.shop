@@ -1,8 +1,17 @@
+@import "../../styles/index.scss";
+
 .orderPrice {
     font-size: ptr(17);
     line-height: ptr(20);
 
-    p {
-        margin: 3px;
+    p:first-child {
+        margin-bottom: 4px;
+        font-size: ptr(14);
+    }
+
+    .price {
+        font-weight: 600;
+        padding-left: 1px;
+        font-size: ptr(16);
     }
 }

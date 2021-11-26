@@ -32,10 +32,6 @@ const OrderModel = new Schema({
         type: String,
         default: null,
     },
-    delivery: {
-        type: String,
-        required: true,
-    },
     postDepartment: {
         type: String,
         default: null,
@@ -45,7 +41,7 @@ const OrderModel = new Schema({
         required: true,
     },
     createdAt: {
-        type: Date,
+        type: String,
         required: true,
     },
     products: [

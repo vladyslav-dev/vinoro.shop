@@ -1,11 +1,18 @@
 import React, { useContext, useEffect } from 'react'
 import styles from './PlacedOrder.module.scss'
 import { GlobalContext } from '@/store/index';
+
+// icons
 import { OrderUserSvg } from '@/icons/User';
 import { ProductSvg } from '@/icons/Product';
 
+//components
+import TableChildren from '../TableChildren';
+import BasketProduct from '../BasketProduct';
+import TotalPrice from '../TotalPrice';
+
 const PlacedOrder = () => {
-    const { ORDER } = useContext(GlobalContext)
+    const { ORDER, BASKET } = useContext(GlobalContext)
     const { personData } = ORDER.state;
 
     useEffect(() => {
@@ -26,14 +33,14 @@ const PlacedOrder = () => {
                         <h2>Данные покупателя</h2>
                     </div>
                     <div className={styles.infoBlockContent}>
-                        <div className={styles.contentRow}>
-                            <span className={styles.contentColumn}>sdajhgjgggggfasdf</span>
-                            <span className={styles.contentColumn}>sadfasdffasdf</span>
-                        </div>
-                        <div className={styles.contentRow}>
-                            <span className={styles.contentColumn}>asdf</span>
-                            <span className={styles.contentColumn}>gfjkghjfgh</span>
-                        </div>
+                        <TableChildren name="Имя" value={personData.name || "Не указано"} />
+                        <TableChildren name="Фамилия" value={personData.surname || "Не указано"} />
+                        <TableChildren name="Адрес электронной почты" value={personData.email || "Не указано"} />
+                        <TableChildren name="Телеофн" value={personData.phone || "Не указано"} />
+                        <TableChildren name="Город" value={personData.city || "Не указано"} />
+                        <TableChildren name="Доставка" value={personData.postDepartment || personData.zpAddress || "Не указано"} />
+                        <TableChildren name="Оплата" value={personData.payment || "Не указано"} />
+                        <TableChildren name="Дата оформления" value={personData.createdAt} />
                     </div>
                 </div>
                 <div className={styles.infoBlock}>
@@ -42,14 +49,14 @@ const PlacedOrder = () => {
                         <h2>Товар</h2>
                     </div>
                     <div className={styles.infoBlockContent}>
-                        <div className={styles.contentRow}>
-                            <span className={styles.contentColumn}>sdajhgjgggggfasdf</span>
-                            <span className={styles.contentColumn}>sadfasdffasdf</span>
-                        </div>
-                        <div className={styles.contentRow}>
-                            <span className={styles.contentColumn}>asdf</span>
-                            <span className={styles.contentColumn}>gfjkghjfgh</span>
-                        </div>
+                        {
+                            BASKET.state.products.map(item => (
+                                <BasketProduct product={item} key={item._id} condition={true} />
+                            ))
+                        }
+                    </div>
+                    <div className={styles.totalPrice}>
+                        <TotalPrice products={BASKET.state.products} title="Всего: " />
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@ const Stepper = () => {
 
     const { BASKET, ORDER } = useContext(GlobalContext)
 
-    const [step, setStep] = useState(3) //current step
+    const [step, setStep] = useState(0) //current step
 
     const [stepsContent, setStepsContent] = useState([
         {

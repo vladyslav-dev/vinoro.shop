@@ -35,19 +35,10 @@
 
             .infoBlockContent {
                 margin-top: 25px;
-
-                .contentRow {
-                    display: flex;
-                    align-items: center;
-                    border-bottom: 1px solid $UI-color3;
-                    height: 42px;
-
-                    .contentColumn {
-
-                        &:not(:last-child) {
-                           min-width: 200px;
-                        }
-                    }
+                
+                .totalPrice {
+                    background: #F6F6F6;
+                    display: inline;
                 }
             }
         }

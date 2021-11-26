@@ -9,11 +9,12 @@ import { MinusSvg, PlusSvg } from '@/icons/Operator';
 
 
 interface BasketProductProps {
-    product: IBasketProduct
+    product: IBasketProduct;
+    condition?: boolean;
 }
 
 
-const BasketProduct: React.FC<BasketProductProps> = ({ product }) => {
+const BasketProduct: React.FC<BasketProductProps> = ({ product, condition = false }) => {
 
     const { BASKET } = useContext(GlobalContext)
 
@@ -28,23 +29,31 @@ const BasketProduct: React.FC<BasketProductProps> = ({ product }) => {
             <div className={styles.productImage}>
                 <Img src={product.image} />
             </div>
-            <div className={styles.productInfo}>
-                <h2 className={styles.productInfoTitle}>{product.name}</h2>
-                <div className={styles.productInfoCost}>{product.cost} UAH</div>
-                <div className={styles.productQuantity}>
-                    <button className={styles.productQuantityButton} onClick={decreaseProduct}>
-                        <MinusSvg />
-                    </button>
-                    <span className={styles.productQuantityNumber}>{product.quantity}</span>
-                    <button className={styles.productQuantityButton} onClick={increaseProduct}>
-                        <PlusSvg />
-                    </button>
-                </div>
-            </div>
-            <button className={styles.productRemove} onClick={removeProduct}>
-                <TrashSvg />
-            </button>
-
+            {
+                condition ?
+                    <div className={styles.productInfo}>
+                        <h2 className={styles.productInfoTitle}>{product.name}</h2>
+                        <div className={styles.productInfoCost}>{product.cost} UAH</div>
+                    </div> :
+                    <>
+                        <div className={styles.productInfo}>
+                            <h2 className={styles.productInfoTitle}>{product.name}</h2>
+                            <div className={styles.productInfoCost}>{product.cost} UAH</div>
+                            <div className={styles.productQuantity}>
+                                <button className={styles.productQuantityButton} onClick={decreaseProduct}>
+                                    <MinusSvg />
+                                </button>
+                                <span className={styles.productQuantityNumber}>{product.quantity}</span>
+                                <button className={styles.productQuantityButton} onClick={increaseProduct}>
+                                    <PlusSvg />
+                                </button>
+                            </div>
+                        </div>
+                        <button className={styles.productRemove} onClick={removeProduct}>
+                            <TrashSvg />
+                        </button>
+                    </>
+            }
         </div>
     );
 };

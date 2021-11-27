@@ -49,9 +49,9 @@ const Navbar = (props: NavbarProps) => {
                                     <Basket />
                                 </div>
                             </HeaderIcon>
-                            <HeaderIcon label={"ЯЗЫК"}>
+                            {/* <HeaderIcon label={"ЯЗЫК"}>
                                 <WorldSvg />
-                            </HeaderIcon>
+                            </HeaderIcon> */}
                         </div>
                     </div>
                 </div>

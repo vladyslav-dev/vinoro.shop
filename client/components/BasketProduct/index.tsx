@@ -7,12 +7,10 @@ import { GlobalContext } from '@/store/index';
 import { TrashSvg } from '@/icons/Trash';
 import { MinusSvg, PlusSvg } from '@/icons/Operator';
 
-
 interface BasketProductProps {
     product: IBasketProduct;
     condition?: boolean;
 }
-
 
 const BasketProduct: React.FC<BasketProductProps> = ({ product, condition = false }) => {
 

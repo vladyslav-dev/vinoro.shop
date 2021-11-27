@@ -13,7 +13,7 @@ export interface CardListProps {
 
 const CardList = ({ products, customStyles, animate, removeButton }: CardListProps) => (
     <div className={`${styles.cardList}`} style={customStyles}>
-        {products?.map(product => <Card animate={animate} product={product} key={product._id} removeButton={removeButton}/>)}
+        {products?.map(product => <Card animate={animate} product={product} key={product._id} removeButton={removeButton} />)}
     </div>
 )
 

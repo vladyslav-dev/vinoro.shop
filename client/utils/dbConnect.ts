@@ -1,16 +1,12 @@
 import mongoose from 'mongoose';
 
-const connection = {};
-// console.log(process.env)
-
 async function dbConnect() {
-
-    const db = await mongoose.connect("mongodb+srv://admin:admin@cluster0.12if0.mongodb.net/vinoro-2-0-database", {
-
-    });
-
-    console.log('DatabaSE CONNECT')
-
+    try {
+        await mongoose.connect("mongodb+srv://admin:admin@cluster0.12if0.mongodb.net/vinoro-2-0-database", {});
+        console.log('MongoDB connected!')
+    } catch (err) {
+        console.error("MongoDB connection - ERROR")
+    }
 }
 
 export default dbConnect;

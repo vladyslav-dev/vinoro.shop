@@ -3,20 +3,27 @@ import dbConnect from '@/utils/dbConnect';
 import ProductModel from '@/models/ProductModel';
 import CategoryModel from '@/models/CategoryModel';
 
-// dbConnect();
+dbConnect();
 
 const api = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
-        const products = await ProductModel
-            .find({ category: req.query.id })
-            .sort([['availability', -1], ['order_id', 0]]);
-        const { catalog } = await CategoryModel
+        const categoryModel = await CategoryModel
             .findById(req.query.id).exec()
-        const category = await CategoryModel
-            .find({ catalog }).sort({ _id: 1 })
 
-        return res.status(200).json({ success: true, products, category })
+        if (categoryModel) {
+            const category = await CategoryModel
+                .find({ catalog: categoryModel.catalog }).sort({ _id: 1 })
+
+            const products = await ProductModel
+                .find({ category: req.query.id })
+                .sort([['availability', -1], ['order_id', 0]]);
+
+            return res.status(200).json({ success: true, products, category });
+        } else {
+            return res.status(200).json({ success: false, products: null, category: null });
+        }
+
     } catch (err) {
         console.error(err)
     }

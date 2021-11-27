@@ -41,9 +41,9 @@ const Favorite = () => {
     return (
         <div className={styles["container-xl"]}>
             <div className={styles.wrraper}>
-            <ToolBar products={favoriteItem} setAnimate={setAnimate} setRange={setRange}  updateProductList={setProductList}/>
+                <ToolBar products={favoriteItem} setAnimate={setAnimate} setRange={setRange} updateProductList={setProductList} />
                 <div className={styles.favoriteList}>
-                    {favoriteItem?.length ? <CardList products={productList} animate={animate} customStyles={getCurrentRange()} removeButton={true}/> : <p>У вас нет добавленных товаров в избранное</p>}
+                    {favoriteItem?.length ? <CardList products={productList} animate={animate} customStyles={getCurrentRange()} removeButton={true} /> : <p>У вас нет добавленных товаров в избранное</p>}
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import styles from './Card.module.scss'
 
 import Img from '@/components/Img';
@@ -15,17 +15,9 @@ interface CardProps {
     removeButton?: boolean;
 }
 
-const CardComponent = ({ product, animate, removeButton }: CardProps) => {
+const CardComponent = ({ product, removeButton }: CardProps) => {
 
     const { FAVORITES } = useContext(GlobalContext)
-
-    const [isImageReady, setIsImageReady] = useState(false);
-
-    const onLoadCallBack = (e) => {
-        setIsImageReady(true)
-        console.log("Image uploaded: ", e)
-        // typeof onLoad === "function" && onLoad(e)
-     }
 
     const removeFromFavotite = (e) => {
         e.stopPropagation()
@@ -33,7 +25,6 @@ const CardComponent = ({ product, animate, removeButton }: CardProps) => {
     }
 
     return (
-        // <div className={`${styles.card} ${animate ? styles.animate : ""}`}>
         <motion.div
             className={`${styles.card}`}
             initial="hidden"
@@ -55,7 +46,9 @@ const CardComponent = ({ product, animate, removeButton }: CardProps) => {
             <Link href={`/product/[id]`} as={`/product/${product._id}`} passHref>
                 <div>
                     <div className={styles.cardImage}>
-                        <Img src={product.image} onLoadHandler={onLoadCallBack} />
+                        <Img
+                            src={product.image}
+                        />
                         {
                             removeButton ?
                                 <div className={styles.imageButton}>
@@ -64,8 +57,7 @@ const CardComponent = ({ product, animate, removeButton }: CardProps) => {
                                         click={removeFromFavotite}
                                         styles={{ width: '100%', border: 'none', opacity: '0.7' }}
                                     />
-                                </div> :
-                                null
+                                </div> : null
                         }
                     </div>
                     <div className={styles.cardInfo}>

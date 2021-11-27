@@ -4,10 +4,9 @@ import styles from './Img.module.scss'
 
 
 interface ImgProps {
-    src: string,
-    quality?: number,
-    alt?: string,
-    onLoadHandler: (e: any) => void;
+    src: string;
+    quality?: number;
+    alt?: string;
 }
 
 const Img: React.FC<ImgProps> = (
@@ -15,20 +14,32 @@ const Img: React.FC<ImgProps> = (
         src,
         quality = 100,
         alt = "Изображение не найдено",
-        onLoadHandler,
     }
 ) => {
+
+    const [isImageReady, setIsImageReady] = React.useState(false);
+
+    const onLoadCallBack = (e) => {
+        setIsImageReady(true)
+    }
+
     return (
         <div className={styles.imageContainer}>
-            <Image
-                onLoad={onLoadHandler} 
-                src={src}
-                layout="fill"
-                className={styles.image}
-                quality={quality}
-                alt={alt}
-            />
-        </div>
+            <div className={isImageReady ? styles.imageSkeletonHide : styles.imageSkeleton}></div>
+            <div className={`${styles.imageWrapper} ${isImageReady ? styles.imageShow : styles.imageHide}`}>
+
+                <Image
+                    onLoadingComplete={onLoadCallBack}
+                    src={src}
+                    layout="fill"
+                    className={styles.image}
+                    quality={quality}
+                    alt={alt}
+                    priority
+                />
+            </div>
+
+        </div >
     )
 }
 

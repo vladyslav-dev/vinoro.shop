@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './StepperComponent.module.scss'
 import Link from 'next/link'
+
 //Components
 import Button from '../Button'
 import Step from '../Step'
@@ -15,16 +16,11 @@ const StepperComponent = (
         children
     }
 ) => {
-
-    // const lastSection = stepsContent.some(item => item.isLast && item.isActive) //find last  element
-
     const [currentStep, setCurrentStep] = React.useState(null)
 
     React.useEffect(() => {
         setCurrentStep(stepsContent.find(item => item.isActive))
     }, [stepsContent])
-
-
 
     return (
         <div className={styles.content}>

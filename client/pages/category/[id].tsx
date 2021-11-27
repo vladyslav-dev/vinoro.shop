@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Router from 'next/router';
 import axios from 'axios';
 import styles from './category.module.scss';
 import CardList from '@/components/CardList';
@@ -8,11 +9,22 @@ import { IProduct } from '@/interfaces/IProduct';
 import { ICategory } from '@/interfaces/ICategory';
 
 interface CategoryProps {
-    products: Array<IProduct>;
-    category: Array<ICategory>;
+    products?: Array<IProduct>;
+    category?: Array<ICategory>;
+    success?: boolean;
 }
 
-const Category = ({ products, category }: CategoryProps) => {
+type RangeType = "sm" | "md" | "lg"
+
+const Category = ({ products, category, success }: CategoryProps) => {
+
+    useEffect(() => {
+        if (!success) Router.push("/")
+    }, [])
+
+    if (!success) { // stop rendering
+        return null
+    }
 
     const [isTreeOpen, setIsTreeOpen] = useState<boolean>(true)
     const [animate, setAnimate] = useState(false);
@@ -26,9 +38,6 @@ const Category = ({ products, category }: CategoryProps) => {
     const categoryTreeHandler = () => {
         setIsTreeOpen(!isTreeOpen)
     }
-
-    type RangeType = "sm" | "md" | "lg"
-
 
     const getCurrentRange = () => {
         switch (range) {
@@ -61,10 +70,10 @@ const Category = ({ products, category }: CategoryProps) => {
                     currentCategoryId={products[0].category}
                 />
                 <div className={styles.categoryContent}>
-                    <ToolBar products={products} setAnimate={setAnimate} setRange={setRange}  updateProductList={setProductList}/>
+                    <ToolBar products={products} setAnimate={setAnimate} setRange={setRange} updateProductList={setProductList} />
                     <div className={styles.categoryList}>
                         <CardList products={productList} animate={animate} customStyles={getCurrentRange()} />
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,7 +86,8 @@ export const getServerSideProps = async ({ query }) => {
     return {
         props: {
             products: data.products,
-            category: data.category
+            category: data.category,
+            success: data.success
         }
     }
 }

@@ -53,12 +53,12 @@ const PersonalDataForm = ({ updateButtonDisabled }) => {
         }
     }, [isValid]);
 
-    const savedUser = { // fix it later
-        isSaved: true,
-        user: {
-            name: "Владислав Григоренко"
-        }
-    }
+    // const savedUser = { // fix it later
+    //     isSaved: true,
+    //     user: {
+    //         name: "Владислав Григоренко"
+    //     }
+    // }
 
     return (
         <div className={styles.wrapper}>
@@ -68,7 +68,7 @@ const PersonalDataForm = ({ updateButtonDisabled }) => {
                         <div className={styles.formHeaderItem}>
                             <h3>ЛИЧНЫЕ ДАННЫЕ</h3>
                         </div>
-                        {savedUser.isSaved && (
+                        {/* {savedUser.isSaved && (
                             <div className={styles.formHeaderItem}>
                                 <div className={styles.formHeaderItemText}>
                                     Сохраненный пользователь
@@ -78,7 +78,7 @@ const PersonalDataForm = ({ updateButtonDisabled }) => {
                                     <p>{savedUser.user.name}</p>
                                 </div>
                             </div>
-                        )}
+                        )} */}
                     </div>
                     <form onSubmit={(e) => e.preventDefault()} autoComplete="none" className={styles.form}>
                         <div className={styles.formRowWrapper}>

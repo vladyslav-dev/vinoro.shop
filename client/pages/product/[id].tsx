@@ -1,14 +1,18 @@
 import React from 'react'
+import Router from 'next/router';
 import styles from './product.module.scss'
 import axios from 'axios';
 import ProductPage from '@/components/ProductPage';
-import PersonalDataForm from '@/components/PersonalDataForm';
 
 const Product = ({ product }) => {
+    React.useEffect(() => {
+        if (!product) Router.push("/")
+    }, [])
+
     return (
         <>
             <div className={styles.container}>
-                <ProductPage product={product} />
+                {product ? <ProductPage product={product} /> : null}
             </div>
         </>
     )

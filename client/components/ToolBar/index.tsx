@@ -11,7 +11,7 @@ interface ToolBarProps {
     updateProductList: any;
 }
 
-const ToolBar = ({products, setAnimate, setRange, updateProductList} : ToolBarProps) => {
+const ToolBar = ({ products, setAnimate, setRange, updateProductList }: ToolBarProps) => {
 
     const rangeHandler = (e) => {
         setAnimate(prevState => !prevState);
@@ -23,7 +23,7 @@ const ToolBar = ({products, setAnimate, setRange, updateProductList} : ToolBarPr
             <SortSelect updateProductList={updateProductList} defaultProductList={products} setAnimate={setAnimate} />
             <div className={styles.rangerTotalItem}>
                 <Ranger rangeHandler={rangeHandler} />
-                <TotalItemCount products={products}/> 
+                <TotalItemCount products={products} />
             </div>
         </div>
     )

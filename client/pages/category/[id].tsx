@@ -81,7 +81,7 @@ const Category = ({ products, category, success }: CategoryProps) => {
 }
 
 export const getServerSideProps = async ({ query }) => {
-    const { data } = await axios.get(`http://localhost:3000/api/category/${query.id}`);
+    const { data } = await axios.get(`${process.env.DOMAIN}api/category/${query.id}`);
 
     return {
         props: {

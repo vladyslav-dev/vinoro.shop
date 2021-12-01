@@ -15,5 +15,5 @@ export const getOrderHandlers: OrderHandler = (dispatch: React.Dispatch<OrderAct
     },
     setPaymentDataValid: (flag: boolean) => {
         dispatch(setPaymentDataValid(flag));
-    },
+    }
 });

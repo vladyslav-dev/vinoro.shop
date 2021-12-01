@@ -5,6 +5,7 @@ import {
     removeProductById,
     increaseCountById,
     decreaseCountById,
+    clearState
 } from './action-creators';
 
 
@@ -24,4 +25,7 @@ export const getBasketHandlers: BasketHandler = (dispatch: React.Dispatch<Basket
     decreaseCountById: (productId: string) => {
         dispatch(decreaseCountById(productId));
     },
+    clearState: () => {
+        dispatch(clearState());
+    }
 });

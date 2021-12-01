@@ -14,3 +14,5 @@ export const removeProductById = (payload: string): BasketAction => ({ type: ACT
 export const increaseCountById = (payload: string): BasketAction => ({ type: ACTION_TYPES.INCREASE_COUNT, payload });
 
 export const decreaseCountById = (payload: string): BasketAction => ({ type: ACTION_TYPES.DECREASE_COUNT, payload });
+
+export const clearState = ():BasketAction => ({type: ACTION_TYPES.CLEAR_STATE})

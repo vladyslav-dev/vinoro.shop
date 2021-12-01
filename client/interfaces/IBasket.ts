@@ -14,6 +14,7 @@ export enum ACTION_TYPES {
     REMOVE_PRODUCT = 'basket/remove-product',
     INCREASE_COUNT = 'basket/increase-count',
     DECREASE_COUNT = 'basket/decrease-count',
+    CLEAR_STATE = 'basket/clear-state'
 }
 
 interface IInitStateAction {
@@ -41,12 +42,17 @@ interface IDecreaseCountByIdAction {
     payload: string
 }
 
+interface IClearState {
+    type: ACTION_TYPES.CLEAR_STATE
+}
+
 export type BasketAction =
     IInitStateAction
     | IAddProductAction
     | IRemoveProductAction
     | IIncreaseCountByIdAction
     | IDecreaseCountByIdAction
+    | IClearState
 
 export interface BasketHandlers {
     initState: (state: Array<IBasketProduct>) => void;
@@ -54,6 +60,7 @@ export interface BasketHandlers {
     removeProductById: (productId: string) => void;
     increaseCountById: (productId: string) => void;
     decreaseCountById: (productId: string) => void;
+    clearState: () => void;
 }
 
 export type BasketHandler = (dipsatch: React.Dispatch<BasketAction>) => BasketHandlers

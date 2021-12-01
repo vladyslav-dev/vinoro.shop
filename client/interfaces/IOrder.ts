@@ -1,4 +1,5 @@
 import { IProduct } from './IProduct';
+import { IBasketProduct } from './IBasket'
 
 export interface IOrder {
     _id?: string,
@@ -12,7 +13,7 @@ export interface IOrder {
     postDepartment?: string | null; // post address
     payment?: string,
     createdAt?: string,
-    products?: IProduct[]
+    products?: IBasketProduct[]
 }
 
 export interface IOrderState {
@@ -25,9 +26,10 @@ export enum ACTION_TYPES {
     UPDATE_STATE = 'order/update-state',
     SET_PERSON_DATA_VALID = 'order/set-person-data-valid',
     SET_PAYMENT_DATA_VALID = 'order/set-payment-data-valid',
+    UPDATE_PRODUCT = 'order/update-product'
 }
 
-export type UpdateOrderPayload = { [key: string]: string | Date | IProduct[] | null }
+export type UpdateOrderPayload = { [key: string]: string | Date | IBasketProduct[] | null }
 
 export interface IUpdatePersonDataAction {
     type: ACTION_TYPES.UPDATE_STATE;
@@ -47,7 +49,7 @@ export interface ISetPaymentDataValidAction {
 export type OrderAction =
     IUpdatePersonDataAction
     | ISetPesonDataValidAction
-    | ISetPaymentDataValidAction;
+    | ISetPaymentDataValidAction
 
 export interface OrderHandlers {
     updateState: (data: UpdateOrderPayload) => void;

@@ -105,7 +105,11 @@ export default Stepper
 
 
 export const StepperBasketList = () => {
-    const { BASKET } = useContext(GlobalContext)
+    const { BASKET, ORDER} = useContext(GlobalContext)
+
+    useEffect(() => {
+        ORDER.handlers.updateState({products: BASKET.state.products})
+    }, [])
 
     return (
         <div className={styles["container-xl"]}>

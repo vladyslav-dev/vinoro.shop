@@ -27,6 +27,7 @@ const PlacedOrder = () => {
             order_id: `${Date.now()}`,
             createdAt: new Date().toLocaleString("ru")
         })
+        BASKET.handlers.clearState()
     }, [])
 
     const validData: ValidDdata[] = [
@@ -97,13 +98,13 @@ const PlacedOrder = () => {
                     </div>
                     <div className={styles.infoBlockContent}>
                         {
-                            BASKET.state.products.map(item => (
+                            ORDER.state.personData.products.map(item => (
                                 <BasketProduct product={item} key={item._id} condition={true} />
                             ))
                         }
                     </div>
                     <div className={styles.totalPrice}>
-                        <TotalPrice products={BASKET.state.products} title="Всего: " />
+                        <TotalPrice products={ORDER.state.personData.products} title="Всего: " />
                     </div>
                 </div>
             </div>

@@ -16,7 +16,6 @@ export const orderReducer = (state: IOrderState, action: OrderAction): IOrderSta
                     ...action.payload,
                 },
             };
-
         case ACTION_TYPES.SET_PERSON_DATA_VALID:
             return {
                 ...state,
@@ -28,7 +27,6 @@ export const orderReducer = (state: IOrderState, action: OrderAction): IOrderSta
                 ...state,
                 isPaymentValid: action.payload,
             };
-
         default: return state;
 
     }

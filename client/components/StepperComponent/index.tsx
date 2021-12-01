@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styles from './StepperComponent.module.scss'
 import Link from 'next/link'
 
@@ -16,13 +16,9 @@ const StepperComponent = (
         children
     }
 ) => {
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     const [currentStep, setCurrentStep] = React.useState(null)
 
-    React.useEffect(() => {
+    useEffect(() => {
         setCurrentStep(stepsContent.find(item => item.isActive))
     }, [stepsContent])
 
@@ -61,7 +57,6 @@ const StepperComponent = (
                     </div>
                 </div>
             }
-
         </div>
     )
 }

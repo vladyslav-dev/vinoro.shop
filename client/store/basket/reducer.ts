@@ -34,6 +34,10 @@ export const basketReducer = (state: IBasketState, action: BasketAction): IBaske
                     product._id === action.payload ? { ...product, quantity: product.quantity - 1 } : { ...product }
                 ))]
             };
+        case ACTION_TYPES.CLEAR_STATE: 
+            return {
+                products: [],
+            }
 
         default:
             return state;

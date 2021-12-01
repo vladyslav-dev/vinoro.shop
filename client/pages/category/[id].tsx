@@ -18,14 +18,6 @@ type RangeType = "sm" | "md" | "lg"
 
 const Category = ({ products, category, success }: CategoryProps) => {
 
-    useEffect(() => {
-        if (!success) Router.push("/")
-    }, [])
-
-    if (!success) { // stop rendering
-        return null
-    }
-
     const [isTreeOpen, setIsTreeOpen] = useState<boolean>(true)
     const [animate, setAnimate] = useState(false);
 
@@ -33,7 +25,15 @@ const Category = ({ products, category, success }: CategoryProps) => {
 
     const [range, setRange] = useState<RangeType>("md")
 
+    useEffect(() => {
+        if (!success) Router.push("/")
+    }, [])
+
     useEffect(() => setProductList(products), [products])
+
+    if (!success) { // stop rendering
+        return null
+    }
 
     const categoryTreeHandler = () => {
         setIsTreeOpen(!isTreeOpen)

@@ -64,9 +64,9 @@ const OrderDeliveryForm = ({ updateButtonDisabled }) => {
                             <div className={styles.deliveryInfo}>
                                 <p className={styles.deliveryInfoText}>Бесплатная доставка по Коммунарскому и Александровскому районам на сумму от 300 UAH. Остальные районы по договорённости после оформления заказа.</p>
                                 <div className={styles.deliveryWrapper}>
-                                    <div className={styles.deliveryInfoInput}>
+                                    <div className={styles.deliveryInfoRow}>
                                         <input
-                                            name="zpAddress"
+                                            id="zpAddress"
                                             autoComplete="none"
                                             value={zpAddress}
                                             onChange={(e) => setZpAddress(e.target.value)}
@@ -75,7 +75,7 @@ const OrderDeliveryForm = ({ updateButtonDisabled }) => {
                                             htmlFor="zpAddress"
                                             className={`${zpAddress ? styles.labelActive : ""}`}
                                         >
-                                            Адресс
+                                            Адресс (не обязательно)
                                         </label>
                                     </div>
                                 </div>
@@ -99,9 +99,9 @@ const OrderDeliveryForm = ({ updateButtonDisabled }) => {
                             <div className={styles.deliveryInfo}>
                                 <p className={styles.deliveryInfoText}>Для доставки в другие города Украины мы используем “НоваПошта”.</p>
                                 <div className={styles.deliveryWrapper}>
-                                    <div className={styles.deliveryInfoInput}>
+                                    <div className={styles.deliveryInfoRow}>
                                         <input
-                                            name="postAddress"
+                                            id="postAddress"
                                             autoComplete="none"
                                             value={postAddress}
                                             onChange={(e) => setPostAddress(e.target.value)}
@@ -113,9 +113,9 @@ const OrderDeliveryForm = ({ updateButtonDisabled }) => {
                                             Адресс отделения
                                     </label>
                                     </div>
-                                    <div className={styles.deliveryInfoInput}>
+                                    <div className={styles.deliveryInfoRow}>
                                         <input
-                                            name="postNumber"
+                                            id="postNumber"
                                             autoComplete="none"
                                             type="number"
                                             min="1"

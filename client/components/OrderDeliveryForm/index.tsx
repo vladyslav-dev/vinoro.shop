@@ -31,7 +31,7 @@ const OrderDeliveryForm = ({ updateButtonDisabled }) => {
         if (delivery && payment) {
             ORDER.handlers.updateState({
                 zpAddress: zpAddress || null,
-                postDepartment: `${postAddress} ${postNumber}` || null,
+                postDepartment: postAddress && postNumber ? `${postAddress} ${postNumber}` : null,
                 payment: payment,
             })
             ORDER.handlers.setPaymentDataValid(true)
@@ -41,7 +41,7 @@ const OrderDeliveryForm = ({ updateButtonDisabled }) => {
             updateButtonDisabled(true)
         }
 
-    }, [payment, delivery])
+    }, [payment, delivery, zpAddress, postAddress, postNumber])
 
     return (
         <div className={styles.formRow}>

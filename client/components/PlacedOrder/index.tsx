@@ -12,7 +12,7 @@ import BasketProduct from '../BasketProduct';
 import TotalPrice from '../TotalPrice';
 
 type ValidDdata = {
-    id : number,
+    id: number,
     label: string,
     value: string
 }
@@ -21,13 +21,15 @@ type ValidDdata = {
 const PlacedOrder = () => {
     const { ORDER, BASKET } = useContext(GlobalContext)
     const { personData } = ORDER.state;
-    
+
     useEffect(() => {
         ORDER.handlers.updateState({
             order_id: `${Date.now()}`,
             createdAt: new Date().toLocaleString("ru")
         })
     }, [])
+
+    console.log(personData)
 
     const validData: ValidDdata[] = [
         {
@@ -58,7 +60,7 @@ const PlacedOrder = () => {
         {
             id: 5,
             label: 'Доставка',
-            value: personData.postDepartment && personData.zpAddress || "Не указано"
+            value: personData.postDepartment || personData.zpAddress || "Не указано"
         },
         {
             id: 6,
@@ -85,7 +87,7 @@ const PlacedOrder = () => {
                     <div className={styles.infoBlockContent}>
                         {
                             validData.map(el => (
-                                <TableChildren key={el.id} name={el.label} value={el.value}/>
+                                <TableChildren key={el.id} name={el.label} value={el.value} />
                             ))
                         }
                     </div>

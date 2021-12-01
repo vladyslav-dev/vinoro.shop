@@ -16,10 +16,6 @@ const StepperComponent = (
         children
     }
 ) => {
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     const [currentStep, setCurrentStep] = React.useState(null)
 
     React.useEffect(() => {

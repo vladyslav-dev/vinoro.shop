@@ -11,16 +11,66 @@ import TableChildren from '../TableChildren';
 import BasketProduct from '../BasketProduct';
 import TotalPrice from '../TotalPrice';
 
+type ValidDdata = {
+    id : number,
+    label: string,
+    value: string
+}
+
+
 const PlacedOrder = () => {
     const { ORDER, BASKET } = useContext(GlobalContext)
     const { personData } = ORDER.state;
-
+    
     useEffect(() => {
         ORDER.handlers.updateState({
             order_id: `${Date.now()}`,
             createdAt: new Date().toLocaleString("ru")
         })
     }, [])
+
+    const validData: ValidDdata[] = [
+        {
+            id: 0,
+            label: 'Имя',
+            value: personData.name || "Не указано"
+        },
+        {
+            id: 1,
+            label: 'Фамилия',
+            value: personData.surname || "Не указано"
+        },
+        {
+            id: 2,
+            label: 'Адрес электронной почты',
+            value: personData.email || "Не указано"
+        },
+        {
+            id: 3,
+            label: 'Телеофн',
+            value: personData.phone || "Не указано"
+        },
+        {
+            id: 4,
+            label: 'Город',
+            value: personData.city || "Не указано"
+        },
+        {
+            id: 5,
+            label: 'Доставка',
+            value: personData.postDepartment && personData.zpAddress || "Не указано"
+        },
+        {
+            id: 6,
+            label: 'Оплата',
+            value: personData.payment || "Не указано"
+        },
+        {
+            id: 7,
+            label: 'Дата оформления',
+            value: personData.createdAt || "Не указано"
+        },
+    ]
 
     return (
         <div className={styles.wrapper}>
@@ -33,14 +83,11 @@ const PlacedOrder = () => {
                         <h2>Данные покупателя</h2>
                     </div>
                     <div className={styles.infoBlockContent}>
-                        <TableChildren name="Имя" value={personData.name || "Не указано"} />
-                        <TableChildren name="Фамилия" value={personData.surname || "Не указано"} />
-                        <TableChildren name="Адрес электронной почты" value={personData.email || "Не указано"} />
-                        <TableChildren name="Телеофн" value={personData.phone || "Не указано"} />
-                        <TableChildren name="Город" value={personData.city || "Не указано"} />
-                        <TableChildren name="Доставка" value={personData.postDepartment || personData.zpAddress || "Не указано"} />
-                        <TableChildren name="Оплата" value={personData.payment || "Не указано"} />
-                        <TableChildren name="Дата оформления" value={personData.createdAt} />
+                        {
+                            validData.map(el => (
+                                <TableChildren key={el.id} name={el.label} value={el.value}/>
+                            ))
+                        }
                     </div>
                 </div>
                 <div className={styles.infoBlock}>

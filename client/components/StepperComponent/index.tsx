@@ -16,6 +16,10 @@ const StepperComponent = (
         children
     }
 ) => {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     const [currentStep, setCurrentStep] = React.useState(null)
 
     React.useEffect(() => {
@@ -53,7 +57,7 @@ const StepperComponent = (
                     </div>
                     <div className={styles.nextButton}>
                         <TotalPrice products={products} title="Общая стоимость: " />
-                        <Button label="Продолжить" click={nextButtonHandler} styles={{ width: "220px" }} type={currentStep?.isButtonDisabled ? "disabled" : "default"} />
+                        <Button label="Продолжить" click={nextButtonHandler} styles={{ width: "220px" }} type={currentStep?.isButtonDisabled || !products.length ? "disabled" : "default"} />
                     </div>
                 </div>
             }

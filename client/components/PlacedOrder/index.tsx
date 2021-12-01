@@ -29,7 +29,6 @@ const PlacedOrder = () => {
         })
     }, [])
 
-    console.log(personData)
 
     const validData: ValidDdata[] = [
         {

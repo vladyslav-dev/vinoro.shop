@@ -20,7 +20,7 @@ const Product = ({ product }) => {
 
 export const getServerSideProps = async ({ query }) => {
 
-    const { data } = await axios.get(`http://localhost:3000/api/product/${query.id}`);
+    const { data } = await axios.get(`${process.env.DOMAIN}api/product/${query.id}`);
 
     return {
         props: {

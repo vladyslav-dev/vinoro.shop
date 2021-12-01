@@ -13,7 +13,7 @@ const Index = ({ popularCategory }) => {
 }
 
 export const getServerSideProps = async () => {
-  const { data } = await axios.get('http://localhost:3000/api');
+  const { data } = await axios.get(`${process.env.DOMAIN}api`);
 
   return {
     props: {

@@ -13,10 +13,10 @@ interface MyAppProps extends AppProps {
   category: Array<ICategory>;
 }
 
-NProgress.configure( { showSpinner: false} );
-Router.events.on( 'routeChangeStart', () => NProgress.start() );
-Router.events.on( 'routeChangeComplete', () => NProgress.done() );
-Router.events.on( 'routeChangeError', () => NProgress.done() );
+NProgress.configure({ showSpinner: false });
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp(props: MyAppProps) {
   const { Component, pageProps, category, router } = props
@@ -34,7 +34,7 @@ function MyApp(props: MyAppProps) {
 
 MyApp.getInitialProps = async (context: AppContext) => {
   const defaultAppProps = await App.getInitialProps(context);
-  const { data } = await axios.get('http://localhost:3000/api');
+  const { data } = await axios.get(`${process.env.DOMAIN}api`);
   return {
     ...defaultAppProps,
     category: data.category,

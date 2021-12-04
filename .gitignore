@@ -37,7 +37,10 @@ jspm_packages
 .node_repl_history
 .next
 
-public/sw.js
-public/sw.js.map
-public/worker-*.js
-public/worker-*.js.map
+# PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map

@@ -36,3 +36,8 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 .next
+
+public/sw.js
+public/sw.js.map
+public/worker-*.js
+public/worker-*.js.map

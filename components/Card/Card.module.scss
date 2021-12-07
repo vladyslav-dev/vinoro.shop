@@ -4,6 +4,7 @@
 .card {
     display: inline-block;
     animation: fadeIn .4s cubic-bezier(.25, .25, .25, 1.25) forwards;
+    cursor: pointer;
 
     &.animate {
         animation: fadeIn2 .4s cubic-bezier(.25, .25, .25, 1.25) forwards;

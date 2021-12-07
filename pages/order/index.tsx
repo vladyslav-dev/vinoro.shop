@@ -3,7 +3,7 @@ import styles from './Stepper.module.scss';
 import { GlobalContext } from '@/store/index';
 
 //Components
-import { StepperCart, StepperUser, StepperMoney, StepperCheckMark } from '@/components/StepperIcon';
+import { StepperCart, StepperUser, StepperMoney, StepperCheckMark } from '@/components/Icons/StepperIcon';
 import StepperComponent from '@/components/StepperComponent';
 import PersonalDataForm from '@/components/PersonalDataForm';
 import BasketProduct from '@/components/BasketProduct';
@@ -105,10 +105,10 @@ export default Stepper
 
 
 export const StepperBasketList = () => {
-    const { BASKET, ORDER} = useContext(GlobalContext)
+    const { BASKET, ORDER } = useContext(GlobalContext)
 
     useEffect(() => {
-        ORDER.handlers.updateState({products: BASKET.state.products})
+        ORDER.handlers.updateState({ products: BASKET.state.products })
     }, [])
 
     return (

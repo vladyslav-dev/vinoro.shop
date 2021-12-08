@@ -18,6 +18,7 @@ class MyDocument extends Document {
                     <meta charSet="utf-8" />
                     <link rel="manifest" href="/manifest.json" />
                     <link rel="icon" href="/favicon.ico" />
+
                 </Head>
                 <body>
                     <Main />

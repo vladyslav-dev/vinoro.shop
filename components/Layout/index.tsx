@@ -17,6 +17,11 @@ const Layout: FC<LayoutProps> = ({ children, category, router, isOrderLayout }) 
 
     const state = useContext(GlobalContext)
 
+    const [isLoaded, setIsLoaded] = useState({
+        basket: false,
+        favorite: false
+    })
+
     useEffect(() => {
         for (const key in state) {
             if (localStorage.hasOwnProperty(key)) {
@@ -47,11 +52,6 @@ const Layout: FC<LayoutProps> = ({ children, category, router, isOrderLayout }) 
         }
     }, [])
 
-    const [isLoaded, setIsLoaded] = useState({
-        basket: false,
-        favorite: false
-    })
-
     useEffect(() => {
         if (isLoaded.basket) {
             localStorage.setItem("BASKET", JSON.stringify(state.BASKET.state))
@@ -78,7 +78,7 @@ const Layout: FC<LayoutProps> = ({ children, category, router, isOrderLayout }) 
                 <meta charSet="utf-8" />
                 <link rel="icon" href="/favicon.ico" />
             </Head> */}
-            <Navbar category={category} />
+            {/* <Navbar category={category} /> */}
 
             <AnimatePresence exitBeforeEnter>
                 <motion.div
@@ -102,7 +102,7 @@ const Layout: FC<LayoutProps> = ({ children, category, router, isOrderLayout }) 
                     {children}
                 </motion.div>
             </AnimatePresence>
-            {!isOrderLayout && <Footer />}
+            {/* {!isOrderLayout && <Footer />} */}
         </>
     );
 }

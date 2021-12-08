@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import Slider from '@/components/Slider';
-import PopularCategory from '@/components/PopularCategory';
+import Fullpage from '@/components/Fullpage';
 
 const Index = ({ popularCategory }) => {
   return (
     <>
-      <Slider />
-      <PopularCategory data={popularCategory} />
+      <Fullpage />
+      {/* <Slider />
+      <PopularCategory data={popularCategory} /> */}
     </>
   )
 }

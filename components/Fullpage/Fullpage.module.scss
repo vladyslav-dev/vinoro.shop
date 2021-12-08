@@ -1,0 +1,35 @@
+.sectionContainer {
+    .section {
+        &::after {
+            content: "";
+            position: fixed;
+            z-index: 5;
+            inset: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.32) 100%);
+    
+        }
+
+        &:nth-child(1) {
+            background-image: url("https://res.cloudinary.com/vinoro-media-storage/image/upload/v1632513147/products/Slider/foodSlide_brvsxa.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        &:nth-child(2) {
+            background-image: url("https://res.cloudinary.com/vinoro-media-storage/image/upload/v1632513149/products/Slider/alcoholSlide_ibmhrp.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        &:nth-child(3) {
+            background-image: url("https://res.cloudinary.com/vinoro-media-storage/image/upload/v1632513147/products/Slider/chemicalSlide_nqvuwh.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+    }
+
+
+}

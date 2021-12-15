@@ -1,10 +1,23 @@
+<<<<<<< Updated upstream
 import React from 'react'
+=======
+import React, { useEffect } from 'react'
+import Router from 'next/router';
+>>>>>>> Stashed changes
 import styles from './product.module.scss'
 import axios from 'axios';
 import ProductPage from '@/components/ProductPage';
 import PersonalDataForm from '@/components/PersonalDataForm';
 
 const Product = ({ product }) => {
+<<<<<<< Updated upstream
+=======
+    
+    useEffect(() => {
+        if (!product) Router.push("/")
+    }, [])
+
+>>>>>>> Stashed changes
     return (
         <>
             <div className={styles.container}>

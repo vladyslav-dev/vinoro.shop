@@ -6,8 +6,8 @@ import styles from './ToolBar.module.scss'
 
 interface ToolBarProps {
     products: Array<any>;
-    setAnimate: any;
-    setRange: any;
+    setAnimate?: any;
+    setRange?: any;
     updateProductList: any;
 }
 

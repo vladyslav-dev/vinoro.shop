@@ -1,0 +1,53 @@
+@import "../../styles/index.scss";
+
+.myModal {
+    position: fixed;
+    z-index: 1000;
+    background: white;
+    min-width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    display: block;
+    overflow: scroll;
+}
+
+.content {
+    padding: 30px;
+    
+    .arrow {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .wrapper {
+        width: 400px;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+
+    .input {
+        display: flex;
+        justify-content: center;
+        border-bottom: 3px solid black;
+        padding: 12px;
+        padding-left: 30px;
+
+        input { 
+            width: 100%;
+        }
+    }
+
+    input {
+        all: unset;
+    }
+
+    .categoryList { 
+        margin-top: ptr(20);
+        margin-bottom: ptr(20);
+        & > p {
+            font-size: ptr(14);
+            text-align: center;
+            margin-top: 26px;
+        }
+    }
+}

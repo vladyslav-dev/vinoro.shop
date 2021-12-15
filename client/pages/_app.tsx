@@ -39,7 +39,6 @@ MyApp.getInitialProps = async (context: AppContext) => {
     ...defaultAppProps,
     category: data.category,
   }
-
 }
 
 

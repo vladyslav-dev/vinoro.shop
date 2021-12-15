@@ -6,7 +6,7 @@ import NProgress from 'nprogress';
 import '@/styles/reset.scss';
 import '@/styles/index.scss';
 import { ICategory } from '@/interfaces/ICategory';
-import Layout from '@/components/Layout'
+import Layout from 'layout'
 import { GlobalContextProvider } from '@/store/index';
 
 
@@ -44,11 +44,13 @@ function MyApp(props: MyAppProps) {
 
   return (
     <>
-      <GlobalContextProvider>
-        <Layout category={category} router={router} isOrderLayout={router?.route === "/order"}>
-          <Component {...pageProps} />
-        </Layout>
-      </GlobalContextProvider>
+      <div className="global-wrapper">
+        <GlobalContextProvider>
+          <Layout category={category} router={router}>
+            <Component {...pageProps} />
+          </Layout>
+        </GlobalContextProvider>
+      </div>
     </>
   )
 }

@@ -11,7 +11,6 @@ const api = async (req: NextApiRequest, res: NextApiResponse) => {
     } catch (err) {
         console.error(err)
     }
-
 }
 
 export default api;

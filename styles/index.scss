@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Days+One&display=swap');
 @import "libraries/nprogress";
 
 @function ptr($px) {
@@ -7,14 +8,19 @@
 
 // ------------ Variables ------------
 
-$UI-color1: #232021;
-$UI-color2: #595755;
+$UI-color1: #1A1A1A;
+$UI-color2: #AAAAAA;
 $UI-color3: #BBBBBB;
 $UI-color4: #E8E8E8;
-$UI-color5: #FDFDFD;
+$UI-color5: #FFFFFF;
 
 $red-color: #DC143C;
 $green-color: #2EAE62;
+
+.global-wrapper {
+    color: $UI-color5;
+    font-family: 'Montserrat', sans-serif;
+}
 
 .container {
     max-width: 1110px;
@@ -48,14 +54,8 @@ $green-color: #2EAE62;
 
 // ------------ Mixins ------------
 
-@mixin sm {
-    @media (max-width: 580px) {
-        @content;
-    }
-}
-
-@mixin md {
-    @media (max-width: 768px) {
+@mixin xl {
+    @media (max-width: 1200px) {
         @content;
     }
 }
@@ -66,65 +66,14 @@ $green-color: #2EAE62;
     }
 }
 
-@mixin xl {
-    @media (max-width: 1200px) {
+@mixin md {
+    @media (max-width: 768px) {
         @content;
     }
 }
 
-html,
-body {
-	margin: 0;
-  font-family: arial,helvetica;
-}
-
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-footer,
-header {
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-}
-
-header {
-  background-color:rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid #556270;
-}
-
-footer {
-   color: #000;
-}
-
-a {
-  display: inline-block;
-  color: inherit;
-  text-decoration: none;
-  margin: 0px 25px;
-  
-  -webkit-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-a.active,
-a:hover {
-  color: #C44D58;
-}
-
-button {
-  width: 50px;
-  padding: 8px;
-}
-
-.btnGroup {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9;
+@mixin sm {
+    @media (max-width: 580px) {
+        @content;
+    }
 }

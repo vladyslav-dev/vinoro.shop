@@ -3,6 +3,7 @@ import styles from "./Fullpage.module.scss";
 
 import Section from "./helpers/Section";
 import SectionContainer from "./helpers/SectionContainer";
+import Navbar from "@/components/Navbar";
 
 const Fullpage = () => {
 
@@ -13,7 +14,7 @@ const Fullpage = () => {
         anchors: ['sectionOne', 'sectionTwo', 'sectionThree'],
         scrollBar: false,
         navigation: true,
-        verticalAlign: false,
+        verticalAlign: true,
         sectionPaddingTop: '50px',
         sectionPaddingBottom: '50px',
         arrowNavigation: true,
@@ -22,9 +23,9 @@ const Fullpage = () => {
 
     return (
         <SectionContainer className={styles.sectionContainer} {...options} activeSection={current}>
-            <Section className={styles.section}>Page 1</Section>
-            <Section className={styles.section}>Page 2</Section>
-            <Section className={styles.section}>Page 3</Section>
+            <Section className={styles.section}></Section>
+            <Section className={styles.section}></Section>
+            <Section className={styles.section}></Section>
         </SectionContainer>
     )
 }

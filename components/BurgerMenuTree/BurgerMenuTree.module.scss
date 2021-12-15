@@ -1,0 +1,70 @@
+@import "../../styles/index.scss";
+
+.menu {
+    background-color: $UI-color1;
+    color: $UI-color5;
+    height: 100vh;
+    width: 380px;
+    position: fixed;
+    top: 0;
+    left: -420px;
+    box-sizing: border-box;
+    transition: all 0.3s linear;
+
+    .menuList {
+        margin-top: 100px;
+        .menuListItem {
+
+            & a {
+                color: $UI-color5;
+                text-decoration: none;
+                font-weight: 500;
+                font-size: ptr(21);
+
+                transition: background .15s, fill .3s, color .3s;
+
+                display: flex;
+                align-items: center;
+
+                & svg {
+                    width: 28px;
+                }
+
+                & span {
+                    margin-left: 12px;
+                }
+
+                padding: 15px 60px;
+
+                @include xl {
+                    padding: 0 40px;
+                }
+                
+                @include md {
+                    padding: 0 20px;
+                }
+            
+                @include sm {
+                    padding: 0 15px;
+                }
+
+                &:hover {
+                    background: $UI-color5;
+                    & svg, & path {
+                        fill: $UI-color1;
+                    }
+    
+                    & span {
+                        color: $UI-color1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+.menuActive {
+    left: 0;
+}

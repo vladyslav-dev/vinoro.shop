@@ -28,6 +28,7 @@
     "react-select": "^5.1.0",
     "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1",
+    "translate-google": "^1.5.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {

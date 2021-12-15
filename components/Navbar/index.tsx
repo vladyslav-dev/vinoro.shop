@@ -2,61 +2,69 @@ import React, { useState } from 'react';
 import styles from './Navbar.module.scss';
 import Link from 'next/link'
 
-import { HeaderLogoSvg } from '@/icons/Logo';
 import { HeartSvg } from '@/icons/Heart';
 import { BagSvg } from '@/icons/Bag';
 import { WorldSvg } from '@/icons/World';
 
+import Logo from "@/components/Logo";
 import NavbarMenu from '@/components/NavbarMenu';
+import BurgerMenu from "@/components/BurgerMenu";
 import HeaderIcon from '@/components/HeaderIcon';
 import Basket from '@/components/Basket';
 
 import { ICategory } from '@/interfaces/ICategory';
 
-
 export interface NavbarProps {
-    category?: Array<ICategory>
+    category?: Array<ICategory>;
+    color?: string;
 };
 
 const Navbar = (props: NavbarProps) => {
 
-    const { category } = props;
+    const { category, color } = props;
 
     return (
         <>
-            <div className={styles.navbarWrapper}>
-                <div className={styles["container-xl"]}>
+            <div className={styles.navbarWrapper} style={{ backgroundColor: color || "#1A1A1A" }}>
+                <div className={styles.navBarContainer}>
                     <div className={styles.navbar}>
+                        <BurgerMenu />
                         <div className={styles.navbarLogo}>
                             <Link href="/">
                                 <a>
-                                    <HeaderLogoSvg />
+                                    <Logo />
                                 </a>
                             </Link>
                         </div>
-                        <NavbarMenu category={category} />
-                        <div className={styles.navbarIcons}>
-                            <Link href="/favorite/">
-                                <div className={styles.favoriteIcon}>
-                                    <HeaderIcon label={"ИЗБРАННОЕ"}>
-                                        <HeartSvg />
-                                    </HeaderIcon>
-                                </div>
-                            </Link>
-                            <HeaderIcon label={"КОРЗИНА"} className={styles.basketIcon}>
-                                <BagSvg />
-                                <div className={styles.basket}>
-                                    <Basket />
-                                </div>
-                            </HeaderIcon>
-                            {/* <HeaderIcon label={"ЯЗЫК"}>
-                                <WorldSvg />
-                            </HeaderIcon> */}
+                        {/* <NavbarMenu category={category} /> */}
+                        <div className={styles.navbarIconList}>
+                            <div className={styles.navbarIcon}>
+                                <Link href="/favorite/">
+                                    <div className={styles.favoriteIcon}>
+                                        <HeaderIcon label={"ИЗБРАННОЕ"}>
+                                            <HeartSvg />
+                                        </HeaderIcon>
+                                    </div>
+                                </Link>
+                            </div>
+                            <div className={styles.navbarIcon}>
+                                <HeaderIcon label={"КОРЗИНА"} className={styles.basketIcon}>
+                                    <BagSvg />
+                                    <div className={styles.basket}>
+                                        <Basket />
+                                    </div>
+                                </HeaderIcon>
+                            </div>
+                            <div className={styles.navbarIcon}>
+                                <HeaderIcon label={"ЯЗЫК"}>
+                                    <WorldSvg />
+                                </HeaderIcon>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className={styles.navbarSimulator} />
+            {color !== "transparent" && <div className={styles.navbarSimulator} />}
         </>
     );
 };

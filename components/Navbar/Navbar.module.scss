@@ -7,8 +7,27 @@
     right: 0;
     width: 100%;
     z-index: 10;
-    background-color: rgb(255, 255, 255);
-    border-bottom: 1px solid $UI-color4;
+
+    .navBarContainer {
+        width: calc(100% - 120px);
+        padding: 0 60px;
+        margin: 0 auto;
+
+        @include xl {
+            width: calc(100% - 80px);
+            padding: 0 40px;
+        }
+        
+        @include md {
+            width: calc(100% - 40px);
+            padding: 0 20px;
+        }
+    
+        @include sm {
+            width: calc(100% - 30px);
+            padding: 0 15px;
+        }
+    }
 }
 
 .navbar {
@@ -18,9 +37,28 @@
     align-items: center;
     height: 68px;
 
-    .navbarIcons {
-        & > div:first-child {
-            margin-right: 10px;
+    .navbarIconList {
+        display: flex;
+        align-items: center;
+        // & > div:first-child {
+        //     margin-right: 10px;
+        // }
+
+        .navbarIcon {
+            min-width: 76px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .navbarLogo {
+        height: 68px;
+        line-height: 68px;
+        
+        position: fixed;
+        left: calc(50% - 80px);
+        & a {
+            text-decoration: none;
         }
     }
 }

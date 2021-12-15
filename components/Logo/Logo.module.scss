@@ -1,0 +1,11 @@
+@import "../../styles/index.scss";
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    color: $UI-color5;
+    font-weight: 500;
+    letter-spacing: 0.11em;
+    font-size: ptr(32);
+    width: 160px;
+    text-align: center;
+}

@@ -56,16 +56,6 @@ class SectionContainer extends Component<MyProps, MyState> {
     resetScrollTimer;
     childrenLength;
 
-
-    // getChildContext() {
-    //     return {
-    //         verticalAlign: this.props.verticalAlign || false,
-    //         sectionClassName: this.props.sectionClassName || "Section",
-    //         sectionPaddingTop: this.props.sectionPaddingTop || "0",
-    //         sectionPaddingBottom: this.props.sectionPaddingBottom || "0",
-    //     };
-    // }
-
     componentWillUnmount() {
         this.clearResetScrollTimer();
         this.removeDefaultEventListeners();
@@ -74,7 +64,7 @@ class SectionContainer extends Component<MyProps, MyState> {
     }
 
     componentDidMount() {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
         this.childrenLength = this.props.children.length;
 
         this.handleResize();
@@ -373,7 +363,7 @@ class SectionContainer extends Component<MyProps, MyState> {
     renderNavigation = () => {
         let navigationStyle: React.CSSProperties = {
             position: 'fixed',
-            zIndex: '10',
+            zIndex: '5',
             left: '60px',
             top: '50%',
             transform: 'translate(-50%, -50%)'

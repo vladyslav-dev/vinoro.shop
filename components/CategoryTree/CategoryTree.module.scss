@@ -1,108 +1,186 @@
 @import "../../styles/index.scss";
 
-.fullConetnt, .hideContent {
-    transition: all .5s ease-in-out;
-    position: sticky;
-    top: 144px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    height: calc(100vh - 144px);
-    .content {
-        h3 {
-            color: $UI-color1;
-            font-size: ptr(20);
-            font-weight: normal;
-            white-space: nowrap;
-            transition: all .5s;
+// .fullConetnt, .hideContent {
+//     transition: all .5s ease-in-out;
+//     position: sticky;
+//     top: 144px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     align-items: flex-start;
+//     height: calc(100vh - 144px);
+//     .content {
+//         h3 {
+//             color: $UI-color1;
+//             font-size: ptr(20);
+//             font-weight: normal;
+//             white-space: nowrap;
+//             transition: all .5s;
+//         }
+
+//         .categoryList {
+//             margin-top: 35px;
+//             display: flex;
+//             flex-direction: column;
+//             align-items: flex-start;
+//             transition: all .9s;
+
+//             .categoryListItem {
+//                 display: inline-block;
+//                 white-space: nowrap;
+//                 color: $UI-color2;
+//                 font-size: ptr(15);
+//                 line-height: ptr(20);
+//                 cursor: pointer;
+
+//                 &:after {
+//                     content: '';
+//                     transition: width .4s;
+//                     height: 2px;
+//                     width: 0;
+//                     margin-top: 3px;
+//                     background-color: $UI-color2;
+//                     display: block;
+//                 }
+
+//                 &:hover:after {
+//                     width: 100%;
+//                 }
+
+//                 &:not(:last-child) {
+//                     margin-bottom: 12px;
+//                 }
+//             }
+//         }
+//     } 
+
+//     .treeArrow, .treeArrowClosed {
+//         margin-bottom: 20px;
+//         display: inline-block;
+//         width: 48px;
+//         height: 48px;
+//         transition: all .6s;
+
+//         & > svg {
+//             cursor: pointer;
+//             width: 100%;
+//             height: 100%;
+//         }
+//     }
+
+//     .treeArrowClosed {
+//         transform: rotate(180deg);
+//     }
+// }
+
+// .fullConetnt {
+//     width: 318px;
+
+//     .content {
+
+//         .categoryList {
+//             width: 100%;
+//             overflow: hidden;
+//             transform: translateX(0);
+//         }
+//     } 
+// }
+
+// .hideContent {
+//     width: 90px;
+
+//     .content {
+
+//         h3 {
+//             transform: translate(-140px, 140px) rotate(-90deg);
+//             min-width: 300px;
+//             font-size: ptr(23);
+//             text-align: right;
+//         }
+        
+//         .categoryList {
+//             width: 0;
+//             transform: translateX(-440px);
+//             opacity: 0;
+//         }
+//     } 
+// }
+
+
+.categoryTree {
+    width: 300px;
+   // border: 1px solid red;
+    .categoryList {
+        width: 100%;
+
+        &:not(:first-child) {
+            margin-top: 32px;
         }
 
-        .categoryList {
-            margin-top: 35px;
+        .categoryTitle {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            transition: all .9s;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            cursor: pointer;
+            
+            span {
+                font-size: ptr(17);
+                text-transform: uppercase;
+            }
 
-            .categoryListItem {
-                display: inline-block;
-                white-space: nowrap;
-                color: $UI-color2;
-                font-size: ptr(15);
-                line-height: ptr(20);
-                cursor: pointer;
-
-                &:after {
-                    content: '';
-                    transition: width .4s;
-                    height: 2px;
-                    width: 0;
-                    margin-top: 3px;
-                    background-color: $UI-color2;
-                    display: block;
-                }
-
-                &:hover:after {
-                    width: 100%;
-                }
-
-                &:not(:last-child) {
-                    margin-bottom: 12px;
+            svg {
+                transform: rotate(90deg);
+                transition: all .3s linear;
+                path {
+                    fill: $UI-color5;
                 }
             }
         }
-    } 
 
-    .treeArrow, .treeArrowClosed {
-        margin-bottom: 20px;
-        display: inline-block;
-        width: 48px;
-        height: 48px;
-        transition: all .6s;
-
-        & > svg {
-            cursor: pointer;
-            width: 100%;
-            height: 100%;
+        .categoryTitleActive {
+            svg {
+                transform: rotate(180deg);
+            }
         }
-    }
 
-    .treeArrowClosed {
-        transform: rotate(180deg);
-    }
-}
-
-.fullConetnt {
-    width: 318px;
-
-    .content {
-
-        .categoryList {
-            width: 100%;
+        .subCategory {
+            max-height: 0;
             overflow: hidden;
-            transform: translateX(0);
+            transition: all .3s linear;
+
+            .subCategotyList {
+
+                .subCategotyItem {
+
+                    margin: 22px 0;
+
+                    a {
+                        color: $UI-color2;
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-weight: 500;
+                        padding: 6px 0;
+                        padding-left: 18px;
+                        border-left: 2px solid transparent;
+                        transition: border-color .2s linear;
+
+                        &:hover {
+                            border-color: $UI-color5;
+                        }
+                    }
+                }
+
+                .subCategoryItemActive {
+                    a {
+                        color: $UI-color5;
+                    }
+                }
+            }
         }
-    } 
+
+        .subCategoryActive {
+            max-height: 320px;
+        }
+    }
 }
-
-.hideContent {
-    width: 90px;
-
-    .content {
-
-        h3 {
-            transform: translate(-140px, 140px) rotate(-90deg);
-            min-width: 300px;
-            font-size: ptr(23);
-            text-align: right;
-        }
-        
-        .categoryList {
-            width: 0;
-            transform: translateX(-440px);
-            opacity: 0;
-        }
-    } 
-}
-

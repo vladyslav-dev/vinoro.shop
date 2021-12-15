@@ -67,7 +67,7 @@ const Layout: FC<LayoutProps> = ({ children, category, router }) => {
             setIsLoaded({ ...isLoaded, favorite: true })
         }
     }, [state.FAVORITES])
-    console.log(router)
+
 
 
     switch(router.pathname) {

@@ -6,7 +6,7 @@ import NProgress from 'nprogress';
 import '@/styles/reset.scss';
 import '@/styles/index.scss';
 import { ICategory } from '@/interfaces/ICategory';
-import Layout from 'layout'
+import Layout from 'layout';
 import { GlobalContextProvider } from '@/store/index';
 
 

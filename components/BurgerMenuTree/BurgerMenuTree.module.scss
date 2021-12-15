@@ -9,13 +9,21 @@
     top: 0;
     left: -420px;
     box-sizing: border-box;
-    transition: all 0.3s linear;
+    transition: all 0.4s linear;
+    z-index: 10;
 
     .menuList {
-        margin-top: 100px;
+        width: 100%;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        opacity: 1;
+        transition: all .5s linear;
+
         .menuListItem {
 
             & a {
+                cursor: pointer;
                 color: $UI-color5;
                 text-decoration: none;
                 font-weight: 500;
@@ -37,15 +45,15 @@
                 padding: 15px 60px;
 
                 @include xl {
-                    padding: 0 40px;
+                    padding: 15px 40px;
                 }
                 
                 @include md {
-                    padding: 0 20px;
+                    padding: 15px 20px;
                 }
             
                 @include sm {
-                    padding: 0 15px;
+                    padding: 15px;
                 }
 
                 &:hover {
@@ -61,10 +69,77 @@
             }
         }
     }
+
+    .menuListHide {
+        left: -380px;
+        opacity: 0;
+    }
+
+    .catalog {
+        opacity: 0;
+        position: absolute;
+        top: 100px;
+        left: -380px;
+        transition: all .3s linear;
+    }
+
+    .catalogActive {
+        opacity: 1;
+        left: 60px;
+
+        @include xl {
+            left: 40px;
+        }
+        
+        @include md {
+            left: 20px;
+        }
+    
+        @include sm {
+            left: 15px;
+        }
+    }
 }
-
-
 
 .menuActive {
     left: 0;
+}
+
+.catalogBack {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: none;
+    padding: 0;
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 24px;
+    left: 262px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50px, 0);
+    transition: all .3s linear;
+
+    & svg {
+        width: 14px;
+        height: 13px;
+        transform: rotate(-90deg);
+        path {
+            fill: $UI-color5;
+        }
+    }
+
+    & span {
+        margin-left: 10px;
+        color: $UI-color5;
+        font-size: ptr(13);
+        font-weight: 500;
+    }
+}
+
+.catalogBackActive {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, 0);
 }

@@ -3,7 +3,15 @@ import styles from "./BurgerMenu.module.scss";
 import HeaderIcon from "@/components/HeaderIcon";
 import BurgerMenuTree from "@/components/BurgerMenuTree";
 
-const BurgerMenu = () => {
+import { ICategory } from '@/interfaces/ICategory';
+
+interface BurgerMenuProps {
+    category?: Array<ICategory>;
+}
+
+const BurgerMenu = (props: BurgerMenuProps) => {
+
+    const { category } = props;
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     return (
@@ -17,7 +25,11 @@ const BurgerMenu = () => {
                     </div>
                 </HeaderIcon>
             </div>
-            <BurgerMenuTree isActive={isMenuOpen} />
+            <BurgerMenuTree category={category} isActive={isMenuOpen} />
+            <div 
+                className={`${styles.menuBackground} ${isMenuOpen ? styles.menuBackgroundActive : null}`}
+                onClick={() => setIsMenuOpen(false)}
+            />
         </>
     )
 }

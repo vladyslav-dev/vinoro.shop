@@ -22,13 +22,12 @@ export interface NavbarProps {
 const Navbar = (props: NavbarProps) => {
 
     const { category, color } = props;
-
     return (
         <>
             <div className={styles.navbarWrapper} style={{ backgroundColor: color || "#1A1A1A" }}>
                 <div className={styles.navBarContainer}>
                     <div className={styles.navbar}>
-                        <BurgerMenu />
+                        <BurgerMenu category={category} />
                         <div className={styles.navbarLogo}>
                             <Link href="/">
                                 <a>

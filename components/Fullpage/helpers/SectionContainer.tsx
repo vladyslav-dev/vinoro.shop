@@ -86,7 +86,7 @@ class SectionContainer extends Component<MyProps, MyState> {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    getDerivedStateFromProps(nextProps) {
         if (this.props.activeSection !== nextProps.activeSection) {
             this.setState({ activeSection: nextProps.activeSection });
             this.setAnchor(nextProps.activeSection);
@@ -112,8 +112,8 @@ class SectionContainer extends Component<MyProps, MyState> {
     addActiveClass = () => {
         this.removeActiveClass();
 
-        let hash = window.location.hash.substring(1);
-        let activeLinks = document.querySelectorAll(`a[href="#${hash}"]`);
+        const hash = window.location.hash.substring(1);
+        const activeLinks = document.querySelectorAll(`a[href="#${hash}"]`);
 
         for (let i = 0; i < activeLinks.length; i++) {
             activeLinks[i].className =
@@ -124,7 +124,7 @@ class SectionContainer extends Component<MyProps, MyState> {
     }
 
     removeActiveClass = () => {
-        let activeLinks = document.querySelectorAll(
+        const activeLinks = document.querySelectorAll(
             `a:not([href="#${this.props.anchors[this.state.activeSection]}"])`
         );
 
@@ -140,7 +140,7 @@ class SectionContainer extends Component<MyProps, MyState> {
         let index = 0;
 
         return Children.map(this.props.children, (child: React.ReactElement) => {
-            let id = this.props.anchors[index];
+            const id = this.props.anchors[index];
 
             index++;
 
@@ -246,28 +246,28 @@ class SectionContainer extends Component<MyProps, MyState> {
     }
 
     handleTouchNav = () => {
-        let that = this;
+        const that = this;
 
-        let touchsurface = document.querySelector('.' + this.props.className),
-            swipedir,
+        const touchsurface = document.querySelector('.' + this.props.className);
+        let swipedir,
             startX,
             startY,
             dist,
             distX,
-            distY,
-            threshold = 50,
-            restraint = 100,
-            allowedTime = 1000,
-            elapsedTime,
-            startTime,
-            handleswipe = function (swipedir) {
+            distY;
+            const threshold = 50;
+            const restraint = 100;
+            const allowedTime = 1000;
+            let elapsedTime,
+            startTime;
+            const handleswipe = function (swipedir) {
                 console.log(swipedir);
             };
 
         touchsurface.addEventListener(
             'touchstart',
             function (e: any) {
-                let touchobj = e.changedTouches[0];
+                const touchobj = e.changedTouches[0];
                 swipedir = 'none';
                 dist = 0;
                 startX = touchobj.pageX;
@@ -289,7 +289,7 @@ class SectionContainer extends Component<MyProps, MyState> {
         touchsurface.addEventListener(
             'touchend',
             function (e: any) {
-                let touchobj = e.changedTouches[0];
+                const touchobj = e.changedTouches[0];
                 distX = touchobj.pageX - startX;
                 distY = touchobj.pageY - startY;
                 elapsedTime = new Date().getTime() - startTime;
@@ -298,13 +298,13 @@ class SectionContainer extends Component<MyProps, MyState> {
                     if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint) {
 
                         swipedir = distY < 0 ? 'up' : 'down';
-                        let direction =
+                        const direction =
                             swipedir === 'down'
                                 ? that.state.activeSection - 1
                                 : swipedir === 'up'
                                     ? that.state.activeSection + 1
                                     : -1;
-                        let hash = that.props.anchors[direction];
+                        const hash = that.props.anchors[direction];
 
                         if (!that.props.anchors.length || hash) {
                             window.location.hash = '#' + hash;
@@ -361,7 +361,7 @@ class SectionContainer extends Component<MyProps, MyState> {
     }
 
     renderNavigation = () => {
-        let navigationStyle: React.CSSProperties = {
+        const navigationStyle: React.CSSProperties = {
             position: 'fixed',
             zIndex: '5',
             left: '60px',
@@ -400,7 +400,7 @@ class SectionContainer extends Component<MyProps, MyState> {
     }
 
     render() {
-        let containerStyle: React.CSSProperties = {
+        const containerStyle: React.CSSProperties = {
             height: '100%',
             width: '100%',
             position: 'relative',

@@ -1,0 +1,32 @@
+@import "../../styles/index.scss";
+@import url('http://fonts.cdnfonts.com/css/days-2');
+
+.headerTitle {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translate(0, -50%);
+    z-index: 6;
+
+    .title {
+        font-family: 'Days';
+        font-size: ptr(60);
+        font-weight: normal;
+    }
+
+    .button {
+        border: none;
+        background-color: $UI-color5;
+        color: $UI-color1;
+        font-family: "Montserrat";
+        font-size: 18px;
+        font-weight: bold;
+        width: 250px;
+        height: 54px;
+        backdrop-filter: blur(15px);
+        border-radius: 36px;
+        margin-top: 46px;
+        cursor: pointer;
+    }
+}

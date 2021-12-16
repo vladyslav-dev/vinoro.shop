@@ -20,10 +20,6 @@ const BurgerMenu = (props: BurgerMenuProps) => {
     Router.events.on('routeChangeStart', () => setIsMenuOpen(false));
     console.log(Router)
 
-    // const router = useRouter();
-
-    // router.events.on('routeChangeStart', () => setIsMenuOpen(false))
-    // console.log(router)
     return (
         <>
             <div className={styles.burgerMenu} onClick={() => setIsMenuOpen(!isMenuOpen)}>

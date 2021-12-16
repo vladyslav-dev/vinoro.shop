@@ -3,7 +3,7 @@ import styles from "./Fullpage.module.scss";
 
 import Section from "./helpers/Section";
 import SectionContainer from "./helpers/SectionContainer";
-import Navbar from "@/components/Navbar";
+import HeaderTitle from '@/components/HeaderTitle';
 
 const Fullpage = () => {
 
@@ -23,9 +23,15 @@ const Fullpage = () => {
 
     return (
         <SectionContainer className={styles.sectionContainer} {...options} activeSection={current}>
-            <Section className={styles.section}></Section>
-            <Section className={styles.section}></Section>
-            <Section className={styles.section}></Section>
+            <Section className={styles.section}>
+                <HeaderTitle title="Продукти питиния" />
+            </Section>
+            <Section className={styles.section}>
+                <HeaderTitle title="Алкогольние напитки" />
+            </Section>
+            <Section className={styles.section}>
+                <HeaderTitle title="Продукти питиния" />
+            </Section>
         </SectionContainer>
     )
 }

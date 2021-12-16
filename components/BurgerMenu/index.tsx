@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import styles from "./BurgerMenu.module.scss";
 import HeaderIcon from "@/components/HeaderIcon";
 import BurgerMenuTree from "@/components/BurgerMenuTree";
@@ -14,6 +15,11 @@ const BurgerMenu = (props: BurgerMenuProps) => {
     const { category } = props;
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const router = useRouter();
+
+   // router.events.on('routeChangeStart', setIsMenuOpen(false))
+
     return (
         <>
             <div className={styles.burgerMenu} onClick={() => setIsMenuOpen(!isMenuOpen)}>

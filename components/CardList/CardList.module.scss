@@ -7,6 +7,8 @@
     grid-row-gap: 20px;
     grid-column-gap: 8px;
     overflow: hidden;
+    background-color: $UI-color5;
+    color: $UI-color1;
     
     @media (max-width: 1100px) {
         grid-template-columns: repeat(3, 1fr);

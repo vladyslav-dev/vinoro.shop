@@ -99,6 +99,10 @@
             left: 15px;
         }
     }
+
+    @media screen and (max-width: 380px) {
+        width: 100%;
+    }
 }
 
 .menuActive {

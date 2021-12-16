@@ -86,14 +86,15 @@ class SectionContainer extends Component<MyProps, MyState> {
         }
     }
 
-    getDerivedStateFromProps(nextProps) {
-        if (this.props.activeSection !== nextProps.activeSection) {
-            this.setState({ activeSection: nextProps.activeSection });
-            this.setAnchor(nextProps.activeSection);
-            this.handleSectionTransition(nextProps.activeSection);
-            this.addActiveClass();
-        }
-    }
+    // getDerivedStateFromProps(nextProps) {
+    //     console.log(this)
+    //     if (this.props.activeSection !== nextProps.activeSection) {
+    //         this.setState({ activeSection: nextProps.activeSection });
+    //         this.setAnchor(nextProps.activeSection);
+    //         this.handleSectionTransition(nextProps.activeSection);
+    //         this.addActiveClass();
+    //     }
+    // }
 
     removeDefaultEventListeners = () => {
         window.removeEventListener('resize', this.handleResize);

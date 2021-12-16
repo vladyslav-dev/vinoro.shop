@@ -6,14 +6,11 @@ interface TotalItemCountProps {
     products?: Array<IProduct>;
 }
 
-const TotalItemCount = ( {products}: TotalItemCountProps) => {
-
-    return (
-        <div className={styles.content}>
-            <p>Всего товаров: {products?.length}</p>
-        </div>
-    )
-}
+const TotalItemCount = ( {products}: TotalItemCountProps) => (
+    <div className={styles.content}>
+        <p style={{color: "#1A1A1A"}}>Всего товаров: {products?.length}</p>
+    </div>
+)
 
 export default TotalItemCount
   

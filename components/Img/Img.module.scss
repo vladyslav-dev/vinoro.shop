@@ -11,6 +11,7 @@ $avatar-offset: 52 + 16;
     
   .imageWrapper {
     width: 100%;
+    position: relative;
 
     > div {
       position: unset !important;

@@ -4,6 +4,7 @@ import styles from "./Fullpage.module.scss";
 import Section from "./helpers/Section";
 import SectionContainer from "./helpers/SectionContainer";
 import HeaderTitle from '@/components/HeaderTitle';
+import SocialMedia from '@/components/SocialMedia';
 
 const Fullpage = () => {
 
@@ -24,13 +25,30 @@ const Fullpage = () => {
     return (
         <SectionContainer className={styles.sectionContainer} {...options} activeSection={current}>
             <Section className={styles.section}>
-                <HeaderTitle title="Продукти питиния" />
+                <div className={styles['container-xl']}>
+                    <div className={styles.sectionContent}>
+                        <HeaderTitle title="Продукти питиния" />
+                        <div className={styles.socialMedia}>
+                            <SocialMedia color="#fff" />
+                        </div>
+                    </div>
+                </div>
             </Section>
             <Section className={styles.section}>
-                <HeaderTitle title="Алкогольние напитки" />
+                <div className={styles['container-xl']}>
+                    <HeaderTitle title="Продукти питиния" />
+                    <div className={styles.socialMedia}>
+                        <SocialMedia color="#fff" />
+                    </div>
+                </div>
             </Section>
             <Section className={styles.section}>
-                <HeaderTitle title="Продукти питиния" />
+                <div className={styles['container-xl']}>
+                    <HeaderTitle title="Продукти питиния" />
+                    <div className={styles.socialMedia}>
+                        <SocialMedia color="#fff" />
+                    </div>
+                </div>
             </Section>
         </SectionContainer>
     )

@@ -71,12 +71,6 @@ const Navbar = (props: NavbarProps) => {
                                     <Basket />
                                 </div>
                             </HeaderIcon>
-<<<<<<< Updated upstream
-                            <HeaderIcon label={"ЯЗЫК"}>
-                                <WorldSvg />
-                            </HeaderIcon>
-=======
->>>>>>> Stashed changes
                         </div>
                     </div>
                 </div>

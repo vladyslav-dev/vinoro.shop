@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './SearchModal.module.scss'
 
 import { ArrowModal } from '@/icons/Arrow'
+import { Loupe } from '@/icons/Loupe.tsx'
 
 const SearchModal = ({ setVisible, searchQuery, setSearchQuery, handleSumbmit, children }) => {
 
@@ -17,19 +18,21 @@ const SearchModal = ({ setVisible, searchQuery, setSearchQuery, handleSumbmit, c
         }
     }
 
-
     return (
         <div className={styles.myModal}>
             <div className={styles["container-xl"]}>
                 <div className={styles.content}>
-                        <div onClick={() => setVisible(false)} className={styles.arrow}>
-                            <ArrowModal  />
-                        </div>
-                        <div className={styles.wrapper}>
-                            <div className={styles.input}>
-                                <input type="text" placeholder="Поиск" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={(e) => onKeyDownHandler(e)}/>
+                       <div className={styles.wrapper}>
+                            <div onClick={() => setVisible(false)} className={styles.arrow}>
+                                <ArrowModal  />
                             </div>
-                        </div>
+                            <div className={styles.inputWrapper}>
+                                <div className={styles.input}>
+                                    <input type="text" placeholder="Поиск" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={(e) => onKeyDownHandler(e) } />
+                                    <Loupe />
+                                </div>
+                            </div>  
+                       </div>
                     <div className={styles.categoryList}>
                         {
                             children

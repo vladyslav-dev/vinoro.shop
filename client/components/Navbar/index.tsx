@@ -13,7 +13,7 @@ import NavbarMenu from '@/components/NavbarMenu';
 import HeaderIcon from '@/components/HeaderIcon';
 import Basket from '@/components/Basket';
 import SearchModal from '@/components/SearchModal'
-import CardList from '../CardList'
+import CardList from '@/components/CardList'
 import { ICategory } from '@/interfaces/ICategory';
 import ToolBar from '@/components/ToolBar'
 
@@ -23,16 +23,19 @@ export interface NavbarProps {
 
 const Navbar = (props: NavbarProps) => {
     
-    const { category } = props;
-    const [visible, setVisible] = useState(false)
-    const [searchQuery, setSearchQuery] = useState('')
+    const { category } = props
     const [products, setProducts] = useState(null)
+    const [isVisible, setIsVisible] = useState(false)
+    const [animate, setAnimate] = useState(false)
+    const [searchQuery, setSearchQuery] = useState('')
+    const [lastQuery, setLastQuery] = useState('')
 
-    Router.events.on('routeChangeComplete', () => setVisible(false));
+    Router.events.on('routeChangeComplete', () => setIsVisible(false))
 
-    const handleSumbmit = async () => {
+    const getProductsByQuery = async () => { 
         const res = await axios({   method: 'POST',   url: window.location.origin + '/api/search',   data: { searchQuery } });
         setProducts(res.data.products)
+        setLastQuery(searchQuery)
     }
 
     const t = () => {
@@ -52,7 +55,7 @@ const Navbar = (props: NavbarProps) => {
                                     <HeaderLogoSvg />
                                 </a>
                             </Link>
-                            <HeaderIcon label={"ЯЗЫК"} click={() =>  setVisible(true)}>
+                            <HeaderIcon label={"ЯЗЫК"} click={() =>  setIsVisible(true)}>
                                 <WorldSvg />
                             </HeaderIcon>
                         </div>
@@ -76,9 +79,11 @@ const Navbar = (props: NavbarProps) => {
                 </div>
             </div>
             { 
-                visible && <SearchModal setVisible={setVisible} searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSumbmit={handleSumbmit}>
-                    <ToolBar products={products} updateProductList={setProducts} />
-                    <CardList products={products} customStyles={t()} />
+                isVisible && <SearchModal setVisible={setIsVisible} searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSumbmit={getProductsByQuery}>
+                    <ToolBar products={products} updateProductList={setProducts} setAnimate={setAnimate}/>
+                    { 
+                       products === null || products.length ? <CardList products={products} customStyles={t()} animate={animate}/> : <p>Товаров за запросом - {lastQuery} не найдено</p> 
+                    }
                 </SearchModal>
             }
             <div className={styles.navbarSimulator} />

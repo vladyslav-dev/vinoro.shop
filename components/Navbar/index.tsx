@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styles from './Navbar.module.scss';
 import Link from 'next/link'
+import axios from 'axios';
+import Router from 'next/router';
 
 import { HeartSvg } from '@/icons/Heart';
 import { BagSvg } from '@/icons/Bag';
@@ -10,8 +12,10 @@ import Logo from "@/components/Logo";
 import BurgerMenu from "@/components/BurgerMenu";
 import HeaderIcon from '@/components/HeaderIcon';
 import Basket from '@/components/Basket';
-
+import SearchModal from '@/components/SearchModal'
+import CardList from '@/components/CardList'
 import { ICategory } from '@/interfaces/ICategory';
+import ToolBar from '@/components/ToolBar'
 
 export interface NavbarProps {
     category?: Array<ICategory>;
@@ -19,8 +23,22 @@ export interface NavbarProps {
 };
 
 const Navbar = (props: NavbarProps) => {
+    
+    const { category, color } = props
+    const [products, setProducts] = useState(null)
+    const [isVisible, setIsVisible] = useState(false)
+    const [animate, setAnimate] = useState(false)
+    const [searchQuery, setSearchQuery] = useState('')
+    const [lastQuery, setLastQuery] = useState('')
 
-    const { category, color } = props;
+    Router.events.on('routeChangeComplete', () => setIsVisible(false))
+
+    const getProductsByQuery = async () => { 
+        const res = await axios({   method: 'POST',   url: window.location.origin + '/api/search',   data: { searchQuery } });
+        setProducts(res.data.products)
+        setLastQuery(searchQuery)
+    }
+
     return (
         <>
             <div className={styles.navbarWrapper} style={{ backgroundColor: color || "#1A1A1A" }}>
@@ -33,6 +51,9 @@ const Navbar = (props: NavbarProps) => {
                                     <Logo />
                                 </a>
                             </Link>
+                            <HeaderIcon label={"ЯЗЫК"} click={() =>  setIsVisible(true)}>
+                                <WorldSvg />
+                            </HeaderIcon>
                         </div>
                         <div className={styles.navbarIconList}>
                             <div className={styles.navbarIcon}>
@@ -61,7 +82,29 @@ const Navbar = (props: NavbarProps) => {
                     </div>
                 </div>
             </div>
-            {color !== "transparent" && <div className={styles.navbarSimulator} />}
+            { 
+                isVisible && (
+                <SearchModal 
+                    setVisible={setIsVisible}
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                    handleSumbmit={getProductsByQuery}
+                >
+                    <ToolBar 
+                        products={products}
+                        updateProductList={setProducts}
+                        setAnimate={setAnimate}
+                      />
+                    { 
+                       (products === null || products.length) ? (
+                        <CardList products={products} customStyles={{gridTemplateColumns: `repeat(${5}, 1fr)`}} animate={animate}/>
+                       ) : (
+                        <p>Товаров за запросом - {lastQuery} не найдено</p> 
+                       )
+                    }
+                </SearchModal>)
+            }
+            <div className={styles.navbarSimulator} />
         </>
     );
 };

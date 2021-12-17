@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Router from 'next/router';
 import styles from './product.module.scss'
 import axios from 'axios';
 import ProductPage from '@/components/ProductPage';
 
 const Product = ({ product }) => {
-    React.useEffect(() => {
+    
+    useEffect(() => {
         if (!product) Router.push("/")
     }, [])
 

@@ -59,7 +59,25 @@
                     width: 32px;
                     height: 32px;
                 }
+
+                @include hoverEffect
             } 
         }
     }
+
+    .goAhead {
+        z-index: 6;
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .headerBottom {
+        z-index: 6;
+        position: absolute;
+        bottom: 46px;
+        left: 0;
+        right: 0;
+    }   
 }

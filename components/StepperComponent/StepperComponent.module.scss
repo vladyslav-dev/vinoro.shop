@@ -1,8 +1,10 @@
 @import '../../styles/index.scss';
 
 .content {
-    margin-top: 60px;
+    padding-top: 60px;
     height: auto;
+    color: $UI-color1;
+    font-weight: 500;
 
     .steps {
         display: flex;
@@ -12,7 +14,7 @@
     }
 
     .stepContent {
-        margin: 100px 0;
+        padding: 100px 0;
     }
     
     .buttonFiled {

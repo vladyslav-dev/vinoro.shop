@@ -26,11 +26,11 @@ const Basket = () => {
 
                     <Link href="/order/">
                         <div className={styles.buttonWrapper}>
-                            <Button label="Оплатить заказ" styles={{ width: '100%' }} click={() => null} type="default" />
+                            <Button label="Далее" styles={{ width: '100%' }} click={() => null} type="default" />
                         </div>
                     </Link> :
 
-                    <Button label="Оплатить заказ" styles={{ width: '50%' }} click={() => null} type="disabled" />
+                    <Button label="Далее" styles={{ width: '50%' }} click={() => null} type="disabled" />
                 }
             </div>
         </div>

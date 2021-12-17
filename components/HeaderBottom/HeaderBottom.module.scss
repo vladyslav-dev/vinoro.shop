@@ -1,0 +1,20 @@
+@import "../../styles/index.scss";
+
+.HeaderBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .HeaderBottomItem {
+        
+        a {
+            color: $UI-color5;
+            text-decoration: none;
+            font-size: ptr(14);
+            font-weight: 700;
+            
+            @include hoverEffect
+        }
+    }
+}

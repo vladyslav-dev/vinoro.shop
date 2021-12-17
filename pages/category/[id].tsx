@@ -61,18 +61,20 @@ const Category = ({ products, category, success }: CategoryProps) => {
     }
 
     return (
-        <div className={styles["container-xl"]}>
-            <div className={styles.categoryWrapper}>
-                {/* <CategoryTree
-                    category={category}
-                    isTreeOpen={isTreeOpen}
-                    treeHandler={categoryTreeHandler}
-                    currentCategoryId={products[0].category}
-                /> */}
-                <div className={styles.categoryContent}>
-                    <ToolBar products={products} setAnimate={setAnimate} setRange={setRange} updateProductList={setProductList} />
-                    <div className={styles.categoryList}>
-                        <CardList products={productList} animate={animate} customStyles={getCurrentRange()} />
+        <div className={styles.category}>
+            <div className={styles["container-xl"]}>
+                <div className={styles.categoryWrapper}>
+                    {/* <CategoryTree
+                        category={category}
+                        isTreeOpen={isTreeOpen}
+                        treeHandler={categoryTreeHandler}
+                        currentCategoryId={products[0].category}
+                    /> */}
+                    <div className={styles.categoryContent}>
+                        <ToolBar products={products} setAnimate={setAnimate} setRange={setRange} updateProductList={setProductList} />
+                        <div className={styles.categoryList}>
+                            <CardList products={productList} animate={animate} customStyles={getCurrentRange()} />
+                        </div>
                     </div>
                 </div>
             </div>

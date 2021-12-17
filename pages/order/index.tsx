@@ -77,26 +77,27 @@ const Stepper = () => {
     }
 
     return (
-        <div className={styles["container-xl"]} style={{ padding: 0 }}>
-            <div className={styles.wrraper}>
-                <StepperComponent
-                    stepsContent={stepsContent}
-                    nextButtonHandler={nextButtonHandler}
-                    backButtonHandler={backButtonHandler}
-                    products={BASKET.state.products}
-                >
-                    {
-                        stepsContent.map(el => {
-                            return (
-                                <div key={el.id}>
-                                    {el.id === step ? el.component : null}
-                                </div>
-                            )
-                        })
-                    }
-                </StepperComponent>
+        <div className={styles.order}>
+            <div className={styles["container-xl"]} style={{ padding: 0 }}>
+                <div className={styles.wrraper}>
+                    <StepperComponent
+                        stepsContent={stepsContent}
+                        nextButtonHandler={nextButtonHandler}
+                        backButtonHandler={backButtonHandler}
+                        products={BASKET.state.products}
+                    >
+                        {
+                            stepsContent.map(el => {
+                                return (
+                                    <div key={el.id}>
+                                        {el.id === step ? el.component : null}
+                                    </div>
+                                )
+                            })
+                        }
+                    </StepperComponent>
+                </div>
             </div>
-
         </div>
     )
 }

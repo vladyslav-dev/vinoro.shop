@@ -5,6 +5,8 @@ import Section from "./helpers/Section";
 import SectionContainer from "./helpers/SectionContainer";
 import HeaderTitle from '@/components/HeaderTitle';
 import SocialMedia from '@/components/SocialMedia';
+import GoAhead from '@/components/GoAhead';
+import HeaderBottom from '@/components/HeaderBottom';
 
 const Fullpage = () => {
 
@@ -38,6 +40,12 @@ const Fullpage = () => {
             <div className={styles["container-xl"]}>
                 <div className={styles.socialMedia}>
                     <SocialMedia color="#fff" />
+                </div>
+                <div className={styles.goAhead}>
+                    <GoAhead />
+                </div>
+                <div className={styles.headerBottom}>
+                    <HeaderBottom />
                 </div>
             </div>
         </>

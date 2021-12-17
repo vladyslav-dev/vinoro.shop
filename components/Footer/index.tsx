@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import styles from './Footer.module.scss';
-// import { FacebookSvg, InstSvg, ViberSvg } from '@/icons/SocialMedia';
 import SocialMedia from '@/components/SocialMedia';
 
 export interface FooterProps { };
@@ -80,7 +79,7 @@ const Footer: FC<FooterProps> = () => {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.container}>
+            <div className={styles['container-xl']}>
                 <div className={styles.content__wrapper}>
                     <div className={styles.content__left}>
                         <h1>VINORO</h1>

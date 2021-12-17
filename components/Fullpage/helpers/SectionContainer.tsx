@@ -364,7 +364,7 @@ class SectionContainer extends Component<MyProps, MyState> {
     renderNavigation = () => {
         const navigationStyle: React.CSSProperties = {
             position: 'fixed',
-            zIndex: '5',
+            zIndex: '7',
             left: '66px',
             top: '50%',
             transform: 'translate(-50%, -50%)'

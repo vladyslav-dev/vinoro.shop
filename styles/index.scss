@@ -82,3 +82,13 @@ $green-color: #2EAE62;
         @content;
     }
 }
+
+@mixin hoverEffect {
+    opacity: .8;
+    transition: all 0.2s linear;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+

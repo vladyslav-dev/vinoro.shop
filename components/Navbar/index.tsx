@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styles from './Navbar.module.scss';
 import Link from 'next/link'
+import axios from 'axios';
+import Router from 'next/router';
 
 import { HeaderLogoSvg } from '@/icons/Logo';
 import { HeartSvg } from '@/icons/Heart';
@@ -10,29 +12,52 @@ import { WorldSvg } from '@/icons/World';
 import NavbarMenu from '@/components/NavbarMenu';
 import HeaderIcon from '@/components/HeaderIcon';
 import Basket from '@/components/Basket';
-
+import SearchModal from '@/components/SearchModal'
+import CardList from '@/components/CardList'
 import { ICategory } from '@/interfaces/ICategory';
-
+import ToolBar from '@/components/ToolBar'
 
 export interface NavbarProps {
     category?: Array<ICategory>
 };
 
 const Navbar = (props: NavbarProps) => {
+    
+    const { category } = props
+    const [products, setProducts] = useState(null)
+    const [isVisible, setIsVisible] = useState(false)
+    const [animate, setAnimate] = useState(false)
+    const [searchQuery, setSearchQuery] = useState('')
+    const [lastQuery, setLastQuery] = useState('')
 
-    const { category } = props;
+    Router.events.on('routeChangeComplete', () => setIsVisible(false))
+
+    const getProductsByQuery = async () => { 
+        const res = await axios({   method: 'POST',   url: window.location.origin + '/api/search',   data: { searchQuery } });
+        setProducts(res.data.products)
+        setLastQuery(searchQuery)
+    }
+
+    const t = () => {
+        return  {
+            gridTemplateColumns: `repeat(${5}, 1fr)`
+        }
+    }
 
     return (
         <>
             <div className={styles.navbarWrapper}>
                 <div className={styles["container-xl"]}>
                     <div className={styles.navbar}>
-                        <div className={styles.navbarLogo}>
+                        <div className={styles.navbarLogo} style={{display: 'flex'}}>
                             <Link href="/">
                                 <a>
                                     <HeaderLogoSvg />
                                 </a>
                             </Link>
+                            <HeaderIcon label={"ЯЗЫК"} click={() =>  setIsVisible(true)}>
+                                <WorldSvg />
+                            </HeaderIcon>
                         </div>
                         <NavbarMenu category={category} />
                         <div className={styles.navbarIcons}>
@@ -49,13 +74,18 @@ const Navbar = (props: NavbarProps) => {
                                     <Basket />
                                 </div>
                             </HeaderIcon>
-                            {/* <HeaderIcon label={"ЯЗЫК"}>
-                                <WorldSvg />
-                            </HeaderIcon> */}
                         </div>
                     </div>
                 </div>
             </div>
+            { 
+                isVisible && <SearchModal setVisible={setIsVisible} searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSumbmit={getProductsByQuery}>
+                    <ToolBar products={products} updateProductList={setProducts} setAnimate={setAnimate}/>
+                    { 
+                       products === null || products.length ? <CardList products={products} customStyles={t()} animate={animate}/> : <p>Товаров за запросом - {lastQuery} не найдено</p> 
+                    }
+                </SearchModal>
+            }
             <div className={styles.navbarSimulator} />
         </>
     );

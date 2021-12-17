@@ -44,3 +44,5 @@ jspm_packages
 **/public/sw.js.map
 **/public/workbox-*.js.map
 **/public/worker-*.js.map
+
+.env.local

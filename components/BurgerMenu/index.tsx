@@ -18,7 +18,7 @@ const BurgerMenu = (props: BurgerMenuProps) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     Router.events.on('routeChangeStart', () => setIsMenuOpen(false));
-    console.log(Router)
+
 
     return (
         <>

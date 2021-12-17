@@ -41,7 +41,6 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp(props: MyAppProps) {
   const { Component, pageProps, category, router } = props
-
   return (
     <>
       <div className="global-wrapper">

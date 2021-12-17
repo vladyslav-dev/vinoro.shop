@@ -263,9 +263,9 @@ class SectionContainer extends Component<MyProps, MyState> {
             const allowedTime = 1000;
             let elapsedTime,
             startTime;
-            const handleswipe = function (swipedir) {
-                console.log(swipedir);
-            };
+            // const handleswipe = function (swipedir) {
+            //     console.log(swipedir);
+            // };
 
         touchsurface.addEventListener(
             'touchstart',
@@ -316,7 +316,7 @@ class SectionContainer extends Component<MyProps, MyState> {
                         that.handleSectionTransition(direction);
                     }
                 }
-                handleswipe(swipedir);
+                // handleswipe(swipedir);
 
             },
             false

@@ -16,6 +16,6 @@ module.exports = withPWA({
     skipWaiting: true,
   },
   devIndicators: {
-    buildActivity: false
+    buildActivity: false,
   },
 })

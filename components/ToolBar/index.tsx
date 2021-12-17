@@ -21,6 +21,8 @@ const ToolBar = ({ products, setAnimate, setRange, updateProductList }: ToolBarP
     return (
         <div className={styles.categoryToolbar}>
             <SortSelect updateProductList={updateProductList} defaultProductList={products} setAnimate={setAnimate} />
+            
+            
             <div className={styles.rangerTotalItem}>
                 <Ranger rangeHandler={rangeHandler} />
                 <TotalItemCount products={products} />

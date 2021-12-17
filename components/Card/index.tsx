@@ -3,11 +3,13 @@ import React, { useContext } from 'react'
 import styles from './Card.module.scss'
 
 import Img from '@/components/Img';
-import Button from '@/components/Button'
+import { TrashSvg } from '@/icons/Trash';
 import { IProductCard } from '@/interfaces/IFavorite'
 
 import { GlobalContext } from '@/store/index';
 import { motion } from "framer-motion"
+
+
 
 interface CardProps {
     product: IProductCard;
@@ -46,19 +48,7 @@ const CardComponent = ({ product, removeButton }: CardProps) => {
             <Link href={`/product/[id]`} as={`/product/${product._id}`} passHref>
                 <div>
                     <div className={styles.cardImage}>
-                        <Img
-                            src={product.image}
-                        />
-                        {
-                            removeButton ?
-                                <div className={styles.imageButton}>
-                                    <Button
-                                        label="Удалить товар"
-                                        click={removeFromFavotite}
-                                        styles={{ width: '100%', border: 'none', opacity: '0.7' }}
-                                    />
-                                </div> : null
-                        }
+                        <Img src={product.image} />
                     </div>
                     <div className={styles.cardInfo}>
                         <div className={styles.cardAvailability}>
@@ -71,6 +61,11 @@ const CardComponent = ({ product, removeButton }: CardProps) => {
                             <span>{product.cost} UAH</span>
                         </div>
                     </div>
+                    {removeButton ?
+                        <div className={styles.imageButton}>
+                            <TrashSvg color="#FFFFFF" />
+                        </div> : null
+                    }
                 </div>
             </Link>
         </motion.div>

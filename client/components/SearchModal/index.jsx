@@ -28,7 +28,7 @@ const SearchModal = ({ setVisible, searchQuery, setSearchQuery, handleSumbmit, c
                             </div>
                             <div className={styles.inputWrapper}>
                                 <div className={styles.input}>
-                                    <input type="text" placeholder="Поиск" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={(e) => onKeyDownHandler(e) } />
+                                    <input type="text" placeholder="Поиск" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={(e) => searchQuery && onKeyDownHandler(e) } />
                                     <Loupe />
                                 </div>
                             </div>  

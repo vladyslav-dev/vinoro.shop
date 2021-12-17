@@ -1,16 +1,49 @@
 @import '../../styles/index.scss';
 
+.favorite {
+    background-color: $UI-color5;
+    color: $UI-color1;
 
-.favoriteList { 
-    min-height: calc(100vh - 706px);
+    .favoriteList { 
+        min-height: calc(100vh - 596px);
 
-    & > p {
-        font-size: ptr(14);
-        text-align: center;
-        margin-top: 26px;
+        .emptyList {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .emptyListButton {
+                color: $UI-color5;
+                text-decoration: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                margin-top: 54px;
+                border: none;
+                background-color: $UI-color1;
+                color: $UI-color5;
+                font-size: ptr(13);
+                font-weight: 500;
+                width: 212px;
+                height: 44px;
+                backdrop-filter: blur(15px);
+                border-radius: 100px;
+            }
+
+            & > p {
+                font-size: ptr(16);
+                text-align: center;
+                margin-top: 26px;
+            }
+        }
+    
+        
+    }
+    
+    .wrraper {
+        padding-bottom: 40px;
     }
 }
 
-.wrraper {
-    padding-bottom: 40px;
-}

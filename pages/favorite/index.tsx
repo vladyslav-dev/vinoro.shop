@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { GlobalContext } from '@/store/index';
+import Link from 'next/link';
 import styles from './favorite.module.scss'
 import CardList from '@/components/CardList';
 import ToolBar from '@/components/ToolBar';
@@ -39,11 +40,31 @@ const Favorite = () => {
     }
 
     return (
-        <div className={styles["container-xl"]}>
-            <div className={styles.wrraper}>
-                <ToolBar products={favoriteItem} setAnimate={setAnimate} setRange={setRange} updateProductList={setProductList} />
-                <div className={styles.favoriteList}>
-                    {favoriteItem?.length ? <CardList products={productList} animate={animate} customStyles={getCurrentRange()} removeButton={true} /> : <p>У вас нет добавленных товаров в избранное</p>}
+        <div className={styles.favorite}>
+            <div className={styles["container-xl"]}>
+                <div className={styles.wrraper}>
+                    <ToolBar products={favoriteItem} setAnimate={setAnimate} setRange={setRange} updateProductList={setProductList} />
+                    <div className={styles.favoriteList}>
+                        {favoriteItem?.length ? 
+                            (
+                                <CardList 
+                                    products={productList} 
+                                    animate={animate} 
+                                    customStyles={getCurrentRange()}
+                                    removeButton={true} 
+                                /> 
+                            )
+                            :
+                            (
+                                <div className={styles.emptyList}>
+                                    <p>У вас нет добавленных товаров в избранное :(</p>
+                                    <Link href={"/"}>
+                                        <a className={styles.emptyListButton}>НА ГЛАВНУЮ</a>
+                                    </Link>
+                                </div>
+                            )
+                            }
+                    </div>
                 </div>
             </div>
         </div>

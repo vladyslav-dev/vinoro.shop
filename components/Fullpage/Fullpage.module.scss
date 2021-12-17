@@ -3,6 +3,8 @@
 .sectionContainer {
     .section {
         position: relative;
+        background-position: center center;
+
         &::after {
             content: "";
             position: fixed;
@@ -18,24 +20,22 @@
         &:nth-child(1) {
             background-image: url("https://res.cloudinary.com/vinoro-media-storage/image/upload/v1632513147/products/Slider/foodSlide_brvsxa.jpg");
             background-size: cover;
-            background-position: center;
         }
 
         &:nth-child(2) {
             background-image: url("https://res.cloudinary.com/vinoro-media-storage/image/upload/v1632513149/products/Slider/alcoholSlide_ibmhrp.jpg");
             background-size: cover;
-            background-position: center;
         }
 
         &:nth-child(3) {
             background-image: url("https://res.cloudinary.com/vinoro-media-storage/image/upload/v1632513147/products/Slider/chemicalSlide_nqvuwh.jpg");
             background-size: cover;
-            background-position: center;
         }
 
+        @include md {
+            background-position: center left;
+        }
     }
-
-    
 }
 
 .container-xl {
@@ -62,6 +62,10 @@
 
                 @include hoverEffect
             } 
+        }
+
+        @include md {
+            display: none;
         }
     }
 

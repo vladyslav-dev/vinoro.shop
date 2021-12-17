@@ -20,7 +20,7 @@
         background-color: $UI-color5;
         color: $UI-color1;
         font-family: "Montserrat";
-        font-size: 16px;
+        font-size: ptr(16);
         font-weight: bold;
         width: 232px;
         height: 48px;
@@ -28,5 +28,30 @@
         border-radius: 36px;
         margin-top: 46px;
         cursor: pointer;
+    }
+
+    @include lg {
+        .title {
+            font-size: ptr(50);
+        }
+
+        .button {
+            font-size: ptr(14);
+            width: 212px;
+            height: 44px;
+        }
+    }
+
+    @include md {
+        .title {
+            font-size: ptr(40);
+        }
+
+        .button {
+            margin-top: 34px;
+            font-size: ptr(14);
+            width: 182px;
+            height: 40px;
+        }
     }
 }

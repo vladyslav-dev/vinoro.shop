@@ -55,6 +55,7 @@ class SectionContainer extends Component<MyProps, MyState> {
 
     resetScrollTimer;
     childrenLength;
+    mediaQuery;
 
     componentWillUnmount() {
         this.clearResetScrollTimer();
@@ -65,6 +66,7 @@ class SectionContainer extends Component<MyProps, MyState> {
 
     componentDidMount() {
         window.scrollTo(0, 0);
+        this.mediaQuery = window.matchMedia('(max-width: 768px)');
         this.childrenLength = this.props.children.length;
 
         this.handleResize();
@@ -372,9 +374,8 @@ class SectionContainer extends Component<MyProps, MyState> {
 
         const anchors = this.props.anchors.map((link, index) => {
             const anchorStyle = {
-                display: 'block',
+                display: this.mediaQuery?.matches ? 'none' : 'block' ,
                 margin: '22px 0',
-                // padding: '6px',
                 borderRadius: '100%',
                 backgroundColor: this.state.activeSection === index ? '#fff' : 'rgba(255, 255, 255, 0.6)',
                 width: '12px',

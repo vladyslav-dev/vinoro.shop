@@ -33,29 +33,33 @@
             background-position: center;
         }
 
-        .container-xl {
+    }
 
-            .sectionContent {
-                height: 100%;
-                .socialMedia {
-                    border: 1px solid red;
-                    position: absolute;
-                    right: 0;
-                    top: 50%;
-                    transform: translateY(-50%);
-        
-                    & > div {
-                        flex-direction: column;
-        
-                        svg {
-                            fill: white;
-                        }
-                    }
+    
+}
+
+.container-xl {
+    z-index: 6;
+    position: fixed;
+    inset: 0;
+    
+    .socialMedia {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+
+        & > div {
+            flex-direction: column;
+    
+            a {
+                margin: 20px 0;
+    
+                svg {
+                    width: 32px;
+                    height: 32px;
                 }
-            }
+            } 
         }
-
-
-        
     }
 }

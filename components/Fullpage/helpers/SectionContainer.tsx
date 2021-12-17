@@ -365,7 +365,7 @@ class SectionContainer extends Component<MyProps, MyState> {
         const navigationStyle: React.CSSProperties = {
             position: 'fixed',
             zIndex: '5',
-            left: '60px',
+            left: '66px',
             top: '50%',
             transform: 'translate(-50%, -50%)'
         };
@@ -373,10 +373,12 @@ class SectionContainer extends Component<MyProps, MyState> {
         const anchors = this.props.anchors.map((link, index) => {
             const anchorStyle = {
                 display: 'block',
-                margin: '22px',
+                margin: '22px 0',
+                // padding: '6px',
                 borderRadius: '100%',
                 backgroundColor: this.state.activeSection === index ? '#fff' : 'rgba(255, 255, 255, 0.6)',
-                padding: '6px',
+                width: '12px',
+                height: '12px',
                 transition: 'all 0.2s',
                 transform: this.state.activeSection === index ? 'scale(1.3)' : 'none'
             };

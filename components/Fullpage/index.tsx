@@ -23,34 +23,24 @@ const Fullpage = () => {
     };
 
     return (
-        <SectionContainer className={styles.sectionContainer} {...options} activeSection={current}>
-            <Section className={styles.section}>
-                <div className={styles['container-xl']}>
-                    <div className={styles.sectionContent}>
-                        <HeaderTitle title="Продукти питиния" />
-                        <div className={styles.socialMedia}>
-                            <SocialMedia color="#fff" />
-                        </div>
-                    </div>
-                </div>
-            </Section>
-            <Section className={styles.section}>
-                <div className={styles['container-xl']}>
+        <>
+            <SectionContainer className={styles.sectionContainer} {...options} activeSection={current}>
+                <Section className={styles.section}>
                     <HeaderTitle title="Продукти питиния" />
-                    <div className={styles.socialMedia}>
-                        <SocialMedia color="#fff" />
-                    </div>
-                </div>
-            </Section>
-            <Section className={styles.section}>
-                <div className={styles['container-xl']}>
+                </Section>
+                <Section className={styles.section}>
                     <HeaderTitle title="Продукти питиния" />
-                    <div className={styles.socialMedia}>
-                        <SocialMedia color="#fff" />
-                    </div>
+                </Section>
+                <Section className={styles.section}>
+                    <HeaderTitle title="Продукти питиния" />
+                </Section>
+            </SectionContainer>
+            <div className={styles["container-xl"]}>
+                <div className={styles.socialMedia}>
+                    <SocialMedia color="#fff" />
                 </div>
-            </Section>
-        </SectionContainer>
+            </div>
+        </>
     )
 }
 

@@ -25,7 +25,7 @@ const Navbar = (props: NavbarProps) => {
     return (
         <>
             <div className={styles.navbarWrapper} style={{ backgroundColor: color || "#1A1A1A" }}>
-                <div className={styles.navBarContainer}>
+                <div className={styles["container-xl"]}>
                     <div className={styles.navbar}>
                         <BurgerMenu category={category} />
                         <div className={styles.navbarLogo}>

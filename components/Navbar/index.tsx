@@ -7,7 +7,6 @@ import { BagSvg } from '@/icons/Bag';
 import { WorldSvg } from '@/icons/World';
 
 import Logo from "@/components/Logo";
-import NavbarMenu from '@/components/NavbarMenu';
 import BurgerMenu from "@/components/BurgerMenu";
 import HeaderIcon from '@/components/HeaderIcon';
 import Basket from '@/components/Basket';
@@ -35,7 +34,6 @@ const Navbar = (props: NavbarProps) => {
                                 </a>
                             </Link>
                         </div>
-                        {/* <NavbarMenu category={category} /> */}
                         <div className={styles.navbarIconList}>
                             <div className={styles.navbarIcon}>
                                 <Link href="/favorite/">

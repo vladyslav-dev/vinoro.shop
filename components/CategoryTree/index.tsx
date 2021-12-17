@@ -50,7 +50,7 @@ const CategoryTree = (props: CategoryTreeProps) => {
                         return typeof item === "string" && (
                             <div key={key} className={styles.categoryList}>
                                 <a 
-                                    className={`${styles.categoryTitle} ${currentCatalog ? styles.categoryTitleActive : null}`}
+                                    className={`${styles.categoryTitle} ${currentCatalog === item ? styles.categoryTitleActive : null}`}
                                     onClick={() => {
                                         setCurrentCatalog((prevValue: CatalogState): CatalogState => {
                                             if (prevValue === item) {

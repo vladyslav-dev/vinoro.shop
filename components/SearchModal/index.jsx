@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import styles from './SearchModal.module.scss'
+import React, { useEffect } from 'react'
+import styles from './SearchModal.module.scss';
 
-import { ArrowModal } from '@/icons/Arrow'
-import { Loupe } from '@/icons/Loupe.tsx'
+import { ArrowModal } from '@/icons/Arrow';
+import { LoupeSvg } from '@/icons/Loupe';
 
 const SearchModal = ({ setVisible, searchQuery, setSearchQuery, handleSumbmit, children }) => {
 
@@ -29,7 +29,7 @@ const SearchModal = ({ setVisible, searchQuery, setSearchQuery, handleSumbmit, c
                             <div className={styles.inputWrapper}>
                                 <div className={styles.input}>
                                     <input type="text" placeholder="Поиск" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={(e) => searchQuery && onKeyDownHandler(e) } />
-                                    <Loupe />
+                                    <LoupeSvg />
                                 </div>
                             </div>  
                        </div>

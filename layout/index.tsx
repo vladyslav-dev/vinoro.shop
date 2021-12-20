@@ -70,50 +70,42 @@ const Layout: FC<LayoutProps> = ({ children, category, router }) => {
 
 
 
-    switch(router.pathname) {
-        case "/": return (
-            <>
-                <Navbar category={category} color="transparent" />
-                {children}
-            </>
-        );
-        default: return (
-            <>
-                {/* <Head>
-                    <title>Vinoro 2.0</title>
-                    <meta name="keywords" content="next,javascript,nextjs,react" />
-                    <meta name="description" content="this is youtube tutorial for next" />
-                    <meta charSet="utf-8" />
-                    <link rel="icon" href="/favicon.ico" />
-                </Head> */}
-               
-                <Navbar category={category} />
-                <AnimatePresence exitBeforeEnter>
-                    <motion.div
-                        key={router.route}
-                        initial="pageInitial"
-                        animate="pageAnimate"
-                        exit="pageExit"
-                        variants={{
-                            pageInitial: {
-                                opacity: 0,
-                            },
-                            pageAnimate: {
-                                opacity: 1,
-                            },
-                            pageExit: {
-                                backgroundColor: "white",
-                                // filter: `invert()`,
-                                opacity: 0,
-                            }
-                        }}>
-                        {children}
-                    </motion.div>
-                </AnimatePresence>
-                <Footer />
-            </>
-        );
-    }
+    return (
+        <>
+            {/* <Head>
+                <title>Vinoro 2.0</title>
+                <meta name="keywords" content="next,javascript,nextjs,react" />
+                <meta name="description" content="this is youtube tutorial for next" />
+                <meta charSet="utf-8" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head> */}
+           
+            <Navbar category={category} color={router.pathname === '/' ? 'transparent' : null} />
+            <AnimatePresence exitBeforeEnter>
+                <motion.div
+                    key={router.route}
+                    initial="pageInitial"
+                    animate="pageAnimate"
+                    exit="pageExit"
+                    variants={{
+                        pageInitial: {
+                            opacity: 0,
+                        },
+                        pageAnimate: {
+                            opacity: 1,
+                        },
+                        pageExit: {
+                            backgroundColor: "white",
+                            // filter: `invert()`,
+                            opacity: 0,
+                        }
+                    }}>
+                    {children}
+                </motion.div>
+            </AnimatePresence>
+            <Footer />
+        </>
+    );
 }
 
 export default Layout

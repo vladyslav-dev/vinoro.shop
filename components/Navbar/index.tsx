@@ -4,19 +4,21 @@ import Link from 'next/link'
 import axios from 'axios';
 import Router from 'next/router';
 
+import { ICategory } from '@/interfaces/ICategory';
+
 import { HeartSvg } from '@/icons/Heart';
 import { BagSvg } from '@/icons/Bag';
 import { WorldSvg } from '@/icons/World';
 import { LoupeSvg } from '@/icons/Loupe';
 
 import Logo from "@/components/Logo";
+import Basket from '@/components/Basket';
+import ToolBar from '@/components/ToolBar';
+import CardList from '@/components/CardList';
 import BurgerMenu from "@/components/BurgerMenu";
 import HeaderIcon from '@/components/HeaderIcon';
-import Basket from '@/components/Basket';
 import SearchModal from '@/components/SearchModal';
-import CardList from '@/components/CardList';
-import { ICategory } from '@/interfaces/ICategory';
-import ToolBar from '@/components/ToolBar';
+import AnimationWrapper from '@/components/AnimationWrapper';
 
 
 export interface NavbarProps {
@@ -35,6 +37,8 @@ const Navbar = (props: NavbarProps) => {
 
     Router.events.on('routeChangeComplete', () => setShowSearch(false))
 
+    console.log(Router)
+
     const getProductsByQuery = async () => { 
         const res = await axios({   
             method: 'POST',
@@ -51,10 +55,10 @@ const Navbar = (props: NavbarProps) => {
                 <div className={styles["container-xl"]}>
                     <div className={styles.navbar}>
                         <div className={styles.navbarIconList}>
-                            <div>
+                            <div className={styles.navbarBurger}>
                                 <BurgerMenu category={category} />
                             </div>
-                            <HeaderIcon label={"ЯЗЫК"} click={() =>  setShowSearch(true)}>
+                            <HeaderIcon label={"ПОИСК"} click={() => setShowSearch(true)}>
                                 <LoupeSvg color="#ffffff" />
                             </HeaderIcon>
                         </div>
@@ -92,34 +96,34 @@ const Navbar = (props: NavbarProps) => {
                     </div>
                 </div>
             </div>
-            { 
-                showSearch && (
-                <SearchModal 
-                    setVisible={setShowSearch}
-                    searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                    handleSumbmit={getProductsByQuery}
-                >
-                    
-                    { 
-                       (!products || products.length) ? (
-                           <>
-                                <ToolBar 
-                                    products={products}
-                                    updateProductList={setProducts}
-                                    setAnimate={setAnimate}
-                                />
-                                <CardList 
-                                    products={products}
-                                    animate={animate}
-                                    customStyles={{gridTemplateColumns: `repeat(${5}, 1fr)`}} 
-                                />
-                           </>
-                       ) : (
-                        <p>Товаров за запросом - {lastQuery} не найдено</p> 
-                       )
-                    }
-                </SearchModal>)
+            {showSearch && (
+                <AnimationWrapper router={Router.route}>
+                    <SearchModal 
+                        setVisible={setShowSearch}
+                        searchQuery={searchQuery}
+                        setSearchQuery={setSearchQuery}
+                        handleSumbmit={getProductsByQuery}
+                    >
+                        { 
+                        (!products || products.length) ? (
+                            <>
+                                    <ToolBar 
+                                        products={products}
+                                        updateProductList={setProducts}
+                                        setAnimate={setAnimate}
+                                    />
+                                    <CardList 
+                                        products={products}
+                                        animate={animate}
+                                        customStyles={{gridTemplateColumns: `repeat(${5}, 1fr)`}} 
+                                    />
+                            </>
+                        ) : (
+                            <p>Товаров за запросом - {lastQuery} не найдено</p> 
+                        )
+                        }
+                    </SearchModal>
+                </AnimationWrapper>)
             }
             <div className={styles.navbarSimulator} style={{
                 display: color === 'transparent' ? 'none' : 'block'

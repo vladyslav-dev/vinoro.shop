@@ -7,8 +7,13 @@ import { LoupeSvg } from '@/icons/Loupe';
 const SearchModal = ({ setVisible, searchQuery, setSearchQuery, handleSumbmit, children }) => {
 
     useEffect(() => {
-        document.body.style.overflow = 'hidden'
-        return () => document.body.style.overflow = null
+        document.body.style.overflowY = 'scroll'
+        document.body.style.position = 'fixed'
+        
+        return () => {
+            document.body.style.overflow = null
+            document.body.style.position = null
+        }
     }, [])
     
 

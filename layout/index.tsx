@@ -1,9 +1,9 @@
 import React, { FC, ReactNode, useEffect, useContext, useState } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import AnimationWrapper from '@/components/AnimationWrapper';
 import { ICategory } from '@/interfaces/ICategory';
 import { GlobalContext } from '@/store/index';
-import { motion, AnimatePresence } from 'framer-motion';
 
 
 export interface LayoutProps {
@@ -81,28 +81,7 @@ const Layout: FC<LayoutProps> = ({ children, category, router }) => {
             </Head> */}
            
             <Navbar category={category} color={router.pathname === '/' ? 'transparent' : null} />
-            <AnimatePresence exitBeforeEnter>
-                <motion.div
-                    key={router.route}
-                    initial="pageInitial"
-                    animate="pageAnimate"
-                    exit="pageExit"
-                    variants={{
-                        pageInitial: {
-                            opacity: 0,
-                        },
-                        pageAnimate: {
-                            opacity: 1,
-                        },
-                        pageExit: {
-                            backgroundColor: "white",
-                            // filter: `invert()`,
-                            opacity: 0,
-                        }
-                    }}>
-                    {children}
-                </motion.div>
-            </AnimatePresence>
+            <AnimationWrapper router={router.route}>{children}</AnimationWrapper>
             <Footer />
         </>
     );

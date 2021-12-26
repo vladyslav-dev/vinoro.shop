@@ -1,13 +1,14 @@
 .burgerMenu {
     position: relative;
     z-index: 12;
+    display: flex;
 
     .burger {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        height: 21px;
+        height: 24px;
         width: 28px;
         background: transparent;
         border: none;
@@ -29,7 +30,7 @@
             border-radius: 1.5px;
             transition: all 0.3s linear;
             position: relative;
-            transform-origin: 1.2px;
+            transform-origin: -0.79px;
         
             &:nth-child(1) {
                 transform: rotate(0);

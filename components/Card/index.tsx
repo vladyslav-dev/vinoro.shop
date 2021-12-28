@@ -9,8 +9,6 @@ import { IProductCard } from '@/interfaces/IFavorite'
 import { GlobalContext } from '@/store/index';
 import { motion } from "framer-motion"
 
-
-
 interface CardProps {
     product: IProductCard;
     animate: boolean;
@@ -19,12 +17,12 @@ interface CardProps {
 
 const CardComponent = ({ product, removeButton }: CardProps) => {
 
-    const { FAVORITES } = useContext(GlobalContext)
+    // const { FAVORITES } = useContext(GlobalContext)
 
-    const removeFromFavotite = (e) => {
-        e.stopPropagation()
-        FAVORITES.handlers.removeProduct(product._id)
-    }
+    // const removeFromFavotite = (e) => {
+    //     e.stopPropagation()
+    //     FAVORITES.handlers.removeProduct(product._id)
+    // }
 
     return (
         <motion.div
@@ -40,7 +38,7 @@ const CardComponent = ({ product, removeButton }: CardProps) => {
                     scale: 1,
                     opacity: 1,
                     transition: {
-                        delay: 9000
+                        delay: 1000
                     }
                 }
             }}

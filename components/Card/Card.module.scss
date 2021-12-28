@@ -38,6 +38,7 @@
     .cardImage {
         width: 100%;
         overflow: hidden;
+        position: relative;
         transition: .4s ease-in;
 
         & > div {

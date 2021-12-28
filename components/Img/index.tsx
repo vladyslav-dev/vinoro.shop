@@ -19,23 +19,17 @@ const Img: React.FC<ImgProps> = (
 
     const [isImageReady, setIsImageReady] = React.useState(false);
 
-    const onLoadCallBack = (e) => {
-        setIsImageReady(true)
-    }
-
     return (
         <div className={styles.imageContainer}>
-            <div className={isImageReady ? styles.imageSkeletonHide : styles.imageSkeleton}></div>
-            <div className={`${styles.imageWrapper} ${isImageReady ? styles.imageShow : styles.imageHide}`}>
-
+            <div className={isImageReady ? styles.imageSkeletonHide : styles.imageSkeleton} />
+            <div className={`${styles.imageWrapper}`}>
                 <Image
-                    onLoadingComplete={onLoadCallBack}
+                    onLoadingComplete={() => setIsImageReady(true)}
                     src={src}
                     layout="fill"
                     className={styles.image}
                     quality={quality}
                     alt={alt}
-                    priority
                 />
             </div>
 

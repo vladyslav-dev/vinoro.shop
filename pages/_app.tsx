@@ -42,9 +42,14 @@ Router.events.on('routeChangeError', () => NProgress.done());
 function MyApp(props: MyAppProps) {
   const { Component, pageProps, data, router } = props
 
-  console.log("Rerender _App")
-
   const [category, setCategory] = useState(data)
+
+  React.useEffect(() => { 
+    console.log("Rerender _App")
+    
+  }, [])
+
+
 
   return (
     <>

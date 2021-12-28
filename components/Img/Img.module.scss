@@ -13,7 +13,7 @@ $avatar-offset: 52 + 16;
     width: 100%;
     position: relative;
 
-    > div {
+    & > div {
       position: unset !important;
     }
 
@@ -23,14 +23,6 @@ $avatar-offset: 52 + 16;
       position: relative !important;
       height: unset !important;
     }
-  }
-
-  .imageShow {
-    display: block;
-  }
-
-  .imageHide {
-      display: none;
   }
 
   .imageSkeleton {

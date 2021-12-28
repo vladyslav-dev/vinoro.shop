@@ -21,7 +21,7 @@ const CategoryTree = (props: CategoryTreeProps) => {
     const { category } = props;
 
     const router = useRouter();
-
+   
     const [currentCatalog, setCurrentCatalog] = useState<CatalogState>((): any => {
         const categor = category && category?.find(categor => categor?._id === router.query.id);
         return categor ? CatalogEnum[categor.catalog] : null;

@@ -20,7 +20,12 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
     const { isActive, category } = props;
 
     const router = useRouter()
-    const [isCatalogOpen, setIsCatalogOpen] = useState<boolean>(() => router.pathname.includes("/category"));
+
+    const isShowCatalog = () => {
+        return router.pathname.includes("/category") || router.pathname.includes("/product") 
+    }
+
+    const [isCatalogOpen, setIsCatalogOpen] = useState<boolean>(() => isShowCatalog());
 
     return (
         <div className={`${styles.menu} ${isActive ? styles.menuActive : null}`}>

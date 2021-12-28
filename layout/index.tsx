@@ -82,7 +82,7 @@ const Layout: FC<LayoutProps> = ({ children, category, router }) => {
            
             <Navbar category={category} color={router.pathname === '/' ? 'transparent' : null} />
             <AnimationWrapper router={router.route}>{children}</AnimationWrapper>
-            {router.pathname !== '/' && <Footer category={category} /> }
+            {router.pathname !== '/' && <Footer /> }
         </>
     );
 }

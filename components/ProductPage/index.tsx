@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import Img from '@/components/Img';
 import styles from './ProductPage.module.scss'
 import Button from '../Button'
@@ -15,10 +15,9 @@ interface ProductPageProps {
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
 
     const { BASKET, FAVORITES } = useContext(GlobalContext)
+    //console.log(product)
 
     const [isShowModal, setIsShowModal] = useState<boolean>(false);
-
-    const hiddenTextarea = useRef<HTMLTextAreaElement | null>(null)
 
     const isProductInBasket = BASKET.state.products.some(item => item._id === product._id)
 

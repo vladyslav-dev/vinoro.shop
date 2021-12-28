@@ -20,7 +20,6 @@ import HeaderIcon from '@/components/HeaderIcon';
 import SearchModal from '@/components/SearchModal';
 import AnimationWrapper from '@/components/AnimationWrapper';
 
-
 export interface NavbarProps {
     category?: Array<ICategory>;
     color?: string;
@@ -36,8 +35,6 @@ const Navbar = (props: NavbarProps) => {
     const [lastQuery, setLastQuery] = useState('')
 
     Router.events.on('routeChangeComplete', () => setShowSearch(false))
-
-    console.log(Router)
 
     const getProductsByQuery = async () => { 
         const res = await axios({   

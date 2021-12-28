@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import App, { AppProps, AppContext } from 'next/app';
 import axios from 'axios';
 import Router from 'next/router';
@@ -31,7 +31,7 @@ import { GlobalContextProvider } from '@/store/index';
 
 
 interface MyAppProps extends AppProps {
-  category: Array<ICategory>;
+  data: Array<ICategory>;
 }
 
 NProgress.configure({ showSpinner: false });
@@ -40,7 +40,12 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp(props: MyAppProps) {
-  const { Component, pageProps, category, router } = props
+  const { Component, pageProps, data, router } = props
+
+  console.log("Rerender _App")
+
+  const [category, setCategory] = useState(data)
+
   return (
     <>
       <div className="global-wrapper">
@@ -53,14 +58,27 @@ function MyApp(props: MyAppProps) {
     </>
   )
 }
-
+let index = 0;
 MyApp.getInitialProps = async (context: AppContext) => {
-  const defaultAppProps = await App.getInitialProps(context);
+  console.log(" ! ================== typeof window: ", typeof window)
+  console.log("index App: ", index++)
+  if (typeof window !== 'undefined') {
+    
+    console.log("browser side")
+    // browser-side, fetch data directly in component
+    return { }
+  } else {
+    console.log("server side")
+
+    const defaultAppProps = await App.getInitialProps(context);
   const { data } = await axios.get(`${process.env.DOMAIN}api`);
   return {
     ...defaultAppProps,
-    category: data.category,
+    data: data.category,
   }
+  }
+
+  
 }
 
 

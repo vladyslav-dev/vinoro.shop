@@ -4,8 +4,9 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-top: 46px;
-    margin-bottom: 50px;
+    background-color: $UI-color5;
+    color: $UI-color1;
+    padding: 50px 0;
 
     .leftPart {
         flex: 1 1;
@@ -20,7 +21,7 @@
         .productNamePrice > p {
             font-size: ptr(20);
             line-height: ptr(26);
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
 
         .productNamePrice > p:last-child {
@@ -50,20 +51,24 @@
         }
 
         .productLink {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            margin-bottom: 25px;
+            margin-top: 10px;
+            opacity: .5;
+            background: none;
+            border: none;
+            cursor: pointer;
 
             & > p {
-                color: $UI-color2;
-                font-size: ptr(14);
+                color: $UI-color1;
+                font-size: ptr(12);
                 font-weight: 500;
                 margin-right: 8px;
             }
             
             & > svg {
-                width: 18px;
-                height: 18px;
+                width: 12px;
+                height: 12px;
             }
         }
 
@@ -71,6 +76,24 @@
             font-size: ptr(16);
             line-height: ptr(28);
         }
+    }
+
+    .productModalWarning {
+        position: fixed;
+        bottom: 60px;
+        right: -200px;
+        background-color: $UI-color1;
+        color: $UI-color5;
+        padding: 16px 24px;
+        border-radius: 4px;
+        font-size: ptr(11);
+        font-weight: 600;
+        box-shadow: 3px 4px 9px 1px rgba(82, 82, 82, 0.44);
+        transition: all 0.4s ease-in-out;
+    }
+
+    .productModalWarningShow {
+        right: 20px;
     }
 
     @include md {

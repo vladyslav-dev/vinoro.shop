@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import "./product.module.scss";
 import Router from 'next/router';
 import styles from './product.module.scss'
 import axios from 'axios';
@@ -11,11 +12,11 @@ const Product = ({ product }) => {
     }, [])
 
     return (
-        <>
+        <div className={styles.product}>
             <div className={styles.container}>
                 {product ? <ProductPage product={product} /> : null}
             </div>
-        </>
+        </div>
     )
 }
 

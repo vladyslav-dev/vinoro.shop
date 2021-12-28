@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from "./BurgerMenuTree.module.scss";
 import Link from 'next/link'
+import { useRouter } from 'next/router';
 
 import { HomeSvg } from '@/icons/Home';
 import { CatalogSvg } from '@/icons/Catalog';
@@ -10,30 +11,6 @@ import { SortArrorSvg } from '@/icons/Arrow';
 
 import CategoryTree from '@/components/CategoryTree';
 import { ICategory } from '@/interfaces/ICategory';
-
-const menuData = [
-    {
-        label: "ГЛАВНАЯ",
-        icon: <HomeSvg />,
-        route: "/",
-    },
-    {
-        label: "КАТАЛОГ",
-        icon: <CatalogSvg />,
-        route: null,
-    },
-    {
-        label: "КОНТАКТЫ",
-        icon: <ContactsSvg />,
-        route: "/",
-    },
-    {
-        label: "ПОМОЩЬ",
-        icon: <HelpSvg />,
-        route: "/",
-    },
-]
-
 interface BurgerMenuTreeProps { 
     isActive?: boolean;
     category?: Array<ICategory>;
@@ -42,9 +19,9 @@ interface BurgerMenuTreeProps {
 const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
     const { isActive, category } = props;
 
-    const [isCatalogOpen, setIsCatalogOpen] = useState(false);
+    const router = useRouter()
+    const [isCatalogOpen, setIsCatalogOpen] = useState<boolean>(() => router.pathname.includes("/category"));
 
- 
     return (
         <div className={`${styles.menu} ${isActive ? styles.menuActive : null}`}>
             <ul className={`${styles.menuList} ${isCatalogOpen ? styles.menuListHide : null}`}>

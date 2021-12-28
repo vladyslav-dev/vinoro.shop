@@ -8,9 +8,9 @@ import { Catalog as CatalogEnum } from '@/enums/Catalog';
 
 interface CategoryTreeProps {
     category?: Array<ICategory>;
-    treeHandler?: () => void;
-    currentCategoryId?: string;
-    isTreeOpen?: boolean;
+    // treeHandler?: () => void;
+    // currentCategoryId?: string;
+    // isTreeOpen?: boolean;
 }
 
 type CatalogName = "Продукты питания" | "Алкогольные напитки" | "Бытовая химия"
@@ -21,9 +21,11 @@ const CategoryTree = (props: CategoryTreeProps) => {
     const { category } = props;
 
     const router = useRouter();
-  
 
-    const [currentCatalog, setCurrentCatalog] = useState<CatalogState>(null)
+    const [currentCatalog, setCurrentCatalog] = useState<CatalogState>((): any => {
+        const categor = category && category?.find(categor => categor?._id === router.query.id);
+        return categor ? CatalogEnum[categor.catalog] : null;
+    })
 
     const getCatalog = (key: string) => {
         return category.map(item => {

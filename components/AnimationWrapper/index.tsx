@@ -16,8 +16,8 @@ const AnimationWrapper = ({ router, children }: any) => (
                     opacity: 1,
                 },
                 pageExit: {
-                    backgroundColor: "white",
-                    filter: `invert()`,
+                    backgroundColor: "black",
+                    // filter: `invert()`,
                     opacity: 0,
                 }
             }}>

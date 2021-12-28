@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import Img from '@/components/Img';
 import styles from './ProductPage.module.scss'
 import Button from '../Button'
@@ -6,6 +6,7 @@ import { IProduct } from '@/interfaces/IProduct';
 import { IBasketProduct } from '@/interfaces/IBasket';
 import { IProductCard } from '@/interfaces/IFavorite'
 import { GlobalContext } from '@/store/index';
+import { LinkSvg } from '@/icons/Link';
 
 interface ProductPageProps {
     product: IProduct
@@ -14,6 +15,10 @@ interface ProductPageProps {
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
 
     const { BASKET, FAVORITES } = useContext(GlobalContext)
+
+    const [isShowModal, setIsShowModal] = useState<boolean>(false);
+
+    const hiddenTextarea = useRef<HTMLTextAreaElement | null>(null)
 
     const isProductInBasket = BASKET.state.products.some(item => item._id === product._id)
 
@@ -34,6 +39,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
         availability: product.availability
     } as IProductCard)
 
+    const copyLink = () => {
+        navigator.clipboard.writeText(window.location.href)
+        setIsShowModal(true)
+        setTimeout(() => setIsShowModal(false), 2280)
+    }
+
     return (
         <div className={styles.content}>
             <div className={styles.leftPart}>
@@ -47,6 +58,10 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
                 <div className={styles.productAvailability}>
                     {product.availability ? <p className={styles.cardAvailabilityGreen}>Есть в наличии &#10004;</p> : <p className={styles.cardAvailabilityRed}>Нет в наличии &#10008;</p>}
                 </div>
+                <button className={styles.productLink} onClick={copyLink}>
+                    <p>Копировать ссылку на продукт</p>
+                    <LinkSvg />
+                </button>
                 <div className={styles.addButtons}>
                     <Button
                         label={isProductInBasket ? "УЖЕ В КОРЗИНЕ" : "ДОБАВИТЬ В КОРЗИНУ"}
@@ -64,6 +79,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
                     <p>{product.description}</p>
                 </div>
             </div>
+            <div className={`${styles.productModalWarning} ${isShowModal ? styles.productModalWarningShow : null}`}>Ссылка скопирована</div>
         </div>
     )
 }

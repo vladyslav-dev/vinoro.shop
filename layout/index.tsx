@@ -1,13 +1,13 @@
 import React, { FC, ReactNode, useEffect, useContext, useState } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import AnimationWrapper from '@/components/AnimationWrapper';
 import { GlobalContext } from '@/store/index';
+import { NextRouter } from 'next/router';
 
 
 export interface LayoutProps {
     children?: ReactNode;
-    router?: any;
+    router?: NextRouter;
 }
 
 const Layout: FC<LayoutProps> = ({ children, router }) => {
@@ -66,7 +66,7 @@ const Layout: FC<LayoutProps> = ({ children, router }) => {
         }
     }, [state.FAVORITES])
 
-
+    //useEffect(() => console.log("router changed"), [router])
 
     return (
         <>
@@ -79,7 +79,7 @@ const Layout: FC<LayoutProps> = ({ children, router }) => {
             </Head> */}
            
             <Navbar color={router.pathname === '/' ? 'transparent' : null} />
-            <AnimationWrapper router={router.route}>{children}</AnimationWrapper>
+            {children}
             {router.pathname !== '/' && <Footer /> }
         </>
     );

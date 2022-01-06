@@ -49,6 +49,8 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
         }
     }
 
+    console.log(products)
+
     return (
         <div className={styles.myModal}>
             <div className={styles["container-xl"]}>
@@ -66,7 +68,7 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
                        </div>
                     <div className={styles.categoryList}>
                     { 
-                        (!products || products.length) ? (
+                        (products?.length) ? (
                             <>
                                     <ToolBar 
                                         products={products}
@@ -79,9 +81,7 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
                                         customStyles={{gridTemplateColumns: `repeat(${5}, 1fr)`}} 
                                     />
                             </>
-                        ) : (
-                            <p>Товаров за запросом - {lastQuery} не найдено</p> 
-                        )
+                        ) : (!products) ? null : <p>Товаров за запросом - {lastQuery} не найдено</p> 
                         }
                     </div>
                 </div>

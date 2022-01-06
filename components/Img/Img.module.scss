@@ -5,13 +5,14 @@ $shine-color: #e8e8e8;
 $animation-duration: 1.6s;
 $avatar-offset: 52 + 16;
 
-
-
 .imageContainer {
     
   .imageWrapper {
     width: 100%;
     position: relative;
+    transform: scale(1);
+    opacity: .4;
+    transition: all .1s ease-in-out;
 
     & > div {
       position: unset !important;
@@ -41,8 +42,11 @@ $avatar-offset: 52 + 16;
   .imageSkeletonHide {
     display: none !important;
   }
-  
 
+  .imageSkeletonHide + .imageWrapper {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes shines {

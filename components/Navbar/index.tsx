@@ -26,9 +26,21 @@ const Navbar = (props: NavbarProps) => {
     const { BASKET } = useContext(GlobalContext)
     const productsNumber = BASKET.state.products.length;
     const [showSearch, setShowSearch] = useState(false)
+    const [basketIsOpen, setBasketIsOpen] = useState(false);
 
-    const closeModalSearch = () => setShowSearch(false)
     const openModalSearch = () => setShowSearch(true)
+    const closeModalSearch = () => setShowSearch(false)
+
+    const showBasket = () => {
+       // document.body.style.overflowY = 'scroll'
+        // document.body.style.position = 'fixed'
+        setBasketIsOpen(true)
+    }
+    const hideBasket = () => {
+      //  document.body.style.overflow = null
+        //document.body.style.position = null
+        setBasketIsOpen(false)
+    }
 
     return (
         <>
@@ -63,13 +75,16 @@ const Navbar = (props: NavbarProps) => {
                                 </Link>
                             </div>
                             <div className={styles.navbarIcon}>
-                                <HeaderIcon label={"КОРЗИНА"} className={styles.basketIcon}>
-                                    <BagSvg />
-                                    <div className={styles.basket}>
-                                        <Basket />
-                                    </div>
-                                    <div className={styles.basketCount}>{productsNumber}</div>
-                                </HeaderIcon>
+                                <div onMouseEnter={showBasket} onMouseLeave={hideBasket}>
+                                    <HeaderIcon label={"КОРЗИНА"} className={styles.basketIcon}>
+                                        <BagSvg />
+                                        <div className={styles.basket} style={{right: basketIsOpen ? 0 : "-550px"}}>
+                                            <Basket />
+                                        </div>
+                                        <div className={styles.basketCount}>{productsNumber}</div>
+                                    </HeaderIcon>
+                                </div>
+                                
                             </div>
                             <div className={styles.navbarIcon}>
                                 <HeaderIcon label={"ЯЗЫК"}>

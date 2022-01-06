@@ -1,14 +1,23 @@
-import React, { useEffect } from 'react'
-import "./product.module.scss";
-import Router from 'next/router';
-import styles from './product.module.scss'
 import axios from 'axios';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import styles from './product.module.scss'
+import { IProduct } from '@/interfaces/IProduct';
 import ProductPage from '@/components/ProductPage';
+import useCurrentCategory from '@/hooks/useCurrentCategory';
 
-const Product = ({ product }) => {
+interface ProductProps {
+    product?: IProduct;
+}
+
+const Product: React.FC<ProductProps>= ({ product }) => {
+
+    const router = useRouter();
     
+    useCurrentCategory(product.category as string);
+                    
     useEffect(() => {
-        if (!product) Router.push("/")
+        if (!product) router.push("/");
     }, [])
 
     return (
@@ -18,15 +27,14 @@ const Product = ({ product }) => {
             </div>
         </div>
     )
-}
+};
 
 export const getServerSideProps = async ({ query }) => {
-
     const { data } = await axios.get(`${process.env.DOMAIN}api/product/${query.id}`);
-
+    
     return {
         props: {
-            product: data.product
+            product: data?.product,
         }
     }
 }

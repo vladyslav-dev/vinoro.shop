@@ -1,23 +1,26 @@
 import React, { useState } from 'react'
 import styles from "./BurgerMenuTree.module.scss";
-import Link from 'next/link'
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 
-import { HomeSvg } from '@/icons/Home';
-import { CatalogSvg } from '@/icons/Catalog';
-import { ContactsSvg } from '@/icons/Contacts';
-import { HelpSvg } from '@/icons/Help';
-import { SortArrorSvg } from '@/icons/Arrow';
-
+import HeaderIcon from '@/components/HeaderIcon';
 import CategoryTree from '@/components/CategoryTree';
-import { ICategory } from '@/interfaces/ICategory';
+
+import { ContactsSvg } from '@/icons/Contacts';
+import { CatalogSvg } from '@/icons/Catalog';
+import { SortArrorSvg } from '@/icons/Arrow';
+import { SearchSvg } from '@/icons/Search';
+import { HeartSvg } from '../Icons/Heart';
+import { HomeSvg } from '@/icons/Home';
+import { HelpSvg } from '@/icons/Help';
+
 interface BurgerMenuTreeProps { 
     isActive?: boolean;
-    category?: Array<ICategory>;
+    openSearchHandler: () => void;
 }
 
 const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
-    const { isActive, category } = props;
+    const { isActive, openSearchHandler } = props;
 
     const router = useRouter()
 
@@ -62,7 +65,7 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                 </li>
             </ul>
             <div className={`${styles.catalog} ${isCatalogOpen ? styles.catalogActive : null}`}>
-                <CategoryTree category={category}  />
+                <CategoryTree />
             </div>
             <button 
                 className={`${styles.catalogBack} ${isCatalogOpen ? styles.catalogBackActive : null}`}
@@ -71,6 +74,31 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                 <SortArrorSvg />
                 <span>КАТАЛОГ</span>
             </button>
+            <ul className={styles.bottomMenu}>
+                <li className={styles.bottomMenuItem} onClick={() => openSearchHandler()}>
+                    <HeaderIcon label="ПОИСК">
+                        <SearchSvg /> 
+                    </HeaderIcon>
+                </li>
+                <li className={styles.bottomMenuItem}>
+                    <Link href="/favorite">
+                        <a>
+                            <HeaderIcon label="ИЗБРАННОЕ">
+                                <HeartSvg /> 
+                            </HeaderIcon>
+                        </a>
+                    </Link>
+                </li>
+                <li className={styles.bottomMenuItem}>
+                    <Link href="/help">
+                        <a>
+                            <HeaderIcon label="ПОМОЩЬ">
+                                <HelpSvg /> 
+                            </HeaderIcon>
+                        </a>
+                    </Link>
+                </li>
+            </ul>
         </div>
     )
 }

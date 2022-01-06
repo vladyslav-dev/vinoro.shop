@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import App, { AppProps, AppContext } from 'next/app';
 import axios from 'axios';
 import Router from 'next/router';
@@ -28,10 +28,14 @@ import { GlobalContextProvider } from '@/store/index';
 // Router.events.on("routeChangeComplete", routeChange);
 // Router.events.on("routeChangeStart", routeChange);
 
-
-
-interface MyAppProps extends AppProps {
-  data: Array<ICategory>;
+MyApp.getInitialProps = async (context: AppContext) => {
+  const defaultAppProps = await App.getInitialProps(context);
+  const { data } = await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}api`)
+  
+  return {
+    ...defaultAppProps,
+    category: data.category,
+  }
 }
 
 NProgress.configure({ showSpinner: false });
@@ -39,52 +43,19 @@ Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-function MyApp(props: MyAppProps) {
-  const { Component, pageProps, data, router } = props
+interface MyAppProps extends AppProps {
+  category: Array<ICategory>;
+}
 
-  const [category, setCategory] = useState(data)
-
-  React.useEffect(() => { 
-    console.log("Rerender _App")
-    
-  }, [])
-
-
-
+function MyApp({ Component, pageProps, category, router } : MyAppProps) { 
   return (
-    <>
-      <div className="global-wrapper">
-        <GlobalContextProvider>
-          <Layout category={category} router={router}>
-            <Component {...pageProps} />
-          </Layout>
-        </GlobalContextProvider>
-      </div>
-    </>
-  )
-}
-let index = 0;
-MyApp.getInitialProps = async (context: AppContext) => {
-  console.log(" ! ================== typeof window: ", typeof window)
-  console.log("index App: ", index++)
-  if (typeof window !== 'undefined') {
-    
-    console.log("browser side")
-    // browser-side, fetch data directly in component
-    return { }
-  } else {
-    console.log("server side")
-
-    const defaultAppProps = await App.getInitialProps(context);
-  const { data } = await axios.get(`${process.env.DOMAIN}api`);
-  return {
-    ...defaultAppProps,
-    data: data.category,
-  }
-  }
-
-  
-}
-
+    <div className="global-wrapper">
+      <GlobalContextProvider categoryData={category}>
+        <Layout router={router}>
+          <Component {...pageProps} />
+        </Layout>
+      </GlobalContextProvider>
+    </div>
+)}
 
 export default MyApp

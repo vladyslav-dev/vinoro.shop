@@ -4,21 +4,11 @@ import styles from "./BurgerMenu.module.scss";
 import HeaderIcon from "@/components/HeaderIcon";
 import BurgerMenuTree from "@/components/BurgerMenuTree";
 
-import { ICategory } from '@/interfaces/ICategory';
-
-interface BurgerMenuProps {
-    category?: Array<ICategory>;
-}
-
-
-const BurgerMenu = (props: BurgerMenuProps) => {
-
-    const { category } = props;
+const BurgerMenu = ({ openSearchHandler }) => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     Router.events.on('routeChangeStart', () => setIsMenuOpen(false));
-
 
     return (
         <>
@@ -31,7 +21,7 @@ const BurgerMenu = (props: BurgerMenuProps) => {
                     </div>
                 </HeaderIcon>
             </div>
-            <BurgerMenuTree category={category} isActive={isMenuOpen} />
+            <BurgerMenuTree isActive={isMenuOpen} openSearchHandler={openSearchHandler} />
             <div 
                 className={`${styles.menuBackground} ${isMenuOpen ? styles.menuBackgroundActive : null}`}
                 onClick={() => setIsMenuOpen(false)}

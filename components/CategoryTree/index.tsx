@@ -1,31 +1,30 @@
-import React, { useState } from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router';
-import styles from './CategoryTree.module.scss'
-import { ICategory } from '@/interfaces/ICategory'
+import React, { useState, useEffect, useContext } from 'react';
+import Link from 'next/link';
+import styles from './CategoryTree.module.scss';
+import { GlobalContext } from '../../store';
 import { SortArrorSvg } from '@/icons/Arrow';
 import { Catalog as CatalogEnum } from '@/enums/Catalog';
-
-interface CategoryTreeProps {
-    category?: Array<ICategory>;
-    // treeHandler?: () => void;
-    // currentCategoryId?: string;
-    // isTreeOpen?: boolean;
-}
 
 type CatalogName = "Продукты питания" | "Алкогольные напитки" | "Бытовая химия"
 
 type CatalogState = CatalogName | null;
 
-const CategoryTree = (props: CategoryTreeProps) => {
-    const { category } = props;
+const CategoryTree = () => {
 
-    const router = useRouter();
-   
-    const [currentCatalog, setCurrentCatalog] = useState<CatalogState>((): any => {
-        const categor = category && category?.find(categor => categor?._id === router.query.id);
-        return categor ? CatalogEnum[categor.catalog] : null;
-    })
+    const { CATEGORY } = useContext(GlobalContext)
+    const { category, currentCategory, isLoaded } = CATEGORY.state
+    const [currentCatalog, setCurrentCatalog] = useState<CatalogState>(null)
+
+    useEffect(() => {
+        if (isLoaded) {
+            setCurrentCatalog((): any => {
+                const categor = category?.find(categor => categor?._id === currentCategory);
+                return categor ? CatalogEnum[categor.catalog] : null;
+            })
+        }
+    }, [currentCategory])
+
+    if (!category.length) return null
 
     const getCatalog = (key: string) => {
         return category.map(item => {
@@ -33,7 +32,7 @@ const CategoryTree = (props: CategoryTreeProps) => {
                 return (
                     <li 
                         key={item._id} 
-                        className={`${styles.subCategotyItem} ${item._id === router.query.id ? styles.subCategoryItemActive : null}`}
+                        className={`${styles.subCategotyItem} ${item._id === currentCategory ? styles.subCategoryItemActive : null}`}
                     >
                         <Link href={`/category/[id]`} as={`/category/${item._id}`} >
                             <a>{item.category_name}</a>

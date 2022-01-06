@@ -21,7 +21,7 @@
         
         & > span {
             font-weight: 500;
-            font-size: ptr(16);
+            font-size: ptr(13);
             line-height: ptr(20);
             display: inherit;
             align-items: inherit;
@@ -33,16 +33,15 @@
     }
 
     .selectList, .selectListActive {
-        background: #FFFFFF;
-        color: $UI-color1;
+        @include glassBackground;
+        color: $UI-color5;
         box-sizing: border-box;
-        box-shadow: 0 3px 21px -3px #9797977d;
         position: absolute;
         top: 34px;
         width: 225px;
         max-height: 0;
         z-index: 5;
-        border: 1px solid $UI-color4;
+        border: 1px solid $UI-color2;
         overflow: hidden;
         border-radius: 8px;
      
@@ -67,12 +66,13 @@
             }
 
             &:hover {
-                border-left: 2px solid #232021;
+                border-left: 2px solid $UI-color5;
             }
         }
 
         .selectListItemActive {
-            background-color: $UI-color4;
+            @include glassHoverBackground;
+            border-left: 2px solid rgba(233, 233, 233, 0.26);
         }
     }
 

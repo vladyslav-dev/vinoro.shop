@@ -8,4 +8,9 @@
     font-size: ptr(32);
     width: 160px;
     text-align: center;
+
+    @include sm {
+        font-size: ptr(26);
+        width: 128px;
+    }
 }

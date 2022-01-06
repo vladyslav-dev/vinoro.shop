@@ -14,7 +14,11 @@
             font-size: ptr(14);
             font-weight: 700;
             
-            @include hoverEffect
+            @include hoverEffect;
+
+            @include sm {
+                font-size: ptr(12);
+            }
         }
     }
 }

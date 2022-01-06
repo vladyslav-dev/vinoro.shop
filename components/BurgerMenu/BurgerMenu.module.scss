@@ -1,3 +1,5 @@
+@import '../../styles/index.scss';
+
 .burgerMenu {
     position: relative;
     z-index: 12;
@@ -20,6 +22,13 @@
         &:focus {
           outline: none;
         }
+
+        @include sm {
+            height: 18px;
+            width: 22px;
+            margin-bottom: 4px;
+            margin-top: 2px;
+        }
       
         div {
             display: flex;
@@ -31,6 +40,10 @@
             transition: all 0.3s linear;
             position: relative;
             transform-origin: -0.79px;
+
+            @include sm {
+                transform-origin: 0.25px;
+            }
         
             &:nth-child(1) {
                 transform: rotate(0);
@@ -68,6 +81,12 @@
             }
         }
     }
+
+    @include sm {
+        span {
+            font-size: ptr(7) !important;
+        }
+    }
 }
 
 .hideLabel {
@@ -86,7 +105,7 @@
     visibility: hidden;
     opacity: 0;
     background: rgba(31, 31, 31, 0.37);
-    backdrop-filter: blur(4px);
+   // backdrop-filter: blur(4px);
     transition: all .4s linear;
     z-index: 5;
 }

@@ -7,10 +7,21 @@
     width: 420px;
     position: fixed;
     top: 0;
+    bottom: 0;
     left: -420px;
     box-sizing: border-box;
     transition: all 0.4s linear;
     z-index: 10;
+
+    @include glassBackground;
+
+    @include md {
+        width: 360px;
+    }
+
+    @media (max-width: 360px) {
+        width: 100%;
+    }
 
     .menuList {
         width: 100%;
@@ -57,21 +68,21 @@
                 }
 
                 &:hover {
-                    background: $UI-color5;
-                    & svg, & path {
-                        fill: $UI-color1;
-                    }
+                    @include glassHoverBackground;
+                    // & svg, & path {
+                    //     fill: $UI-color1;
+                    // }
     
-                    & span {
-                        color: $UI-color1;
-                    }
+                    // & span {
+                    //     color: $UI-color1;
+                    // }
                 }
             }
         }
     }
 
     .menuListHide {
-        left: -380px;
+        left: -440px;
         opacity: 0;
     }
 
@@ -79,29 +90,61 @@
         opacity: 0;
         position: absolute;
         top: 100px;
-        left: -380px;
+        left: -440px;
         transition: all .3s linear;
     }
 
     .catalogActive {
         opacity: 1;
         left: 60px;
+        width: calc(100% - 120px);
 
         @include xl {
             left: 40px;
+            width: calc(100% - 80px);
         }
         
         @include md {
             left: 20px;
+            width: calc(100% - 40px);
         }
     
         @include sm {
             left: 15px;
+            width: calc(100% - 30px);
         }
     }
 
     @media screen and (max-width: 380px) {
         width: 100%;
+    }
+}
+
+.bottomMenu {
+    position: absolute;
+    bottom: 0;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px 45px 60px;
+    box-sizing: border-box;
+
+    @include xl {
+        padding: 0 40px 45px 40px;
+    }
+
+    .bottomMenuItem {
+
+        a {
+            text-decoration: none;
+            color: $UI-color5;
+        }
+
+        svg {
+            width: 30px;
+        }
     }
 }
 
@@ -119,11 +162,23 @@
     border: none;
     position: absolute;
     top: 24px;
-    left: 262px;
+    right: 60px;
     opacity: 0;
     visibility: hidden;
     transform: translate(-50px, 0);
     transition: all .3s linear;
+
+    @include xl {
+        right: 40px;
+    }
+    
+    @include md {
+        right: 20px;
+    }
+
+    @include sm {
+        right: 15px;
+    }
 
     & svg {
         width: 14px;

@@ -7,9 +7,9 @@ dbConnect();
 const api = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         const product = await ProductModel.findById(req.query.id)
-        return res.status(200).json({ success: true, product })
+        return res.status(200).json({ product })
     } catch (err) {
-        console.error(err)
+        throw new Error(err)
     }
 }
 

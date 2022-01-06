@@ -8,7 +8,7 @@ interface TotalItemCountProps {
 
 const TotalItemCount = ( {products}: TotalItemCountProps) => (
     <div className={styles.content}>
-        <p style={{color: "#1A1A1A"}}>Всего товаров: {products?.length}</p>
+        <p>Всего товаров: {products?.length}</p>
     </div>
 )
 

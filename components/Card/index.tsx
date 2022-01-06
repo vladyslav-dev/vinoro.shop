@@ -17,12 +17,12 @@ interface CardProps {
 
 const CardComponent = ({ product, removeButton }: CardProps) => {
 
-    // const { FAVORITES } = useContext(GlobalContext)
+    const { FAVORITES } = useContext(GlobalContext)
 
-    // const removeFromFavotite = (e) => {
-    //     e.stopPropagation()
-    //     FAVORITES.handlers.removeProduct(product._id)
-    // }
+    const removeFromFavotite = (e) => {
+        e.stopPropagation()
+        FAVORITES.handlers.removeProduct(product._id)
+    }
 
     return (
         <motion.div
@@ -50,7 +50,7 @@ const CardComponent = ({ product, removeButton }: CardProps) => {
                     </div>
                     <div className={styles.cardInfo}>
                         <div className={styles.cardAvailability}>
-                            {product.availability ? <p className={styles.cardAvailabilityGreen}>Есть в наличии &#10004;</p> : <p className={styles.cardAvailabilityRed}>Нет в наличии &#10008;</p>}
+                            {product.availability ? <p className={styles.cardAvailabilityGreen}>Есть в наличии	&nbsp;&#10004;</p> : <p className={styles.cardAvailabilityRed}>Нет в наличии &#10008;</p>}
                         </div>
                         <div className={styles.cardName}>
                             <span>{product.name}</span>
@@ -60,7 +60,7 @@ const CardComponent = ({ product, removeButton }: CardProps) => {
                         </div>
                     </div>
                     {removeButton ?
-                        <div className={styles.imageButton}>
+                        <div className={styles.imageButton} onClick={(e) => removeFromFavotite(e)}>
                             <TrashSvg color="#FFFFFF" />
                         </div> : null
                     }

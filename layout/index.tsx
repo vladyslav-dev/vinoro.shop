@@ -2,17 +2,15 @@ import React, { FC, ReactNode, useEffect, useContext, useState } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import AnimationWrapper from '@/components/AnimationWrapper';
-import { ICategory } from '@/interfaces/ICategory';
 import { GlobalContext } from '@/store/index';
 
 
 export interface LayoutProps {
     children?: ReactNode;
-    category: Array<ICategory>;
     router?: any;
 }
 
-const Layout: FC<LayoutProps> = ({ children, category, router }) => {
+const Layout: FC<LayoutProps> = ({ children, router }) => {
 
     const state = useContext(GlobalContext)
 
@@ -80,7 +78,7 @@ const Layout: FC<LayoutProps> = ({ children, category, router }) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head> */}
            
-            <Navbar category={category} color={router.pathname === '/' ? 'transparent' : null} />
+            <Navbar color={router.pathname === '/' ? 'transparent' : null} />
             <AnimationWrapper router={router.route}>{children}</AnimationWrapper>
             {router.pathname !== '/' && <Footer /> }
         </>

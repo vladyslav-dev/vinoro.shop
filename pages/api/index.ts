@@ -14,7 +14,7 @@ const api = async (req: NextApiRequest, res: NextApiResponse) => {
 
     console.log("Calling get category data ", index)
     index += 1
-    return res.status(200).json({ success: true, category })
+    return res.status(200).json({ category })
 
 }
 

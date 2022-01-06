@@ -57,8 +57,8 @@
             border-bottom: 2px solid $UI-color4;
 
             p {
-                font-weight: 500;
-                font-size: ptr(15);
+                font-weight: 600;
+                font-size: ptr(12);
                 line-height: ptr(20);
                 margin: 14px 0 7px 0;
             }
@@ -73,10 +73,11 @@
         }
 
         .cardName  {
-            font-size: ptr(17);
+            font-size: ptr(14);
+            opacity: .8;
             color: $UI-color1;
             line-height: ptr(28);
-            font-weight: normal;
+            font-weight: 500;
             margin-top: 14px;
             word-wrap: break-word;
             overflow: hidden;
@@ -87,10 +88,10 @@
         }
 
         .cardCost {
-            font-size: ptr(20);
+            font-size: ptr(15);
             line-height: ptr(20);
             text-align: center;
-            font-weight: 400;
+            font-weight: 500;
             margin-top: 40px;
         }
     }

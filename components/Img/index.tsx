@@ -2,7 +2,6 @@ import Image from 'next/image'
 import React from 'react'
 import styles from './Img.module.scss'
 
-
 interface ImgProps {
     src: string;
     quality?: number;
@@ -27,6 +26,7 @@ const Img: React.FC<ImgProps> = (
                     onLoadingComplete={() => setIsImageReady(true)}
                     src={src}
                     layout="fill"
+                    lazyBoundary="500px"
                     className={styles.image}
                     quality={quality}
                     alt={alt}

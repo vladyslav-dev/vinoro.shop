@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './Navbar.module.scss';
 import Link from 'next/link'
-import axios from 'axios';
-import Router from 'next/router';
-
-import { ICategory } from '@/interfaces/ICategory';
+import { GlobalContext } from '@/store/index'
 
 import { HeartSvg } from '@/icons/Heart';
 import { BagSvg } from '@/icons/Bag';
@@ -13,38 +10,25 @@ import { LoupeSvg } from '@/icons/Loupe';
 
 import Logo from "@/components/Logo";
 import Basket from '@/components/Basket';
-import ToolBar from '@/components/ToolBar';
-import CardList from '@/components/CardList';
 import BurgerMenu from "@/components/BurgerMenu";
 import HeaderIcon from '@/components/HeaderIcon';
 import SearchModal from '@/components/SearchModal';
-import AnimationWrapper from '@/components/AnimationWrapper';
+
 
 export interface NavbarProps {
-    category?: Array<ICategory>;
     color?: string;
 };
 
 const Navbar = (props: NavbarProps) => {
     
-    const { category, color } = props
-    const [products, setProducts] = useState(null)
+    const { color } = props;
+
+    const { BASKET } = useContext(GlobalContext)
+    const productsNumber = BASKET.state.products.length;
     const [showSearch, setShowSearch] = useState(false)
-    const [animate, setAnimate] = useState(false)
-    const [searchQuery, setSearchQuery] = useState('')
-    const [lastQuery, setLastQuery] = useState('')
 
-    Router.events.on('routeChangeComplete', () => setShowSearch(false))
-
-    const getProductsByQuery = async () => { 
-        const res = await axios({   
-            method: 'POST',
-            url: process.env.NEXT_PUBLIC_DOMAIN + '/api/search',
-            data: { searchQuery } 
-        });
-        setProducts(res.data.products)
-        setLastQuery(searchQuery)
-    }
+    const closeModalSearch = () => setShowSearch(false)
+    const openModalSearch = () => setShowSearch(true)
 
     return (
         <>
@@ -53,11 +37,13 @@ const Navbar = (props: NavbarProps) => {
                     <div className={styles.navbar}>
                         <div className={styles.navbarIconList}>
                             <div className={styles.navbarBurger}>
-                                <BurgerMenu category={category} />
+                                <BurgerMenu openSearchHandler={openModalSearch} />
                             </div>
-                            <HeaderIcon label={"ПОИСК"} click={() => setShowSearch(true)}>
-                                <LoupeSvg color="#ffffff" />
-                            </HeaderIcon>
+                            <div className={styles.navbarIcon}>
+                                <HeaderIcon label={"ПОИСК"} click={() => openModalSearch()}>
+                                    <LoupeSvg color="#ffffff" />
+                                </HeaderIcon>
+                            </div>
                         </div>
                         <div className={styles.navbarLogo}>
                             <Link href="/">
@@ -67,7 +53,7 @@ const Navbar = (props: NavbarProps) => {
                             </Link>
                         </div>
                         <div className={styles.navbarIconList}>
-                            <div className={styles.navbarIcon}>
+                            <div className={`${styles.navbarIcon} ${styles.favoriteDesktop}`}>
                                 <Link href="/favorite/">
                                     <div className={styles.favoriteIcon}>
                                         <HeaderIcon label={"ИЗБРАННОЕ"}>
@@ -82,6 +68,7 @@ const Navbar = (props: NavbarProps) => {
                                     <div className={styles.basket}>
                                         <Basket />
                                     </div>
+                                    <div className={styles.basketCount}>{productsNumber}</div>
                                 </HeaderIcon>
                             </div>
                             <div className={styles.navbarIcon}>
@@ -93,35 +80,7 @@ const Navbar = (props: NavbarProps) => {
                     </div>
                 </div>
             </div>
-            {showSearch && (
-                <AnimationWrapper router={Router.route}>
-                    <SearchModal 
-                        setVisible={setShowSearch}
-                        searchQuery={searchQuery}
-                        setSearchQuery={setSearchQuery}
-                        handleSumbmit={getProductsByQuery}
-                    >
-                        { 
-                        (!products || products.length) ? (
-                            <>
-                                    <ToolBar 
-                                        products={products}
-                                        updateProductList={setProducts}
-                                        setAnimate={setAnimate}
-                                    />
-                                    <CardList 
-                                        products={products}
-                                        animate={animate}
-                                        customStyles={{gridTemplateColumns: `repeat(${5}, 1fr)`}} 
-                                    />
-                            </>
-                        ) : (
-                            <p>Товаров за запросом - {lastQuery} не найдено</p> 
-                        )
-                        }
-                    </SearchModal>
-                </AnimationWrapper>)
-            }
+            {showSearch && <SearchModal closeSearch={closeModalSearch} />}
             <div className={styles.navbarSimulator} style={{
                 display: color === 'transparent' ? 'none' : 'block'
             }} />

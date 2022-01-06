@@ -8,7 +8,7 @@
 
 // ------------ Variables ------------
 
-$UI-color1: #1A1A1A;
+$UI-color1: #1C1C1C;
 $UI-color2: #AAAAAA;
 $UI-color3: #BBBBBB;
 $UI-color4: #E8E8E8;
@@ -91,3 +91,16 @@ $green-color: #2EAE62;
     }
 }
 
+@mixin glassBackground {
+    box-shadow: 2px 2px 8px rgba(black, 0.15);
+    background-color: rgba(54, 54, 54, 0.7);
+    @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        background-color: rgba(54, 54, 54, 0.7);
+    }
+}
+
+@mixin glassHoverBackground {
+    background: linear-gradient(93.43deg, rgba(233, 233, 233, 0.26) 0%, rgba(242, 242, 242, 0.103) 100%);
+}

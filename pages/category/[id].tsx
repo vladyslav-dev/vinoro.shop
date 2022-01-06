@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import axios from 'axios';
+import ToolBar from '@/components/ToolBar'
 import styles from './category.module.scss';
 import CardList from '@/components/CardList';
-import ToolBar from '@/components/ToolBar'
-import { IProduct } from '@/interfaces/IProduct';
 import { getCurrentRange } from '@/utils/index';
+import { IProduct } from '@/interfaces/IProduct';
+import useCurrentCategory from '@/hooks/useCurrentCategory';
 
 interface CategoryProps {
     products?: Array<IProduct>;
@@ -15,6 +16,10 @@ type RangeType = "sm" | "md" | "lg"
 
 const Category = ({ products }: CategoryProps) => {
 
+    const router = useRouter()
+
+    const { setCurrentCategory } = useCurrentCategory(router.query.id as string)
+
     const [animate, setAnimate] = useState(false);
 
     const [productList, setProductList] = useState<Array<IProduct>>(products);
@@ -22,8 +27,10 @@ const Category = ({ products }: CategoryProps) => {
     const [range, setRange] = useState<RangeType>("md")
 
     useEffect(() => {
-        if (!products) Router.push("/")
+        if (!products) router.push("/")
     }, [])
+
+    useEffect(() => setCurrentCategory(router.query.id as string), [router])
 
     useEffect(() => setProductList(products), [products])
 

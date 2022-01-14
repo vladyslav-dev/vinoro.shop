@@ -1,0 +1,32 @@
+@import "../../styles/index.scss";
+
+.emptyList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .emptyListButton {
+        color: $UI-color5;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin-top: 34px;
+        border: none;
+        background-color: $UI-color1;
+        color: $UI-color5;
+        font-size: ptr(11);
+        font-weight: 500;
+        width: 190px;
+        height: 38px;
+        backdrop-filter: blur(15px);
+        border-radius: 100px;
+    }
+
+    & > p {
+        font-size: ptr(16);
+        text-align: center;
+    }
+}

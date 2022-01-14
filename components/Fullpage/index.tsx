@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from "./Fullpage.module.scss";
 
 import Section from "./helpers/Section";
@@ -7,10 +7,24 @@ import HeaderTitle from '@/components/HeaderTitle';
 import SocialMedia from '@/components/SocialMedia';
 import GoAhead from '@/components/GoAhead';
 import HeaderBottom from '@/components/HeaderBottom';
+import { GlobalContext } from '@/store/index';
+import { collectCategory } from '@/utils/index';
 
 const Fullpage = () => {
 
+    const { CATEGORY } = useContext(GlobalContext);
+    const { category } = CATEGORY.state;
+
     const [current, setCurrent] = useState(0);
+
+    const [isInterfaceShowing, setIsInterfaceShowing] = useState(true);
+
+    const interfaceHandlers = {
+        showInterface: () => setIsInterfaceShowing(true),
+        hideInterface: () => setIsInterfaceShowing(false),
+    }
+
+    if (!category?.length) return null
 
     const options = {
         sectionClassName: 'section',
@@ -25,29 +39,27 @@ const Fullpage = () => {
     };
 
     return (
-        <>
+        <>  
+            {isInterfaceShowing && (
+                <div className={styles["container-xl"]}>
+                    <div className={styles.socialMedia}>
+                        <SocialMedia color="#fff" />
+                    </div>
+                    <div className={styles.goAhead}>
+                        <GoAhead />
+                    </div>
+                    <div className={styles.headerBottom}>
+                        <HeaderBottom />
+                    </div>
+                </div>
+            )}
             <SectionContainer className={styles.sectionContainer} {...options} activeSection={current}>
-                <Section className={styles.section}>
-                    <HeaderTitle title="Продукти питиния" />
-                </Section>
-                <Section className={styles.section}>
-                    <HeaderTitle title="Продукти питиния" />
-                </Section>
-                <Section className={styles.section}>
-                    <HeaderTitle title="Продукти питиния" />
-                </Section>
+                {collectCategory(category).map((props, index) => (
+                    <Section className={styles.section} key={index}>
+                        <HeaderTitle interfaceHandlers={interfaceHandlers} {...props} />
+                    </Section>
+                ))}
             </SectionContainer>
-            <div className={styles["container-xl"]}>
-                <div className={styles.socialMedia}>
-                    <SocialMedia color="#fff" />
-                </div>
-                <div className={styles.goAhead}>
-                    <GoAhead />
-                </div>
-                <div className={styles.headerBottom}>
-                    <HeaderBottom />
-                </div>
-            </div>
         </>
     )
 }

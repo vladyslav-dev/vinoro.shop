@@ -414,7 +414,7 @@ class SectionContainer extends Component<MyProps, MyState> {
             transition: `all ${this.props.delay}ms ease`
         };
         return (
-            <div>
+            <>
                 <div className={this.props.className} style={containerStyle}>
                     {this.props.scrollBar
                         ? this.addChildrenWithAnchorId()
@@ -423,7 +423,7 @@ class SectionContainer extends Component<MyProps, MyState> {
                 {this.props.navigation && !this.props.scrollBar
                     ? this.renderNavigation()
                     : null}
-            </div>
+            </>
         );
     }
 }

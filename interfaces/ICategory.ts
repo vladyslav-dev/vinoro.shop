@@ -36,3 +36,8 @@ export interface CategoryHandlers {
 }
 
 export type CategoryHandler = (dispatch: React.Dispatch<CategoryAction>) => CategoryHandlers
+
+export interface CategoryCollection {
+    title: string;
+    data: ICategory[];
+}

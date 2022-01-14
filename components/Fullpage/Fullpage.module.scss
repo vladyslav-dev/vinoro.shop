@@ -1,6 +1,7 @@
 @import "../../styles/index.scss";
 
 .sectionContainer {
+    z-index: 4;
     .section {
         position: relative;
         background-position: center center;
@@ -39,12 +40,12 @@
 }
 
 .container-xl {
-    z-index: 6;
-    position: fixed;
     inset: 0;
+    position: absolute;
     
     .socialMedia {
         position: absolute;
+        z-index: 6;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
@@ -70,18 +71,19 @@
     }
 
     .goAhead {
-        z-index: 6;
         position: absolute;
+        user-select: none;
         bottom: 30px;
         left: 50%;
         transform: translateX(-50%);
+        z-index: 6;
     }
 
     .headerBottom {
-        z-index: 6;
         position: absolute;
         bottom: 46px;
         left: 0;
         right: 0;
+        z-index: 6;
     }   
 }

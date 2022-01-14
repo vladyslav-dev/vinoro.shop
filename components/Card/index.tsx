@@ -11,7 +11,6 @@ import { motion } from "framer-motion"
 
 interface CardProps {
     product: IProductCard;
-    animate: boolean;
     removeButton?: boolean;
 }
 
@@ -38,7 +37,7 @@ const CardComponent = ({ product, removeButton }: CardProps) => {
                     scale: 1,
                     opacity: 1,
                     transition: {
-                        delay: 1000
+                        // delay: .5
                     }
                 }
             }}

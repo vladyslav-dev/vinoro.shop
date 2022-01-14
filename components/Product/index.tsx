@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import Img from '@/components/Img';
-import styles from './ProductPage.module.scss'
+import styles from './Product.module.scss'
 import Button from '../Button'
 import { IProduct } from '@/interfaces/IProduct';
 import { IBasketProduct } from '@/interfaces/IBasket';
@@ -12,7 +12,7 @@ interface ProductPageProps {
     product: IProduct
 }
 
-const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
+const Product: React.FC<ProductPageProps> = ({ product }) => {
 
     const { BASKET, FAVORITES } = useContext(GlobalContext)
     //console.log(product)
@@ -83,5 +83,5 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
     )
 }
 
-export default ProductPage
+export default Product;
 

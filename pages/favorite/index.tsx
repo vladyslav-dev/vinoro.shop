@@ -1,71 +1,29 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { GlobalContext } from '@/store/index';
-import Link from 'next/link';
-import styles from './favorite.module.scss'
-import CardList from '@/components/CardList';
-import ToolBar from '@/components/ToolBar';
+import styles from './favorite.module.scss';
+import Catalog from '@/components/Catalog';
+import EmptyCatalog from '@/components/EmptyCatalog';
 
 const Favorite = () => {
 
     const { FAVORITES } = useContext(GlobalContext)
-    const favoriteItem = FAVORITES.state.products
-
-    const [animate, setAnimate] = useState(false);
-    const [range, setRange] = useState<RangeType>("md")
-    const [productList, setProductList] = useState(favoriteItem);
-
-    useEffect(() => setProductList(favoriteItem), [favoriteItem])
-
-    type RangeType = "sm" | "md" | "lg"
-
-    const getCurrentRange = () => {
-        switch (range) {
-            case "lg":
-                return {
-                    gridTemplateColumns: `repeat(${4}, 1fr)`
-                }
-            case "md":
-                return {
-                    gridTemplateColumns: `repeat(${5}, 1fr)`
-                }
-            case "sm":
-                return {
-                    gridTemplateColumns: `repeat(${6}, 1fr)`
-                }
-            default:
-                return {
-                    gridTemplateColumns: `repeat(${5}, 1fr)`
-                }
-        }
-    }
+    const favoriteProductList = FAVORITES.state.products
 
     return (
         <div className={styles.favorite}>
             <div className={styles["container-xl"]}>
-                <div className={styles.wrraper}>
-                    <ToolBar products={favoriteItem} setAnimate={setAnimate} setRange={setRange} updateProductList={setProductList} />
-                    <div className={styles.favoriteList}>
-                        {favoriteItem?.length ? 
-                            (
-                                <CardList 
-                                    products={productList} 
-                                    animate={animate} 
-                                    customStyles={getCurrentRange()}
-                                    removeButton={true} 
-                                /> 
-                            )
-                            :
-                            (
-                                <div className={styles.emptyList}>
-                                    <p>У вас нет добавленных товаров в избранное :(</p>
-                                    <Link href={"/"}>
-                                        <a className={styles.emptyListButton}>НА ГЛАВНУЮ</a>
-                                    </Link>
-                                </div>
-                            )
-                            }
-                    </div>
-                </div>
+                <Catalog 
+                    products={favoriteProductList}
+                    alt={(
+                        <EmptyCatalog 
+                            buttonLink={{
+                                path: '/',
+                                text: "НА ГЛАВНУЮ"
+                            }}
+                            textWarnings="У вас нет добавленных товаров в избранное :(" 
+                        />
+                    )}
+                />
             </div>
         </div>
     )

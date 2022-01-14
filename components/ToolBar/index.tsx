@@ -6,21 +6,19 @@ import styles from './ToolBar.module.scss'
 
 interface ToolBarProps {
     products: Array<any>;
-    setAnimate?: any;
     setRange?: any;
     updateProductList: any;
 }
 
-const ToolBar = ({ products, setAnimate, setRange, updateProductList }: ToolBarProps) => {
+const ToolBar = ({ products, setRange, updateProductList }: ToolBarProps) => {
 
     const rangeHandler = (e) => {
-        setAnimate(prevState => !prevState);
         setRange(e.target.name)
     }
 
     return (
         <div className={styles.categoryToolbar}>
-            <SortSelect updateProductList={updateProductList} defaultProductList={products} setAnimate={setAnimate} />
+            <SortSelect updateProductList={updateProductList} defaultProductList={products} />
             <div className={styles.rangerTotalItem}>
                 <Ranger rangeHandler={rangeHandler} />
                 <TotalItemCount products={products} />

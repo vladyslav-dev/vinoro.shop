@@ -20,8 +20,6 @@ const Category = ({ products }: CategoryProps) => {
 
     const { setCurrentCategory } = useCurrentCategory(router.query.id as string)
 
-    const [animate, setAnimate] = useState(false);
-
     const [productList, setProductList] = useState<Array<IProduct>>(products);
 
     const [range, setRange] = useState<RangeType>("md")
@@ -39,9 +37,9 @@ const Category = ({ products }: CategoryProps) => {
             <div className={styles["container-xl"]}>
                 <div className={styles.categoryWrapper}>
                     <div className={styles.categoryContent}>
-                        <ToolBar products={products} setAnimate={setAnimate} setRange={setRange} updateProductList={setProductList} />
+                        <ToolBar products={products} setRange={setRange} updateProductList={setProductList} />
                         <div className={styles.categoryList}>
-                            <CardList products={productList} animate={animate} customStyles={getCurrentRange(range)} />
+                            <CardList products={productList} customStyles={getCurrentRange(range)} />
                         </div>
                     </div>
                 </div>

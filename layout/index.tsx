@@ -66,7 +66,6 @@ const Layout: FC<LayoutProps> = ({ children, router }) => {
         }
     }, [state.FAVORITES])
 
-    //useEffect(() => console.log("router changed"), [router])
 
     return (
         <>

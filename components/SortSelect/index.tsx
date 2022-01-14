@@ -15,13 +15,12 @@ interface SelectOptions {
 
 interface SortSelectProps {
     updateProductList: React.Dispatch<React.SetStateAction<Array<IProduct>>>;
-    setAnimate: React.Dispatch<React.SetStateAction<boolean>>;
     defaultProductList: Array<IProduct>;
 }
 
 const SortSelect = (props: SortSelectProps) => {
 
-    const { updateProductList, defaultProductList, setAnimate } = props;
+    const { updateProductList, defaultProductList } = props;
 
     const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false);
 
@@ -51,7 +50,6 @@ const SortSelect = (props: SortSelectProps) => {
                 }
             }
         })])
-        setAnimate(prevState => !prevState)
     }
 
     return (

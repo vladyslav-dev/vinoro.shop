@@ -3,14 +3,14 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import styles from './product.module.scss'
 import { IProduct } from '@/interfaces/IProduct';
-import ProductPage from '@/components/ProductPage';
+import Product from '@/components/Product';
 import useCurrentCategory from '@/hooks/useCurrentCategory';
 
 interface ProductProps {
     product?: IProduct;
 }
 
-const Product: React.FC<ProductProps>= ({ product }) => {
+const ProductPage: React.FC<ProductProps>= ({ product }) => {
 
     const router = useRouter();
     
@@ -23,7 +23,7 @@ const Product: React.FC<ProductProps>= ({ product }) => {
     return (
         <div className={styles.product}>
             <div className={styles.container}>
-                {product ? <ProductPage product={product} /> : null}
+                {product ? <Product product={product} /> : null}
             </div>
         </div>
     )
@@ -40,4 +40,4 @@ export const getServerSideProps = async ({ query }) => {
 }
 
 
-export default Product
+export default ProductPage

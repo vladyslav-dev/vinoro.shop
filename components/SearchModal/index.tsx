@@ -3,7 +3,7 @@ import styles from './SearchModal.module.scss';
 import Router from 'next/router';
 import axios from 'axios';
 
-import { ArrowModal } from '@/icons/Arrow';
+import { SearchBackArrowSvg } from '@/icons/Arrow';
 import { LoupeSvg } from '@/icons/Loupe';
 
 import ToolBar from '@/components/ToolBar';
@@ -15,10 +15,21 @@ interface SearchModalProps {
 
 const SearchModal = ({ closeSearch }: SearchModalProps) => {
 
-    const [animate, setAnimate] = useState(false)
-    const [products, setProducts] = useState(null)
+
     const [searchQuery, setSearchQuery] = useState('')
     const [lastQuery, setLastQuery] = useState('')
+
+    const relateQueries = [
+        "Чай",
+        "Шампанское",
+        "Гель для стирки",
+        "Fragolino",
+        "Вино",
+        "Шоколад",
+        "Стиральний порошок",
+        "Cashet",
+        "Кофе",
+    ]
 
     Router.events.on('routeChangeComplete', () => closeSearch())
 
@@ -28,61 +39,62 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
             url: process.env.NEXT_PUBLIC_DOMAIN + '/api/search',
             data: { searchQuery } 
         });
-        setProducts(res.data.products)
         setLastQuery(searchQuery)
     }
 
     useEffect(() => {
-        document.body.style.overflowY = 'scroll'
-        document.body.style.position = 'fixed'
+        document.body.style.overflowY = 'hidden'
         
         return () => {
             document.body.style.overflow = null
             document.body.style.position = null
         }
     }, [])
-    
 
-    const onKeyDownHandler = (e) => {
-        if (e.keyCode === 13) {
-            getProductsByQuery()
-        }
+    const redirectToSearch = (param?: string) => Router.push({
+        pathname: '/search',
+        query: {query: param || searchQuery}
+    })
+
+    const submitHandler = event => {
+        event?.preventDefault();
+        redirectToSearch()
     }
 
-    console.log(products)
+    const relateQueryHandler = event => {
+        redirectToSearch(event.target.innerText)
+    }
+
 
     return (
         <div className={styles.myModal}>
-            <div className={styles["container-xl"]}>
-                <div className={styles.content}>
-                       <div className={styles.wrapper}>
-                            <div onClick={() => closeSearch()} className={styles.arrow}>
-                                <ArrowModal  />
-                            </div>
-                            <div className={styles.inputWrapper}>
-                                <div className={styles.input}>
-                                    <input type="text" placeholder="Поиск" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={(e) => searchQuery && onKeyDownHandler(e) } />
+            <div className={styles.myModalRow}>
+                <div className={styles["container-xl"]}>
+                    <div className={styles.wrapper}>
+                        <div onClick={() => closeSearch()} className={styles.back}>
+                            <SearchBackArrowSvg  />
+                            <span>НАЗАД</span>
+                        </div>
+                        <div className={styles.inputWrapper}>
+                            <h3>Найди нужний товар тут...</h3>
+                            <form className={styles.inputRow} onSubmit={submitHandler}>
+                                <input 
+                                    type="text"
+                                    placeholder="Поиск"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
+                                <span className={styles.inputIcon} onClick={submitHandler}>
                                     <LoupeSvg />
-                                </div>
-                            </div>  
-                       </div>
-                    <div className={styles.categoryList}>
-                    { 
-                        (products?.length) ? (
-                            <>
-                                    <ToolBar 
-                                        products={products}
-                                        updateProductList={setProducts}
-                                        setAnimate={setAnimate}
-                                    />
-                                    <CardList 
-                                        products={products}
-                                        animate={animate}
-                                        customStyles={{gridTemplateColumns: `repeat(${5}, 1fr)`}} 
-                                    />
-                            </>
-                        ) : (!products) ? null : <p>Товаров за запросом - {lastQuery} не найдено</p> 
-                        }
+                                </span>
+                            </form>
+                            <div className={styles.relateQuery}>
+                                <span className={styles.relateQueryTitle}>Популярние запроси:</span>
+                                {relateQueries.map(query => (
+                                    <button onClick={relateQueryHandler} className={styles.query} key={query}>{query}</button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

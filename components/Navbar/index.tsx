@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import styles from './Navbar.module.scss';
 import Link from 'next/link'
 import { GlobalContext } from '@/store/index'
+import useOnClickOutside from '@/hooks/useOnClickOutside';
 
 import { HeartSvg } from '@/icons/Heart';
 import { BagSvg } from '@/icons/Bag';
@@ -13,6 +14,7 @@ import Basket from '@/components/Basket';
 import BurgerMenu from "@/components/BurgerMenu";
 import HeaderIcon from '@/components/HeaderIcon';
 import SearchModal from '@/components/SearchModal';
+import LanguageModal from '@/components/LanguageModal';
 
 
 export interface NavbarProps {
@@ -25,20 +27,22 @@ const Navbar = (props: NavbarProps) => {
 
     const { BASKET } = useContext(GlobalContext)
     const productsNumber = BASKET.state.products.length;
-    const [showSearch, setShowSearch] = useState(false)
-    const [basketIsOpen, setBasketIsOpen] = useState(false);
+    const [showSearch, setShowSearch] = useState<boolean>(false)
+    const [basketIsOpen, setBasketIsOpen] = useState<boolean>(false);
+    const [isLanguageModalOpen, setIsLanguageModalOpen] = useState<boolean>(false);
+
+    // const optionListRef = useRef<HTMLUListElement>(null)
+    const iconRef = useRef<HTMLDivElement>(null)
+
+    useOnClickOutside(() => setIsLanguageModalOpen(false), iconRef)
 
     const openModalSearch = () => setShowSearch(true)
     const closeModalSearch = () => setShowSearch(false)
 
     const showBasket = () => {
-       // document.body.style.overflowY = 'scroll'
-        // document.body.style.position = 'fixed'
         setBasketIsOpen(true)
     }
     const hideBasket = () => {
-      //  document.body.style.overflow = null
-        //document.body.style.position = null
         setBasketIsOpen(false)
     }
 
@@ -87,9 +91,12 @@ const Navbar = (props: NavbarProps) => {
                                 
                             </div>
                             <div className={styles.navbarIcon}>
-                                <HeaderIcon label={"ЯЗЫК"}>
-                                    <WorldSvg />
-                                </HeaderIcon>
+                                <div ref={iconRef} onClick={() => setIsLanguageModalOpen(!isLanguageModalOpen)}>
+                                    <HeaderIcon label={"ЯЗЫК"}>
+                                        <WorldSvg />
+                                    </HeaderIcon>
+                                    {isLanguageModalOpen && <LanguageModal />}
+                                </div>
                             </div>
                         </div>
                     </div>

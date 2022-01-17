@@ -3,6 +3,7 @@ import styles from './HeaderTitle.module.scss';
 import { CategoryCollection } from '@/interfaces/ICategory';
 import CategoryModal from '@/components/CategoryModal';
 import { AnimatePresence } from 'framer-motion';
+import useTranslation from 'next-translate/useTranslation'
 
 interface HeaderTitleProps extends CategoryCollection {
     interfaceHandlers?: {
@@ -14,6 +15,8 @@ interface HeaderTitleProps extends CategoryCollection {
 const HeaderTitle = (props: HeaderTitleProps) => {
     const { title, data, interfaceHandlers } = props;
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const { t } = useTranslation()
+    console.log(t("home:homeButton"))
 
     const closeModalHandler = () => {
         setIsModalOpen(false)
@@ -30,7 +33,7 @@ const HeaderTitle = (props: HeaderTitleProps) => {
             {!isModalOpen ? (
                 <>
                     <h1 className={styles.title}>{title}</h1>
-                    <button className={styles.button} onClick={openModalHandler}>СМОТРЕТЬ</button>
+                    <button className={styles.button} onClick={openModalHandler}>{t("home:homeButton")}</button>
                 </>
             ) : null}
             <AnimatePresence

@@ -9,6 +9,7 @@ import GoAhead from '@/components/GoAhead';
 import HeaderBottom from '@/components/HeaderBottom';
 import { GlobalContext } from '@/store/index';
 import { collectCategory } from '@/utils/index';
+import useCategoryEnum from '@/hooks/useCategoryEnum';
 
 const Fullpage = () => {
 
@@ -16,6 +17,8 @@ const Fullpage = () => {
     const { category } = CATEGORY.state;
 
     const [current, setCurrent] = useState(0);
+    
+    const { catalogEnum } = useCategoryEnum()
 
     const [isInterfaceShowing, setIsInterfaceShowing] = useState(true);
 
@@ -54,7 +57,7 @@ const Fullpage = () => {
                 </div>
             )}
             <SectionContainer className={styles.sectionContainer} {...options} activeSection={current}>
-                {collectCategory(category).map((props, index) => (
+                {collectCategory(category, catalogEnum).map((props, index) => (
                     <Section className={styles.section} key={index}>
                         <HeaderTitle interfaceHandlers={interfaceHandlers} {...props} />
                     </Section>

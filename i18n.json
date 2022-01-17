@@ -1,0 +1,8 @@
+{
+    "locales": ["uk-UA", "ru-RU", "en-US"],
+    "defaultLocale": "uk-UA",
+    "pages": {
+        "*": ["common"],
+        "/": ["home"]
+    }
+}

@@ -1,0 +1,38 @@
+@import "../../styles/index.scss";
+
+.modal {
+    position: fixed;
+    top: 70px;
+    right: 15px;
+    width: 132px;
+    height: 128px;
+    z-index: 600;
+    border-radius: 16px;
+    @include glassBackground;
+
+    .langList {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        box-sizing: border-box;
+
+        .langItem {
+            box-sizing: border-box;
+
+            .langItemLink {
+                width: calc(100% - 20px);
+                padding: 12px 10px;
+                text-decoration: none;
+                color: $UI-color5;
+                display: inline-flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: ptr(13);
+                font-weight: 500;
+                @include hoverEffect;
+            }
+        }
+    }
+}

@@ -3,9 +3,9 @@ import Link from 'next/link';
 import styles from './CategoryTree.module.scss';
 import { GlobalContext } from '../../store';
 import { SortArrorSvg } from '@/icons/Arrow';
-import { Catalog as CatalogEnum } from '@/enums/Catalog';
+import useCategoryEnum from '@/hooks/useCategoryEnum';
 
-type CatalogName = "Продукты питания" | "Алкогольные напитки" | "Бытовая химия"
+type CatalogName = any
 
 type CatalogState = CatalogName | null;
 
@@ -15,11 +15,13 @@ const CategoryTree = () => {
     const { category, currentCategory, isLoaded } = CATEGORY.state
     const [currentCatalog, setCurrentCatalog] = useState<CatalogState>(null)
 
+    const { catalogEnum } = useCategoryEnum()
+
     useEffect(() => {
         if (isLoaded) {
             setCurrentCatalog((): any => {
                 const categor = category?.find(categor => categor?._id === currentCategory);
-                return categor ? CatalogEnum[categor.catalog] : null;
+                return categor ? catalogEnum[categor.catalog] : null;
             })
         }
     }, [currentCategory])
@@ -28,7 +30,7 @@ const CategoryTree = () => {
 
     const getCatalog = (key: string) => {
         return category.map(item => {
-            if (CatalogEnum[key] === item.catalog) {
+            if (catalogEnum[key] === item.catalog) {
                 return (
                     <li 
                         key={item._id} 
@@ -47,7 +49,7 @@ const CategoryTree = () => {
         <>
             {category && (
                 <div className={styles.categoryTree}>
-                    {Object.values(CatalogEnum).map((item, key) => {
+                    {Object.values(catalogEnum).map((item, key) => {
                         return typeof item === "string" && (
                             <div key={key} className={styles.categoryList}>
                                 <a 

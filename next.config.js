@@ -1,4 +1,5 @@
 const withPWA = require('next-pwa')
+const nextTranslate = require('next-translate')
 
 module.exports = withPWA({
   reactStrictMode: true,
@@ -18,4 +19,5 @@ module.exports = withPWA({
   devIndicators: {
     buildActivity: false,
   },
+  ...nextTranslate(),
 })

@@ -1,4 +1,3 @@
-import { Catalog as CatalogEnum } from '@/enums/Catalog';
 import { ICategory, CategoryCollection } from '@/interfaces/ICategory';
 
 type RangeType = 'lg' | 'md' | 'sm';
@@ -20,15 +19,18 @@ export const getCurrentRange = (range: RangeType) => {
     }
 }
 
-export const collectCategory = (category: ICategory[]): CategoryCollection[] => {
-    return Object.values(CatalogEnum).reduce((acc, item) => {
+export const collectCategory = (category: ICategory[], catalogEnum: any): any => {
+    const res = Object.values(catalogEnum).reduce((acc: CategoryCollection[], item) => {
         if (typeof item === 'number') {
            acc.push({
-               title: CatalogEnum[item],
+               title: catalogEnum[item],
                data: category.filter(categor => categor.catalog === item),
            })
         }
         return acc
-    
     }, [])
+
+    console.log(res)
+
+    return res
 }

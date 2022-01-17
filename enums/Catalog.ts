@@ -1,5 +1,5 @@
 export enum Catalog {
-    "Продукты питания" = 0,
-    "Алкогольные напитки" = 1,
-    "Бытовая химия" = 2,
+    "Food" = 0,
+    "Alcoholic drinks" = 1,
+    "Household chemicals" = 2,
 }

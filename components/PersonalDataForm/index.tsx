@@ -94,7 +94,7 @@ const PersonalDataForm = ({ updateButtonDisabled }) => {
                                     className={`${styles.formRowLabel} ${watch('name') ? styles.formRowLabelActive : ""}`}
                                 >
                                     Имя
-                            </label>
+                                </label>
                                 <p className={styles.formRowError}>
                                     {errors.name?.message}
                                 </p>
@@ -111,7 +111,7 @@ const PersonalDataForm = ({ updateButtonDisabled }) => {
                                     className={`${styles.formRowLabel} ${watch('surname') ? styles.formRowLabelActive : ""}`}
                                 >
                                     Фамилия
-                            </label>
+                                </label>
                                 <p className={styles.formRowError}>
                                     {errors.surname?.message}
                                 </p>

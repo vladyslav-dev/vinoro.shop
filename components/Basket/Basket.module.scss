@@ -3,13 +3,17 @@
 .basket {
     width: 100%;
     height: 100%;
-    padding: 30px 25px;
+    padding: 30px 25px 150px 25px;
     padding-bottom: 150px;
     box-sizing: border-box;
     background-color:  $UI-color5;
     color: $UI-color1;
     box-shadow: -4px 0px 10px 1px rgba(87, 87, 87, 0.13);
     
+    @include sm {
+        padding: 15px 10px 150px 10px;
+    }
+
     .basektTitle {
         color: $UI-color1;
         font-size: ptr(19);

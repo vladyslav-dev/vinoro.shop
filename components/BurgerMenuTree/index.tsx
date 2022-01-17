@@ -48,7 +48,7 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                     </a>
                 </li>
                 <li className={styles.menuListItem}>
-                    <Link href={`/`}>
+                    <Link href={`/contacts`}>
                         <a>
                             <ContactsSvg />
                             <span>КОНТАКТЫ</span>

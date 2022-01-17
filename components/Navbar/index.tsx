@@ -44,7 +44,7 @@ const Navbar = (props: NavbarProps) => {
 
     return (
         <>
-            <div className={styles.navbarWrapper} style={{ backgroundColor: color || "#1A1A1A" }}>
+            <div className={styles.navbarWrapper} style={{ backgroundColor: color || "#1C1C1C" }}>
                 <div className={styles["container-xl"]}>
                     <div className={styles.navbar}>
                         <div className={styles.navbarIconList}>

@@ -2,6 +2,7 @@
 
 .content {
     width: 100%;
+    min-height: calc(100vh - 68px - 100px);
     display: flex;
     justify-content: space-between;
     background-color: $UI-color5;

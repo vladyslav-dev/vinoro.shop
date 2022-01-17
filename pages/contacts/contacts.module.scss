@@ -1,0 +1,177 @@
+@import '../../styles/index.scss';
+
+.contacts {
+    min-height: calc(100vh - 68px);
+    display: flex;
+
+    @include lg {
+        flex-direction: column;
+        min-height: calc(100vh - 68px - 51px);
+    }
+
+    .image {
+        flex: 1;
+        background-image: url("/static/images/business-man-working-talking-phone-concept.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        @include xl {
+            background-position: right 50% center;
+        }
+
+        @include lg {
+            background: none;
+            display: none;
+        }
+    }
+
+    .content {
+        flex: 1;
+        color: $UI-color1;
+        align-self: center;
+        margin-left: 50px;
+
+        @include lg {
+            display: flex;
+            justify-content: center;
+            margin-left: 0;
+            margin-top: 26px;
+            align-self: initial;
+            max-height: 330px;
+        }
+
+        @include md {
+            flex-direction: column;
+            margin-top: 0;
+            max-height: none;
+        }
+
+        @media (max-width: 490px) {
+            align-items: center;
+        }
+
+        .contentInfo, .contentForm {
+            padding: 40px;
+            width: clamp(270px, 100%, 300px);
+
+            @media (max-width: 490px) {
+                
+                width: calc(100% - 30px);
+                padding: 20px 15px;
+            }
+        }
+
+        .contentInfo {
+            position: relative;
+
+            &:after {
+                content: "";
+                display: block;
+                height: 100%;
+                width: 3px;
+                border-radius: 3px;
+                background-color: $UI-color1;
+                position: absolute;
+                right: 0;
+                bottom: -1px;
+
+                @include md {
+                    display: none;
+                }
+            }
+
+            .contactList {
+
+                .contactItem {
+                    
+                    a {
+                        display: inline-flex;
+                        align-items: center;
+                        text-decoration: none;
+                        color: $UI-color1;
+                        position: relative;
+
+                        .contactItemLink {
+                            margin-left: 12px;
+                        }
+
+                        .contactTooltip {
+                            position: absolute;
+                            width: max-content;
+                            bottom: -24px;
+                            transform-origin: left;
+                            opacity: .5;
+                            transition: all 200ms linear;
+                            transform: scale(0);
+                            background-color: $UI-color1;
+                            color: $UI-color5;
+                            font-size: ptr(10);
+                            font-weight: 600;
+                            padding: 6px 8px;
+                            border-radius: 20px;
+
+                        }
+
+                        &:hover .contactTooltip {
+                            opacity: 1;
+                            transform:  scale(1);
+                            transition: all 200ms linear;
+                        }
+                    }
+
+                    &:not(:last-child) {
+                        margin-bottom: 24px;
+                    }
+                }
+            }
+        }
+
+        .contentForm {
+            position: relative;
+
+            &:before {
+                content: "";
+                display: block;
+                height: 100%;
+                width: 3px;
+                border-radius: 3px;
+                background-color: $UI-color1;
+                position: absolute;
+                left: 0;
+                top: 0;
+
+                @include lg {
+                    display: none;
+                }
+            }
+
+            &:after {
+                content: "";
+                display: block;
+                height: 3px;
+                width: 100%;
+                border-radius: 3px;
+                background-color: $UI-color1;
+                position: absolute;
+                left: 0;
+                top: 0;
+
+                @include lg {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .title {
+        font-weight: 500;
+        font-size: ptr(26);
+        line-height: ptr(32);
+        margin-bottom: 36px;
+
+        @media (max-width: 490px) {
+            text-align: center;
+            font-size: ptr(21);
+        }
+    }
+}

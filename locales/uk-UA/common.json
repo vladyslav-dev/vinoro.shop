@@ -1,5 +1,20 @@
 {
     "categoryFood": "Продукти харчування",
     "categoryAlcohol": "Алкогольні напої",
-    "categoryChemicals": "Побутова хімія"
+    "categoryChemicals": "Побутова хімія",
+    "menu": {
+        "main": "ГОЛОВНА",
+        "catalog": "КАТАЛОГ",
+        "contacts": "КОНТАКТИ",
+        "help": "ДОПОМОГА"
+    },
+    "navbarIcons": {
+        "menu": "МЕНЮ",
+        "search": "ПОШУК",
+        "favorites": "ВПОДОБАНЕ",
+        "basket": "КОШИК",
+        "lang": "МОВА"
+    },
+    "scrollDown": "СКРОЛЬ",
+    "swipeDown": "СВАЙПАЙ"
 }

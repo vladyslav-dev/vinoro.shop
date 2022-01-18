@@ -3,6 +3,7 @@ import styles from './Navbar.module.scss';
 import Link from 'next/link'
 import { GlobalContext } from '@/store/index'
 import useOnClickOutside from '@/hooks/useOnClickOutside';
+import useTranslation from 'next-translate/useTranslation';
 
 import { HeartSvg } from '@/icons/Heart';
 import { BagSvg } from '@/icons/Bag';
@@ -25,6 +26,7 @@ const Navbar = (props: NavbarProps) => {
     
     const { color } = props;
 
+    const { t } = useTranslation();
     const { BASKET } = useContext(GlobalContext)
     const productsNumber = BASKET.state.products.length;
     const [showSearch, setShowSearch] = useState<boolean>(false)
@@ -56,7 +58,7 @@ const Navbar = (props: NavbarProps) => {
                                 <BurgerMenu openSearchHandler={openModalSearch} />
                             </div>
                             <div className={styles.navbarIcon}>
-                                <HeaderIcon label={"ПОИСК"} click={() => openModalSearch()}>
+                                <HeaderIcon label={t("common:navbarIcons.search")} click={() => openModalSearch()}>
                                     <LoupeSvg color="#ffffff" />
                                 </HeaderIcon>
                             </div>
@@ -72,7 +74,7 @@ const Navbar = (props: NavbarProps) => {
                             <div className={`${styles.navbarIcon} ${styles.favoriteDesktop}`}>
                                 <Link href="/favorite/">
                                     <div className={styles.favoriteIcon}>
-                                        <HeaderIcon label={"ИЗБРАННОЕ"}>
+                                        <HeaderIcon label={t("common:navbarIcons.favorites")}>
                                             <HeartSvg />
                                         </HeaderIcon>
                                     </div>
@@ -80,7 +82,7 @@ const Navbar = (props: NavbarProps) => {
                             </div>
                             <div className={styles.navbarIcon}>
                                 <div onMouseEnter={showBasket} onMouseLeave={hideBasket}>
-                                    <HeaderIcon label={"КОРЗИНА"} className={styles.basketIcon}>
+                                    <HeaderIcon label={t("common:navbarIcons.basket")} className={styles.basketIcon}>
                                         <BagSvg />
                                         <div className={styles.basket} style={{right: basketIsOpen ? 0 : "-550px"}}>
                                             <Basket />
@@ -92,7 +94,7 @@ const Navbar = (props: NavbarProps) => {
                             </div>
                             <div className={styles.navbarIcon}>
                                 <div ref={iconRef} onClick={() => setIsLanguageModalOpen(!isLanguageModalOpen)}>
-                                    <HeaderIcon label={"ЯЗЫК"}>
+                                    <HeaderIcon label={t("common:navbarIcons.lang")}>
                                         <WorldSvg />
                                     </HeaderIcon>
                                     {isLanguageModalOpen && <LanguageModal />}

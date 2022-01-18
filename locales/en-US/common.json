@@ -1,5 +1,20 @@
 {
     "categoryFood": "Foodstuffs",
     "categoryAlcohol": "Alcoholic drinks",
-    "categoryChemicals": "Household chemicals"
+    "categoryChemicals": "Household chemicals",
+    "menu": {
+        "main": "HOME",
+        "catalog": "CATALOG",
+        "contacts": "CONTACTS",
+        "help": "HELP"
+    },
+    "navbarIcons": {
+        "menu": "MENU",
+        "search": "SEARCH",
+        "favorites": "FAVORITES",
+        "basket": "BASKET",
+        "lang": "LANGUAGE"
+    },
+    "scrollDown": "SCROLL DOWN",
+    "swipeDown": "SWIPE DOWN"
 }

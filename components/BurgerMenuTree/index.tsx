@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from "./BurgerMenuTree.module.scss";
 import { useRouter } from 'next/router';
 import Link from 'next/link'
+import useTranslation from 'next-translate/useTranslation'
 
 import HeaderIcon from '@/components/HeaderIcon';
 import CategoryTree from '@/components/CategoryTree';
@@ -22,7 +23,8 @@ interface BurgerMenuTreeProps {
 const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
     const { isActive, openSearchHandler } = props;
 
-    const router = useRouter()
+    const router = useRouter();
+    const { t } = useTranslation();
 
     const isShowCatalog = () => {
         return router.pathname.includes("/category") || router.pathname.includes("/product") 
@@ -37,21 +39,21 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                     <Link href={`/`}>
                         <a>
                             <HomeSvg />
-                            <span>ГЛАВНАЯ</span>
+                            <span>{t("common:menu.main")}</span>
                         </a>
                     </Link>
                 </li>
                 <li className={styles.menuListItem}>
                     <a onClick={() => setIsCatalogOpen(true)}>
                         <CatalogSvg />
-                        <span>КАТАЛОГ</span>
+                        <span>{t("common:menu.catalog")}</span>
                     </a>
                 </li>
                 <li className={styles.menuListItem}>
                     <Link href={`/contacts`}>
                         <a>
                             <ContactsSvg />
-                            <span>КОНТАКТЫ</span>
+                            <span>{t("common:menu.contacts")}</span>
                         </a>
                     </Link>
                 </li>
@@ -59,7 +61,7 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                     <Link href={`/`}>
                         <a>
                             <HelpSvg />
-                            <span>ПОМОЩЬ</span>
+                            <span>{t("common:menu.help")}</span>
                         </a>
                     </Link>
                 </li>
@@ -72,18 +74,18 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                 onClick={() => setIsCatalogOpen(false)}
             >
                 <SortArrorSvg />
-                <span>КАТАЛОГ</span>
+                <span>{t("common:menu.catalog")}</span>
             </button>
             <ul className={styles.bottomMenu}>
                 <li className={styles.bottomMenuItem} onClick={() => openSearchHandler()}>
-                    <HeaderIcon label="ПОИСК">
+                    <HeaderIcon label={t("common:navbarIcons.search")}>
                         <SearchSvg /> 
                     </HeaderIcon>
                 </li>
                 <li className={styles.bottomMenuItem}>
                     <Link href="/favorite">
                         <a>
-                            <HeaderIcon label="ИЗБРАННОЕ">
+                            <HeaderIcon label={t("common:navbarIcons.favorites")}>
                                 <HeartSvg /> 
                             </HeaderIcon>
                         </a>
@@ -92,7 +94,7 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                 <li className={styles.bottomMenuItem}>
                     <Link href="/help">
                         <a>
-                            <HeaderIcon label="ПОМОЩЬ">
+                            <HeaderIcon label={t("common:menu.help")}>
                                 <HelpSvg /> 
                             </HeaderIcon>
                         </a>

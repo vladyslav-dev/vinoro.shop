@@ -87,7 +87,7 @@ const Navbar = (props: NavbarProps) => {
                                         <div className={styles.basket} style={{right: basketIsOpen ? 0 : "-550px"}}>
                                             <Basket />
                                         </div>
-                                        <div className={styles.basketCount}>{productsNumber}</div>
+                                        {productsNumber ? <div className={styles.basketCount}>{productsNumber}</div> : null}
                                     </HeaderIcon>
                                 </div>
                                 

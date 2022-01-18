@@ -16,7 +16,6 @@ const HeaderTitle = (props: HeaderTitleProps) => {
     const { title, data, interfaceHandlers } = props;
     const [isModalOpen, setIsModalOpen] = useState(false)
     const { t } = useTranslation()
-    console.log(t("home:homeButton"))
 
     const closeModalHandler = () => {
         setIsModalOpen(false)

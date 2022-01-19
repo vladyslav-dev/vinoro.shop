@@ -18,19 +18,24 @@ const Img: React.FC<ImgProps> = (
 
     const [isImageReady, setIsImageReady] = React.useState(false);
 
+    console.log(isImageReady)
+
     return (
         <div className={styles.imageContainer}>
-            <div className={isImageReady ? styles.imageSkeletonHide : styles.imageSkeleton} />
-            <div className={`${styles.imageWrapper}`}>
-                <Image
-                    onLoadingComplete={() => setIsImageReady(true)}
-                    src={src}
-                    layout="fill"
-                    lazyBoundary="500px"
-                    className={styles.image}
-                    quality={quality}
-                    alt={alt}
-                />
+            <div className={`${styles.imageSkeleton}`} />
+            <div className={`${styles.imageWrapper} ${isImageReady ? styles.imageReady : null}`}>
+                {src && (
+                    <Image
+                        onLoadingComplete={() => setIsImageReady(true)}
+                        src={src}
+                        layout="fill"
+                        lazyBoundary="500px"
+                        className={`${styles.image}`}
+                        quality={quality}
+                        alt={alt}
+                    />
+                )}
+                
             </div>
 
         </div >

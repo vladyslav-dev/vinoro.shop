@@ -8,12 +8,17 @@ import { IProductCard } from '@/interfaces/IFavorite'
 import { GlobalContext } from '@/store/index';
 import { LinkSvg } from '@/icons/Link';
 import useTranslation from 'next-translate/useTranslation';
+import Breadcrumb from '@/components/Breadcrumb';
 
 interface ProductPageProps {
-    product: IProduct
+    product?: IProduct;
+    category?: {
+        _id: string;
+        category_name: string;
+    };
 }
 
-const Product: React.FC<ProductPageProps> = ({ product }) => {
+const Product: React.FC<ProductPageProps> = ({ product, category }) => {
 
     const { t } = useTranslation();
     const { BASKET, FAVORITES } = useContext(GlobalContext)
@@ -45,40 +50,45 @@ const Product: React.FC<ProductPageProps> = ({ product }) => {
     }
 
     return (
-        <div className={styles.content}>
-            <div className={styles.leftPart}>
-                <Img src={product.image} />
+        <div className={styles.wrapper}>
+            <div className={styles.breadcrumb}>
+                <Breadcrumb category={category} />
             </div>
-            <div className={styles.rightPart}>
-                <div className={styles.productNamePrice}>
-                    <p>{product.name}</p>
-                    <p>{product.cost} UAH</p>
+            <div className={styles.content}>
+                <div className={styles.leftPart}>
+                    <Img src={product.image} />
                 </div>
-                <div className={styles.productAvailability}>
-                    {product.availability ? <p className={styles.cardAvailabilityGreen}>{t("product:availability.inStock")}&nbsp; &#10004;</p> : <p className={styles.cardAvailabilityRed}>{t("product:availability.outOfStock")}&nbsp; &#10008;</p>}
+                <div className={styles.rightPart}>
+                    <div className={styles.productNamePrice}>
+                        <p>{product.name}</p>
+                        <p>{product.cost} UAH</p>
+                    </div>
+                    <div className={styles.productAvailability}>
+                        {product.availability ? <p className={styles.cardAvailabilityGreen}>{t("product:availability.inStock")}&nbsp; &#10004;</p> : <p className={styles.cardAvailabilityRed}>{t("product:availability.outOfStock")}&nbsp; &#10008;</p>}
+                    </div>
+                    <button className={styles.productLink} onClick={copyLink}>
+                        <p>{t("product:copyLink")}</p>
+                        <LinkSvg />
+                    </button>
+                    <div className={styles.addButtons}>
+                        <Button
+                            label={isProductInBasket ? t("product:alreadyInBasket") : t("product:addToBasket")}
+                            click={() => { !isProductInBasket ? addToBasket() : null }}
+                            styles={{ fontWeight: 600 }}
+                        />
+                        <Button
+                            label={isPrductInFavorites ? t("product:alreadyInFavorite") : t("product:addToFavorite")}
+                            type="outlined"
+                            styles={{ fontWeight: 700 }}
+                            click={() => { !isPrductInFavorites ? addFavorites() : null }}
+                        />
+                    </div>
+                    <div className={styles.productDescriptions}>
+                        <p>{product.description}</p>
+                    </div>
                 </div>
-                <button className={styles.productLink} onClick={copyLink}>
-                    <p>Копировать ссылку на продукт</p>
-                    <LinkSvg />
-                </button>
-                <div className={styles.addButtons}>
-                    <Button
-                        label={isProductInBasket ? "УЖЕ В КОРЗИНЕ" : "ДОБАВИТЬ В КОРЗИНУ"}
-                        click={() => { !isProductInBasket ? addToBasket() : null }}
-                        styles={{ width: "100%", margin: '15px 0' }}
-                    />
-                    <Button
-                        label={isPrductInFavorites ? "УЖЕ В ИЗБРАННОМ" : "ДОБАВИТЬ В ИЗБРАННОЕ"}
-                        type="outlined"
-                        styles={{ width: "100%", margin: '15px 0' }}
-                        click={() => { !isPrductInFavorites ? addFavorites() : null }}
-                    />
-                </div>
-                <div className={styles.productDescriptions}>
-                    <p>{product.description}</p>
-                </div>
+                <div className={`${styles.productModalWarning} ${isShowModal ? styles.productModalWarningShow : null}`}>{t("product:linkCopied")}</div>
             </div>
-            <div className={`${styles.productModalWarning} ${isShowModal ? styles.productModalWarningShow : null}`}>Ссылка скопирована</div>
         </div>
     )
 }

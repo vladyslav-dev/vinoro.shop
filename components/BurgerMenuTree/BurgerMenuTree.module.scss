@@ -155,6 +155,7 @@
 
 .catalogBack {
     cursor: pointer;
+    font-family: "Montserrat";
     display: flex;
     align-items: center;
     background: none;
@@ -168,6 +169,7 @@
     visibility: hidden;
     transform: translate(-50px, 0);
     transition: all .3s linear;
+    text-transform: uppercase;
 
     @include xl {
         right: 40px;
@@ -191,7 +193,7 @@
     }
 
     & span {
-        margin-left: 10px;
+        margin-left: 5px;
         color: $UI-color5;
         font-size: ptr(13);
         font-weight: 500;

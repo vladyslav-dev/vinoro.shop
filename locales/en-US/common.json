@@ -3,10 +3,10 @@
     "categoryAlcohol": "Alcoholic drinks",
     "categoryChemicals": "Household chemicals",
     "menu": {
-        "main": "HOME",
-        "catalog": "CATALOG",
-        "contacts": "CONTACTS",
-        "help": "HELP"
+        "main": "Home",
+        "catalog": "Catalog",
+        "contacts": "Contacts",
+        "help": "Help"
     },
     "navbarIcons": {
         "menu": "MENU",
@@ -16,5 +16,32 @@
         "lang": "LANGUAGE"
     },
     "scrollDown": "SCROLL DOWN",
-    "swipeDown": "SWIPE DOWN"
+    "swipeDown": "SWIPE DOWN",
+    "category": {
+        "Кофе": "Coffee",
+        "Чай": "Tea",
+        "Шоколад": "Chocolate",
+        "Макаронные изделия": "Pasta",
+        "Сыры и колбасы": "Cheese and sausages",
+        "Оливковое масло": "Olive Oil",
+        "Морепродукты/Икра": "Seafood/Caviar",
+        "Соусы и приправы": "Sauces and seasonings",
+        "Орехи и сухофрукты": "Nuts and dried fruits",
+        "Шампанское, Вино": "Champagne, Wine",
+        "Водка": "Vodka",
+        "Виски": "Whiskey",
+        "Бренди / Коньяк": "Brandy / Cognac",
+        "Джин": "Jin",
+        "Ром": "Rum",
+        "Ликер": "Liquor",
+        "Настойка": "Tincture",
+        "Вермут/Текила": "Vermouth/Tequila",
+        "Средства личной гигиены": "Personal hygiene products",
+        "Гель/Порошок для стирки": "Gel/Powder for Laundry",
+        "Капсулы для стирки": "Capsules for washing",
+        "Ополаскиватели, пятновыводители": "Rinse aids, stain removers",
+        "Моющие средства": "Detergents",
+        "Мыло, шампуни, гели для душа": "Soaps, shampoos, shower gels"
+    },
+    "copyright": "© All rights reserved. Vinoro - 2020-2022"
 }

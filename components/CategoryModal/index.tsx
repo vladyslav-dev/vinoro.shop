@@ -4,6 +4,7 @@ import styles from './CategoryModal.module.scss';
 import useOnClickOutside from '@/hooks/useOnClickOutside';
 import { ICategory } from '@/interfaces/ICategory';
 import { motion } from 'framer-motion';
+import useTranslation from 'next-translate/useTranslation';
 
 interface CategoryModalProps {
     category?: ICategory[];
@@ -14,6 +15,7 @@ const CategoryModal: React.FC<CategoryModalProps> = ({ category, closeHandler })
     
 
     const modalRef = useRef<HTMLDivElement>(null)
+    const { t } = useTranslation();
 
     useOnClickOutside(closeHandler, modalRef)
 
@@ -56,7 +58,7 @@ const CategoryModal: React.FC<CategoryModalProps> = ({ category, closeHandler })
                                 <li className={styles.modalItem} key={item._id}>
                                     <Link href={`category/${item._id}`}>
                                         <a>
-                                            {item.category_name}
+                                            {t(`common:category.${item.category_name}`)}
                                         </a>
                                     </Link>
                                 </li>

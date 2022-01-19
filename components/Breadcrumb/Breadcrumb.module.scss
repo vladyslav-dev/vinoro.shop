@@ -1,0 +1,37 @@
+@import '../../styles/index.scss';
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+
+    .breadcrumbItem {
+        display: inherit;
+        align-items: inherit;
+
+        a {
+            display: inline-flex;
+            align-items: inherit;
+            text-decoration: none;
+            color: $UI-color2;
+            font-weight: 500;
+            font-size: ptr(14);
+
+            svg {
+                margin-right: 8px;
+            }
+        }
+
+        &:last-child {
+            a {
+                color: $UI-color1;
+            }
+        }
+    }
+
+    .arrowNext {
+        display: flex;
+        justify-content: center;
+        transform: rotate(90deg);
+        margin: 0 10px;
+    }
+}

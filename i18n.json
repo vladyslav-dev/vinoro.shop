@@ -4,6 +4,6 @@
     "pages": {
         "*": ["common"],
         "/": ["home"],
-        "/product/60c5140c883796324490d240": ["product"]
+        "/product/[id]": ["product"]
     }
 }

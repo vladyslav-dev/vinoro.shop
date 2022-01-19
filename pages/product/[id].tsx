@@ -8,9 +8,13 @@ import useCurrentCategory from '@/hooks/useCurrentCategory';
 
 interface ProductProps {
     product?: IProduct;
+    category?: {
+        _id: string;
+        category_name: string;
+    };
 }
 
-const ProductPage: React.FC<ProductProps>= ({ product }) => {
+const ProductPage: React.FC<ProductProps>= ({ product, category }) => {
 
     const router = useRouter();
     
@@ -23,7 +27,7 @@ const ProductPage: React.FC<ProductProps>= ({ product }) => {
     return (
         <div className={styles.product}>
             <div className={styles.container}>
-                {product ? <Product product={product} /> : null}
+                {product ? <Product product={product} category={category} /> : null}
             </div>
         </div>
     )
@@ -35,6 +39,7 @@ export const getServerSideProps = async ({ query, locale }) => {
     return {
         props: {
             product: data?.product,
+            category: data?.category
         }
     }
 }

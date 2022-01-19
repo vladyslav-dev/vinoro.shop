@@ -72,7 +72,7 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
                 <div className={styles["container-xl"]}>
                     <div className={styles.wrapper}>
                         <div onClick={() => closeSearch()} className={styles.back}>
-                            <SearchBackArrowSvg  />
+                            <SearchBackArrowSvg />
                             <span>НАЗАД</span>
                         </div>
                         <div className={styles.inputWrapper}>

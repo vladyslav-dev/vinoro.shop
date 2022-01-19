@@ -1,130 +1,145 @@
 @import "../../styles/index.scss";
 
-.content {
-    width: 100%;
-    min-height: calc(100vh - 68px - 100px);
-    display: flex;
-    justify-content: space-between;
-    background-color: $UI-color5;
-    color: $UI-color1;
-    padding: 50px 0;
 
-    .leftPart {
-        flex: 1 1;
-        max-width: 500px;
+.wrapper {
+
+    .breadcrumb {
+        padding: 20px 0;
     }
+
+    .content {
+        width: 100%;
+        min-height: calc(100vh - 68px - 100px);
+        display: flex;
+        justify-content: space-between;
+        background-color: $UI-color5;
+        color: $UI-color1;
+        padding-bottom: 50px;
+        font-weight: 500;
     
-    .rightPart {
-        flex: 1;
-        margin-left: 34px;
-        margin-top: 40px;
-
-        .productNamePrice > p {
-            font-size: ptr(20);
-            line-height: ptr(26);
-            margin-bottom: 15px;
+        .leftPart {
+            flex: 1 1;
+            max-width: 500px;
         }
-
-        .productNamePrice > p:last-child {
-            font-size: ptr(18);
-            line-height: auto;
-            margin-top: 12px;
-            margin-bottom: 45px;
-        }
-
-        .productAvailability {
-            border-bottom: 1px solid $UI-color4;
-            padding-bottom: 7px;
-            font-size: ptr(12);
-            font-family: "Montserrat";
-            font-weight: 600;
-            .cardAvailabilityRed {
-                color: $red-color;
-            }
         
-            .cardAvailabilityGreen {
-                color: $green-color;
+        .rightPart {
+            flex: 1;
+            margin-left: 34px;
+            margin-top: 25px;
+    
+            .productNamePrice > p {
+                font-size: ptr(20);
+                line-height: ptr(26);
+                margin-bottom: 15px;
             }
-        }
-
-        .addButtons {
-            margin: 45px 0;
-            margin-bottom: 25px;
-        }
-
-        .productLink {
-            display: inline-flex;
-            align-items: center;
-            margin-top: 10px;
-            opacity: .5;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-
-            & > p {
-                color: $UI-color1;
+    
+            .productNamePrice > p:last-child {
+                font-size: ptr(18);
+                line-height: auto;
+                margin-top: 12px;
+                margin-bottom: 45px;
+            }
+    
+            .productAvailability {
+                border-bottom: 1px solid $UI-color4;
+                padding-bottom: 7px;
                 font-size: ptr(12);
                 font-family: "Montserrat";
-                font-weight: 500;
-                margin-right: 8px;
-            }
+                font-weight: 600;
+                letter-spacing: .3px;
+                .cardAvailabilityRed {
+                    color: $red-color;
+                }
             
-            & > svg {
-                width: 12px;
-                height: 12px;
+                .cardAvailabilityGreen {
+                    color: $green-color;
+                }
+            }
+    
+            .addButtons {
+                margin: 45px 0;
+                margin-bottom: 25px;
+    
+                button {
+                    width: 100%;
+                    margin: 15px 0;
+                }
+            }
+    
+            .productLink {
+                display: inline-flex;
+                align-items: center;
+                margin-top: 10px;
+                opacity: .5;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+    
+                & > p {
+                    color: $UI-color1;
+                    font-size: ptr(12);
+                    font-family: "Montserrat";
+                    font-weight: 600;
+                    margin-right: 8px;
+                }
+                
+                & > svg {
+                    width: 14px;
+                    height: 14px;
+                }
+            }
+    
+            .productDescriptions {
+                font-size: ptr(16);
+                line-height: ptr(28);
             }
         }
-
-        .productDescriptions {
-            font-size: ptr(16);
-            line-height: ptr(28);
+    
+        .productModalWarning {
+            position: fixed;
+            bottom: 60px;
+            right: -200px;
+            background-color: $UI-color1;
+            color: $UI-color5;
+            padding: 16px 24px;
+            border-radius: 4px;
+            font-size: ptr(11);
+            font-weight: 600;
+            box-shadow: 3px 4px 9px 1px rgba(82, 82, 82, 0.44);
+            transition: all 0.4s ease-in-out;
         }
-    }
-
-    .productModalWarning {
-        position: fixed;
-        bottom: 60px;
-        right: -200px;
-        background-color: $UI-color1;
-        color: $UI-color5;
-        padding: 16px 24px;
-        border-radius: 4px;
-        font-size: ptr(11);
-        font-weight: 600;
-        box-shadow: 3px 4px 9px 1px rgba(82, 82, 82, 0.44);
-        transition: all 0.4s ease-in-out;
-    }
-
-    .productModalWarningShow {
-        right: 20px;
-    }
-
-    @include md {
-        flex-direction: column;
-        align-items: center;
-
-        .leftPart {
-            max-width: 700px;
-            width: 70%;
+    
+        .productModalWarningShow {
+            right: 20px;
         }
-
-        .rightPart {
-            margin-left: 0;
+    
+        @include md {
+            flex-direction: column;
+            align-items: center;
+    
+            .leftPart {
+                max-width: 700px;
+                width: 70%;
+            }
+    
+            .rightPart {
+                margin-left: 0;
+            }
         }
-    }
-
-    @media screen and (max-width: 600px) {
-        .leftPart {
-            width: 100%;
+    
+        @media screen and (max-width: 600px) {
+            .leftPart {
+                width: 100%;
+            }
         }
-    }
-
-    @include sm {
-        .rightPart {
-            margin-top: 25px;
-            .productNamePrice > p {
-                font-size: ptr(17);
+    
+        @include sm {
+            .rightPart {
+                margin-top: 25px;
+                .productNamePrice > p {
+                    font-size: ptr(17);
+                }
             }
         }
     }

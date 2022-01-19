@@ -4,6 +4,7 @@ import styles from './CategoryTree.module.scss';
 import { GlobalContext } from '../../store';
 import { SortArrorSvg } from '@/icons/Arrow';
 import useCategoryEnum from '@/hooks/useCategoryEnum';
+import useTranslation from 'next-translate/useTranslation';
 
 type CatalogName = any
 
@@ -16,6 +17,8 @@ const CategoryTree = () => {
     const [currentCatalog, setCurrentCatalog] = useState<CatalogState>(null)
 
     const { catalogEnum } = useCategoryEnum()
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (isLoaded) {
@@ -37,7 +40,7 @@ const CategoryTree = () => {
                         className={`${styles.subCategotyItem} ${item._id === currentCategory ? styles.subCategoryItemActive : null}`}
                     >
                         <Link href={`/category/[id]`} as={`/category/${item._id}`} >
-                            <a>{item.category_name}</a>
+                            <a>{t(`common:category.${item.category_name}`)}</a>
                         </Link>
                     </li>
                 )

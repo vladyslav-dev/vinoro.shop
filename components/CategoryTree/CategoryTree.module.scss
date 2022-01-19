@@ -55,6 +55,11 @@
                         padding-left: 18px;
                         border-left: 2px solid transparent;
                         transition: border-color .2s linear;
+                        max-width: calc(100% - 25px);
+                        display: inline-block;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
 
                         &:hover {
                             border-color: $UI-color5;

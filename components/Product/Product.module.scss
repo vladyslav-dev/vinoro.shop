@@ -35,8 +35,9 @@
         .productAvailability {
             border-bottom: 1px solid $UI-color4;
             padding-bottom: 7px;
-            font-size: ptr(14);
-            font-weight: 500;
+            font-size: ptr(12);
+            font-family: "Montserrat";
+            font-weight: 600;
             .cardAvailabilityRed {
                 color: $red-color;
             }
@@ -64,6 +65,7 @@
             & > p {
                 color: $UI-color1;
                 font-size: ptr(12);
+                font-family: "Montserrat";
                 font-weight: 500;
                 margin-right: 8px;
             }

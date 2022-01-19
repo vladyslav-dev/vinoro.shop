@@ -1,0 +1,13 @@
+{
+    "availability": {
+        "inStock": "In stock",
+        "outOfStock": "Out of stock"
+    },
+    "copyLink": "Copy the product link",
+    "addToBasket": "ADD TO CART",
+    "alreadyInBasket": "ALREADY IN CART",
+    "addToFavorite": "ADD TO FAVORITES",
+    "alreadyInFavorite": "ALREADY IN FAVORITES",
+    "linkCopied": "Link copied"
+
+}

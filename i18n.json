@@ -3,6 +3,7 @@
     "defaultLocale": "uk-UA",
     "pages": {
         "*": ["common"],
-        "/": ["home"]
+        "/": ["home"],
+        "/product/60c5140c883796324490d240": ["product"]
     }
 }

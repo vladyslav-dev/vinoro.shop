@@ -7,6 +7,7 @@ import { IBasketProduct } from '@/interfaces/IBasket';
 import { IProductCard } from '@/interfaces/IFavorite'
 import { GlobalContext } from '@/store/index';
 import { LinkSvg } from '@/icons/Link';
+import useTranslation from 'next-translate/useTranslation';
 
 interface ProductPageProps {
     product: IProduct
@@ -14,9 +15,8 @@ interface ProductPageProps {
 
 const Product: React.FC<ProductPageProps> = ({ product }) => {
 
+    const { t } = useTranslation();
     const { BASKET, FAVORITES } = useContext(GlobalContext)
-    //console.log(product)
-
     const [isShowModal, setIsShowModal] = useState<boolean>(false);
 
     const isProductInBasket = BASKET.state.products.some(item => item._id === product._id)
@@ -55,7 +55,7 @@ const Product: React.FC<ProductPageProps> = ({ product }) => {
                     <p>{product.cost} UAH</p>
                 </div>
                 <div className={styles.productAvailability}>
-                    {product.availability ? <p className={styles.cardAvailabilityGreen}>Есть в наличии &#10004;</p> : <p className={styles.cardAvailabilityRed}>Нет в наличии &#10008;</p>}
+                    {product.availability ? <p className={styles.cardAvailabilityGreen}>{t("product:availability.inStock")}&nbsp; &#10004;</p> : <p className={styles.cardAvailabilityRed}>{t("product:availability.outOfStock")}&nbsp; &#10008;</p>}
                 </div>
                 <button className={styles.productLink} onClick={copyLink}>
                     <p>Копировать ссылку на продукт</p>

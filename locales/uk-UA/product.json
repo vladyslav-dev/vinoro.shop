@@ -1,0 +1,13 @@
+{
+    "availability": {
+        "inStock": "В наявності",
+        "outOfStock": "Немає в наявності"
+    },
+    "copyLink": "Копіювати посилання на продукт",
+    "addToBasket": "ДОДАТИ В КОШИК",
+    "alreadyInBasket": "ВЖЕ В КОШИКУ",
+    "addToFavorite": "ДОДАТИ В ОБРАНЕ",
+    "alreadyInFavorite": "ВЖЕ В ОБРАНОМУ",
+    "linkCopied": "Посилання скопійовано"
+
+}

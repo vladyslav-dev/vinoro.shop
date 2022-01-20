@@ -6,6 +6,7 @@ $animation-duration: 1.6s;
 $avatar-offset: 52 + 16;
 
 .imageContainer {
+  position: relative;
     
   .imageWrapper {
     position: absolute;

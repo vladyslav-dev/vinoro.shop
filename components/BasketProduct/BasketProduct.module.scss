@@ -8,7 +8,8 @@
     display: flex;
     
     .productImage {
-        max-width: 90px;
+        min-width: 90px;
+        position: relative;
     }
 
     .productInfo {

@@ -14,7 +14,6 @@ interface BreadcrumbProps {
 
 const Breadcrumb: React.FC<BreadcrumbProps> = ({ category }) => {
     const { t } = useTranslation();
-    console.log(category)
     return (
         <div className={styles.breadcrumb}>
             <div className={styles.breadcrumbItem}>
@@ -28,13 +27,15 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ category }) => {
             <div className={styles.arrowNext}>
                 <SortArrorSvg color="#AAAAAA" />
             </div>
-            <div className={styles.breadcrumbItem}>
-                <Link href={`/category/${category._id}`}>
-                    <a>
-                        <span>{t(`common:category.${category.category_name}`)}</span>
-                    </a>
-                </Link>
-            </div>
+            {category && (
+                <div className={styles.breadcrumbItem}>
+                    <Link href={`/category/${category?._id}`}>
+                        <a>
+                            <span>{t(`common:category.${category?.category_name}`)}</span>
+                        </a>
+                    </Link>
+                </div>
+            )}
         </div>
     )
 }

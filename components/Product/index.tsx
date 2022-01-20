@@ -24,9 +24,9 @@ const Product: React.FC<ProductPageProps> = ({ product, category }) => {
     const { BASKET, FAVORITES } = useContext(GlobalContext)
     const [isShowModal, setIsShowModal] = useState<boolean>(false);
 
-    const isProductInBasket = BASKET.state.products.some(item => item._id === product._id)
+    const isProductInBasket = BASKET.state.products.some(item => item?._id === product?._id)
 
-    const isPrductInFavorites = FAVORITES.state.products?.some(item => item._id === product._id)
+    const isPrductInFavorites = FAVORITES.state.products?.some(item => item?._id === product?._id)
 
     const addToBasket = () => BASKET.handlers.addProduct({
         _id: product._id,
@@ -56,15 +56,15 @@ const Product: React.FC<ProductPageProps> = ({ product, category }) => {
             </div>
             <div className={styles.content}>
                 <div className={styles.leftPart}>
-                    <Img src={product.image} />
+                    <Img src={product?.image} />
                 </div>
                 <div className={styles.rightPart}>
                     <div className={styles.productNamePrice}>
-                        <p>{product.name}</p>
-                        <p>{product.cost} UAH</p>
+                        <p>{product?.name}</p>
+                        <p>{product?.cost} UAH</p>
                     </div>
                     <div className={styles.productAvailability}>
-                        {product.availability ? <p className={styles.cardAvailabilityGreen}>{t("product:availability.inStock")}&nbsp; &#10004;</p> : <p className={styles.cardAvailabilityRed}>{t("product:availability.outOfStock")}&nbsp; &#10008;</p>}
+                        {product?.availability ? <p className={styles.cardAvailabilityGreen}>{t("product:availability.inStock")}&nbsp; &#10004;</p> : <p className={styles.cardAvailabilityRed}>{t("product:availability.outOfStock")}&nbsp; &#10008;</p>}
                     </div>
                     <button className={styles.productLink} onClick={copyLink}>
                         <p>{t("product:copyLink")}</p>
@@ -84,7 +84,7 @@ const Product: React.FC<ProductPageProps> = ({ product, category }) => {
                         />
                     </div>
                     <div className={styles.productDescriptions}>
-                        <p>{product.description}</p>
+                        <p>{product?.description}</p>
                     </div>
                 </div>
                 <div className={`${styles.productModalWarning} ${isShowModal ? styles.productModalWarningShow : null}`}>{t("product:linkCopied")}</div>

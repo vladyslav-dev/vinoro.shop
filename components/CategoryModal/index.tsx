@@ -55,10 +55,10 @@ const CategoryModal: React.FC<CategoryModalProps> = ({ category, closeHandler })
                     <div className={styles.modalContent}>
                         <ul className={styles.modalList}>
                             {sortedCategoryByNameLength.map((item) => (
-                                <li className={styles.modalItem} key={item._id}>
-                                    <Link href={`category/${item._id}`}>
+                                <li className={styles.modalItem} key={item?._id}>
+                                    <Link href={`category/${item?._id}`}>
                                         <a>
-                                            {t(`common:category.${item.category_name}`)}
+                                            {t(`common:category.${item?.category_name}`)}
                                         </a>
                                     </Link>
                                 </li>

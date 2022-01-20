@@ -33,14 +33,14 @@ const CategoryTree = () => {
 
     const getCatalog = (key: string) => {
         return category.map(item => {
-            if (catalogEnum[key] === item.catalog) {
+            if (catalogEnum[key] === item?.catalog) {
                 return (
                     <li 
-                        key={item._id} 
-                        className={`${styles.subCategotyItem} ${item._id === currentCategory ? styles.subCategoryItemActive : null}`}
+                        key={item?._id} 
+                        className={`${styles.subCategotyItem} ${item?._id === currentCategory ? styles.subCategoryItemActive : null}`}
                     >
-                        <Link href={`/category/[id]`} as={`/category/${item._id}`} >
-                            <a>{t(`common:category.${item.category_name}`)}</a>
+                        <Link href={`/category/[id]`} as={`/category/${item?._id}`} >
+                            <a>{t(`common:category.${item?.category_name}`)}</a>
                         </Link>
                     </li>
                 )

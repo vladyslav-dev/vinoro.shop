@@ -18,7 +18,7 @@ const api = async (req: NextApiRequest, res: NextApiResponse) => {
             case "uk-UA": return translateProduct(product, "uk")
                             .then(p => res.status(200).json({ product: p, category: {category_name, _id} }))
             case "en-US": return translateProduct(product, "en")
-                            .then(p => res.status(200).json({ product: p, categoryName: {category_name, _id} }))
+                            .then(p => res.status(200).json({ product: p, category: {category_name, _id} }))
             default: return res.status(200).json({ product, category: {category_name, _id}})
         }
     } catch (err) {

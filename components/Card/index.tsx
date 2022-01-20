@@ -20,7 +20,7 @@ const CardComponent = ({ product, removeButton }: CardProps) => {
 
     const removeFromFavotite = (e) => {
         e.stopPropagation()
-        FAVORITES.handlers.removeProduct(product._id)
+        FAVORITES.handlers.removeProduct(product?._id)
     }
 
     return (
@@ -42,7 +42,7 @@ const CardComponent = ({ product, removeButton }: CardProps) => {
                 }
             }}
         >
-            <Link href={`/product/[id]`} as={`/product/${product._id}`} passHref>
+            <Link href={`/product/[id]`} as={`/product/${product?._id}`} passHref>
                 <div>
                     <div className={styles.cardImage}>
                         <Img src={product.image} />

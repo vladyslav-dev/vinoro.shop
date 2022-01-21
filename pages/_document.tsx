@@ -1,12 +1,9 @@
+import React from 'react';
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 // import Head from 'next/head';
 
 
 class MyDocument extends Document {
-    // static async getInitialProps(ctx: DocumentContext) {
-    //     const initialProps = await Document.getInitialProps(ctx)
-    //     return { ...initialProps }
-    // }
 
     render() {
         return (
@@ -29,5 +26,21 @@ class MyDocument extends Document {
         )
     }
 }
+
+MyDocument.getInitialProps = async (ctx) => {
+    const originalRenderPage = ctx.renderPage;
+    ctx.renderPage = () => {
+      return originalRenderPage({
+        enhanceApp: (App) => (props) => <App {...props} />,
+      });
+    };
+    const initialProps = await Document.getInitialProps(ctx);
+    return {
+      ...initialProps,
+      styles: [
+        ...React.Children.toArray(initialProps.styles),
+      ],
+    };
+  };
 
 export default MyDocument

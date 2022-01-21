@@ -24,10 +24,6 @@ const Category = ({ products }: CategoryProps) => {
 
     const [range, setRange] = useState<RangeType>("md")
 
-    useEffect(() => {
-        if (!products) router.push("/")
-    }, [])
-
     useEffect(() => setCurrentCategory(router.query.id as string), [router])
 
     useEffect(() => setProductList(products), [products])
@@ -50,6 +46,15 @@ const Category = ({ products }: CategoryProps) => {
 
 export const getServerSideProps = async ({ query }) => {
     const { data } = await axios.get(`${process.env.DOMAIN}api/category/${query.id}`);
+
+    if (!data) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        }
+    }
 
     return {
         props: {

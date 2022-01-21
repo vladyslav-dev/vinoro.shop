@@ -19,9 +19,9 @@ const api = async (req: NextApiRequest, res: NextApiResponse) => {
                 .find({ category: req.query.id })
                 .sort([['availability', -1], ['order_id', 0]]);
 
-            return res.status(200).json({ success: true, products, category });
+            return res.status(200).json({ products, category });
         } else {
-            return res.status(200).json({ success: false, products: null, category: null });
+            return res.status(204).json({ products: null, category: null });
         }
 
     } catch (err) {

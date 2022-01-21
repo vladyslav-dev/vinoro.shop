@@ -43,5 +43,12 @@
         "Моющие средства": "Detergents",
         "Мыло, шампуни, гели для душа": "Soaps, shampoos, shower gels"
     },
-    "copyright": "© All rights reserved. Vinoro - 2020-2022"
+    "copyright": "© All rights reserved. Vinoro - 2020-2022",
+    "toolbar": {
+        "sortBy": "Sort by",
+        "default": "Default",
+        "ascendingPrice": "Ascending price",
+        "descendingPrice": "Descending price",
+        "totalProducts": "Total products"
+    }
 }

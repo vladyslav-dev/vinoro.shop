@@ -4,6 +4,7 @@ import { IProduct } from '@/interfaces/IProduct';
 import { sortMethod } from '@/utils/sortMethod';
 import { SortArrorSvg } from '@/icons/Arrow';
 import styles from './SortSelect.module.scss';
+import useTranslation from 'next-translate/useTranslation';
 
 type MethodType = "default" | "priceHigher" | "priceLower"
 
@@ -22,6 +23,8 @@ const SortSelect = (props: SortSelectProps) => {
 
     const { updateProductList, defaultProductList } = props;
 
+    const { t } = useTranslation();
+
     const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false);
 
     const optionListRef = useRef<HTMLUListElement>(null)
@@ -30,9 +33,9 @@ const SortSelect = (props: SortSelectProps) => {
     useOnClickOutside(() => setIsSelectOpen(false), titleRef)
 
     const [optionList, setOptionList] = useState<Array<SelectOptions>>([
-        { method: 'default', label: 'По умолчанию', selected: true },
-        { method: 'priceHigher', label: 'По возростанию цены', selected: false },
-        { method: 'priceLower', label: 'По убыванию цены', selected: false },
+        { method: 'default', label: t("common:toolbar.default"), selected: true },
+        { method: 'priceHigher', label: t("common:toolbar.ascendingPrice"), selected: false },
+        { method: 'priceLower', label: t("common:toolbar.descendingPrice"), selected: false },
     ])
 
     const sortHandler = (method: string, updateProductList: React.Dispatch<React.SetStateAction<Array<IProduct>>>): void => {
@@ -55,7 +58,7 @@ const SortSelect = (props: SortSelectProps) => {
     return (
         <div className={styles.selectWrapper}>
             <span className={styles.selectTitle} ref={titleRef} onClick={() => setIsSelectOpen(!isSelectOpen)}>
-                <span>Сортировать по</span>
+                <span>{t("common:toolbar.sortBy")}</span>
                 <span className={isSelectOpen ? styles.selectTitleArrowActive : styles.selectTitleArrow}>
                     <SortArrorSvg />
                 </span>

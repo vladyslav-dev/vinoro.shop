@@ -12,18 +12,22 @@
             display: inline-flex;
             align-items: inherit;
             text-decoration: none;
-            color: $UI-color2;
-            font-weight: 500;
-            font-size: ptr(14);
+            color: $UI-color1;
+            font-weight: 600;
+            font-size: ptr(12);
+            opacity: 1;
+            letter-spacing: .4px;
 
             svg {
-                margin-right: 8px;
+                width: 16px;
+                margin-right: 5px;
             }
         }
 
         &:last-child {
             a {
                 color: $UI-color1;
+                opacity: 1;
             }
         }
     }

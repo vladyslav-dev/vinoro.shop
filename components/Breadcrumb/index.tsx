@@ -25,7 +25,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ category }) => {
                 </Link>
             </div>
             <div className={styles.arrowNext}>
-                <SortArrorSvg color="#AAAAAA" />
+                <SortArrorSvg color="#1C1C1C" />
             </div>
             {category && (
                 <div className={styles.breadcrumbItem}>

@@ -15,7 +15,7 @@ const LanguageModal = () => {
                 {Object.keys(LOCALES).map(item => (
                     <li key={item} className={styles.langItem}>
                         <Link href={router.asPath} locale={item}>
-                            <a onClick={() => console.log("clicked!!!!!")} className={styles.langItemLink}>
+                            <a className={styles.langItemLink}>
                                 <span>{LOCALES[item]}</span>
                                 {router.locale === item && <CheckedSvg />}
                             </a>

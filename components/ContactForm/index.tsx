@@ -32,7 +32,7 @@ const ContactForm = () => {
     const submitHandler = event => {
         event.preventDefault()
 
-        console.log(getValues())
+        // console.log(getValues())
 
     }
     

@@ -1,12 +1,23 @@
 import mongoose from 'mongoose';
 
-async function dbConnect() {
-    try {
-        await mongoose.connect("mongodb+srv://admin:admin@cluster0.12if0.mongodb.net/vinoro-2-0-database", {});
-        console.log('MongoDB connected!')
-    } catch (err) {
-        console.error("MongoDB connection - ERROR")
+const connection: any = {};
+
+async function db() {
+  if (connection.isConnected) {
+    // already connected
+    return;
+  }
+  if (mongoose.connections.length > 0) {
+    connection.isConnected = mongoose.connections[0].readyState;
+    if (connection.isConnected === 1) {
+      // use previous connection
+      return;
     }
+    await mongoose.disconnect();
+  }
+  const dbConnect = await mongoose.connect(process.env.MONGO_URI, {});
+  console.log('MongoDB new connection!');
+  connection.isConnected = dbConnect.connections[0].readyState;
 }
 
-export default dbConnect;
+export default db;

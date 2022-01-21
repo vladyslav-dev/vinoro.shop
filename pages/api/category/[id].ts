@@ -3,11 +3,13 @@ import dbConnect from '@/utils/dbConnect';
 import ProductModel from '@/models/ProductModel';
 import CategoryModel from '@/models/CategoryModel';
 
-dbConnect();
+
 
 const api = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
+        dbConnect();
+        
         const categoryModel = await CategoryModel
             .findById(req.query.id).exec()
 

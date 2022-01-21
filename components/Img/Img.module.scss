@@ -12,8 +12,8 @@ $avatar-offset: 52 + 16;
     position: absolute;
     top: 0;
     left: 0;
-    transform: scale(0.2);
-    opacity: .2;
+    // transform: scale(0.2);
+    // opacity: .2;
     transition: all .1s ease-in-out;
 
     & > div {
@@ -28,10 +28,10 @@ $avatar-offset: 52 + 16;
     }
   }
 
-  .imageReady {
-    transform: scale(1);
-    opacity: 1;
-  }
+  // .imageReady {
+  //   transform: scale(1);
+  //   opacity: 1;
+  // }
 
   .imageSkeleton {
     width: 100%;

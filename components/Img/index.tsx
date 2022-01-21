@@ -18,8 +18,6 @@ const Img: React.FC<ImgProps> = (
 
     const [isImageReady, setIsImageReady] = React.useState(false);
 
-    console.log(isImageReady)
-
     return (
         <div className={styles.imageContainer}>
             <div className={`${styles.imageSkeleton}`} />

@@ -29,8 +29,5 @@ export const collectCategory = (category: ICategory[], catalogEnum: any): any =>
         }
         return acc
     }, [])
-
-    console.log(res)
-
     return res
 }

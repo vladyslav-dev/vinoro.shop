@@ -10,12 +10,12 @@ const HeaderBottom = () => {
     return (
         <div className={styles.HeaderBottom}>
             <div className={styles.HeaderBottomItem}>
-                <Link href="/">
+                <Link href="/contacts">
                     <a>{t("common:menu.contacts")}</a>
                 </Link>
             </div>
             <div className={styles.HeaderBottomItem}>
-                <Link href="/">
+                <Link href="/help">
                     <a>{t("common:menu.help")}</a>
                 </Link>
             </div>

@@ -62,9 +62,12 @@ const Layout: FC<LayoutProps> = ({ children, router }) => {
         if (isLoaded.favorite) {
             localStorage.setItem("FAVORITES", JSON.stringify(state.FAVORITES.state))
         } else {
-            setIsLoaded({ ...isLoaded, favorite: true })
+            setIsLoaded({ ...isLoaded, favorite: true });
         }
     }, [state.FAVORITES])
+
+    const isNavbarTransparent = router.pathname === '/' || router.pathname === '/help';
+    const isShowFooter = router.pathname !== '/' && router.pathname !== '/help';
 
 
     return (
@@ -76,10 +79,10 @@ const Layout: FC<LayoutProps> = ({ children, router }) => {
                 <meta charSet="utf-8" />
                 <link rel="icon" href="/favicon.ico" />
             </Head> */}
-           
-            <Navbar color={router.pathname === '/' ? 'transparent' : null} />
+
+            <Navbar color={isNavbarTransparent ? 'transparent' : null} />
             {children}
-            {router.pathname !== '/' && <Footer /> }
+            {isShowFooter && <Footer /> }
         </>
     );
 }

@@ -46,3 +46,5 @@ jspm_packages
 **/public/worker-*.js.map
 
 .env.local
+
+**/.DS_Store

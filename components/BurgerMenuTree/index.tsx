@@ -15,7 +15,7 @@ import { HeartSvg } from '../Icons/Heart';
 import { HomeSvg } from '@/icons/Home';
 import { HelpSvg } from '@/icons/Help';
 
-interface BurgerMenuTreeProps { 
+interface BurgerMenuTreeProps {
     isActive?: boolean;
     openSearchHandler: () => void;
 }
@@ -27,7 +27,7 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
     const { t } = useTranslation();
 
     const isShowCatalog = () => {
-        return router.pathname.includes("/category") || router.pathname.includes("/product") 
+        return router.pathname.includes("/category") || router.pathname.includes("/product")
     }
 
     const [isCatalogOpen, setIsCatalogOpen] = useState<boolean>(() => isShowCatalog());
@@ -58,7 +58,7 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                     </Link>
                 </li>
                 <li className={styles.menuListItem}>
-                    <Link href={`/`}>
+                    <Link href={`/help`}>
                         <a>
                             <HelpSvg />
                             <span>{t("common:menu.help")}</span>
@@ -69,7 +69,7 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
             <div className={`${styles.catalog} ${isCatalogOpen ? styles.catalogActive : null}`}>
                 <CategoryTree />
             </div>
-            <button 
+            <button
                 className={`${styles.catalogBack} ${isCatalogOpen ? styles.catalogBackActive : null}`}
                 onClick={() => setIsCatalogOpen(false)}
             >
@@ -79,14 +79,14 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
             <ul className={styles.bottomMenu}>
                 <li className={styles.bottomMenuItem} onClick={() => openSearchHandler()}>
                     <HeaderIcon label={t("common:navbarIcons.search")}>
-                        <SearchSvg /> 
+                        <SearchSvg />
                     </HeaderIcon>
                 </li>
                 <li className={styles.bottomMenuItem}>
                     <Link href="/favorite">
                         <a>
                             <HeaderIcon label={t("common:navbarIcons.favorites")}>
-                                <HeartSvg /> 
+                                <HeartSvg />
                             </HeaderIcon>
                         </a>
                     </Link>
@@ -95,7 +95,7 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                     <Link href="/help">
                         <a>
                             <HeaderIcon label={t("common:menu.help")}>
-                                <HelpSvg /> 
+                                <HelpSvg />
                             </HeaderIcon>
                         </a>
                     </Link>

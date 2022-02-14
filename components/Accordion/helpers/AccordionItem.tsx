@@ -38,13 +38,13 @@ const AccordionItem: React.FC<IAccordionItem> = ({title, description, controller
                 <h6 className={styles.accordionItemTitle}>{title}</h6>
                 <SortArrorSvg color='#FFFFFF' />
             </div>
-            <p
+            <div
                 ref={hiddenBlockRef}
                 className={styles.accordionItemDescription}
                 style={{ maxHeight: isCurrentAccord ? `${height}px` : '0' }}
             >
                 <div dangerouslySetInnerHTML={{__html: description}} />
-            </p>
+            </div>
         </li>
     )
 }

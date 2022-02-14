@@ -1,0 +1,26 @@
+{
+    "FAQ": {
+        "title": "FAQ",
+        "questions": [
+            {
+                "title": "question 1 title",
+                "description": "desk 1"
+            },
+            {
+                "title": "question 2 title",
+                "description": "desck 2"
+            },
+            {
+                "title": "question 3 title",
+                "description": "desk 3"
+            }
+        ]
+    },
+    "browsers": {
+        "title": "Website problems",
+        "paragraph-1": "ATTENTION. Possible problems with the display and functional interaction of the site when using additional extensions or inappropriate browsers are not ruled out.",
+        "paragraph-2": "For the correct operation of the site, we recommend using the following browsers:",
+        "paragraph-3": "If a defect is found, we will be glad to ",
+        "paragraph-3-link": "receive feedback."
+    }
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './Accordion.module.scss';
 import AccordionItem from './helpers/AccordionItem';
 import { IAccordion } from '@/interfaces/IAccordion';
+import useTranslation from 'next-translate/useTranslation';
 
 export interface IAccordionController {
     getCurrentAccord: () => string;
@@ -9,11 +10,13 @@ export interface IAccordionController {
     checkIsCurrentAccord: (title: string) => boolean;
 }
 
-interface IAccordionProps { accordionData: IAccordion[] }
-
-const Accordion: React.FC<IAccordionProps> = ({ accordionData }) => {
+const Accordion: React.FC= () => {
 
     const [currentAccord, setCurrentAccord] = useState<string>('');
+
+    const { t } = useTranslation();
+
+    const accordionData: IAccordion[] = t(`help:FAQ.questions`, { count: 1}, { returnObjects: true } );
 
     const accordionController: IAccordionController = {
         getCurrentAccord: () => currentAccord,
@@ -21,9 +24,13 @@ const Accordion: React.FC<IAccordionProps> = ({ accordionData }) => {
         checkIsCurrentAccord: (title) => currentAccord === title
     }
 
+    if (!Array.isArray(accordionData)) {
+        return null
+    }
+
     return (
         <div className={styles.accordion}>
-            <h2 className={styles.accordionTitle}>Часто задаваемие вопроси</h2>
+            <h2 className={styles.accordionTitle}>{t("help:FAQ.title")}</h2>
             <ul className={styles.accordionList}>
                 {accordionData?.map((acc: IAccordion) => (
                    <AccordionItem key={acc?.title} {...acc}  controller={accordionController}  />

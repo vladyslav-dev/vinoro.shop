@@ -69,6 +69,9 @@ const Layout: FC<LayoutProps> = ({ children, router }) => {
     const isNavbarTransparent = router.pathname === '/' || router.pathname === '/help';
     const isShowFooter = router.pathname !== '/' && router.pathname !== '/help';
 
+    const navbarStyles = {
+        background: isNavbarTransparent ? 'transparent' : '#1C1C1C'
+    }
 
     return (
         <>
@@ -80,7 +83,7 @@ const Layout: FC<LayoutProps> = ({ children, router }) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head> */}
 
-            <Navbar color={isNavbarTransparent ? 'transparent' : null} />
+            <Navbar navbarStyles={navbarStyles} />
             {children}
             {isShowFooter && <Footer /> }
         </>

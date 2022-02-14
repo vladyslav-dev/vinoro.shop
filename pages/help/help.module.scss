@@ -1,21 +1,65 @@
 @import '../../styles/index.scss';
 
 .help {
-    background-image: url(../../public/static/images/help-background.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
 
-    &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        z-index: 2;
+    .helpBackground {
+        background-image: url(../../public/static/images/help-background.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: fixed;
         width: 100vw;
         height: 100vh;
-        background: linear-gradient(159.76deg, rgba(38, 38, 38, 0.4785) 0%, rgba(51, 51, 51, 0.4089) 50%, rgba(38, 38, 38, 0.4263) 71.35%, rgba(58, 58, 58, 0.4872) 100%);
-        backdrop-filter: blur(9px);
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(159.76deg, rgba(38, 38, 38, 0.4785) 0%, rgba(51, 51, 51, 0.4089) 50%, rgba(38, 38, 38, 0.4263) 71.35%, rgba(58, 58, 58, 0.4872) 100%);
+            backdrop-filter: blur(12px);
+        }
+    }
+
+    .helpContent {
+        z-index: 3;
+        width: 100%;
+        min-height: calc(100vh - 133px);
+        overflow: hidden;
+        margin-top: 98px;
+        margin-bottom: 30px;
+
+        .helpInnerContent {
+            width: 100%;
+            display: flex;
+            gap: 90px;
+            justify-content: space-between;
+            position: absolute;
+            overflow: scroll;
+            min-height: calc(100vh - 117px);
+            inset: 0;
+
+            &::-webkit-scrollbar {background-color: transparent;width:6px; }
+            &::-webkit-scrollbar-track {background-color: transparent;}
+            &::-webkit-scrollbar-thumb {background-color: rgba(255, 255, 255, 0.9);border-radius:16px;border:4px solid transparent; transition: all .3s;}
+
+            @media (max-width: 1000px) {
+                padding: 0 20px;
+                flex-direction: column;
+                box-sizing: border-box;
+            }
+
+            @media (max-width: 420px) {
+                padding: 0 10px;
+            }
+
+            .helpInnerContentItem {
+                flex: 1;
+            }
+        }
     }
 }

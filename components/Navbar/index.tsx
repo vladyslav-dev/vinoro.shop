@@ -19,12 +19,12 @@ import LanguageModal from '@/components/LanguageModal';
 
 
 export interface NavbarProps {
-    color?: string;
+    navbarStyles?: React.CSSProperties;
 };
 
 const Navbar = (props: NavbarProps) => {
-    
-    const { color } = props;
+
+    const { navbarStyles } = props;
 
     const { t } = useTranslation();
     const { BASKET } = useContext(GlobalContext)
@@ -50,7 +50,7 @@ const Navbar = (props: NavbarProps) => {
 
     return (
         <>
-            <div className={styles.navbarWrapper} style={{ backgroundColor: color || "#1C1C1C" }}>
+            <div className={styles.navbarWrapper} style={ navbarStyles }>
                 <div className={styles["container-xl"]}>
                     <div className={styles.navbar}>
                         <div className={styles.navbarIconList}>
@@ -72,7 +72,7 @@ const Navbar = (props: NavbarProps) => {
                         </div>
                         <div className={styles.navbarIconList}>
                             <div className={`${styles.navbarIcon} ${styles.favoriteDesktop}`}>
-                                <Link href="/favorite/">
+                                <Link href="/favorite">
                                     <div className={styles.favoriteIcon}>
                                         <HeaderIcon label={t("common:navbarIcons.favorites")}>
                                             <HeartSvg />
@@ -90,7 +90,7 @@ const Navbar = (props: NavbarProps) => {
                                         {productsNumber ? <div className={styles.basketCount}>{productsNumber}</div> : null}
                                     </HeaderIcon>
                                 </div>
-                                
+
                             </div>
                             <div className={styles.navbarIcon}>
                                 <div ref={iconRef} onClick={() => setIsLanguageModalOpen(!isLanguageModalOpen)}>
@@ -106,7 +106,7 @@ const Navbar = (props: NavbarProps) => {
             </div>
             {showSearch && <SearchModal closeSearch={closeModalSearch} />}
             <div className={styles.navbarSimulator} style={{
-                display: color === 'transparent' ? 'none' : 'block'
+                display: navbarStyles.background === 'transparent' ? 'none' : 'block'
             }} />
         </>
     );

@@ -1,0 +1,84 @@
+@import '../../styles/index.scss';
+
+.accordion {
+    .accordionTitle {
+        margin-bottom: 60px;
+        font-size: ptr(24);
+        font-weight: 500;
+        line-height: ptr(32);
+
+        @media (max-width: 420px) {
+            margin-bottom: 20px;
+        }
+    }
+
+    .accordionList {
+
+        .accordionItem {
+            border-bottom: 2px solid $UI-color5;
+            transition: all .4s ease-in-out;
+            overflow: hidden;
+            padding: 0 20px;
+            cursor: pointer;
+
+            @media (max-width: 420px) {
+                padding: 0 10px;
+            }
+
+            &:first-child {
+                border-top: 2px solid $UI-color5;
+            }
+
+            .accordionItemRow {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 62px;
+
+                .accordionItemTitle {
+                    font-size: ptr(17);
+                    font-weight: 600;
+                }
+
+                svg {
+                    transition: .4s ease-in-out;
+                    transform: rotate(180deg);
+                }
+            }
+
+            .accordionItemDescription {
+                opacity: 0;
+                transform: translateY(80px);
+                transition: all .4s ease-in-out;
+                font-size: ptr(13);
+                font-weight: 500;
+                line-height: ptr(26);
+
+                p {
+                    white-space: pre-wrap;
+                    font-family: inherit;
+                }
+
+                ul {
+                    list-style-type: disc;
+                    padding: 6px 0 6px 24px;
+                }
+            }
+        }
+
+        .active {
+            .accordionItemDescription {
+                opacity: .9;
+                transform: translateY(0);
+                transition: all .4s ease-in-out;
+                padding-bottom: 28px;
+            }
+
+            .accordionItemRow {
+                svg {
+                    transform: rotate(0);
+                }
+            }
+        }
+    }
+}

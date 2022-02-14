@@ -1,0 +1,59 @@
+@import '../../styles/index.scss';
+
+.browsersContent {
+    padding-right: 10px;
+
+    .textContent {
+
+        h2 {
+            margin-bottom: 52px;
+            font-size: ptr(24);
+            font-weight: 500;
+            line-height: ptr(32);
+
+            @media (max-width: 420px) {
+                margin-bottom: 20px;
+            }
+        }
+
+        p {
+            font-size: ptr(13);
+            font-weight: 500;
+            line-height: ptr(26);
+        }
+
+        a {
+            color: #55A0E6;
+        }
+    }
+
+    .imagesContent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 420px;
+        margin: 40px auto;
+
+        .imagesContentItem {
+            width: 15%;
+            a {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                color: $UI-color5;
+                text-decoration: none;
+
+                div {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            span {
+                font-size: ptr(13);
+                font-weight: 500;
+                margin-top: 20px;
+            }
+        }
+    }
+}

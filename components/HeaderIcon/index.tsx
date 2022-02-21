@@ -12,7 +12,7 @@ export interface HeaderIconProps {
 const HeaderIcon: FC<HeaderIconProps> = ({ children, label = 'icon', click, className, iconStyles }) => (
     <div className={`${styles.headerIcon} ${className}`} onClick={click}>
         <span className={styles.headerIconImage} style={iconStyles}>{children}</span>
-        <span className={styles.headerIconLabel}>{label}</span>
+        <span className={styles.headerIconLabel} data-icon-label>{label}</span>
     </div>
 );
 

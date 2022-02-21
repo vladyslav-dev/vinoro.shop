@@ -1,129 +1,46 @@
-import React, { useState, useEffect, useContext } from 'react'
-import styles from './Stepper.module.scss';
-import { GlobalContext } from '@/store/index';
-
+import { useEffect } from 'react';
+import Router, { useRouter } from 'next/router';
+import NProgress from 'nprogress';
 //Components
-import { StepperCart, StepperUser, StepperMoney, StepperCheckMark } from '@/components/Icons/StepperIcon';
-import StepperComponent from '@/components/StepperComponent';
-import PersonalDataForm from '@/components/PersonalDataForm';
-import BasketProduct from '@/components/BasketProduct';
-import OrderDeliveryForm from '@/components/OrderDeliveryForm';
-import PlacedOrder from '@/components/PlacedOrder';
+import Stepper from '@/components/Stepper';
 
 
-const Stepper = () => {
+const Order = () => {
 
-    const { BASKET, ORDER } = useContext(GlobalContext)
+   const router = useRouter();
 
-    const [step, setStep] = useState(0) //current step
 
-    const [stepsContent, setStepsContent] = useState([
-        {
-            id: 0,
-            label: 'КОРЗИНА',
-            icon: <StepperCart />,
-            component: <StepperBasketList />,
-            isActive: false,
-            isPassed: false,
-            isLast: false,
-            isButtonDisabled: false,
-        },
-        {
-            id: 1,
-            label: 'ЛИЧНЫЕ ДАННЫЕ',
-            icon: <StepperUser />,
-            component: <PersonalDataForm updateButtonDisabled={updateButtonDisabled} />,
-            isActive: false,
-            isPassed: false,
-            isLast: false,
-            isButtonDisabled: !ORDER.state.isPersonDataValid,
-        },
-        {
-            id: 2,
-            label: 'ДОСТАВКА И ОПЛАТА',
-            icon: <StepperMoney />,
-            component: <OrderDeliveryForm updateButtonDisabled={updateButtonDisabled} />,
-            isActive: false,
-            isPassed: false,
-            isLast: false,
-            isButtonDisabled: !ORDER.state.isPaymentValid,
-        },
-        {
-            id: 3,
-            label: 'ЗАКАЗ ОФОРМЛЕН',
-            icon: <StepperCheckMark />,
-            component: <PlacedOrder />,
-            isActive: false,
-            isPassed: false,
-            isLast: true,
-            isButtonDisabled: false,
+    const message = 'Do you want to leave?';
+    const unsavedChanges = true
+
+    useEffect(() => {
+    const routeChangeStart = url => {
+        if (Router.asPath !== url && unsavedChanges && !confirm(message)) {
+        Router.events.emit('routeChangeError');
+        throw 'Abort route change. Please ignore this error.';
         }
-    ]) //steps data
+    };
 
-    useEffect(() => {
-        setStepsContent([...stepsContent.map(el => el.id === step ? { ...el, isActive: true, isPassed: true } : { ...el, isActive: false })])
-    }, [step])
+    const beforeunload = e => {
+        if (unsavedChanges) {
+        e.preventDefault();
+        e.returnValue = message;
+        return message;
+        }
+    };
 
-    function updateButtonDisabled(bool: boolean) {
-        setStepsContent((prevState) => prevState.map(item => item.isActive ? { ...item, isButtonDisabled: bool } : item))
-    }
+    window.addEventListener('beforeunload', beforeunload);
+    Router.events.on('routeChangeStart', routeChangeStart);
 
-    const nextButtonHandler = () => {
-        setStep(step === stepsContent.length - 1 ? stepsContent.length - 1 : step + 1)
-    }
+    return () => {
+        window.removeEventListener('beforeunload', beforeunload);
+        Router.events.off('routeChangeStart', routeChangeStart);
+    };
+    }, [unsavedChanges]);
 
-    const backButtonHandler = () => {
-        setStep(step > 0 ? step - 1 : 0)
-    }
-
-    return (
-        <div className={styles.order}>
-            <div className={styles["container-xl"]} style={{ padding: 0 }}>
-                <div className={styles.wrraper}>
-                    <StepperComponent
-                        stepsContent={stepsContent}
-                        nextButtonHandler={nextButtonHandler}
-                        backButtonHandler={backButtonHandler}
-                        products={BASKET.state.products}
-                    >
-                        {
-                            stepsContent.map(el => {
-                                return (
-                                    <div key={el.id}>
-                                        {el.id === step ? el.component : null}
-                                    </div>
-                                )
-                            })
-                        }
-                    </StepperComponent>
-                </div>
-            </div>
-        </div>
-    )
+    return <Stepper />
 }
 
-export default Stepper
+export default Order
 
 
-export const StepperBasketList = () => {
-    const { BASKET, ORDER } = useContext(GlobalContext)
-
-    useEffect(() => {
-        ORDER.handlers.updateState({ products: BASKET.state.products })
-    }, [])
-
-    return (
-        <div className={styles["container-xl"]}>
-            <div className={styles.basketText}>
-                <p>КОРЗИНА</p>
-            </div>
-            <div className={styles.basketActual}>
-                {BASKET.state.products.map(item => (
-                    <div className={styles.productWrapper} key={item._id}>
-                        <BasketProduct product={item} key={item._id} />
-                    </div>
-                ))}
-            </div>
-        </div>
-    )
-}

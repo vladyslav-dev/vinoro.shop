@@ -67,7 +67,9 @@ const Layout: FC<LayoutProps> = ({ children, router }) => {
     }, [state.FAVORITES])
 
     const isNavbarTransparent = router.pathname === '/' || router.pathname === '/help';
-    const isShowFooter = router.pathname !== '/' && router.pathname !== '/help';
+
+    const pagesWithoutFooter = ['/', '/help', '/order'];
+    const isShowFooter = pagesWithoutFooter.every(route => router.pathname !== route);
 
     const navbarStyles = {
         background: isNavbarTransparent ? 'transparent' : '#1C1C1C'

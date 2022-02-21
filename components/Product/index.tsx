@@ -83,9 +83,11 @@ const Product: React.FC<ProductPageProps> = ({ product, category }) => {
                             click={() => { !isPrductInFavorites ? addFavorites() : null }}
                         />
                     </div>
-                    <div className={styles.productDescriptions}>
-                        <p>{product?.description}</p>
-                    </div>
+                    {product?.description && (
+                        <div className={styles.productDescriptions}>
+                            <p>{product?.description}</p>
+                        </div>
+                    )}
                 </div>
                 <div className={`${styles.productModalWarning} ${isShowModal ? styles.productModalWarningShow : null}`}>{t("product:linkCopied")}</div>
             </div>

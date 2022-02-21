@@ -7,16 +7,15 @@ import { OrderUserSvg } from '@/icons/User';
 import { ProductSvg } from '@/icons/Product';
 
 //components
-import TableChildren from '../TableChildren';
-import BasketProduct from '../BasketProduct';
-import TotalPrice from '../TotalPrice';
+import TableChildren from '@/components/TableChildren';
+import BasketProduct from '@/components/BasketProduct';
+import TotalPrice from '@/components/TotalPrice';
 
 type ValidDdata = {
     id: number,
     label: string,
     value: string
 }
-
 
 const PlacedOrder = () => {
     const { ORDER, BASKET } = useContext(GlobalContext)
@@ -29,7 +28,6 @@ const PlacedOrder = () => {
         })
         BASKET.handlers.clearState()
     }, [])
-
 
     const validData: ValidDdata[] = [
         {

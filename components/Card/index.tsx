@@ -36,9 +36,9 @@ const CardComponent = ({ product, removeButton }: CardProps) => {
                 visible: {
                     scale: 1,
                     opacity: 1,
-                    transition: {
-                        // delay: .5
-                    }
+                    // transition: {
+                    //     delay: .5
+                    // }
                 }
             }}
         >

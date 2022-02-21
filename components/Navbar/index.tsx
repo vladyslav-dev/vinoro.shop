@@ -41,12 +41,8 @@ const Navbar = (props: NavbarProps) => {
     const openModalSearch = () => setShowSearch(true)
     const closeModalSearch = () => setShowSearch(false)
 
-    const showBasket = () => {
-        setBasketIsOpen(true)
-    }
-    const hideBasket = () => {
-        setBasketIsOpen(false)
-    }
+    const showBasket = () => setBasketIsOpen(true)
+    const hideBasket = () => setBasketIsOpen(false)
 
     return (
         <>
@@ -72,7 +68,7 @@ const Navbar = (props: NavbarProps) => {
                         </div>
                         <div className={styles.navbarIconList}>
                             <div className={`${styles.navbarIcon} ${styles.favoriteDesktop}`}>
-                                <Link href="/favorite">
+                                <Link href="/favorite" passHref>
                                     <div className={styles.favoriteIcon}>
                                         <HeaderIcon label={t("common:navbarIcons.favorites")}>
                                             <HeartSvg />
@@ -81,11 +77,11 @@ const Navbar = (props: NavbarProps) => {
                                 </Link>
                             </div>
                             <div className={styles.navbarIcon}>
-                                <div onMouseEnter={showBasket} onMouseLeave={hideBasket}>
+                                <div onClick={showBasket} onMouseEnter={showBasket} onMouseLeave={hideBasket}>
                                     <HeaderIcon label={t("common:navbarIcons.basket")} className={styles.basketIcon}>
                                         <BagSvg />
                                         <div className={styles.basket} style={{right: basketIsOpen ? 0 : "-550px"}}>
-                                            <Basket />
+                                            <Basket closeBasketHandler={hideBasket} />
                                         </div>
                                         {productsNumber ? <div className={styles.basketCount}>{productsNumber}</div> : null}
                                     </HeaderIcon>

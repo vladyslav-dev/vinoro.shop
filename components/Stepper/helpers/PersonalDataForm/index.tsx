@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react'
 import styles from './PersonalDataForm.module.scss'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { SavedUserSvg } from '@/icons/User'
 import { GlobalContext } from '@/store/index';
 import * as yup from "yup";
 
@@ -53,13 +52,6 @@ const PersonalDataForm = ({ updateButtonDisabled }) => {
         }
     }, [isValid]);
 
-    // const savedUser = { // fix it later
-    //     isSaved: true,
-    //     user: {
-    //         name: "Владислав Григоренко"
-    //     }
-    // }
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
@@ -68,17 +60,6 @@ const PersonalDataForm = ({ updateButtonDisabled }) => {
                         <div className={styles.formHeaderItem}>
                             <h3>ЛИЧНЫЕ ДАННЫЕ</h3>
                         </div>
-                        {/* {savedUser.isSaved && (
-                            <div className={styles.formHeaderItem}>
-                                <div className={styles.formHeaderItemText}>
-                                    Сохраненный пользователь
-                                </div>
-                                <div className={styles.formSavedUser}>
-                                    <SavedUserSvg />
-                                    <p>{savedUser.user.name}</p>
-                                </div>
-                            </div>
-                        )} */}
                     </div>
                     <form onSubmit={(e) => e.preventDefault()} autoComplete="none" className={styles.form}>
                         <div className={styles.formRowWrapper}>

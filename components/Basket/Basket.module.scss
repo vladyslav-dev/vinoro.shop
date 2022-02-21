@@ -9,16 +9,58 @@
     background-color:  $UI-color5;
     color: $UI-color1;
     box-shadow: -4px 0px 10px 1px rgba(87, 87, 87, 0.13);
-    
+
     @include sm {
         padding: 15px 10px 150px 10px;
     }
 
-    .basektTitle {
-        color: $UI-color1;
-        font-size: ptr(19);
-        font-weight: normal;
+    .basketTop {
         margin-bottom: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .basektTitle {
+            color: $UI-color1;
+            font-size: ptr(19);
+            font-weight: normal;
+        }
+
+        .basketClose {
+            all: unset;
+            width: 22px;
+            height: 22px;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: .4s ease-in-out;
+            display: none;
+
+            @include sm {
+                display: block;
+            }
+
+            &:hover {
+                transform: rotate(180deg);
+            }
+
+            &::before, &::after {
+                content: '';
+                display: block;
+                transform-origin: 9.5px;
+                width: 22px;
+                height: 2.2px;
+                border-radius: 4px;
+                background-color: $UI-color1;
+            }
+
+            &::before {
+                transform: rotate(45deg);
+            }
+
+            &::after {
+                transform: rotate(-45deg);
+            }
+        }
     }
 
     .basketList {
@@ -44,7 +86,7 @@
             font-size: ptr(14);
             opacity: .8;
         }
-        
+
     }
 
     .buttonWrapper {

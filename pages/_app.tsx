@@ -1,15 +1,14 @@
-import React from 'react';
-import App, { AppProps, AppContext } from 'next/app';
-import axios from 'axios';
-import Router from 'next/router';
-import NProgress from 'nprogress';
 import '@/styles/reset.scss';
 import '@/styles/index.scss';
+import { useEffect } from 'react';
+import axios from 'axios';
+import NProgress from 'nprogress';
+import Router, { useRouter } from 'next/router';
+import App, { AppProps, AppContext } from 'next/app';
 import { ICategory } from '@/interfaces/ICategory';
-import Layout from 'layout';
-import { useRouter } from 'next/router';
 import { GlobalContextProvider } from '@/store/index';
 import { motion, AnimatePresence } from 'framer-motion';
+import Layout from 'layout';
 
 
 const routeChange = () => {
@@ -26,9 +25,6 @@ const routeChange = () => {
   };
   tempFix();
 };
-
-Router.events.on("routeChangeComplete", routeChange);
-Router.events.on("routeChangeStart", routeChange);
 
 
 MyApp.getInitialProps = async (context: AppContext) => {
@@ -49,11 +45,14 @@ interface MyAppProps extends AppProps {
   category: Array<ICategory>;
 }
 
-function MyApp({ Component, pageProps, category } : MyAppProps) { 
+function MyApp({ Component, pageProps, category } : MyAppProps) {
 
   const router = useRouter()
 
-  React.useEffect(() => {
+  Router.events.on("routeChangeComplete", routeChange);
+  Router.events.on("routeChangeStart", routeChange);
+
+  useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
@@ -65,30 +64,30 @@ function MyApp({ Component, pageProps, category } : MyAppProps) {
       <GlobalContextProvider categoryData={category}>
         <Layout router={router}>
           <AnimatePresence exitBeforeEnter>
-              <motion.div
-                  key={router.route}
-                  initial="pageInitial"
-                  animate="pageAnimate"
-                  exit="pageExit"
-                  variants={{
-                      pageInitial: {
-                          opacity: 0,
-                      },
-                      pageAnimate: {
-                          opacity: 1,
-                      },
-                      pageExit: {
-                          backgroundColor: "rgba(255, 255, 255, .5)",
-                          opacity: 0,
-                      }
-                  }}
-                  transition={{
-                      x: { type: "spring", stiffness: 100 },
-                      default: { duration: .3 },
-                    }}
-              >
-                  <Component key={router.asPath} {...pageProps} />
-              </motion.div>
+            <motion.div
+              key={router.route}
+              initial="pageInitial"
+              animate="pageAnimate"
+              exit="pageExit"
+              variants={{
+                  pageInitial: {
+                      opacity: 0,
+                  },
+                  pageAnimate: {
+                      opacity: 1,
+                  },
+                  pageExit: {
+                      backgroundColor: "rgba(255, 255, 255, .5)",
+                      opacity: 0,
+                  }
+              }}
+              transition={{
+                  x: { type: "spring", stiffness: 100 },
+                  default: { duration: .3 },
+                }}
+            >
+              <Component key={router.asPath} {...pageProps} />
+            </motion.div>
           </AnimatePresence>
         </Layout>
       </GlobalContextProvider>

@@ -6,13 +6,21 @@ import Button from '../Button';
 import Link from 'next/link';
 import TotalPrice from '../TotalPrice';
 
-const Basket = () => {
+const Basket = ({ closeBasketHandler }) => {
 
     const { BASKET } = useContext(GlobalContext)
 
+    const closeHandler = event => {
+        event.stopPropagation();
+        closeBasketHandler();
+    }
+
     return (
         <div className={styles.basket}>
-            <h3 className={styles.basektTitle}>Корзина</h3>
+            <div className={styles.basketTop}>
+                <h3 className={styles.basektTitle}>Корзина</h3>
+                <button className={styles.basketClose} onClick={closeHandler}></button>
+            </div>
             <ul className={styles.basketList}>
                 {!BASKET.state.products.length ?
                     <p>У вас нет добавленных товаров в корзине</p> :
@@ -24,10 +32,10 @@ const Basket = () => {
                 <TotalPrice products={BASKET.state.products} title="Итого: " />
                 {BASKET.state.products.length ?
 
-                    <Link href="/order/">
-                        <div className={styles.buttonWrapper}>
+                    <Link href="/order/" passHref replace>
+                        <a className={styles.buttonWrapper}>
                             <Button label="Далее" styles={{ width: '100%' }} click={() => null} type="default" />
-                        </div>
+                        </a>
                     </Link> :
 
                     <Button label="Далее" styles={{ width: '50%' }} click={() => null} type="disabled" />

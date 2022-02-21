@@ -21,14 +21,6 @@
         align-items: center;
         margin-right: -20px;
 
-    //     &:first-child > div:first-child {
-    //      //   margin-right: 26px;
-
-    //         @include sm {
-    //  //           margin-right: 14px;
-    //         }
-    //     }
-
         & > div:first-child {
            margin-right: 10px;
         }
@@ -41,11 +33,11 @@
             min-width: 66px;
             display: flex;
             justify-content: center;
-
+            font-size: ptr(7);
             @include sm {
                 min-width: 44px;
 
-                span {
+                span[data-icon-label] {
                     font-size: ptr(7);
                 }
 
@@ -59,21 +51,17 @@
             .favoriteDesktop {
                 display: none;
             }
-        }
 
-        @include sm {
-            margin-right: -14px;
+            &, & > div:first-child {
+                margin-right: 0;
+             }
         }
-
-        // .navbarBurger {
-        //   margin-right: 36px;
-        // }
     }
 
     .navbarLogo {
         height: 68px;
         line-height: 68px;
-        
+
         position: fixed;
         left: calc(50% - 80px);
         & a {
@@ -94,7 +82,7 @@
 .basket {
     position: fixed;
     top: 0;
-    right: -550px;
+    right: -590px;
     width: 420px;
     height: 100%;
     z-index: 999;

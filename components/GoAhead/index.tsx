@@ -11,11 +11,11 @@ const GoAhead = () => {
         <div className={styles.GoAhead}>
             <div className={styles.GoAheadDesktop}>
                 <span className={styles.GoAheadText}>{t("common:scrollDown")}</span>
-                <ScrollMouseSvg />
+                <ScrollMouseSvg color='#fff' />
             </div>
             <div className={styles.GoAheadMobile}>
                 <span className={styles.GoAheadText}>{t("common:swipeDown")}</span>
-                <SwipeSvg />
+                <SwipeSvg color='#fff' />
             </div>
         </div>
     )

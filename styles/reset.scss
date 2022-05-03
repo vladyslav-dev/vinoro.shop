@@ -7,8 +7,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   margin: 0;
@@ -17,7 +17,7 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
@@ -39,14 +39,3 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    height: auto;
-    background-color: #1C1C1C;
-}
-
-body::-webkit-scrollbar {background-color:#fff;width:10px}
-body::-webkit-scrollbar-track {background-color:#fff}
-body::-webkit-scrollbar-thumb {background-color:#BBBBBB;border-radius:16px;border:2px solid #fff}

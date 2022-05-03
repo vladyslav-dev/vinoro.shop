@@ -1,0 +1,25 @@
+@import "../../styles/index.scss";
+
+.FoollpageBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .FoollpageBottomItem {
+
+        a {
+            color: $COLOR-WHITE;
+            text-decoration: none;
+            font-size: ptr(14);
+            font-weight: 700;
+            text-transform: uppercase;
+
+            @include hoverEffect;
+
+            @include sm {
+                font-size: ptr(12);
+            }
+        }
+    }
+}

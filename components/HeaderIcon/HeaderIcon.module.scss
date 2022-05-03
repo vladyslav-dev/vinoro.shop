@@ -2,23 +2,30 @@
 
 .headerIcon {
     display: inline-flex;
+    height: 100%;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     cursor: pointer;
-    // min-width: 68px;
 
     .headerIconImage {
-        
+
         & > svg {
-            width: 26px;
-            height: 26px;
+            width: 25px;
+            height: 25px;
         }
     }
 
     .headerIconLabel {
-        margin-top: 4px;
+        color: $COLOR-COD-GRAY;
+        margin-top: 5px;
         font-size: 8px;
-        font-weight: 600;
+        font-weight: 700;
+        letter-spacing: .5px;
         transition: all 0.3s linear;
+
+        &.light {
+            color: $COLOR-WHITE;
+        }
     }
 }

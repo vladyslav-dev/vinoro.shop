@@ -7,6 +7,7 @@
     right: 0;
     width: 100%;
     z-index: 10;
+    background-color: $COLOR-WHITE;
 }
 
 .navbar {
@@ -19,7 +20,8 @@
     .navbarIconList {
         display: flex;
         align-items: center;
-        margin-right: -20px;
+        height: 42px;
+        margin-right: -10px;
 
         & > div:first-child {
            margin-right: 10px;
@@ -31,11 +33,23 @@
 
         .navbarIcon {
             min-width: 66px;
+            height: 100%;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
             font-size: ptr(7);
+
+            & > div {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
             @include sm {
                 min-width: 44px;
+                height: 38px;
 
                 span[data-icon-label] {
                     font-size: ptr(7);
@@ -77,6 +91,7 @@
 .favoriteIcon {
     cursor: pointer;
     display: inline-block;
+    height: 100%;
 }
 
 .basket {
@@ -104,12 +119,12 @@
 }
 
 .basketCount {
-    background-color: $red-color;
-    font-size: 9px;
+    background-color: $COLOR-DANGER;
+    font-size: 8px;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 12px;
-    color: $UI-color5;
+    color: $COLOR-WHITE;
     min-width: 12px;
     min-height: 12px;
     border-radius: 50%;

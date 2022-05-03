@@ -1,6 +1,6 @@
 @import "../../../../styles/index.scss";
 
-.container {
+.formContainer {
     position: relative;
 }
 
@@ -65,13 +65,13 @@
             .formHeaderItem {
 
                 & > h3 {
-                    color: $UI-color1;
+                    color: $COLOR-COD-GRAY;
                     font-size: ptr(22);
                     font-weight: normal;
                 }
 
                 .formHeaderItemText {
-                    color: $UI-color1;
+                    color: $COLOR-COD-GRAY;
                     font-size: ptr(15);
                 }
 
@@ -88,7 +88,7 @@
                     }
 
                     & > p {
-                        color: $UI-color2;
+                        color: $COLOR-SILVER-CHALICE;
                         font-weight: 600;
                         font-size: ptr(13);
                         text-decoration: underline;
@@ -127,12 +127,12 @@
                         box-sizing: border-box;
                         background-color: transparent;
                         border-color: transparent;
-                        border-bottom: 1px solid $UI-color1;
+                        border-bottom: 1px solid $COLOR-COD-GRAY;
                         margin-bottom: 5px;
                         outline: none;
                         padding: 0 5px;
 
-                        color: $UI-color1;
+                        color: $COLOR-COD-GRAY;
                         font-size: ptr(16);
 
                         &:focus ~ .formRowLabel {
@@ -142,7 +142,7 @@
                     }
 
                     .formRowLabel {
-                        color: $UI-color2;
+                        color: $COLOR-SILVER-CHALICE;
                         font-size: ptr(16);
                         line-height: ptr(34);
                         position: absolute;

@@ -15,7 +15,7 @@
     .accordionList {
 
         .accordionItem {
-            border-bottom: 2px solid $UI-color5;
+            border-bottom: 2px solid $COLOR-WHITE;
             transition: all .4s ease-in-out;
             overflow: hidden;
             padding: 0 20px;
@@ -26,7 +26,7 @@
             }
 
             &:first-child {
-                border-top: 2px solid $UI-color5;
+                border-top: 2px solid $COLOR-WHITE;
             }
 
             .accordionItemRow {

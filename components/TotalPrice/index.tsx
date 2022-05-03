@@ -1,12 +1,19 @@
+import useTranslation from 'next-translate/useTranslation';
 import React from 'react'
 import styles from './TotalPrice.module.scss'
-import { totalPrice } from '@/utils/totalPrice'
 
-const TotalPrice = ({ products, title }) => {
+interface TotalPriceProps {
+    totalPrice: number;
+}
+
+const TotalPrice: React.FC<TotalPriceProps> = ({ totalPrice }) => {
+
+    const { t } = useTranslation();
+
     return (
         <div className={styles.orderPrice}>
-            <p>{title}</p>
-            <p className={styles.price}>{totalPrice(products)} UAH</p>
+            <p>{t(`common:total`)}:</p>
+            <p className={styles.price}>{totalPrice} ₴</p>
         </div>
     )
 }

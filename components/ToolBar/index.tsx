@@ -1,26 +1,20 @@
 import React from 'react'
 import SortSelect from '@/components/SortSelect'
-import Ranger from '@/components/Ranger';
 import TotalItemCount from '@/components/TotalItemCount';
 import styles from './ToolBar.module.scss';
+import { IProduct } from '@/interfaces/product';
 
 interface ToolBarProps {
-    products: Array<any>;
-    setRange?: any;
+    products: Array<IProduct>;
     updateProductList: any;
 }
 
-const ToolBar = ({ products, setRange, updateProductList }: ToolBarProps) => {
-
-    const rangeHandler = (e) => {
-        setRange(e.target.name)
-    }
+const ToolBar = ({ products, updateProductList }: ToolBarProps) => {
 
     return (
         <div className={styles.categoryToolbar}>
-            <SortSelect updateProductList={updateProductList} defaultProductList={products} />
+            <SortSelect updateProductList={updateProductList} products={products} />
             <div className={styles.rangerTotalItem}>
-                <Ranger rangeHandler={rangeHandler} />
                 <TotalItemCount products={products} />
             </div>
         </div>

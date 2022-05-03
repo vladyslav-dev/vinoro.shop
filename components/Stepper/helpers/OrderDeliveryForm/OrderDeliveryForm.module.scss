@@ -24,7 +24,7 @@
                 .deliveryInfoText {
                     font-size: ptr(14);
                     line-height: ptr(26);
-                    color: $UI-color2;
+                    color: $COLOR-SILVER-CHALICE;
                     margin-bottom: 30px;
                 }
 
@@ -56,12 +56,12 @@
                             box-sizing: border-box;
                             background-color: transparent;
                             border-color: transparent;
-                            border-bottom: 1px solid $UI-color1;
+                            border-bottom: 1px solid $COLOR-COD-GRAY;
                             margin-bottom: 5px;
                             outline: none;
                             padding: 0 5px;
 
-                            color: $UI-color1;
+                            color: $COLOR-COD-GRAY;
                             font-size: ptr(16);
 
                             &:focus ~ label {
@@ -72,7 +72,7 @@
                         }
 
                         & > label {
-                            color: $UI-color2;
+                            color: $COLOR-SILVER-CHALICE;
                             font-size: ptr(16);
                             line-height: ptr(34);
                             position: absolute;
@@ -107,7 +107,7 @@
                         transition: all 0.2s ease-in-out;
                         width: 11px;
                         height: 11px;
-                        background-color: $UI-color2;
+                        background-color: $COLOR-SILVER-CHALICE;
                         border-radius: 50%;
                         position: absolute;
                         left: 4px;
@@ -123,7 +123,7 @@
 
                         &::before {
                             content: "";
-                            border: 2px solid $UI-color3;
+                            border: 2px solid $COLOR-SILVER;
                             width: 15px;
                             height: 15px;
                             display: flex;

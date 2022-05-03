@@ -1,15 +1,15 @@
-import { IProduct } from '@/interfaces/IProduct';
+import { IProduct } from '@/interfaces/product';
 
 export const sortMethod = {
     default: (products: Array<IProduct>): Array<IProduct> => {
         return products
     },
-    priceHigher: (products: Array<IProduct>): Array<IProduct> => {
-        const sortedProducts = products.sort((a, b) => (a.cost > b.cost) ? 1 : ((b.cost > a.cost) ? -1 : 0))
+    ascendingPrice: (products: Array<IProduct>): Array<IProduct> => {
+        const sortedProducts = products.sort((a, b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0))
         return sortedProducts
     },
-    priceLower: (products: Array<IProduct>): Array<IProduct> => {
-        const sortedProducts = products.sort((a, b) => (a.cost < b.cost) ? 1 : ((b.cost < a.cost) ? -1 : 0))
+    descendingPrice: (products: Array<IProduct>): Array<IProduct> => {
+        const sortedProducts = products.sort((a, b) => (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0))
         return sortedProducts
     }
 }

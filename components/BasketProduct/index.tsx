@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import styles from './BasketProduct.module.scss';
-import { IBasketProduct } from '@/interfaces/IBasket';
+import { IBasketProduct } from '@/interfaces/product';
 import Img from '@/components/Img';
-import { GlobalContext } from '@/store/index';
+import { increaseCount, decreaseCount, removeOne } from '@/store/slices/basket';
 
 import { TrashSvg } from '@/icons/Trash';
 import { MinusSvg, PlusSvg } from '@/icons/Operator';
+import { useDispatch } from 'react-redux';
+import useLanguage from '@/hooks/useLanguage';
 
 interface BasketProductProps {
     product: IBasketProduct;
@@ -14,13 +16,18 @@ interface BasketProductProps {
 
 const BasketProduct: React.FC<BasketProductProps> = ({ product, condition = false }) => {
 
-    const { BASKET } = useContext(GlobalContext)
+    const dispatch = useDispatch();
 
-    const increaseProduct = () => BASKET.handlers.increaseCountById(product._id)
-    const decreaseProduct = () => BASKET.handlers.decreaseCountById(product._id)
-    const removeProduct = () => BASKET.handlers.removeProductById(product._id)
+    const { language } = useLanguage();
 
-    if (product.quantity < 1) removeProduct()
+    const increaseProduct = () => dispatch(increaseCount(product));
+    const decreaseProduct = () => dispatch(decreaseCount(product));
+    const removeProduct = () => dispatch(removeOne(product));
+
+    // if (product.quantity < 1) {
+    //     removeProduct()
+    //     return null;
+    // }
 
     return (
         <div className={styles.product}>
@@ -30,13 +37,16 @@ const BasketProduct: React.FC<BasketProductProps> = ({ product, condition = fals
             {
                 condition ?
                     <div className={styles.productInfo}>
-                        <h2 className={styles.productInfoTitle}>{product.name}</h2>
-                        <div className={styles.productInfoCost}>{product.cost} UAH</div>
+                        <h2 className={styles.productInfoTitle}>{product.name[language]}</h2>
+                        <div className={styles.productInfoCost}>{product.price} ₴</div>
                     </div> :
                     <>
                         <div className={styles.productInfo}>
-                            <h2 className={styles.productInfoTitle}>{product.name}</h2>
-                            <div className={styles.productInfoCost}>{product.cost} UAH</div>
+                            <h2 className={styles.productInfoTitle}>{product.name[language]}</h2>
+                            <div className={styles.productInfoCost}>
+                                <span>{product.current_price} ₴ {product.quantity > 1 && <span> &#xA0;&#xA0; x &#xA0;&#xA0; {product.quantity}</span>}</span>
+                                {product.quantity > 1 && <span>{product.total_price} ₴</span>}
+                            </div>
                             <div className={styles.productQuantity}>
                                 <button className={styles.productQuantityButton} onClick={decreaseProduct}>
                                     <MinusSvg />

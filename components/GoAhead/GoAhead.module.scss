@@ -1,6 +1,7 @@
 @import "../../styles/index.scss";
 
 .GoAhead {
+    opacity: .8;
 
     .GoAheadDesktop, .GoAheadMobile {
         flex-direction: column;
@@ -8,12 +9,13 @@
 
         span {
             margin-bottom: 24px;
+            color: $COLOR-WHITE;
             font-size: 13px;
             font-weight: 700;
             letter-spacing: 0.11em;
         }
     }
-    
+
     @media (hover: none) { // touch device
         .GoAheadDesktop {
             display: none;

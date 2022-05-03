@@ -10,10 +10,10 @@ import CategoryTree from '@/components/CategoryTree';
 import { ContactsSvg } from '@/icons/Contacts';
 import { CatalogSvg } from '@/icons/Catalog';
 import { SortArrorSvg } from '@/icons/Arrow';
-import { SearchSvg } from '@/icons/Search';
 import { HeartSvg } from '../Icons/Heart';
 import { HomeSvg } from '@/icons/Home';
 import { HelpSvg } from '@/icons/Help';
+import { LoupeSvg } from '../Icons/Loupe';
 
 interface BurgerMenuTreeProps {
     isActive?: boolean;
@@ -38,21 +38,21 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                 <li className={styles.menuListItem}>
                     <Link href={`/`}>
                         <a>
-                            <HomeSvg />
+                            <HomeSvg color='#fff' />
                             <span>{t("common:menu.main")}</span>
                         </a>
                     </Link>
                 </li>
                 <li className={styles.menuListItem}>
                     <a onClick={() => setIsCatalogOpen(true)}>
-                        <CatalogSvg />
+                        <CatalogSvg color='#fff' />
                         <span>{t("common:menu.catalog")}</span>
                     </a>
                 </li>
                 <li className={styles.menuListItem}>
                     <Link href={`/contacts`}>
                         <a>
-                            <ContactsSvg />
+                            <ContactsSvg color='#fff' />
                             <span>{t("common:menu.contacts")}</span>
                         </a>
                     </Link>
@@ -60,7 +60,7 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                 <li className={styles.menuListItem}>
                     <Link href={`/help`}>
                         <a>
-                            <HelpSvg />
+                            <HelpSvg color='#fff' />
                             <span>{t("common:menu.help")}</span>
                         </a>
                     </Link>
@@ -73,20 +73,20 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                 className={`${styles.catalogBack} ${isCatalogOpen ? styles.catalogBackActive : null}`}
                 onClick={() => setIsCatalogOpen(false)}
             >
-                <SortArrorSvg />
+                <SortArrorSvg color='#fff' />
                 <span>{t("common:menu.catalog")}</span>
             </button>
-            <ul className={styles.bottomMenu}>
+            <ul className={`${styles.bottomMenu} ${isCatalogOpen ? styles.hide : null}`}>
                 <li className={styles.bottomMenuItem} onClick={() => openSearchHandler()}>
                     <HeaderIcon label={t("common:navbarIcons.search")}>
-                        <SearchSvg />
+                        <LoupeSvg color='#fff' />
                     </HeaderIcon>
                 </li>
                 <li className={styles.bottomMenuItem}>
                     <Link href="/favorite">
                         <a>
                             <HeaderIcon label={t("common:navbarIcons.favorites")}>
-                                <HeartSvg />
+                                <HeartSvg color='#fff' />
                             </HeaderIcon>
                         </a>
                     </Link>
@@ -95,7 +95,7 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                     <Link href="/help">
                         <a>
                             <HeaderIcon label={t("common:menu.help")}>
-                                <HelpSvg />
+                                <HelpSvg color='#fff' />
                             </HeaderIcon>
                         </a>
                     </Link>

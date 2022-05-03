@@ -4,7 +4,7 @@
     position: fixed;
     z-index: 999;
     @include glassBackground;
-    color: $UI-color1;
+    color: $COLOR-COD-GRAY;
     min-width: 100%;
     min-height: 100vh;
     display: block;
@@ -17,23 +17,23 @@
             .wrapper {
                 position: relative;
                 height: 100vh;
-                
+
                 .back {
                     margin-top: 24px;
                     display: flex;
                     align-items: center;
                     cursor: pointer;
-            
+
                     svg {
                         width: 28px;
                         margin-right: 10px;
                     }
-    
+
                     span {
                         font-weight: bold;
                         font-size: ptr(15);
                         line-height: 24px;
-                        color: $UI-color5;
+                        color: $COLOR-WHITE;
                     }
                 }
 
@@ -45,7 +45,7 @@
                     transform: translate(0, -50%);
 
                     h3 {
-                        color: $UI-color5;
+                        color: $COLOR-WHITE;
                         text-align: center;
                         font-weight: 600;
                         font-size: ptr(32);
@@ -63,14 +63,14 @@
                             box-sizing: border-box;
                             width: 100%;
                             height: 44px;
-                            background: $UI-color5;
-                            color: $UI-color1;
+                            background: $COLOR-WHITE;
+                            color: $COLOR-COD-GRAY;
                             border-radius: 40px;
                             font-weight: 500;
                             padding: 0 40px 0 18px;
-                    
+
                             &::placeholder {
-                                color: $UI-color1;
+                                color: $COLOR-COD-GRAY;
                             }
                         }
 
@@ -85,17 +85,17 @@
                             width: 24px;
                         }
                     }
-    
+
                     .relateQuery {
                         display: flex;
                         flex-flow: row wrap;
                         justify-content: center;
                         width: clamp(270px, 100%, 520px);
                         margin: 18px auto;
-                        
+
 
                         .relateQueryTitle {
-                            color: $UI-color5;
+                            color: $COLOR-WHITE;
                             padding: 5px 8px;
                             font-size: ptr(12);
                         }
@@ -103,18 +103,18 @@
                         .query {
                             all: unset;
                             cursor: pointer;
-                            background-color: $UI-color5;
+                            background-color: $COLOR-WHITE;
                             padding: 5px 8px;
                             border-radius: 12px;
                             font-size: ptr(12);
                             font-weight: 600;
-                            color: $UI-color1;
+                            color: $COLOR-COD-GRAY;
                             margin-bottom: 4px;
                             transition: all 150ms linear;
 
                             &:hover {
-                                background-color: $UI-color1;
-                                color: $UI-color5;
+                                background-color: $COLOR-COD-GRAY;
+                                color: $COLOR-WHITE;
                             }
 
                             &:not(:last-child) {
@@ -122,9 +122,9 @@
                             }
                         }
                     }
-                 
+
                 }
             }
         }
     }
-} 
+}

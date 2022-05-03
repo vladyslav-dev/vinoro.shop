@@ -3,9 +3,6 @@ import { useRouter } from 'next/router';
 import styles from './Catalog.module.scss';
 import ToolBar from '@/components/ToolBar';
 import CardList from '@/components/CardList';
-import { getCurrentRange } from '@/utils/index';
-
-type RangeType = "sm" | "md" | "lg"
 
 interface CatalogProps {
     products?: any;
@@ -16,34 +13,29 @@ const Catalog: React.FC<CatalogProps> = ({ products, alt: alternateComponent }) 
 
     const router = useRouter()
 
-    const [range, setRange] = useState<RangeType>("md")
-
     const [productList, setProductList] = useState(products);
 
     useEffect(() => setProductList(products), [products])
 
     return (
         <div className={styles.wrraper}>
-            
-                {products?.length ? 
-                    (
-                        <>
-                            <ToolBar products={products} setRange={setRange} updateProductList={setProductList} />
-                            <div className={styles.catalogList}>
-                                <CardList 
-                                    products={productList} 
-                                    customStyles={getCurrentRange(range)}
-                                    removeButton={router.pathname === '/favorite'} 
-                                /> 
-                            </div>
-                        </>
-                    )
-                    :
-                    (
-                        <>{alternateComponent}</>
-                    )
-                }
-            
+            {products?.length ?
+                (
+                    <>
+                        <ToolBar products={products} updateProductList={setProductList} />
+                        <div className={styles.catalogList}>
+                            <CardList
+                                products={productList}
+                                removeButton={router.pathname === '/favorite'}
+                            />
+                        </div>
+                    </>
+                )
+                :
+                (
+                    <>{alternateComponent}</>
+                )
+            }
         </div>
     )
 }

@@ -1,8 +1,8 @@
 @import "../../styles/index.scss";
 
 .menu {
-    background-color: $UI-color1;
-    color: $UI-color5;
+    background-color: $COLOR-COD-GRAY;
+    color: $COLOR-WHITE;
     height: 100vh;
     width: 420px;
     position: fixed;
@@ -35,7 +35,7 @@
 
             & a {
                 cursor: pointer;
-                color: $UI-color5;
+                color: $COLOR-WHITE;
                 text-decoration: none;
                 font-weight: 500;
                 text-transform: uppercase;
@@ -59,11 +59,11 @@
                 @include xl {
                     padding: 15px 40px;
                 }
-                
+
                 @include md {
                     padding: 15px 20px;
                 }
-            
+
                 @include sm {
                     padding: 15px;
                 }
@@ -71,11 +71,11 @@
                 &:hover {
                     @include glassHoverBackground;
                     // & svg, & path {
-                    //     fill: $UI-color1;
+                    //     fill: $COLOR-COD-GRAY;
                     // }
-    
+
                     // & span {
-                    //     color: $UI-color1;
+                    //     color: $COLOR-COD-GRAY;
                     // }
                 }
             }
@@ -104,12 +104,12 @@
             left: 40px;
             width: calc(100% - 80px);
         }
-        
+
         @include md {
             left: 20px;
             width: calc(100% - 40px);
         }
-    
+
         @include sm {
             left: 15px;
             width: calc(100% - 30px);
@@ -132,15 +132,24 @@
     padding: 0 60px 45px 60px;
     box-sizing: border-box;
 
+    &.hide {
+        left: -440px;
+        opacity: 0;
+    }
+
     @include xl {
         padding: 0 40px 45px 40px;
+    }
+
+    @include md {
+        padding: 0 20px 45px 20px;
     }
 
     .bottomMenuItem {
 
         a {
             text-decoration: none;
-            color: $UI-color5;
+            color: $COLOR-WHITE;
         }
 
         svg {
@@ -155,7 +164,6 @@
 
 .catalogBack {
     cursor: pointer;
-    font-family: "Montserrat";
     display: flex;
     align-items: center;
     background: none;
@@ -174,7 +182,7 @@
     @include xl {
         right: 40px;
     }
-    
+
     @include md {
         right: 20px;
     }
@@ -188,13 +196,13 @@
         height: 13px;
         transform: rotate(-90deg);
         path {
-            fill: $UI-color5;
+            fill: $COLOR-WHITE;
         }
     }
 
     & span {
         margin-left: 5px;
-        color: $UI-color5;
+        color: $COLOR-WHITE;
         font-size: ptr(13);
         font-weight: 500;
     }

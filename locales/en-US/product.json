@@ -8,6 +8,9 @@
     "alreadyInBasket": "ALREADY IN CART",
     "addToFavorite": "ADD TO FAVORITES",
     "alreadyInFavorite": "ALREADY IN FAVORITES",
-    "linkCopied": "Link copied"
-
+    "linkCopied": "Link copied",
+    "bulkPriceTooltip": "The wholesale price is automatically applied when you change the quantity of an item in your cart.",
+    "bulkPrice": "Wholesale prices",
+    "pc": "pc.",
+    "from": "from"
 }

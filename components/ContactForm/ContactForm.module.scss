@@ -6,38 +6,38 @@
     .formRow {
         position: relative;
         width: 100%;
-        margin-bottom: 10px;     
-        
+        margin-bottom: 10px;
+
         @include sm {
-            margin-bottom: 22px;  
+            margin-bottom: 22px;
         }
-      
+
         .formRowInput {
             width: 100%;
             height: 32px;
             box-sizing: border-box;
             background-color: transparent;
             border-color: transparent;
-            border-bottom: 1px solid $UI-color1;
+            border-bottom: 1px solid $COLOR-COD-GRAY;
             margin-bottom: 5px;
             outline: none;
             padding: 0 5px;
 
-            color: $UI-color1;
-            font-size: ptr(16);     
-            
+            color: $COLOR-COD-GRAY;
+            font-size: ptr(16);
+
             &:focus ~ .formRowLabel {
               top: -25px;
               font-size: ptr(13);
             }
         }
-        
+
         .formRowLabel {
-            color: $UI-color2;
+            color: $COLOR-SILVER-CHALICE;
             font-size: ptr(16);
             line-height: ptr(34);
             position: absolute;
-            top: 0;   
+            top: 0;
             left: 5px;
             transition: all .4s;
             user-select: none;
@@ -67,8 +67,8 @@
             font-size: ptr(13);
             font-weight: 600;
             border-radius: 42px;
-            background-color: $UI-color1;
-            color: $UI-color5;
+            background-color: $COLOR-COD-GRAY;
+            color: $COLOR-WHITE;
             margin-top: 12px;
         }
 

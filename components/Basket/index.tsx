@@ -1,16 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useMemo } from 'react';
 import styles from './Basket.module.scss';
-import { GlobalContext } from '@/store/index';
 import BasketProduct from '@/components/BasketProduct';
 import Button from '../Button';
 import Link from 'next/link';
 import TotalPrice from '../TotalPrice';
+import { RootState } from '@/store/index';
+import { useSelector } from 'react-redux';
+import useTranslation from 'next-translate/useTranslation';
 
-const Basket = ({ closeBasketHandler }) => {
+interface BasketProps {
+    closeBasketHandler: () => void;
+}
 
-    const { BASKET } = useContext(GlobalContext)
+const Basket: React.FC<BasketProps> = ({ closeBasketHandler }) => {
 
-    const closeHandler = event => {
+    const { basketProducts, totalPrice } = useSelector((state: RootState) => state.basketReducer);
+
+    const { t } = useTranslation();
+
+    console.log(basketProducts)
+    const basketProductsValues = useMemo(() => Object.values(basketProducts), [basketProducts]);
+
+    const closeHandler = (event: React.MouseEvent) => {
         event.stopPropagation();
         closeBasketHandler();
     }
@@ -18,29 +29,26 @@ const Basket = ({ closeBasketHandler }) => {
     return (
         <div className={styles.basket}>
             <div className={styles.basketTop}>
-                <h3 className={styles.basektTitle}>Корзина</h3>
+                <h3 className={styles.basektTitle}>{t(`common:shoppingCart`)}</h3>
                 <button className={styles.basketClose} onClick={closeHandler}></button>
             </div>
             <ul className={styles.basketList}>
-                {!BASKET.state.products.length ?
-                    <p>У вас нет добавленных товаров в корзине</p> :
-                    BASKET.state.products.map(item => (
-                        <BasketProduct product={item} key={item._id} />
+                {!basketProductsValues.length ?
+                    <p>{t(`common:noProductsInBasket`)}</p> :
+                    basketProductsValues.map(item => (
+                        <BasketProduct product={item} key={item.id} />
                     ))}
             </ul>
-            <div className={styles.confirmOrder}>
-                <TotalPrice products={BASKET.state.products} title="Итого: " />
-                {BASKET.state.products.length ?
-
+            {!!basketProductsValues.length && (
+                 <div className={styles.confirmOrder}>
+                    <TotalPrice totalPrice={totalPrice} />
                     <Link href="/order/" passHref replace>
                         <a className={styles.buttonWrapper}>
-                            <Button label="Далее" styles={{ width: '100%' }} click={() => null} type="default" />
+                            <Button label={t(`common:next`)} styles={{ width: '100%' }} click={() => null} type="default" />
                         </a>
-                    </Link> :
-
-                    <Button label="Далее" styles={{ width: '50%' }} click={() => null} type="disabled" />
-                }
-            </div>
+                    </Link>
+                </div>
+            )}
         </div>
     )
 }

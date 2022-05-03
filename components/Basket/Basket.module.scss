@@ -6,8 +6,8 @@
     padding: 30px 25px 150px 25px;
     padding-bottom: 150px;
     box-sizing: border-box;
-    background-color:  $UI-color5;
-    color: $UI-color1;
+    background-color:  $COLOR-WHITE;
+    color: $COLOR-COD-GRAY;
     box-shadow: -4px 0px 10px 1px rgba(87, 87, 87, 0.13);
 
     @include sm {
@@ -21,7 +21,7 @@
         align-items: center;
 
         .basektTitle {
-            color: $UI-color1;
+            color: $COLOR-COD-GRAY;
             font-size: ptr(19);
             font-weight: normal;
         }
@@ -50,7 +50,7 @@
                 width: 22px;
                 height: 2.2px;
                 border-radius: 4px;
-                background-color: $UI-color1;
+                background-color: $COLOR-COD-GRAY;
             }
 
             &::before {
@@ -69,9 +69,9 @@
         padding-right: 15px;
         margin-right: -20px;
         transition: all .3s;
-        &::-webkit-scrollbar {background-color: $UI-color5;width:16px; }
-        &::-webkit-scrollbar-track {background-color: $UI-color5;}
-        &::-webkit-scrollbar-thumb {background-color: $UI-color5;border-radius:16px;border:4px solid $UI-color5; transition: all .3s;}
+        &::-webkit-scrollbar {background-color: $COLOR-WHITE;width:16px; }
+        &::-webkit-scrollbar-track {background-color: $COLOR-WHITE;}
+        &::-webkit-scrollbar-thumb {background-color: $COLOR-WHITE;border-radius:16px;border:4px solid $COLOR-WHITE; transition: all .3s;}
 
         &:hover {
             transition: all .3s;

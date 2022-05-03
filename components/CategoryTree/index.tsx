@@ -1,88 +1,127 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import styles from './CategoryTree.module.scss';
-import { GlobalContext } from '../../store';
 import { SortArrorSvg } from '@/icons/Arrow';
-import useCategoryEnum from '@/hooks/useCategoryEnum';
-import useTranslation from 'next-translate/useTranslation';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/index';
+import { ICatalogCollection } from '@/interfaces/catalog';
+import { ICategory, ICategoryCollection } from '@/interfaces/category';
+import useLanguage from '@/hooks/useLanguage';
 
-type CatalogName = any
-
-type CatalogState = CatalogName | null;
+interface ICatalogRef {
+    [catalogId: string]: {
+        ref: HTMLDivElement;
+        isActive: boolean;
+    }
+}
 
 const CategoryTree = () => {
 
-    const { CATEGORY } = useContext(GlobalContext)
-    const { category, currentCategory, isLoaded } = CATEGORY.state
-    const [currentCatalog, setCurrentCatalog] = useState<CatalogState>(null)
+    const { language } = useLanguage();
 
-    const { catalogEnum } = useCategoryEnum()
+    const categoryTreeRef = useRef<HTMLDivElement>(null);
+    const currentCategoryRef = useRef<HTMLLIElement>(null);
 
-    const { t } = useTranslation();
+    const {
+        catalogCollection,
+        categoryCollection,
+        currentCategory,
+        isLoaded
+    }: {
+        catalogCollection: ICatalogCollection;
+        categoryCollection: ICategoryCollection;
+        currentCategory: string
+        isLoaded: boolean;
+    } = useSelector((state: RootState) => state.catalogReducer);
+
+    const [catalogHeight, setCatalogHeight] = useState(0);
+
+    const [currentCatalog, setCurrentCatalog] = useState<string>('') // catalog id
+
+    const catalogCollectionValues = useMemo(() => Object.values(catalogCollection), [catalogCollection])
+
+    const catalogRefs = useRef<ICatalogRef>({});
 
     useEffect(() => {
-        if (isLoaded) {
-            setCurrentCatalog((): any => {
-                const categor = category?.find(categor => categor?._id === currentCategory);
-                return categor ? catalogEnum[categor.catalog] : null;
-            })
+        if (isLoaded && currentCategory in categoryCollection) {
+            setCurrentCatalog(categoryCollection[currentCategory].catalog);
+            categoryTreeRef?.current?.scrollIntoView();
+            currentCategoryRef?.current?.scrollIntoView({ block: "end", inline: "end" });
         }
-    }, [currentCategory])
+    }, [isLoaded, currentCategory, categoryCollection])
 
-    if (!category.length) return null
+    useEffect(() => {
+        const currentRef = Object.values(catalogRefs.current).find((item) => item.isActive);
+        if(currentRef) {
+            setCatalogHeight(currentRef.ref.scrollHeight);
+        }
+    }, [currentCatalog]);
 
-    const getCatalog = (key: string) => {
-        return category.map(item => {
-            if (catalogEnum[key] === item?.catalog) {
-                return (
-                    <li 
-                        key={item?._id} 
-                        className={`${styles.subCategotyItem} ${item?._id === currentCategory ? styles.subCategoryItemActive : null}`}
-                    >
-                        <Link href={`/category/[id]`} as={`/category/${item?._id}`} >
-                            <a>{t(`common:category.${item?.category_name}`)}</a>
-                        </Link>
-                    </li>
-                )
-            }
+    const getCatalog = (catalogId: keyof typeof catalogCollection) => {
+        return catalogCollection[catalogId].category.map((item: ICategory) => {
+
+            const isCurrentCategory = item?.id === currentCategory;
+
+            const additionalProps = isCurrentCategory ? { ref: currentCategoryRef } : {};
+
+            return (
+                <li
+                    key={item?.id}
+                    className={`${styles.subCategotyItem} ${isCurrentCategory ? styles.subCategoryItemActive : null}`}
+                    {...additionalProps}
+                >
+                    <Link href={`/category/[id]`} as={`/category/${item?.id}`} >
+                        <a>{item?.category_name[language]}</a>
+                    </Link>
+                </li>
+            )
         })
     }
 
+    if (!isLoaded) return null;
+
     return (
-        <>
-            {category && (
-                <div className={styles.categoryTree}>
-                    {Object.values(catalogEnum).map((item, key) => {
-                        return typeof item === "string" && (
-                            <div key={key} className={styles.categoryList}>
-                                <a 
-                                    className={`${styles.categoryTitle} ${currentCatalog === item ? styles.categoryTitleActive : null}`}
-                                    onClick={() => {
-                                        setCurrentCatalog((prevValue: CatalogState): CatalogState => {
-                                            if (prevValue === item) {
-                                                return null;
-                                            } else {
-                                                return item as CatalogName;
-                                            }
-                                        })
-                                    }}
-                                >
-                                    <span>{item}</span>
-                                    <SortArrorSvg />
-                                </a>
-                                <div className={`${styles.subCategory} ${currentCatalog === item ? styles.subCategoryActive : null}`}>
-                                    <ul className={styles.subCategotyList}>
-                                        {getCatalog(item)}
-                                    </ul>
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
-            )}
-        </>
+        <div className={styles.categoryTree} ref={categoryTreeRef}>
+            {catalogCollectionValues.map((item, key) => {
+
+                const isCurrentCatalog = item.catalog.id === currentCatalog;;
+
+                return (
+                    <div key={key} className={styles.categoryList}>
+                        <a
+                            className={`${styles.categoryTitle} ${isCurrentCatalog ? styles.categoryTitleActive : null}`}
+                            onClick={() => {
+                                setCurrentCatalog((prevValue) => {
+                                    if (prevValue === item.catalog.id) {
+                                        return '';
+                                    } else {
+                                        return item.catalog.id;
+                                    }
+                                })
+                            }}
+                        >
+                            <span>{item.catalog.catalog_name[language]}</span>
+                            <SortArrorSvg />
+                        </a>
+                        <div
+                            className={`${styles.subCategory} ${isCurrentCatalog ? styles.subCategoryActive : null}`}
+                            ref={(ref: HTMLDivElement) => {
+                                catalogRefs.current[item.catalog.id] = { ref, isActive: !!isCurrentCatalog }
+                            }}
+                            style={{
+                                maxHeight: isCurrentCatalog ? catalogHeight : 0
+                            }}
+                        >
+                            <ul className={styles.subCategotyList}>
+                                {getCatalog(item.catalog.id)}
+                            </ul>
+                        </div>
+                    </div>
+                )})
+            }
+        </div>
     );
 }
 
-export default CategoryTree
+export default React.memo(CategoryTree);
 

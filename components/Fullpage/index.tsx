@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
 import styles from "./Fullpage.module.scss";
 
 import Section from "./helpers/Section";
@@ -6,19 +6,20 @@ import SectionContainer from "./helpers/SectionContainer";
 import HeaderTitle from '@/components/HeaderTitle';
 import SocialMedia from '@/components/SocialMedia';
 import GoAhead from '@/components/GoAhead';
-import HeaderBottom from '@/components/HeaderBottom';
-import { GlobalContext } from '@/store/index';
-import { collectCategory } from '@/utils/index';
-import useCategoryEnum from '@/hooks/useCategoryEnum';
+import FoollpageBottom from '@/components/FoollpageBottom';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/index';
+import { ICatalogCollection } from '@/interfaces/catalog';
+
+
 
 const Fullpage = () => {
 
-    const { CATEGORY } = useContext(GlobalContext);
-    const { category } = CATEGORY.state;
+    const { catalogCollection, isLoaded } = useSelector((state: RootState) => state.catalogReducer);
+
+    console.log(catalogCollection)
 
     const [current, setCurrent] = useState(0);
-    
-    const { catalogEnum } = useCategoryEnum()
 
     const [isInterfaceShowing, setIsInterfaceShowing] = useState(true);
 
@@ -26,8 +27,6 @@ const Fullpage = () => {
         showInterface: () => setIsInterfaceShowing(true),
         hideInterface: () => setIsInterfaceShowing(false),
     }
-
-    if (!category?.length) return null
 
     const options = {
         sectionClassName: 'section',
@@ -38,11 +37,11 @@ const Fullpage = () => {
         sectionPaddingTop: '50px',
         sectionPaddingBottom: '50px',
         arrowNavigation: true,
-        scrollCallback: (states) => setCurrent(states.activeSection),
+        scrollCallback: (states: any) => setCurrent(states.activeSection),
     };
 
     return (
-        <>  
+        <>
             {isInterfaceShowing && (
                 <div className={styles["container-xl"]}>
                     <div className={styles.socialMedia}>
@@ -51,18 +50,26 @@ const Fullpage = () => {
                     <div className={styles.goAhead}>
                         <GoAhead />
                     </div>
-                    <div className={styles.headerBottom}>
-                        <HeaderBottom />
+                    <div className={styles.foollpageBottom}>
+                        <FoollpageBottom />
                     </div>
                 </div>
             )}
-            <SectionContainer className={styles.sectionContainer} {...options} activeSection={current}>
-                {collectCategory(category, catalogEnum).map((props, index) => (
-                    <Section className={styles.section} key={index}>
-                        <HeaderTitle interfaceHandlers={interfaceHandlers} {...props} />
-                    </Section>
-                ))}
-            </SectionContainer>
+            {!!isLoaded && (
+                <SectionContainer className={styles.sectionContainer} {...options} activeSection={current}>
+                    {Object.values(catalogCollection as ICatalogCollection).map((props, key) => (
+                        <Section
+                            key={key}
+                            className={styles.section}
+                            style={{
+                                backgroundImage: `url(${props.catalog.catalog_image})`,
+                            }}
+                        >
+                            <HeaderTitle interfaceHandlers={interfaceHandlers} {...props} />
+                        </Section>
+                    ))}
+                </SectionContainer>
+            )}
         </>
     )
 }

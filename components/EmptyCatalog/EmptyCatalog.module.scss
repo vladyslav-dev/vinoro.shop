@@ -7,7 +7,7 @@
     flex-direction: column;
 
     .emptyListButton {
-        color: $UI-color5;
+        color: $COLOR-WHITE;
         text-decoration: none;
         display: flex;
         justify-content: center;
@@ -15,8 +15,8 @@
 
         margin-top: 34px;
         border: none;
-        background-color: $UI-color1;
-        color: $UI-color5;
+        background-color: $COLOR-COD-GRAY;
+        color: $COLOR-WHITE;
         font-size: ptr(11);
         font-weight: 500;
         width: 190px;

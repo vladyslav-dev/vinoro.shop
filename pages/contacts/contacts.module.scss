@@ -27,7 +27,7 @@
 
     .content {
         flex: 1;
-        color: $UI-color1;
+        color: $COLOR-COD-GRAY;
         align-self: center;
         margin-left: 50px;
 
@@ -55,7 +55,7 @@
             width: clamp(270px, 100%, 300px);
 
             @media (max-width: 490px) {
-                
+
                 width: calc(100% - 30px);
                 padding: 20px 15px;
             }
@@ -70,7 +70,7 @@
                 height: 100%;
                 width: 3px;
                 border-radius: 3px;
-                background-color: $UI-color1;
+                background-color: $COLOR-COD-GRAY;
                 position: absolute;
                 right: 0;
                 bottom: -1px;
@@ -83,12 +83,12 @@
             .contactList {
 
                 .contactItem {
-                    
+
                     a {
                         display: inline-flex;
                         align-items: center;
                         text-decoration: none;
-                        color: $UI-color1;
+                        color: $COLOR-COD-GRAY;
                         position: relative;
 
                         .contactItemLink {
@@ -103,8 +103,8 @@
                             opacity: .5;
                             transition: all 200ms linear;
                             transform: scale(0);
-                            background-color: $UI-color1;
-                            color: $UI-color5;
+                            background-color: $COLOR-COD-GRAY;
+                            color: $COLOR-WHITE;
                             font-size: ptr(10);
                             font-weight: 600;
                             padding: 6px 8px;
@@ -135,7 +135,7 @@
                 height: 100%;
                 width: 3px;
                 border-radius: 3px;
-                background-color: $UI-color1;
+                background-color: $COLOR-COD-GRAY;
                 position: absolute;
                 left: 0;
                 top: 0;
@@ -151,7 +151,7 @@
                 height: 3px;
                 width: 100%;
                 border-radius: 3px;
-                background-color: $UI-color1;
+                background-color: $COLOR-COD-GRAY;
                 position: absolute;
                 left: 0;
                 top: 0;

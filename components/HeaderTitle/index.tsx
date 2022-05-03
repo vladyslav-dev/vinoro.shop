@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
 import styles from './HeaderTitle.module.scss';
-import { CategoryCollection } from '@/interfaces/ICategory';
 import CategoryModal from '@/components/CategoryModal';
-import { AnimatePresence } from 'framer-motion';
 import useTranslation from 'next-translate/useTranslation'
+import { ICatalog } from '@/interfaces/catalog';
+import { ICategory } from '@/interfaces/category';
+import useLanguage from '@/hooks/useLanguage';
 
-interface HeaderTitleProps extends CategoryCollection {
-    interfaceHandlers?: {
+interface HeaderTitleProps {
+    catalog: ICatalog;
+    category: ICategory[];
+    interfaceHandlers: {
         showInterface: () => void;
         hideInterface: () => void;
     }
 }
 
-const HeaderTitle = (props: HeaderTitleProps) => {
-    const { title, data, interfaceHandlers } = props;
+const HeaderTitle: React.FC<HeaderTitleProps> = ({ catalog, category, interfaceHandlers }) => {
+
     const [isModalOpen, setIsModalOpen] = useState(false)
     const { t } = useTranslation()
+
+    const { language } = useLanguage();
 
     const closeModalHandler = () => {
         setIsModalOpen(false)
@@ -25,23 +30,16 @@ const HeaderTitle = (props: HeaderTitleProps) => {
         setIsModalOpen(true)
         interfaceHandlers.hideInterface()
     }
-    
 
     return (
         <div className={styles.headerTitle}>
             {!isModalOpen ? (
                 <>
-                    <h1 className={styles.title}>{title}</h1>
+                    <h3 className={styles.title}>{catalog.catalog_name[language]}</h3>
                     <button className={styles.button} onClick={openModalHandler}>{t("home:homeButton")}</button>
                 </>
             ) : null}
-            <AnimatePresence
-                initial={false}
-                exitBeforeEnter={true}
-                onExitComplete={() => null}
-            >
-                {isModalOpen ? <CategoryModal closeHandler={closeModalHandler} category={data} /> : null}
-            </AnimatePresence>
+            {isModalOpen ? <CategoryModal closeHandler={closeModalHandler} category={category} /> : null}
         </div>
     )
 }

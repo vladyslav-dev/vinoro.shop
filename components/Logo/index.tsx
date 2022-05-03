@@ -1,6 +1,14 @@
+import useLightElements from "@/hooks/useLightElements";
 import React from "react";
 import styles from "./Logo.module.scss";
 
-const Logo = () => <h1 className={styles.logo}>VINORO</h1>
+const Logo = () => {
+
+    const { isLight } = useLightElements();
+
+    return (
+        <h1 className={`${styles.logo} ${isLight ? styles.light : ''}`}>VINORO</h1>
+    )
+}
 
 export default Logo

@@ -1,15 +1,18 @@
 @import '../../styles/index.scss';
 
 .category {
-    background-color: $UI-color5;
+    background-color: $COLOR-WHITE;
     .categoryWrapper {
         display: flex;
         justify-content: space-between;
         padding-bottom: 50px;
-        min-height: calc(100vh - 68px);
 
         .categoryContent {
             flex: 1;
+
+            .categoryList {
+                height: 100%;
+            }
         }
     }
 }

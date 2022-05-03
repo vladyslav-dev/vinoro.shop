@@ -1,96 +1,138 @@
 @import "../../styles/index.scss";
 
-
-.card {
+.defaultCard {
     display: inline-block;
+    height: fit-content;
     cursor: pointer;
     position: relative;
-    
-    .cardImage {
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-        transition: .4s ease-in;
+    animation: fadein .6s forwards;
 
-        & > div {
-            will-change: transform; 
-            transition: all .3s;
-        }
-        &:hover {
-            & > div {
-                transform: scale(1.19);
-            }
-        }
-    }   
+    .cardLink {
+        text-decoration: none;
+        color: $COLOR-COD-GRAY;
 
-    .cardInfo {
-        .cardAvailability {
-            border-bottom: 2px solid $UI-color4;
-
-            p {
-                font-weight: 600;
-                font-size: ptr(12);
-                line-height: ptr(20);
-                margin: 14px 0 7px 0;
-            }
-
-            .cardAvailabilityRed {
-                color: $red-color;
-            }
-
-            .cardAvailabilityGreen {
-                color: $green-color;
-            }
-        }
-
-        .cardName  {
-            font-size: ptr(14);
-            opacity: .8;
-            color: $UI-color1;
-            line-height: ptr(28);
-            font-weight: 500;
-            margin-top: 14px;
-            word-wrap: break-word;
+        .cardImage {
+            width: 100%;
+            height: 100%;
             overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            height: 60px;
+            position: relative;
+            transition: .4s ease-in;
+            @include radius-sm;
+
+            & > div {
+                will-change: transform;
+                transition: all .3s;
+                height: 100%;
+
+                img {
+                    object-fit: cover !important;
+                }
+            }
+
+            &:hover {
+                & > div {
+                    transform: scale(1.13);
+                }
+            }
         }
 
-        .cardCost {
-            font-size: ptr(15);
-            line-height: ptr(20);
-            text-align: center;
-            font-weight: 500;
-            margin-top: 40px;
+        .cardInfo {
+            .cardAvailability {
+                border-bottom: 2px solid $COLOR-MERCURY;
+
+                p {
+                    font-weight: 600;
+                    font-size: 12px;
+                    line-height: 20px;
+                    margin: 8px 0;
+                }
+
+                .cardAvailabilityRed {
+                    color: $COLOR-DANGER;
+                }
+
+                .cardAvailabilityGreen {
+                    color: $COLOR-SUCCESS;
+                }
+            }
+
+            .cardName  {
+                font-size: 12px;
+                font-weight: 600;
+                opacity: .8;
+                color: $COLOR-COD-GRAY;
+                line-height: 26px;
+                margin-top: 8px;
+                @include textOverflow(2);
+                height: 50px;
+            }
+
+            .cardCost {
+                margin-top: 20px;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 20px;
+                text-align: center;
+
+            }
+
+            .cardDiscountCost {
+                margin-top: 20px;
+                width: 100%;
+                @include flexCenter;
+                position: relative;
+                line-height: 20px;
+
+                .cardNewCost {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: $COLOR-DANGER;
+                }
+
+                .cardOldCost {
+                    position: absolute;
+                    top: -15px;
+                    right: 8px;
+                    font-size: 13px;
+                    font-weight: 500;
+
+                    @include lineThrough;
+                }
+            }
         }
-    }
 
-    .imageButton {
-        position: absolute;
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        background-color: rgba(0, 0, 0, 0.6);
-        opacity: .6;
-        top: 10px;
-        right: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all .3s;
-
-        & > svg {
-            width: 20px;
+        .cardNew {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            opacity: .88;
+            pointer-events: none;
         }
 
-        &:hover {
-            opacity: 1;
-            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        .imageButton {
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.6);
+            opacity: .6;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all .3s;
+
+            & > svg {
+                width: 20px;
+            }
+
+            &:hover {
+                opacity: 1;
+                filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+            }
         }
     }
 }
-
 
 

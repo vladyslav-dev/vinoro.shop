@@ -1,5 +1,4 @@
 @import "../../styles/index.scss";
-@import url('http://fonts.cdnfonts.com/css/days-2');
 
 .headerTitle {
     position: absolute;
@@ -14,16 +13,18 @@
     user-select: none;
 
     .title {
+        opacity: 0;
         font-family: 'Days';
         font-size: ptr(60);
         font-weight: normal;
+        color: $COLOR-WHITE;
+        animation: showTitle .4s ease-in-out forwards .1s;
     }
 
     .button {
         border: none;
-        background-color: $UI-color5;
-        color: $UI-color1;
-        font-family: "Montserrat";
+        background-color: $COLOR-WHITE;
+        color: $COLOR-COD-GRAY;
         font-size: ptr(16);
         font-weight: bold;
         width: 232px;
@@ -70,5 +71,16 @@
             font-size: ptr(29);
             line-height: ptr(32);
         }
+    }
+}
+
+@keyframes showTitle {
+    from {
+        opacity: 0;
+        transform: scale(0.88);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
 }

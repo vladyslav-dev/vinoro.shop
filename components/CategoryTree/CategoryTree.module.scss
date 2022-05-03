@@ -2,6 +2,23 @@
 
 .categoryTree {
     width: 100%;
+
+    max-height: calc(100vh - 130px);
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+    padding-right: 10px;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 16px;
+        border: 2px solid $COLOR-SILVER-CHALICE;
+        &:hover {
+            border: 2px solid $COLOR-WHITE;
+        }
+    }
+
     .categoryList {
         width: 100%;
 
@@ -15,7 +32,7 @@
             align-items: center;
             margin-bottom: 24px;
             cursor: pointer;
-            
+
             span {
                 font-size: ptr(17);
             }
@@ -24,7 +41,7 @@
                 transform: rotate(90deg);
                 transition: all .3s linear;
                 path {
-                    fill: $UI-color5;
+                    fill: $COLOR-WHITE;
                 }
             }
         }
@@ -38,7 +55,12 @@
         .subCategory {
             max-height: 0;
             overflow: hidden;
+            overscroll-behavior: auto;
             transition: all .3s linear;
+
+            &::-webkit-scrollbar {
+               display: none;
+            }
 
             .subCategotyList {
 
@@ -47,7 +69,7 @@
                     margin: 22px 0;
 
                     a {
-                        color: $UI-color2;
+                        color: $COLOR-SILVER-CHALICE;
                         text-decoration: none;
                         font-size: 14px;
                         font-weight: 500;
@@ -62,21 +84,22 @@
                         white-space: nowrap;
 
                         &:hover {
-                            border-color: $UI-color5;
+                            border-color: $COLOR-WHITE;
                         }
                     }
                 }
 
                 .subCategoryItemActive {
                     a {
-                        color: $UI-color5;
+                        color: $COLOR-WHITE;
                     }
                 }
             }
         }
 
         .subCategoryActive {
-            max-height: 320px;
+
+            // max-height: 9999px
         }
     }
 }

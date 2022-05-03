@@ -20,6 +20,7 @@
         height: 64%;
         max-height: 750px;
         position: absolute;
+        @include flexCenter;
         top: 50%;
         left: 50%;
         z-index: 300;
@@ -50,7 +51,7 @@
 
             span {
                 width: 22px;
-                background-color: $UI-color5;
+                background-color: $COLOR-WHITE;
                 height: 2.5px;
                 transform-origin: 11px;
                 border-radius: 5px;
@@ -59,7 +60,7 @@
                 top: center;
 
                 &:nth-child(1) {
-                    
+
                     transform: rotate(-45deg);
                 }
 
@@ -71,6 +72,7 @@
 
         .modalContent {
             height: 100%;
+            max-height: 650px;
             padding: 60px 0;
             box-sizing: border-box;
 
@@ -82,10 +84,10 @@
                 box-sizing: border-box;
 
                 .modalItem {
-                    
+
                     a {
                         text-decoration: none;
-                        color: $UI-color5;
+                        color: $COLOR-WHITE;
                         box-sizing: border-box;
                         padding: 5px;
 

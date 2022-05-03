@@ -1,4 +1,4 @@
-import { IProduct } from '@/interfaces/IProduct';
+import { IProduct } from '@/interfaces/product';
 
 export interface IProductCard extends Omit<IProduct, "category" | "order_id" | "description"> {}
 
@@ -27,7 +27,7 @@ interface IRemoveProduct {
     payload: string
 }
 
-export type FavoriteAction = IInitState | IAddProduct | IRemoveProduct 
+export type FavoriteAction = IInitState | IAddProduct | IRemoveProduct
 
 export interface FavoriteHandlers {
     initState: (state: Array<IProductCard>) => void;

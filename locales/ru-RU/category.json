@@ -1,0 +1,9 @@
+{
+    "toolbar": {
+        "sortBy": "Сортировать по",
+        "default": "По умолчанию",
+        "ascendingPrice": "По возрастанию цены",
+        "descendingPrice": "По убыванию цены",
+        "totalProducts": "Всего"
+    }
+}

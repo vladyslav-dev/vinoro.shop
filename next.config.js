@@ -3,6 +3,14 @@ const nextTranslate = require('next-translate')
 
 module.exports = withPWA({
   reactStrictMode: true,
+  optimizeFonts: false,
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    // ignoreBuildErrors: true,
+  },
   images: {
     domains: ["res.cloudinary.com"],
   },

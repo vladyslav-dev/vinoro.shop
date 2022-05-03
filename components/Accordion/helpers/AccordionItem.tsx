@@ -19,7 +19,7 @@ const AccordionItem: React.FC<IAccordionItem> = ({title, description, controller
 
     useEffect(() => setHeight(hiddenBlockHeight), [hiddenBlockHeight])
 
-    const accordHandler = (event: React.MouseEvent<HTMLElement>) => {
+    const accordHandler = () => {
         if (controller?.getCurrentAccord() === title) {
             setHeight(0)
             controller.toggleAccord('')

@@ -2,12 +2,16 @@
 
 .logo {
     font-family: 'Montserrat', sans-serif;
-    color: $UI-color5;
-    font-weight: 500;
-    letter-spacing: 0.11em;
+    color: $COLOR-COD-GRAY;
+    font-weight: 400;
+    letter-spacing: 0.14em;
     font-size: ptr(32);
     width: 160px;
     text-align: center;
+
+    &.light {
+        color: $COLOR-WHITE;
+    }
 
     @include sm {
         font-size: ptr(26);

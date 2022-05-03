@@ -1,37 +1,41 @@
 @import "../../styles/index.scss";
 
 .product {
-    border-bottom: 1px solid $UI-color4;
+    border-bottom: 1px solid $COLOR-MERCURY;
     padding-bottom: 22px;
     margin-bottom: 22px;
     position: relative;
     display: flex;
-    
+
     .productImage {
         min-width: 90px;
         position: relative;
     }
 
     .productInfo {
-        color: $UI-color1;
+        color: $COLOR-COD-GRAY;
         margin-left: 16px;
 
         .productInfoTitle {
             font-weight: 500;
             font-size: ptr(13);
             line-height: ptr(20);
+            @include textOverflow(2);
         }
 
         .productInfoCost {
-            font-size: ptr(14);
+            font-size: ptr(13);
+            font-weight: 600;
             line-height: ptr(20);
             margin-top: 10px;
+            @include flexBetween;
         }
 
         .productQuantity {
             display: flex;
             align-items: center;
-            margin-top: 18px;
+            margin-top: 24px;
+            margin-left: 4px;
 
             .productQuantityButton {
                 border: none;
@@ -44,12 +48,14 @@
                 & > svg {
                     width: 14px;
                     height: 14px;
+                    border-radius: 50%;
                 }
             }
 
             .productQuantityNumber {
                 margin: 0 21px;
-                font-size: ptr(16);
+                font-size: ptr(14);
+                font-weight: 600;
                 width: 22px;
                 text-align: center;
             }

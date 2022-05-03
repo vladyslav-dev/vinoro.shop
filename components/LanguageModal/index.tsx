@@ -14,10 +14,10 @@ const LanguageModal = () => {
             <ul className={styles.langList}>
                 {Object.keys(LOCALES).map(item => (
                     <li key={item} className={styles.langItem}>
-                        <Link href={router.asPath} locale={item}>
+                        <Link href={router.asPath} locale={item} scroll={false}>
                             <a className={styles.langItemLink}>
-                                <span>{LOCALES[item]}</span>
-                                {router.locale === item && <CheckedSvg />}
+                                <span>{LOCALES[item as keyof typeof LOCALES]}</span>
+                                {router.locale === item && <CheckedSvg color='#fff' />}
                             </a>
                         </Link>
                     </li>

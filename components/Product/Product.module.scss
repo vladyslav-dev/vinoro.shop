@@ -4,7 +4,6 @@
     min-height: calc(100vh - 68px - 51px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
 
     .breadcrumb {
         padding: 20px 0;
@@ -13,9 +12,7 @@
     .content {
         width: 100%;
         display: flex;
-        justify-content: space-between;
-        background-color: $UI-color5;
-        color: $UI-color1;
+        color: $COLOR-COD-GRAY;
         padding-bottom: 50px;
         font-weight: 500;
 
@@ -25,42 +22,156 @@
         }
 
         .rightPart {
-            flex: 1;
+            flex: 1.2 ;
+            max-width: 786px;
             margin-left: 34px;
             margin-top: 25px;
 
-            .productNamePrice > p {
-                font-size: ptr(20);
-                line-height: ptr(26);
-                margin-bottom: 15px;
+            .productNamePrice {
+                margin-bottom: 20px;
+
+                & > p {
+                    font-size: ptr(20);
+                    line-height: ptr(26);
+                    margin-bottom: 15px;
+                }
+
+                // .price {
+                //     font-size: ptr(18);
+                //     line-height: auto;
+                //     margin-top: 12px;
+                //     margin-bottom: 45px;
+
+                //     &.red {
+                //         @include lineThrough;
+                //     }
+                // }
+
+                // .discount {
+                //     font-size: 16px;
+                //     font-weight: 600;
+                //     color: $COLOR-DANGER;
+                //     // position: absolute;
+                //     // top: -15px;
+                //     // right: 8px;
+                //     // font-size: 13px;
+                //     // font-weight: 500;
+
+
+                // }
+
+                .productPrice {
+                    margin-top: 20px;
+                    font-size: 17px;
+                    font-weight: 600;
+                    line-height: 20px;
+                }
+
+                .productDiscount {
+                    margin-top: 20px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    line-height: 20px;
+
+                    .productNewPrice {
+                        font-size: 17px;
+                        font-weight: 600;
+                        color: $COLOR-DANGER;
+                        margin-right: 16px;
+                    }
+
+                    .productOldPrice {
+                        position: relative;
+                        font-size: 14px;
+                        font-weight: 500;
+
+                        @include lineThrough;
+                    }
+                }
             }
 
-            .productNamePrice > p:last-child {
-                font-size: ptr(18);
-                line-height: auto;
-                margin-top: 12px;
-                margin-bottom: 45px;
+            .bulkPrice {
+                cursor: default;
+
+                .bulkPriceTitle {
+                    display: flex;
+                    align-items: center;
+                    color: $COLOR-SILVER;
+
+                    p {
+                        font-size: 12px;
+                        font-weight: 600;
+                        margin-right: 6px;
+                    }
+
+                    .bulkPriceTooltip {
+                        position: relative;
+
+                        .icon {
+                            cursor: pointer;
+                        }
+
+                        .tooltipInfo {
+                            visibility: hidden;
+                            opacity: 0;
+                            display: block;
+                            text-align: center;
+                            min-width: 277px;
+                            @include radius-sm;
+                            position: absolute;
+                            left: -100px;
+                            top: 25px;
+                            font-size: 11px;
+                            line-height: 18px;
+                            font-weight: 600;
+                            padding: 12px 8px;
+                            @include glassBackground;
+                            transition: all .3s ease-in-out .2s;
+                        }
+
+                        .icon:hover + .tooltipInfo {
+                            visibility: visible;
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                .bulkPriceList {
+                    display: flex;
+                    gap: 12px;
+                    margin: 12px 0;
+
+                    .bulkPriceItem {
+                        @include flexCenter;
+                        @include radius-sm;
+                        padding: 8px 12px;
+                        background-color: $COLOR-MERCURY;
+                        font-size: 12px;
+                        font-weight: 600;
+                    }
+                }
             }
 
             .productAvailability {
-                border-bottom: 1px solid $UI-color4;
+                margin-top: 26px;
+                border-bottom: 1px solid $COLOR-MERCURY;
                 padding-bottom: 7px;
                 font-size: ptr(12);
-                font-family: "Montserrat";
                 font-weight: 600;
                 letter-spacing: .3px;
                 .cardAvailabilityRed {
-                    color: $red-color;
+                    color: $COLOR-DANGER;
                 }
 
                 .cardAvailabilityGreen {
-                    color: $green-color;
+                    color: $COLOR-SUCCESS;
                 }
             }
 
             .addButtons {
-                margin: 45px 0;
-                margin-bottom: 25px;
+                margin: 35px 0;
 
                 button {
                     width: 100%;
@@ -79,10 +190,9 @@
                 padding: 0;
 
                 & > p {
-                    color: $UI-color1;
+                    color: $COLOR-COD-GRAY;
                     font-size: ptr(11);
-                    font-family: "Montserrat";
-                    font-weight: 500;
+                    font-weight: 600;
                     margin-right: 8px;
                 }
 
@@ -93,7 +203,7 @@
             }
 
             .productDescriptions {
-                font-size: ptr(15);
+                font-size: ptr(14);
                 line-height: ptr(28);
             }
         }
@@ -102,8 +212,8 @@
             position: fixed;
             bottom: 60px;
             right: -200px;
-            background-color: $UI-color1;
-            color: $UI-color5;
+            background-color: $COLOR-COD-GRAY;
+            color: $COLOR-WHITE;
             padding: 16px 24px;
             border-radius: 4px;
             font-size: ptr(11);

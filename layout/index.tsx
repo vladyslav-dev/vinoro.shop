@@ -1,78 +1,90 @@
 import React, { FC, ReactNode, useEffect, useContext, useState } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import { GlobalContext } from '@/store/index';
-import { NextRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
+const pagesWithoutFooter = ['/', '/help', '/order'];
 
+type TTransitionStage = 'fadeIn' | 'fadeOut';
 export interface LayoutProps {
-    children?: ReactNode;
-    router?: NextRouter;
+    children?: React.ReactElement;
 }
 
-const Layout: FC<LayoutProps> = ({ children, router }) => {
+const Layout: FC<LayoutProps> = ({ children }) => {
 
-    const state = useContext(GlobalContext)
+    // const state = useContext(GlobalContext)
+    const router = useRouter()
 
-    const [isLoaded, setIsLoaded] = useState({
-        basket: false,
-        favorite: false
-    })
-
-    useEffect(() => {
-        for (const key in state) {
-            if (localStorage.hasOwnProperty(key)) {
-
-                const value = localStorage.getItem(key);
-
-                if (key === "BASKET") {
-                    try {
-                        const storageValue = JSON.parse(value);
-                        state.BASKET.handlers.initState([...storageValue.products]);
-                    } catch (err) {
-                        throw new Error(err)
-                    }
-                }
-
-                if (key === "FAVORITES") {
-                    try {
-                        const storageValue = JSON.parse(value);
-                        state.FAVORITES.handlers.initState([...storageValue.products]);
-                    } catch (err) {
-                        throw new Error(err)
-                    }
-                }
-
-            } else {
-                localStorage.setItem(key, JSON.stringify(state[key].state))
-            }
-        }
-    }, [])
+    const [displayChildren, setDisplayChildren] = useState(children);
+    const [transitionStage, setTransitionStage] = useState<TTransitionStage>("fadeOut");
 
     useEffect(() => {
-        if (isLoaded.basket) {
-            localStorage.setItem("BASKET", JSON.stringify(state.BASKET.state))
-        } else {
-            setIsLoaded({ ...isLoaded, basket: true })
-        }
+        setTransitionStage("fadeIn");
+      }, []);
 
-    }, [state.BASKET])
+      useEffect(() => {
+        if (children !== displayChildren) setTransitionStage("fadeOut");
+      }, [children, setDisplayChildren, displayChildren]);
 
-    useEffect(() => {
-        if (isLoaded.favorite) {
-            localStorage.setItem("FAVORITES", JSON.stringify(state.FAVORITES.state))
-        } else {
-            setIsLoaded({ ...isLoaded, favorite: true });
-        }
-    }, [state.FAVORITES])
+    // const [isLoaded, setIsLoaded] = useState({
+    //     basket: false,
+    //     favorite: false
+    // })
+
+    // useEffect(() => {
+    //     for (const key in state) {
+    //         if (localStorage.hasOwnProperty(key)) {
+
+    //             const value = localStorage.getItem(key);
+
+    //             if (key === "BASKET") {
+    //                 try {
+    //                     const storageValue = JSON.parse(value);
+    //                     state.BASKET.handlers.initState([...storageValue.products]);
+    //                 } catch (err) {
+    //                     throw new Error(err)
+    //                 }
+    //             }
+
+    //             if (key === "FAVORITES") {
+    //                 try {
+    //                     const storageValue = JSON.parse(value);
+    //                     state.FAVORITES.handlers.initState([...storageValue.products]);
+    //                 } catch (err) {
+    //                     throw new Error(err)
+    //                 }
+    //             }
+
+    //         } else {
+    //             localStorage.setItem(key, JSON.stringify(state[key].state))
+    //         }
+    //     }
+    // }, [])
+
+    // useEffect(() => {
+    //     if (isLoaded.basket) {
+    //         localStorage.setItem("BASKET", JSON.stringify(state.BASKET.state))
+    //     } else {
+    //         setIsLoaded({ ...isLoaded, basket: true })
+    //     }
+
+    // }, [state.BASKET])
+
+    // useEffect(() => {
+    //     if (isLoaded.favorite) {
+    //         localStorage.setItem("FAVORITES", JSON.stringify(state.FAVORITES.state))
+    //     } else {
+    //         setIsLoaded({ ...isLoaded, favorite: true });
+    //     }
+    // }, [state.FAVORITES])
 
     const isNavbarTransparent = router.pathname === '/' || router.pathname === '/help';
 
-    const pagesWithoutFooter = ['/', '/help', '/order'];
+
     const isShowFooter = pagesWithoutFooter.every(route => router.pathname !== route);
 
     const navbarStyles = {
-        background: isNavbarTransparent ? 'transparent' : '#1C1C1C'
+        background: isNavbarTransparent ? 'transparent' : '#FFFFFF'
     }
 
     return (
@@ -86,7 +98,18 @@ const Layout: FC<LayoutProps> = ({ children, router }) => {
             </Head> */}
 
             <Navbar navbarStyles={navbarStyles} />
-            {children}
+            <div
+                onTransitionEnd={() => {
+                    if (transitionStage === "fadeOut") {
+                      console.log("fading out");
+                      setDisplayChildren(children);
+                      setTransitionStage("fadeIn");
+                    }
+                  }}
+                  className={`__global-layout ${transitionStage}`}
+            >
+                {displayChildren}
+            </div>
             {isShowFooter && <Footer /> }
         </>
     );

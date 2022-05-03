@@ -1,56 +1,34 @@
-import axios from 'axios';
 import React, { useEffect } from 'react';
 import styles from './product.module.scss'
-import { IProduct } from '@/interfaces/IProduct';
 import Product from '@/components/Product';
-import useCurrentCategory from '@/hooks/useCurrentCategory';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
+import ProductService from 'services/ProductService';
 
-// import dynamic from 'next/dynamic'
+const ProductPage: React.FC= () => {
 
-// const Product = dynamic(() =>import('@/components/Product'))
+    const router = useRouter()
 
+    const { data: product } = useSWR(`PRODUCT-GET-ONE-${router.query.id}`, async () => {
+        return await ProductService.getOne(router.query.id as string)
+    })
 
-interface ProductProps {
-    product?: IProduct;
-    category?: {
-        _id: string;
-        category_name: string;
-    };
-}
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
-const ProductPage: React.FC<ProductProps>= ({ product, category }) => {
-    
-    useCurrentCategory(product.category as string);
+    if (!product) {
+        return null;
+    }
 
     return (
         <div className={styles.product}>
-            <div className={styles.container}>
-                {product ? <Product product={product} category={category} /> : null}
+            <div className={styles['container-xl']}>
+                {product ? <Product product={product} /> : null}
             </div>
         </div>
     )
 };
-
-export const getServerSideProps = async ({ query, locale }) => {
-
-    const { data } = await axios.get(`${process.env.DOMAIN}api/product/${query.id}`, {params: {lang: locale}});
-
-    if (!data) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        }
-    }
-
-    return {
-        props: {
-            product: data.product,
-            category: data.category
-        }
-    }
-}
 
 
 export default ProductPage

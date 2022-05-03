@@ -54,7 +54,7 @@ const PersonalDataForm = ({ updateButtonDisabled }) => {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.container}>
+            <div className={styles.formContainer}>
                 <div className={styles.formWrapper}>
                     <div className={styles.formHeader}>
                         <div className={styles.formHeaderItem}>

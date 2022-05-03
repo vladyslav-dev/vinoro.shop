@@ -1,7 +1,4 @@
 {
-    "categoryFood": "Foodstuffs",
-    "categoryAlcohol": "Alcoholic drinks",
-    "categoryChemicals": "Household chemicals",
     "menu": {
         "main": "Home",
         "catalog": "Catalog",
@@ -17,38 +14,13 @@
     },
     "scrollDown": "SCROLL DOWN",
     "swipeDown": "SWIPE DOWN",
-    "category": {
-        "Кофе": "Coffee",
-        "Чай": "Tea",
-        "Шоколад": "Chocolate",
-        "Макаронные изделия": "Pasta",
-        "Сыры и колбасы": "Cheese and sausages",
-        "Оливковое масло": "Olive Oil",
-        "Морепродукты/Икра": "Seafood/Caviar",
-        "Соусы и приправы": "Sauces and seasonings",
-        "Орехи и сухофрукты": "Nuts and dried fruits",
-        "Шампанское, Вино": "Champagne, Wine",
-        "Водка": "Vodka",
-        "Виски": "Whiskey",
-        "Бренди / Коньяк": "Brandy / Cognac",
-        "Джин": "Jin",
-        "Ром": "Rum",
-        "Ликер": "Liquor",
-        "Настойка": "Tincture",
-        "Вермут/Текила": "Vermouth/Tequila",
-        "Средства личной гигиены": "Personal hygiene products",
-        "Гель/Порошок для стирки": "Gel/Powder for Laundry",
-        "Капсулы для стирки": "Capsules for washing",
-        "Ополаскиватели, пятновыводители": "Rinse aids, stain removers",
-        "Моющие средства": "Detergents",
-        "Мыло, шампуни, гели для душа": "Soaps, shampoos, shower gels"
-    },
     "copyright": "© All rights reserved. Vinoro - 2020-2022",
-    "toolbar": {
-        "sortBy": "Sort by",
-        "default": "Default",
-        "ascendingPrice": "Ascending price",
-        "descendingPrice": "Descending price",
-        "totalProducts": "Total products"
-    }
+    "availability": {
+        "available": "In stock",
+        "notAvailable": "Out of stock"
+    },
+    "total": "Total",
+    "noProductsInBasket": "You have no items added to your cart",
+    "next": "Next",
+    "shoppingCart": "Shopping cart"
 }

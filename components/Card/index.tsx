@@ -1,13 +1,15 @@
 import Link from 'next/link'
-import React, { useContext } from 'react'
+import React from 'react'
 import styles from './Card.module.scss'
 
 import Img from '@/components/Img';
 import { TrashSvg } from '@/icons/Trash';
 import { IProductCard } from '@/interfaces/IFavorite'
 
-import { GlobalContext } from '@/store/index';
-import { motion } from "framer-motion"
+import { NewSvg } from '../Icons/New';
+import useLanguage from '@/hooks/useLanguage';
+import useTranslation from 'next-translate/useTranslation';
+import { useRouter } from 'next/router';
 
 interface CardProps {
     product: IProductCard;
@@ -16,56 +18,61 @@ interface CardProps {
 
 const CardComponent = ({ product, removeButton }: CardProps) => {
 
-    const { FAVORITES } = useContext(GlobalContext)
+    const { t } = useTranslation();
+    const { language } = useLanguage();
 
-    const removeFromFavotite = (e) => {
+    const removeFromFavotite = (e: React.MouseEvent) => {
         e.stopPropagation()
-        FAVORITES.handlers.removeProduct(product?._id)
     }
 
     return (
-        <motion.div
-            className={`${styles.card}`}
-            initial="hidden"
-            animate="visible"
-            variants={{
-                hidden: {
-                    scale: .8,
-                    opacity: 0
-                },
-                visible: {
-                    scale: 1,
-                    opacity: 1,
-                    // transition: {
-                    //     delay: .5
-                    // }
-                }
-            }}
-        >
-            <Link href={`/product/[id]`} as={`/product/${product?._id}`} passHref>
-                <div>
+        <div className={styles.defaultCard} id={product.id}>
+            <Link href={`/product/[id]`} as={`/product/${product.id}`} scroll={false} >
+                <a className={styles.cardLink}>
                     <div className={styles.cardImage}>
                         <Img src={product.image} />
                     </div>
                     <div className={styles.cardInfo}>
                         <div className={styles.cardAvailability}>
-                            {product.availability ? <p className={styles.cardAvailabilityGreen}>Есть в наличии	&nbsp;&#10004;</p> : <p className={styles.cardAvailabilityRed}>Нет в наличии &#10008;</p>}
+                            {product.availability ? (
+                                <p className={styles.cardAvailabilityGreen}>{t(`common:availability.available`)}	&nbsp;&#10004;</p>
+                            ) : (
+                                <p className={styles.cardAvailabilityRed}>{t(`common:availability.notAvailable`)} &#10008;</p>
+                            )}
                         </div>
                         <div className={styles.cardName}>
-                            <span>{product.name}</span>
+                            <span>{product.name[language]}</span>
                         </div>
-                        <div className={styles.cardCost}>
-                            <span>{product.cost} UAH</span>
-                        </div>
+
+                        {product.discount_price ? (
+                            <div className={styles.cardDiscountCost}>
+                                <span className={styles.cardNewCost}>{product.discount_price} ₴</span>
+                                {product.price !== 1 && (
+                                    <span className={styles.cardOldCost}>{product.price} ₴</span>
+                                )}
+                            </div>
+                        ) : (
+                            <div className={styles.cardCost}>
+                                {product.price !== 1 && (
+                                    <span>{product.price} ₴</span>
+                                )}
+
+                            </div>
+                        )}
                     </div>
+                    {product.new && (
+                        <div className={styles.cardNew}>
+                            <NewSvg />
+                        </div>
+                    )}
                     {removeButton ?
                         <div className={styles.imageButton} onClick={(e) => removeFromFavotite(e)}>
                             <TrashSvg color="#FFFFFF" />
                         </div> : null
                     }
-                </div>
+                </a>
             </Link>
-        </motion.div>
+        </div>
     )
 }
 const Card = React.memo(CardComponent)

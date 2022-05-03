@@ -62,7 +62,7 @@ const OrderDeliveryForm = ({ updateButtonDisabled }) => {
                         </label>
                         {delivery === "Запорожье" && (
                             <div className={styles.deliveryInfo}>
-                                <p className={styles.deliveryInfoText}>Бесплатная доставка по Коммунарскому и Александровскому районам на сумму от 300 UAH. Остальные районы по договорённости после оформления заказа.</p>
+                                <p className={styles.deliveryInfoText}>Бесплатная доставка по Коммунарскому и Александровскому районам на сумму от 300 ₴. Остальные районы по договорённости после оформления заказа.</p>
                                 <div className={styles.deliveryWrapper}>
                                     <div className={styles.deliveryInfoRow}>
                                         <input

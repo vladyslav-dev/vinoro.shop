@@ -1,7 +1,6 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext, useRef, useMemo } from 'react';
 import styles from './Navbar.module.scss';
 import Link from 'next/link'
-import { GlobalContext } from '@/store/index'
 import useOnClickOutside from '@/hooks/useOnClickOutside';
 import useTranslation from 'next-translate/useTranslation';
 
@@ -16,24 +15,29 @@ import BurgerMenu from "@/components/BurgerMenu";
 import HeaderIcon from '@/components/HeaderIcon';
 import SearchModal from '@/components/SearchModal';
 import LanguageModal from '@/components/LanguageModal';
+import useLightElements from '@/hooks/useLightElements';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/index';
 
 
 export interface NavbarProps {
     navbarStyles?: React.CSSProperties;
 };
 
-const Navbar = (props: NavbarProps) => {
+const Navbar: React.FC<NavbarProps> = ({ navbarStyles }) => {
 
-    const { navbarStyles } = props;
+    const { isLight } = useLightElements();
+
+    const { basketProducts } = useSelector((state: RootState) => state.basketReducer);
+
+    const productsNumber = useMemo(() => Object.keys(basketProducts).length, [basketProducts]);
 
     const { t } = useTranslation();
-    const { BASKET } = useContext(GlobalContext)
-    const productsNumber = BASKET.state.products.length;
+
     const [showSearch, setShowSearch] = useState<boolean>(false)
     const [basketIsOpen, setBasketIsOpen] = useState<boolean>(false);
     const [isLanguageModalOpen, setIsLanguageModalOpen] = useState<boolean>(false);
 
-    // const optionListRef = useRef<HTMLUListElement>(null)
     const iconRef = useRef<HTMLDivElement>(null)
 
     useOnClickOutside(() => setIsLanguageModalOpen(false), iconRef)
@@ -55,7 +59,7 @@ const Navbar = (props: NavbarProps) => {
                             </div>
                             <div className={styles.navbarIcon}>
                                 <HeaderIcon label={t("common:navbarIcons.search")} click={() => openModalSearch()}>
-                                    <LoupeSvg color="#ffffff" />
+                                    <LoupeSvg color={isLight ? '#fff' : ''} />
                                 </HeaderIcon>
                             </div>
                         </div>
@@ -71,7 +75,7 @@ const Navbar = (props: NavbarProps) => {
                                 <Link href="/favorite" passHref>
                                     <div className={styles.favoriteIcon}>
                                         <HeaderIcon label={t("common:navbarIcons.favorites")}>
-                                            <HeartSvg />
+                                            <HeartSvg color={isLight ? '#fff' : ''} />
                                         </HeaderIcon>
                                     </div>
                                 </Link>
@@ -79,7 +83,7 @@ const Navbar = (props: NavbarProps) => {
                             <div className={styles.navbarIcon}>
                                 <div onClick={showBasket} onMouseEnter={showBasket} onMouseLeave={hideBasket}>
                                     <HeaderIcon label={t("common:navbarIcons.basket")} className={styles.basketIcon}>
-                                        <BagSvg />
+                                        <BagSvg color={isLight ? '#fff' : ''} />
                                         <div className={styles.basket} style={{right: basketIsOpen ? 0 : "-550px"}}>
                                             <Basket closeBasketHandler={hideBasket} />
                                         </div>
@@ -91,7 +95,7 @@ const Navbar = (props: NavbarProps) => {
                             <div className={styles.navbarIcon}>
                                 <div ref={iconRef} onClick={() => setIsLanguageModalOpen(!isLanguageModalOpen)}>
                                     <HeaderIcon label={t("common:navbarIcons.lang")}>
-                                        <WorldSvg />
+                                        <WorldSvg color={isLight ? '#fff' : ''} />
                                     </HeaderIcon>
                                     {isLanguageModalOpen && <LanguageModal />}
                                 </div>
@@ -102,7 +106,7 @@ const Navbar = (props: NavbarProps) => {
             </div>
             {showSearch && <SearchModal closeSearch={closeModalSearch} />}
             <div className={styles.navbarSimulator} style={{
-                display: navbarStyles.background === 'transparent' ? 'none' : 'block'
+                display: navbarStyles?.background === 'transparent' ? 'none' : 'block'
             }} />
         </>
     );

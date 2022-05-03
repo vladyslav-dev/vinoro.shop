@@ -1,66 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import ToolBar from '@/components/ToolBar'
 import styles from './category.module.scss';
 import CardList from '@/components/CardList';
-import { getCurrentRange } from '@/utils/index';
-import { IProduct } from '@/interfaces/IProduct';
+import { IProduct } from '@/interfaces/product';
 import useCurrentCategory from '@/hooks/useCurrentCategory';
+import useSWR from 'swr';
+import ProductService from 'services/ProductService';
+import Loader from '@/components/Loader';
 
-interface CategoryProps {
-    products?: Array<IProduct>;
-}
 
-type RangeType = "sm" | "md" | "lg"
+const Category: React.FC = () => {
 
-const Category = ({ products }: CategoryProps) => {
+    const router = useRouter();
 
-    const router = useRouter()
+    const { data: products } = useSWR(`GET-PRODUCTS-BY-CATEGORY-${router.query.id}`, async () => {
+        return await ProductService.getByCategoryId(router.query.id as string)
+    })
 
     const { setCurrentCategory } = useCurrentCategory(router.query.id as string)
 
-    const [productList, setProductList] = useState<Array<IProduct>>(products);
-
-    const [range, setRange] = useState<RangeType>("md")
+    const [productList, setProductList] = useState<Array<IProduct>>([]);
 
     useEffect(() => setCurrentCategory(router.query.id as string), [router])
 
-    useEffect(() => setProductList(products), [products])
+
+    useEffect(() => {
+        if (products) setProductList(products)
+    }, [products])
+
+    if (!productList.length) {
+        return null;
+    }
 
     return (
         <div className={styles.category}>
             <div className={styles["container-xl"]}>
                 <div className={styles.categoryWrapper}>
-                    <div className={styles.categoryContent}>
-                        <ToolBar products={products} setRange={setRange} updateProductList={setProductList} />
-                        <div className={styles.categoryList}>
-                            <CardList products={productList} customStyles={getCurrentRange(range)} />
+                    {!productList.length ? <Loader /> : (
+                        <div className={styles.categoryContent}>
+                            <ToolBar products={productList} updateProductList={setProductList} />
+                            <div className={styles.categoryList}>
+                                <CardList products={productList} />
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </div>
     )
-}
-
-export const getServerSideProps = async ({ query }) => {
-    const { data } = await axios.get(`${process.env.DOMAIN}api/category/${query.id}`);
-
-    if (!data) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        }
-    }
-
-    return {
-        props: {
-            products: data.products,
-        }
-    }
 }
 
 export default Category;

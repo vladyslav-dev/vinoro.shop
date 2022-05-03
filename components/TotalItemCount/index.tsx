@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './TotalItemCount.module.scss'
-import { IProduct } from '@/interfaces/IProduct';
+import { IProduct } from '@/interfaces/product';
 import useTranslation from 'next-translate/useTranslation';
 
 interface TotalItemCountProps {
@@ -13,10 +13,9 @@ const TotalItemCount = ( {products}: TotalItemCountProps) => {
 
     return (
         <div className={styles.content}>
-            <p>{t("common:toolbar.totalProducts")}: {products?.length}</p>
+            <p>{t("category:toolbar.totalProducts")}: {products?.length}</p>
         </div>
     )
 }
 
 export default TotalItemCount
-  

@@ -7,6 +7,7 @@ type MyProps = {
     sectionPaddingTop?: string;
     sectionPaddingBottom?: string;
     className?: string;
+    style?: React.CSSProperties;
     id?: any;
 };
 type MyState = {
@@ -55,7 +56,8 @@ class Section extends Component<MyProps, MyState> {
             overflow: 'auto',
             backgroundColor: this.props.color,
             paddingTop: this.context.sectionPaddingTop,
-            paddingBottom: this.context.sectionPaddingBottom
+            paddingBottom: this.context.sectionPaddingBottom,
+            ...this.props.style
         };
 
         return (

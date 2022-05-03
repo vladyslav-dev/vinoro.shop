@@ -18,7 +18,13 @@
         padding: 0;
         margin-bottom: 3px;
         padding: 1px;
-      
+
+        &.light {
+            div {
+                background-color: $COLOR-WHITE;
+            }
+        }
+
         &:focus {
           outline: none;
         }
@@ -29,13 +35,13 @@
             margin-bottom: 4px;
             margin-top: 2px;
         }
-      
+
         div {
             display: flex;
             justify-content: center;
             width: 70%;
             height: 3px;
-            background: #ffffff;
+            background: $COLOR-COD-GRAY;
             border-radius: 1.5px;
             transition: all 0.3s linear;
             position: relative;
@@ -44,17 +50,17 @@
             @include sm {
                 transform-origin: 0.25px;
             }
-        
+
             &:nth-child(1) {
                 transform: rotate(0);
             }
-        
+
             &:nth-child(2) {
                 width: 100%;
                 opacity: 1;
                 transform: translateX(0);
             }
-        
+
             &:nth-child(3) {
                 transform: rotate(0);
             }
@@ -64,18 +70,18 @@
     .burgerActive {
         div {
             width: 100%;
-            
-            // background: #ffffff;
-        
+
+            background: #ffffff;
+
             &:nth-child(1) {
                 transform: rotate(45deg);
             }
-        
+
             &:nth-child(2) {
                 opacity: 0;
                 transform: translateX(20px);
             }
-        
+
             &:nth-child(3) {
                 transform: rotate(-45deg);
             }

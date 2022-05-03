@@ -4,7 +4,7 @@
     position: relative;
 
     .selectTitle {
-        color: $UI-color1;
+        color: $COLOR-COD-GRAY;
         display: flex;
         align-items: center;
         cursor: pointer;
@@ -18,10 +18,10 @@
             transform: rotate(0);
             transition: all .4s ease;
         }
-        
+
         & > span {
-            font-weight: 500;
-            font-size: ptr(13);
+            font-weight: 600;
+            font-size: ptr(12);
             line-height: ptr(20);
             display: inherit;
             align-items: inherit;
@@ -34,17 +34,17 @@
 
     .selectList, .selectListActive {
         @include glassBackground;
-        color: $UI-color5;
+        color: $COLOR-WHITE;
         box-sizing: border-box;
         position: absolute;
         top: 34px;
         width: 225px;
         max-height: 0;
         z-index: 5;
-        border: 1px solid $UI-color2;
+        border: 1px solid $COLOR-SILVER-CHALICE;
         overflow: hidden;
         border-radius: 8px;
-     
+
         transition: all .4s ease-in-out;
 
         .selectListItem {
@@ -54,7 +54,8 @@
             padding-left: 17px;
             transition: .4s ease-in-out;
             border-left: 2px solid transparent;
-            font-size: ptr(14);
+            font-size: ptr(12);
+            letter-spacing: .6px;
             font-weight: 500;
 
             &:first-child {
@@ -66,7 +67,7 @@
             }
 
             &:hover {
-                border-left: 2px solid $UI-color5;
+                border-left: 2px solid $COLOR-WHITE;
             }
         }
 

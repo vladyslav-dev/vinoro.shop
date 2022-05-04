@@ -1,27 +1,41 @@
-import { useEffect } from 'react';
-import Router, { useRouter } from 'next/router';
-import NProgress from 'nprogress';
-//Components
+import { useEffect, useState } from 'react';
+import Router from 'next/router';
 import Stepper from '@/components/Stepper';
+import useTranslation from 'next-translate/useTranslation';
+import { RootState } from '@/store/index';
+import { useSelector } from 'react-redux';
 
 
 const Order = () => {
 
-   const router = useRouter();
+    const { t } = useTranslation();
+    const { basketProducts } = useSelector((state: RootState) => state.basketReducer);
 
+    const message = t(`order:wantToLeave`);
 
-    const message = 'Do you want to leave?';
-    const unsavedChanges = true
+    const [unsavedChanges, setUnsavedChanges] = useState<boolean>(true);
 
     useEffect(() => {
-    const routeChangeStart = url => {
+        if (!Object.keys(basketProducts).length) {
+            Router.push('/');
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!Object.keys(basketProducts).length) {
+            setUnsavedChanges(false)
+        }
+    }, [basketProducts])
+
+    useEffect(() => {
+    const routeChangeStart = (url: string) => {
         if (Router.asPath !== url && unsavedChanges && !confirm(message)) {
         Router.events.emit('routeChangeError');
         throw 'Abort route change. Please ignore this error.';
         }
     };
 
-    const beforeunload = e => {
+    const beforeunload = (e: any) => {
         if (unsavedChanges) {
         e.preventDefault();
         e.returnValue = message;

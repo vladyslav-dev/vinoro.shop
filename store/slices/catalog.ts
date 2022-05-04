@@ -1,15 +1,7 @@
-import { ICategory, ICategoryCollection } from '@/interfaces/category';
-
-import { ICatalog, ICatalogCollection } from "@/interfaces/catalog";
+import { ICategory } from '@/interfaces/category';
+import { ICatalog, ICatalogState } from "@/interfaces/catalog";
 import { toCatalogCollection } from "@/utils/catalog";
 import { createSlice } from "@reduxjs/toolkit";
-
-interface ICatalogState {
-    isLoaded: boolean;
-    currentCategory: string;
-    catalogCollection: ICatalogCollection;
-    categoryCollection: ICategoryCollection;
-}
 
 const catalogSlice = createSlice({
     name: 'catalog',

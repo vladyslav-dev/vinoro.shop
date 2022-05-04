@@ -3,15 +3,19 @@
 .orderPrice {
     font-size: ptr(17);
     line-height: ptr(20);
+    display: flex;
+    flex-direction: column;
 
     p:first-child {
         margin-bottom: 4px;
         font-size: ptr(14);
+        font-weight: 600;
     }
 
     .price {
         font-weight: 600;
         padding-left: 1px;
         font-size: ptr(16);
+        white-space: nowrap;
     }
 }

@@ -1,0 +1,50 @@
+{
+    "wantToLeave": "Do you really want to leave this page?",
+    "stepper": {
+        "basket": "SHOPPING CART",
+        "personalData": "PERSONAL DATA",
+        "deliveryAndPayment": "SHIPPING AND PAYMENT",
+        "orderConfirmed": "ORDER IS PROCESSED"
+    },
+    "delivery": "Delivery",
+    "payment": "Payment",
+    "goHome": "Go to home",
+    "form": {
+        "name": "Name",
+        "surname": "Surname",
+        "email": "Email",
+        "phone": "Phone",
+        "city": "City"
+    },
+    "formErrors": {
+        "name": "Enter your name",
+        "surname": "Enter your last name",
+        "email": "Enter your e-mail.",
+        "correctEmail": "Please enter a valid e-mail",
+        "correctPhone": "Please enter a valid phone number",
+        "phone": "Enter your phone number",
+        "city": "Enter your city"
+    },
+    "paymentType": {
+        "cardPayment": "Card payment",
+        "cashPayment": "Cash payment",
+        "cashOnDelivery": "Payment on delivery"
+    },
+    "deliveryType": {
+        "zpCity": "Zaporizhzhia",
+        "otherCity": "Another city"
+    },
+    "fromZp": "I am from Zaporizhzhia",
+    "zpDeliveryInfo": "Free delivery in Kommunarsky and Aleksandrovsky districts in the amount of 300 ₴ or more. Other areas by agreement after ordering.",
+    "localAdress": "Address (optional)",
+    "otherCityDelivery": "For delivery to other cities of Ukraine, we use the \"NovaPoshta\" (НоваПошта) delivery service.",
+    "departmentAdress": "Department address",
+
+    "orderDate": "Order date",
+    "Order": "Order",
+    "confirmed": "sent for processing",
+    "orderDescription": "Your order will be reviewed as soon as possible, you will be contacted to confirm it. We have also sent a copy of the order to your email address. For all questions write to Viber +380689125456",
+    "BuyerData": "Buyer data",
+    "Goods": "Goods",
+    "notFilled": "Not filled"
+}

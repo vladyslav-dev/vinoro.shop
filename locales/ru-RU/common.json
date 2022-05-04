@@ -22,5 +22,7 @@
     "total": "Итого",
     "noProductsInBasket": "У вас нет добавленных товаров в корзине",
     "next": "Далее",
-    "shoppingCart": "Корзина"
+    "back": "Назад",
+    "shoppingCart": "Корзина",
+    "exit": "Выйти"
 }

@@ -1,81 +1,100 @@
-import React, { useContext, useState, useEffect } from 'react'
+import { RootState } from '@/store/index';
+import useTranslation from 'next-translate/useTranslation';
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './OrderDeliveryForm.module.scss'
-import { GlobalContext } from '@/store/index';
+import { setPaymentValid, setData } from '@/store/slices/order';
 
+interface OrderDeliveryFormProps {
+    updateButtonDisabled: (bool: boolean) => void;
+}
 
-type PaymentType = "Оплата на карту" | "Наличными" | "Наложенный платёж";
-type DeliveryType = "Запорожье" | "Другой город";
+const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisabled }) => {
 
-const OrderDeliveryForm = ({ updateButtonDisabled }) => {
+    const { t } = useTranslation();
 
+    const dispatch = useDispatch();
 
-    const { ORDER } = useContext(GlobalContext)
+    const LOCAL_CITY = t(`order:deliveryType.zpCity`);
+    const ANOTHER_CITY = t(`order:deliveryType.otherCity`);
 
-    const [delivery, setDelivery] = useState<DeliveryType>(null);
-    const [payment, setPayment] = useState<PaymentType>(null);
+    const CARD_PAYMENT = t(`order:paymentType.cardPayment`);
+    const CASH_PAYMENT = t(`order:paymentType.cashPayment`);
+    const CASH_ON_DELIVERY = t(`order:paymentType.cashOnDelivery`);
 
-    const [zpAddress, setZpAddress] = useState<string>("");
-    const [postAddress, setPostAddress] = useState<string>("");
-    const [postNumber, setPostNumber] = useState<number>();
+    const { personData } = useSelector((state: RootState) => state.orderReducer);
+    console.log(personData)
+    const [delivery, setDelivery] = useState<string>((personData.city === LOCAL_CITY || personData.isLocal) ? LOCAL_CITY : ""); // LOCAL_CITY | ANOTHER_CITY
+    const [payment, setPayment] = useState<string>(personData.payment || ""); // CARD_PAYMENT | CASH_PAYMENT | CASH_ON_DELIVERY
+
+    const [localAdress, setLocalAdress] = useState<string>(personData.local_address || "");
+
+    const [postAddress, setPostAddress] = useState<string>(personData.post_adress || "");
+    const [postNumber, setPostNumber] = useState<string>(personData.post_number || "");
 
     const deliveryHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setDelivery(e.target.value as DeliveryType)
+        setDelivery(e.target.value as string)
     }
 
     const paymentHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setPayment(e.target.value as PaymentType)
+        setPayment(e.target.value as string)
     }
 
     useEffect(() => {
-
-        if (delivery && payment) {
-            ORDER.handlers.updateState({
-                zpAddress: zpAddress || null,
-                postDepartment: postAddress && postNumber ? `${postAddress} ${postNumber}` : null,
+        const isPostDataValid = postNumber && postAddress.trim();
+        if (delivery && payment && (isPostDataValid || delivery === LOCAL_CITY)) {
+            dispatch(setData({
+                isLocal: !!(delivery === LOCAL_CITY),
+                local_address: localAdress || null,
+                post_adress: postAddress || null,
+                post_number: postNumber || null,
                 payment: payment,
-            })
-            ORDER.handlers.setPaymentDataValid(true)
+            }))
+
+            dispatch(setPaymentValid(true))
             updateButtonDisabled(false)
+            console.log('enable button')
         } else {
-            ORDER.handlers.setPaymentDataValid(false)
+            console.log('disable button')
+            dispatch(setPaymentValid(false))
             updateButtonDisabled(true)
         }
 
-    }, [payment, delivery, zpAddress, postAddress, postNumber])
+    }, [payment, delivery, localAdress, postAddress, postNumber])
 
     return (
         <div className={styles.formRow}>
             <div className={styles.formCol}>
-                <div className={styles.formTitle}>Доставка</div>
+                <div className={styles.formTitle}>{t(`order:delivery`)}</div>
                 <div className={styles.radioGroup}>
                     <div className={styles.radioItem}>
                         <label className={styles.radioLabel}>
                             <input
                                 type="radio"
-                                value="Запорожье"
+                                value={LOCAL_CITY}
                                 onChange={deliveryHandler}
-                                checked={delivery === "Запорожье"}
+                                checked={delivery === LOCAL_CITY}
                                 name="city"
                                 className={styles.radioInput}
                             />
-                            <p className={styles.radioText}>Я из Запорожья</p>
+                            <p className={styles.radioText}>{t(`order:fromZp`)}</p>
                         </label>
-                        {delivery === "Запорожье" && (
+                        {delivery === LOCAL_CITY && (
                             <div className={styles.deliveryInfo}>
-                                <p className={styles.deliveryInfoText}>Бесплатная доставка по Коммунарскому и Александровскому районам на сумму от 300 ₴. Остальные районы по договорённости после оформления заказа.</p>
+                                <p className={styles.deliveryInfoText}>{t(`order:zpDeliveryInfo`)}</p>
                                 <div className={styles.deliveryWrapper}>
                                     <div className={styles.deliveryInfoRow}>
                                         <input
-                                            id="zpAddress"
+                                            id="localAdress"
                                             autoComplete="none"
-                                            value={zpAddress}
-                                            onChange={(e) => setZpAddress(e.target.value)}
+                                            value={localAdress}
+                                            onChange={(e) => setLocalAdress(e.target.value)}
                                         />
                                         <label
-                                            htmlFor="zpAddress"
-                                            className={`${zpAddress ? styles.labelActive : ""}`}
+                                            htmlFor="localAdress"
+                                            className={`${localAdress ? styles.labelActive : ""}`}
                                         >
-                                            Адресс (не обязательно)
+                                            {t(`order:localAdress`)}
                                         </label>
                                     </div>
                                 </div>
@@ -87,17 +106,17 @@ const OrderDeliveryForm = ({ updateButtonDisabled }) => {
                         <label className={styles.radioLabel}>
                             <input
                                 type="radio"
-                                value="Другой город"
+                                value={ANOTHER_CITY}
                                 onChange={deliveryHandler}
-                                checked={delivery === "Другой город"}
+                                checked={delivery === ANOTHER_CITY}
                                 name="city"
                                 className={styles.radioInput}
                             />
-                            <p className={styles.radioText}>Другой город</p>
+                            <p className={styles.radioText}>{t(`order:deliveryType.otherCity`)}</p>
                         </label>
-                        {delivery === "Другой город" && (
+                        {delivery === ANOTHER_CITY && (
                             <div className={styles.deliveryInfo}>
-                                <p className={styles.deliveryInfoText}>Для доставки в другие города Украины мы используем “НоваПошта”.</p>
+                                <p className={styles.deliveryInfoText}>{t(`order:otherCityDelivery`)}</p>
                                 <div className={styles.deliveryWrapper}>
                                     <div className={styles.deliveryInfoRow}>
                                         <input
@@ -110,17 +129,20 @@ const OrderDeliveryForm = ({ updateButtonDisabled }) => {
                                             htmlFor="postAddress"
                                             className={`${postAddress ? styles.labelActive : ""}`}
                                         >
-                                            Адресс отделения
+                                            {t(`order:departmentAdress`)}
                                     </label>
                                     </div>
                                     <div className={styles.deliveryInfoRow}>
                                         <input
                                             id="postNumber"
                                             autoComplete="none"
-                                            type="number"
-                                            min="1"
+                                            type="text"
                                             value={postNumber}
-                                            onChange={(e) => setPostNumber(Number(e.target.value))}
+                                            onChange={(e: React.ChangeEvent) => {
+                                                const { value } = e.target as HTMLInputElement;
+                                                const pattern = /^\d*$/.test(value);
+                                                return pattern && (value === "" || parseInt(value)) && setPostNumber(value)
+                                            }}
                                         />
                                         <label
                                             htmlFor="postNumber"
@@ -136,45 +158,45 @@ const OrderDeliveryForm = ({ updateButtonDisabled }) => {
                 </div>
             </div>
             <div className={styles.formCol}>
-                <div className={styles.formTitle}>Оплата</div>
+                <div className={styles.formTitle}>{t(`order:payment`)}</div>
                 <div className={styles.radioGroup}>
                     <div className={styles.radioItem}>
                         <label className={styles.radioLabel}>
                             <input
                                 type="radio"
-                                checked={payment === "Оплата на карту"}
+                                checked={payment === CARD_PAYMENT}
                                 name="payment"
                                 className={styles.radioInput}
                                 onChange={paymentHandler}
-                                value="Оплата на карту"
+                                value={CARD_PAYMENT}
                             />
-                            <p className={styles.radioText}>Оплата на карту</p>
+                            <p className={styles.radioText}>{CARD_PAYMENT}</p>
                         </label>
                     </div>
                     <div className={styles.radioItem}>
                         <label className={styles.radioLabel}>
                             <input
                                 type="radio"
-                                checked={payment === "Наличными"}
+                                checked={payment === CASH_PAYMENT}
                                 name="payment"
                                 className={styles.radioInput}
                                 onChange={paymentHandler}
-                                value="Наличными"
+                                value={CASH_PAYMENT}
                             />
-                            <p className={styles.radioText}>Наличными</p>
+                            <p className={styles.radioText}>{CASH_PAYMENT}</p>
                         </label>
                     </div>
                     <div className={styles.radioItem}>
                         <label className={styles.radioLabel}>
                             <input
                                 type="radio"
-                                checked={payment === "Наложенный платёж"}
+                                checked={payment === CASH_ON_DELIVERY}
                                 name="payment"
                                 className={styles.radioInput}
                                 onChange={paymentHandler}
-                                value="Наложенный платёж"
+                                value={CASH_ON_DELIVERY}
                             />
-                            <p className={styles.radioText}>Наложенный платёж</p>
+                            <p className={styles.radioText}>{CASH_ON_DELIVERY}</p>
                         </label>
                     </div>
                 </div>

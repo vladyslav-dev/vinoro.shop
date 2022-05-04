@@ -1,5 +1,5 @@
 import { ILangData } from '@/interfaces/general';
-import { ICategory } from './category';
+import { ICategory, ICategoryCollection } from './category';
 
 export interface ICatalog {
     id: string;
@@ -22,4 +22,11 @@ export interface ICatalogCollection {
         catalog: ICatalog,
         category: ICategory[],
     };
+}
+
+export interface ICatalogState {
+    isLoaded: boolean;
+    currentCategory: string;
+    catalogCollection: ICatalogCollection;
+    categoryCollection: ICategoryCollection;
 }

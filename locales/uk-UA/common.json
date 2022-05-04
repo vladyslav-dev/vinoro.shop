@@ -22,5 +22,7 @@
     "total": "Всього",
     "noProductsInBasket": "У вашому кошику немає жодного товару",
     "next": "Далі",
-    "shoppingCart": "Кошик"
+    "back": "Назад",
+    "shoppingCart": "Кошик",
+    "exit": "Вийти"
 }

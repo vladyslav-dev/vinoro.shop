@@ -121,7 +121,7 @@ const Product: React.FC<ProductPageProps> = ({ product }) => {
                         <Button
                             label={isProductInBasket ? t("product:alreadyInBasket") : t("product:addToBasket")}
                             click={() => { !isProductInBasket ? addToBasket() : null }}
-                            styles={{ fontWeight: 600, fontSize: '12px' }}
+                            styles={{ fontWeight: 600, fontSize: '11px' }}
                         />
                         {/* <Button
                             label={isPrductInFavorites ? t("product:alreadyInFavorite") : t("product:addToFavorite")}

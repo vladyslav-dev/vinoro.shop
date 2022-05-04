@@ -83,7 +83,7 @@
         }
 
         @include sm {
-            left: calc(50% - 64px);
+            left: calc(50% - 68px);
         }
     }
 }
@@ -101,7 +101,7 @@
     width: 420px;
     height: 100%;
     z-index: 999;
-    transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out .2s;
     cursor: default;
 
     @include sm {

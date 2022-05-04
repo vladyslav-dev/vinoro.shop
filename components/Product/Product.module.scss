@@ -14,11 +14,15 @@
         display: flex;
         color: $COLOR-COD-GRAY;
         padding-bottom: 50px;
-        font-weight: 500;
+        font-weight: 600;
 
         .leftPart {
             flex: 1 1;
             max-width: 500px;
+
+            img {
+                @include radius-sm;
+            }
         }
 
         .rightPart {
@@ -35,30 +39,6 @@
                     line-height: ptr(26);
                     margin-bottom: 15px;
                 }
-
-                // .price {
-                //     font-size: ptr(18);
-                //     line-height: auto;
-                //     margin-top: 12px;
-                //     margin-bottom: 45px;
-
-                //     &.red {
-                //         @include lineThrough;
-                //     }
-                // }
-
-                // .discount {
-                //     font-size: 16px;
-                //     font-weight: 600;
-                //     color: $COLOR-DANGER;
-                //     // position: absolute;
-                //     // top: -15px;
-                //     // right: 8px;
-                //     // font-size: 13px;
-                //     // font-weight: 500;
-
-
-                // }
 
                 .productPrice {
                     margin-top: 20px;
@@ -85,7 +65,7 @@
                     .productOldPrice {
                         position: relative;
                         font-size: 14px;
-                        font-weight: 500;
+                        font-weight: 600;
 
                         @include lineThrough;
                     }
@@ -156,7 +136,7 @@
 
             .productAvailability {
                 margin-top: 26px;
-                border-bottom: 1px solid $COLOR-MERCURY;
+                border-bottom: 2px solid #ececec7a;
                 padding-bottom: 7px;
                 font-size: ptr(12);
                 font-weight: 600;
@@ -183,7 +163,7 @@
                 display: inline-flex;
                 align-items: center;
                 margin-top: 10px;
-                opacity: .5;
+                opacity: .4;
                 background: none;
                 border: none;
                 cursor: pointer;
@@ -197,13 +177,13 @@
                 }
 
                 & > svg {
-                    width: 14px;
-                    height: 14px;
+                    width: 12px;
+                    height: 12px;
                 }
             }
 
             .productDescriptions {
-                font-size: ptr(14);
+                font-size: ptr(13);
                 line-height: ptr(28);
             }
         }

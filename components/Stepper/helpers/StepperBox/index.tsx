@@ -6,20 +6,41 @@ import Link from 'next/link'
 import Button from '@/components/Button'
 import Step from '@/components/Stepper/helpers/Step'
 import TotalPrice from '@/components/TotalPrice'
+import { IStepContent } from '../..'
+import { IBasketProductCollection } from '@/interfaces/product'
+import { RootState } from '@/store/index'
+import { useSelector } from 'react-redux'
+import useTranslation from 'next-translate/useTranslation'
 
-const StepperBox = (
+interface StepperBoxProps {
+    stepsContent: Array<IStepContent>;
+    products: IBasketProductCollection;
+    nextButtonHandler: () => void;
+    backButtonHandler: () => void;
+    children: React.ReactNode;
+}
+
+const StepperBox: React.FC<StepperBoxProps> = (
     {
-        stepsContent,
         nextButtonHandler,
         backButtonHandler,
+        stepsContent,
         products,
         children
     }
 ) => {
-    const [currentStep, setCurrentStep] = React.useState(null)
+    const [currentStep, setCurrentStep] = React.useState<IStepContent>();
+
+    console.log(currentStep)
+    const { t } = useTranslation();
+
+    const { totalPrice } = useSelector((state: RootState) => state.basketReducer);
 
     useEffect(() => {
-        setCurrentStep(stepsContent.find(item => item.isActive))
+        const activeStep = stepsContent.find(item => item.isActive)
+        if (activeStep) {
+            setCurrentStep(activeStep as IStepContent)
+        }
     }, [stepsContent])
 
     return (
@@ -42,7 +63,7 @@ const StepperBox = (
                             <div className={styles.finalButton}>
                                 <Link href={`/`} passHref>
                                     <a>
-                                        <Button label="На главную" click={() => null} styles={{ width: "220px" }} />
+                                        <Button label={t(`order:goHome`)} click={() => null} styles={{ width: "220px" }} />
                                     </a>
                                 </Link>
                             </div>
@@ -53,12 +74,17 @@ const StepperBox = (
                          <div className={styles['container-xl']}>
                             <div className={styles.prevButton}>
                                 {!currentStep?.isFirst && (
-                                    <Button label="Назад" type="without" styles={{ fontSize: "15px" }} click={backButtonHandler} />
+                                    <Button label={t(`common:back`)} type="without" styles={{ fontSize: "15px" }} click={backButtonHandler} />
                                 )}
                             </div>
                             <div className={styles.nextButton}>
-                                <TotalPrice products={products} title="Общая стоимость: " />
-                                <Button label="Продолжить" click={nextButtonHandler} styles={{ width: "220px" }} type={currentStep?.isButtonDisabled || !products.length ? "disabled" : "default"} />
+                                <TotalPrice totalPrice={totalPrice} />
+                                <Button
+                                    label={t(`common:next`)}
+                                    click={nextButtonHandler}
+                                    styles={{ width: "220px", marginLeft: '26px' }}
+                                    type={currentStep?.isButtonDisabled || !Object.keys(products).length ? "disabled" : "default"}
+                                />
                             </div>
                         </div>
                     </div>)

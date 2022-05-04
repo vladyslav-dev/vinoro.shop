@@ -4,7 +4,7 @@
     .accordionTitle {
         margin-bottom: 60px;
         font-size: ptr(24);
-        font-weight: 500;
+        font-weight: 600;
         line-height: ptr(32);
 
         @media (max-width: 420px) {
@@ -51,7 +51,7 @@
                 transform: translateY(80px);
                 transition: all .4s ease-in-out;
                 font-size: ptr(13);
-                font-weight: 500;
+                font-weight: 600;
                 line-height: ptr(26);
 
                 p {

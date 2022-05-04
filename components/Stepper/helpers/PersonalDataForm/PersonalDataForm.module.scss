@@ -1,9 +1,5 @@
 @import "../../../../styles/index.scss";
 
-.formContainer {
-    position: relative;
-}
-
 .wrapper {
     background-color: #FBFBFB;
     background-image: url("/static/images/business-hand-with-mobile-phone.png");
@@ -11,9 +7,27 @@
     background-size: contain;
     background-position: right;
     margin: 0 -60px 0 -60px;
+    padding-left: 60px;
+    padding: 0 60px;
     width: calc(100% + 120px);
     height: 475px;
+    box-sizing: border-box;
     position: relative;
+
+    @include xl {
+        width: calc(100% + 100px);
+    }
+
+    @include md {
+        width: calc(100% + 60px);
+        margin: 0 -40px 0 -40px;
+    }
+
+    @include sm {
+        width: calc(100% + 45px);
+        margin: 0 -30px 0 -30px;
+        padding: 0 30px;
+    }
 
     &::before {
         content: "";
@@ -63,11 +77,12 @@
             }
 
             .formHeaderItem {
+                z-index: 2;
 
                 & > h3 {
                     color: $COLOR-COD-GRAY;
                     font-size: ptr(22);
-                    font-weight: normal;
+                    font-weight: 600;
                 }
 
                 .formHeaderItemText {

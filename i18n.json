@@ -6,6 +6,7 @@
         "/": ["home"],
         "/product/[id]": ["product"],
         "/category/[id]": ["category"],
-        "/help": ["help"]
+        "/help": ["help"],
+        "/order": ["order"]
     }
 }

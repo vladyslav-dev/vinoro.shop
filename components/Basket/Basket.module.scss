@@ -22,8 +22,8 @@
 
         .basektTitle {
             color: $COLOR-COD-GRAY;
-            font-size: ptr(19);
-            font-weight: normal;
+            font-size: ptr(17);
+            font-weight: 600;
         }
 
         .basketClose {
@@ -83,7 +83,8 @@
         }
 
         & > p {
-            font-size: ptr(14);
+            font-size: ptr(12);
+            font-weight: 600;
             opacity: .8;
         }
 
@@ -95,6 +96,7 @@
 
     .confirmOrder {
         display: flex;
+        align-items: center;
         margin-top: 20px;
         width: 100%;
         justify-content: space-between;

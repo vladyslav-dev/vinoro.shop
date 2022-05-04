@@ -22,5 +22,7 @@
     "total": "Total",
     "noProductsInBasket": "You have no items added to your cart",
     "next": "Next",
-    "shoppingCart": "Shopping cart"
+    "back": "Back",
+    "shoppingCart": "Shopping cart",
+    "exit": "Log off"
 }

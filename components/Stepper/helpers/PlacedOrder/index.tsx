@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './PlacedOrder.module.scss'
-import { GlobalContext } from '@/store/index';
+import { RootState } from '@/store/index';
 
 // icons
 import { OrderUserSvg } from '@/icons/User';
@@ -10,82 +10,101 @@ import { ProductSvg } from '@/icons/Product';
 import TableChildren from '@/components/TableChildren';
 import BasketProduct from '@/components/BasketProduct';
 import TotalPrice from '@/components/TotalPrice';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setData } from '@/store/slices/order';
+import { clearBasket } from '@/store/slices/basket';
+import useTranslation from 'next-translate/useTranslation';
+import { ICollectedOrder } from '@/interfaces/order';
 
 type ValidDdata = {
-    id: number,
-    label: string,
-    value: string
+    label?: string,
+    value?: string
 }
 
 const PlacedOrder = () => {
-    const { ORDER, BASKET } = useContext(GlobalContext)
-    const { personData } = ORDER.state;
+
+    const { t, lang } = useTranslation();
+
+    const isNotDefined: string = t(`order:notFilled`);
+
+    const dispatch = useDispatch();
+
+    const { personData } = useSelector((state: RootState) => state.orderReducer);
+    const { totalPrice, basketProducts } = useSelector((state: RootState) => state.basketReducer);
+
+    const [collectedOrder, setCollectedOrder] = useState<ICollectedOrder | null>(null)
+
+    const [validData, setValidData] = useState<Array<ValidDdata>>([])
+    console.log(personData)
+    console.log(validData)
+
 
     useEffect(() => {
-        ORDER.handlers.updateState({
+        setCollectedOrder({
+            ...personData,
             order_id: `${Date.now()}`,
-            createdAt: new Date().toLocaleString("ru")
+            created_at: `${new Date().toLocaleString('uk')}`
         })
-        BASKET.handlers.clearState()
     }, [])
 
-    const validData: ValidDdata[] = [
-        {
-            id: 0,
-            label: 'Имя',
-            value: personData.name || "Не указано"
-        },
-        {
-            id: 1,
-            label: 'Фамилия',
-            value: personData.surname || "Не указано"
-        },
-        {
-            id: 2,
-            label: 'Адрес электронной почты',
-            value: personData.email || "Не указано"
-        },
-        {
-            id: 3,
-            label: 'Телеофн',
-            value: personData.phone || "Не указано"
-        },
-        {
-            id: 4,
-            label: 'Город',
-            value: personData.city || "Не указано"
-        },
-        {
-            id: 5,
-            label: 'Доставка',
-            value: personData.postDepartment || personData.zpAddress || "Не указано"
-        },
-        {
-            id: 6,
-            label: 'Оплата',
-            value: personData.payment || "Не указано"
-        },
-        {
-            id: 7,
-            label: 'Дата оформления',
-            value: personData.createdAt || "Не указано"
-        },
-    ]
+    useEffect(() => {
+
+        if (collectedOrder !== null) {
+            setValidData([
+                {
+                    label: t(`order:form.name`),
+                    value: collectedOrder.name || isNotDefined
+                },
+                {
+                    label: t(`order:form.surname`),
+                    value: collectedOrder.surname || isNotDefined
+                },
+                {
+                    label: t(`order:form.email`),
+                    value: collectedOrder.email || isNotDefined
+                },
+                {
+                    label: t(`order:form.phone`),
+                    value: collectedOrder.phone || isNotDefined
+                },
+                {
+                    label: t(`order:form.city`),
+                    value: collectedOrder.city || isNotDefined
+                },
+                {
+                    label: t(`order:delivery`),
+                    value: collectedOrder.isLocal ? personData.local_address || isNotDefined : `${personData.post_adress} ${personData.post_number}`
+                },
+                {
+                    label: t(`order:payment`),
+                    value: collectedOrder.payment || isNotDefined
+                },
+                {
+                    label: t(`order:orderDate`),
+                    value: collectedOrder?.created_at || isNotDefined
+                },
+            ])
+        }
+
+
+    }, [lang, collectedOrder])
+
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                <h1 className={styles.orderTitle}>Заказа № {personData.order_id} оформлен!</h1>
-                <p className={styles.orderDescription}>Ваш заказ будет рассмотрен  в ближайшее время, с вами свяжутся для его подтверждения. Также мы выслали на ваш электронный адрес копию заказа. По всем вопросам писать на Viber +380689125456</p>
+                <h1 className={styles.orderTitle}>{t(`order:Order`)} № {collectedOrder?.order_id} {t(`order:confirmed`)}!</h1>
+                <p className={styles.orderDescription}>{t(`order:orderDescription`)}</p>
                 <div className={styles.infoBlock}>
                     <div className={styles.infoBlockTitle}>
                         <OrderUserSvg />
-                        <h2>Данные покупателя</h2>
+                        <h2>{t(`order:BuyerData`)}</h2>
                     </div>
                     <div className={styles.infoBlockContent}>
                         {
-                            validData.map(el => (
-                                <TableChildren key={el.id} name={el.label} value={el.value} />
+                            validData.map((el, key) => (
+                                <TableChildren key={key} name={el.label} value={el.value} />
                             ))
                         }
                     </div>
@@ -93,17 +112,17 @@ const PlacedOrder = () => {
                 <div className={styles.infoBlock}>
                     <div className={styles.infoBlockTitle}>
                         <ProductSvg />
-                        <h2>Товар</h2>
+                        <h2>{t(`order:Goods`)}</h2>
                     </div>
                     <div className={styles.infoBlockContent}>
                         {
-                            ORDER.state.personData.products.map(item => (
-                                <BasketProduct product={item} key={item._id} condition={true} />
+                            Object.values(basketProducts).map(item => (
+                                <BasketProduct product={item} key={item.id} condition={true} />
                             ))
                         }
                     </div>
                     <div className={styles.totalPrice}>
-                        <TotalPrice products={ORDER.state.personData.products} title="Всего: " />
+                        <TotalPrice totalPrice={totalPrice} />
                     </div>
                 </div>
             </div>

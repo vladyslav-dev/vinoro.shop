@@ -23,16 +23,12 @@
         height: 42px;
         margin-right: -10px;
 
-        & > div:first-child {
-           margin-right: 10px;
-        }
-
         &:first-child > div:first-child {
             margin-right: 5px;
         }
 
         .navbarIcon {
-            min-width: 66px;
+            min-width: 56px;
             height: 100%;
             display: flex;
             flex-direction: column;

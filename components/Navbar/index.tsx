@@ -4,7 +4,6 @@ import Link from 'next/link'
 import useOnClickOutside from '@/hooks/useOnClickOutside';
 import useTranslation from 'next-translate/useTranslation';
 
-import { HeartSvg } from '@/icons/Heart';
 import { BagSvg } from '@/icons/Bag';
 import { WorldSvg } from '@/icons/World';
 import { LoupeSvg } from '@/icons/Loupe';
@@ -71,15 +70,6 @@ const Navbar: React.FC<NavbarProps> = ({ navbarStyles }) => {
                             </Link>
                         </div>
                         <div className={styles.navbarIconList}>
-                            <div className={`${styles.navbarIcon} ${styles.favoriteDesktop}`}>
-                                <Link href="/favorite" passHref>
-                                    <div className={styles.favoriteIcon}>
-                                        <HeaderIcon label={t("common:navbarIcons.favorites")}>
-                                            <HeartSvg color={isLight ? '#fff' : ''} />
-                                        </HeaderIcon>
-                                    </div>
-                                </Link>
-                            </div>
                             <div className={styles.navbarIcon}>
                                 <div onClick={showBasket} onMouseEnter={showBasket} onMouseLeave={hideBasket}>
                                     <HeaderIcon label={t("common:navbarIcons.basket")} className={styles.basketIcon}>

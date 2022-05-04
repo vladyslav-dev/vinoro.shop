@@ -10,7 +10,6 @@ import CategoryTree from '@/components/CategoryTree';
 import { ContactsSvg } from '@/icons/Contacts';
 import { CatalogSvg } from '@/icons/Catalog';
 import { SortArrorSvg } from '@/icons/Arrow';
-import { HeartSvg } from '../Icons/Heart';
 import { HomeSvg } from '@/icons/Home';
 import { HelpSvg } from '@/icons/Help';
 import { LoupeSvg } from '../Icons/Loupe';
@@ -76,31 +75,6 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                 <SortArrorSvg color='#fff' />
                 <span>{t("common:menu.catalog")}</span>
             </button>
-            <ul className={`${styles.bottomMenu} ${isCatalogOpen ? styles.hide : null}`}>
-                <li className={styles.bottomMenuItem} onClick={() => openSearchHandler()}>
-                    <HeaderIcon label={t("common:navbarIcons.search")}>
-                        <LoupeSvg color='#fff' />
-                    </HeaderIcon>
-                </li>
-                <li className={styles.bottomMenuItem}>
-                    <Link href="/favorite">
-                        <a>
-                            <HeaderIcon label={t("common:navbarIcons.favorites")}>
-                                <HeartSvg color='#fff' />
-                            </HeaderIcon>
-                        </a>
-                    </Link>
-                </li>
-                <li className={styles.bottomMenuItem}>
-                    <Link href="/help">
-                        <a>
-                            <HeaderIcon label={t("common:menu.help")}>
-                                <HelpSvg color='#fff' />
-                            </HeaderIcon>
-                        </a>
-                    </Link>
-                </li>
-            </ul>
         </div>
     )
 }

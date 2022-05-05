@@ -5,6 +5,7 @@ import useTranslation from 'next-translate/useTranslation'
 import { ICatalog } from '@/interfaces/catalog';
 import { ICategory } from '@/interfaces/category';
 import useLanguage from '@/hooks/useLanguage';
+import Portal from '@/pages/Portal';
 
 interface HeaderTitleProps {
     catalog: ICatalog;
@@ -12,10 +13,11 @@ interface HeaderTitleProps {
     interfaceHandlers: {
         showInterface: () => void;
         hideInterface: () => void;
-    }
+    };
+    handleScroll: (value: boolean) => void;
 }
 
-const HeaderTitle: React.FC<HeaderTitleProps> = ({ catalog, category, interfaceHandlers }) => {
+const HeaderTitle: React.FC<HeaderTitleProps> = ({ catalog, category, interfaceHandlers, handleScroll }) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
     const { t } = useTranslation()
@@ -24,10 +26,12 @@ const HeaderTitle: React.FC<HeaderTitleProps> = ({ catalog, category, interfaceH
 
     const closeModalHandler = () => {
         setIsModalOpen(false)
+        handleScroll(false)
         interfaceHandlers.showInterface()
     }
     const openModalHandler = () => {
         setIsModalOpen(true)
+        handleScroll(true)
         interfaceHandlers.hideInterface()
     }
 
@@ -39,7 +43,16 @@ const HeaderTitle: React.FC<HeaderTitleProps> = ({ catalog, category, interfaceH
                     <button className={styles.button} onClick={openModalHandler}>{t("home:homeButton")}</button>
                 </>
             ) : null}
-            {isModalOpen ? <CategoryModal closeHandler={closeModalHandler} category={category} /> : null}
+            {isModalOpen ? (
+                <Portal>
+                    <CategoryModal
+                        closeHandler={closeModalHandler}
+                        handleScroll={handleScroll}
+                        category={category}
+                        language={language}
+                    />
+                </Portal>
+            ) : null}
         </div>
     )
 }

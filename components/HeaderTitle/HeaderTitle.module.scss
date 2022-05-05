@@ -19,6 +19,7 @@
         font-weight: 600;
         color: $COLOR-WHITE;
         animation: showTitle .4s ease-in-out forwards .1s;
+        padding: 0 12px;
     }
 
     .button {
@@ -68,8 +69,15 @@
 
     @media screen and (max-width: 400px) {
         .title {
-            font-size: ptr(29);
-            line-height: ptr(32);
+            font-size: 7.5vw;
+            line-height: ptr(36);
+        }
+
+        .button {
+            margin-top: 26px;
+            font-size: ptr(12);
+            width: 172px;
+            height: 38px;
         }
     }
 }

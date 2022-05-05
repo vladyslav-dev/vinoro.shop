@@ -70,13 +70,6 @@
 
                 &:hover {
                     @include glassHoverBackground;
-                    // & svg, & path {
-                    //     fill: $COLOR-COD-GRAY;
-                    // }
-
-                    // & span {
-                    //     color: $COLOR-COD-GRAY;
-                    // }
                 }
             }
         }

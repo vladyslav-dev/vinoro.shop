@@ -1,14 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Img from '@/components/Img';
 import styles from './Product.module.scss'
 import Button from '../Button'
 import { IProduct } from '@/interfaces/product';
 import { IBasketProduct } from '@/interfaces/product';
-import { IProductCard } from '@/interfaces/IFavorite'
 import { LinkSvg } from '@/icons/Link';
 import useTranslation from 'next-translate/useTranslation';
 import Breadcrumb from '@/components/Breadcrumb';
-import { ICategory } from '@/interfaces/category';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/index';
 import useCurrentCategory from '@/hooks/useCurrentCategory';
@@ -47,14 +45,6 @@ const Product: React.FC<ProductPageProps> = ({ product }) => {
         bulk_price: product.bulk_price,
         image: product.image,
     } as IBasketProduct));
-
-    // const addFavorites = () => FAVORITES.handlers.addProduct({
-    //     _id: product._id,
-    //     name: product.name,
-    //     cost: product.cost,
-    //     image: product.image,
-    //     availability: product.availability
-    // } as IProductCard)
 
     const copyLink = () => {
         navigator.clipboard.writeText(window.location.href)
@@ -123,12 +113,6 @@ const Product: React.FC<ProductPageProps> = ({ product }) => {
                             click={() => { !isProductInBasket ? addToBasket() : null }}
                             styles={{ fontWeight: 600, fontSize: '11px' }}
                         />
-                        {/* <Button
-                            label={isPrductInFavorites ? t("product:alreadyInFavorite") : t("product:addToFavorite")}
-                            type="outlined"
-                            styles={{ fontWeight: 700 }}
-                            click={() => { !isPrductInFavorites ? addFavorites() : null }}
-                        /> */}
                     </div>
                     <div className={styles.productDescriptions}>
                         <p>{product.description[language]}</p>

@@ -29,13 +29,10 @@ const ContactForm = () => {
         }
     }, [isValid])
 
-    const submitHandler = event => {
+    const submitHandler = (event: React.FormEvent) => {
         event.preventDefault()
-
-        // console.log(getValues())
-
     }
-    
+
 
     return (
         <form className={styles.form} onSubmit={(e) => e.preventDefault()} autoComplete="none" >

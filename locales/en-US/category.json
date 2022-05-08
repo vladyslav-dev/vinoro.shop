@@ -1,9 +1,0 @@
-{
-    "toolbar": {
-        "sortBy": "Sort by",
-        "default": "Default",
-        "ascendingPrice": "Ascending price",
-        "descendingPrice": "Descending price",
-        "totalProducts": "Total"
-    }
-}

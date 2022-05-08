@@ -10,6 +10,10 @@ const ProductService: IProductService = {
         const response = await $api.get("/api/search-products");
         return response.data;
     },
+    getSearchProductsByIds: async (data) => {
+        const response = await $api.get("/api/search-products-by-ids", { params: { data } });
+        return response.data;
+    },
     getByCategoryId: async (categoryId) => {
         const response = await $api.get(`/api/category-products/${categoryId}`);
         return response.data

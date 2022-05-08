@@ -1,5 +1,5 @@
 import React from 'react';
-import { SvgIconProps } from "@/interfaces/IIcon";
+import { SvgIconProps } from "@/interfaces/icon";
 import { COLORS } from '@/constants/colors';
 
 export const SwipeSvg: React.FC<SvgIconProps> = ({ color }) => (

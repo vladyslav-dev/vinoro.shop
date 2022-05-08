@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import styles from './Navbar.module.scss';
 import Link from 'next/link'
 import useOnClickOutside from '@/hooks/useOnClickOutside';
@@ -54,7 +54,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarStyles }) => {
                     <div className={styles.navbar}>
                         <div className={styles.navbarIconList}>
                             <div className={styles.navbarBurger}>
-                                <BurgerMenu openSearchHandler={openModalSearch} />
+                                <BurgerMenu />
                             </div>
                             <div className={styles.navbarIcon}>
                                 <HeaderIcon label={t("common:navbarIcons.search")} click={() => openModalSearch()}>
@@ -74,7 +74,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarStyles }) => {
                                 <div onClick={showBasket} onMouseEnter={showBasket} onMouseLeave={hideBasket}>
                                     <HeaderIcon label={t("common:navbarIcons.basket")} className={styles.basketIcon}>
                                         <BagSvg color={isLight ? '#fff' : ''} />
-                                        <div className={styles.basket} style={{right: basketIsOpen ? 0 : "-550px"}}>
+                                        <div className={styles.basket} style={{right: basketIsOpen ? 0 : "-120%"}}>
                                             <Basket closeBasketHandler={hideBasket} />
                                         </div>
                                         {productsNumber ? <div className={styles.basketCount}>{productsNumber}</div> : null}
@@ -94,7 +94,9 @@ const Navbar: React.FC<NavbarProps> = ({ navbarStyles }) => {
                     </div>
                 </div>
             </div>
-            {showSearch && <SearchModal closeSearch={closeModalSearch} />}
+            <div className={`${styles.searchModal} ${showSearch ? styles.active : ''}`}>
+                {showSearch && <SearchModal closeSearch={closeModalSearch} />}
+            </div>
             <div className={styles.navbarSimulator} style={{
                 display: navbarStyles?.background === 'transparent' ? 'none' : 'block'
             }} />

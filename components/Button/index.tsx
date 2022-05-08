@@ -6,7 +6,7 @@ type ButtonSize = "desktop" | "mobile";
 
 export interface ButtonProps {
     label?: string;
-    click?: (e: any) => void;
+    click?: (e: React.MouseEvent) => void;
     type?: ButtonType;
     size?: ButtonSize;
     icon?: React.ReactNode;
@@ -56,7 +56,7 @@ const Button = (props: ButtonProps) => {
     return (
         <button
             className={moduleStyles.button}
-            onClick={(e) => click(e)}
+            onClick={click}
             type="button"
             disabled={type === "disabled"}
             style={initialStyles}

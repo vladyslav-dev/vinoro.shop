@@ -1,9 +1,0 @@
-{
-    "toolbar": {
-        "sortBy": "Сортувати за",
-        "default": "За замовчуванням",
-        "ascendingPrice": "За зростанням ціни",
-        "descendingPrice": "За спаданням ціни",
-        "totalProducts": "Всього"
-    }
-}

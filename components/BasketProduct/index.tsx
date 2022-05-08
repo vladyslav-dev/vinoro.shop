@@ -11,10 +11,10 @@ import useLanguage from '@/hooks/useLanguage';
 
 interface BasketProductProps {
     product: IBasketProduct;
-    condition?: boolean;
+    onlyView?: boolean;
 }
 
-const BasketProduct: React.FC<BasketProductProps> = ({ product, condition = false }) => {
+const BasketProduct: React.FC<BasketProductProps> = ({ product, onlyView = false }) => {
 
     const dispatch = useDispatch();
 
@@ -24,44 +24,34 @@ const BasketProduct: React.FC<BasketProductProps> = ({ product, condition = fals
     const decreaseProduct = () => dispatch(decreaseCount(product));
     const removeProduct = () => dispatch(removeOne(product));
 
-    // if (product.quantity < 1) {
-    //     removeProduct()
-    //     return null;
-    // }
-
     return (
         <div className={styles.product}>
             <div className={styles.productImage}>
                 <Img src={product.image} />
             </div>
-            {
-                condition ?
-                    <div className={styles.productInfo}>
-                        <h2 className={styles.productInfoTitle}>{product.name[language]}</h2>
-                        <div className={styles.productInfoCost}>{product.price} ₴</div>
-                    </div> :
-                    <>
-                        <div className={styles.productInfo}>
-                            <h2 className={styles.productInfoTitle}>{product.name[language]}</h2>
-                            <div className={styles.productInfoCost}>
-                                <span>{product.current_price} ₴ {product.quantity > 1 && <span> &#xA0;&#xA0; x &#xA0;&#xA0; {product.quantity}</span>}</span>
-                                {product.quantity > 1 && <span>{product.total_price} ₴</span>}
-                            </div>
-                            <div className={styles.productQuantity}>
-                                <button className={styles.productQuantityButton} onClick={decreaseProduct}>
-                                    <MinusSvg />
-                                </button>
-                                <span className={styles.productQuantityNumber}>{product.quantity}</span>
-                                <button className={styles.productQuantityButton} onClick={increaseProduct}>
-                                    <PlusSvg />
-                                </button>
-                            </div>
-                        </div>
-                        <button className={styles.productRemove} onClick={removeProduct}>
-                            <TrashSvg />
+            <div className={styles.productInfo}>
+                <h2 className={styles.productInfoTitle}>{product.name[language]}</h2>
+                <div className={styles.productInfoCost}>
+                    <span>{product.current_price} ₴ {product.quantity > 1 && <span> &#xA0;&#xA0; x &#xA0;&#xA0; {product.quantity}</span>}</span>
+                    {product.quantity > 1 && <span>{product.total_price} ₴</span>}
+                </div>
+                {!onlyView && (
+                    <div className={styles.productQuantity}>
+                        <button className={styles.productQuantityButton} onClick={decreaseProduct}>
+                            <MinusSvg />
                         </button>
-                    </>
-            }
+                        <span className={styles.productQuantityNumber}>{product.quantity}</span>
+                        <button className={styles.productQuantityButton} onClick={increaseProduct}>
+                            <PlusSvg />
+                        </button>
+                    </div>
+                )}
+            </div>
+            {!onlyView && (
+                <button className={styles.productRemove} onClick={removeProduct}>
+                    <TrashSvg />
+                </button>
+            )}
         </div>
     );
 };

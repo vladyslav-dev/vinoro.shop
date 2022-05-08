@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './PlacedOrder.module.scss'
 import { RootState } from '@/store/index';
 
@@ -10,14 +10,13 @@ import { ProductSvg } from '@/icons/Product';
 import TableChildren from '@/components/TableChildren';
 import BasketProduct from '@/components/BasketProduct';
 import TotalPrice from '@/components/TotalPrice';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { setData } from '@/store/slices/order';
-import { clearBasket } from '@/store/slices/basket';
+import { useDispatch, useSelector } from 'react-redux';
 import useTranslation from 'next-translate/useTranslation';
 import { ICollectedOrder } from '@/interfaces/order';
+import { clearBasket } from '@/store/slices/basket';
+import { resetData } from '@/store/slices/order';
 
-type ValidDdata = {
+export interface ValidDdata {
     label?: string,
     value?: string
 }
@@ -26,9 +25,9 @@ const PlacedOrder = () => {
 
     const { t, lang } = useTranslation();
 
-    const isNotDefined: string = t(`order:notFilled`);
+    const disaptch = useDispatch();
 
-    const dispatch = useDispatch();
+    const isNotDefined: string = t(`order:notFilled`);
 
     const { personData } = useSelector((state: RootState) => state.orderReducer);
     const { totalPrice, basketProducts } = useSelector((state: RootState) => state.basketReducer);
@@ -46,7 +45,11 @@ const PlacedOrder = () => {
             order_id: `${Date.now()}`,
             created_at: `${new Date().toLocaleString('uk')}`
         })
+
+        disaptch(clearBasket());
+        disaptch(resetData());
     }, [])
+
 
     useEffect(() => {
 
@@ -94,7 +97,7 @@ const PlacedOrder = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
-                <h1 className={styles.orderTitle}>{t(`order:Order`)} № {collectedOrder?.order_id} {t(`order:confirmed`)}!</h1>
+                <h1 className={styles.orderTitle}>{t(`order:Order`)} №{collectedOrder?.order_id} {t(`order:confirmed`)}!</h1>
                 <p className={styles.orderDescription}>{t(`order:orderDescription`)}</p>
                 <div className={styles.infoBlock}>
                     <div className={styles.infoBlockTitle}>
@@ -104,7 +107,7 @@ const PlacedOrder = () => {
                     <div className={styles.infoBlockContent}>
                         {
                             validData.map((el, key) => (
-                                <TableChildren key={key} name={el.label} value={el.value} />
+                                <TableChildren key={key} label={el.label} value={el.value} />
                             ))
                         }
                     </div>
@@ -117,7 +120,7 @@ const PlacedOrder = () => {
                     <div className={styles.infoBlockContent}>
                         {
                             Object.values(basketProducts).map(item => (
-                                <BasketProduct product={item} key={item.id} condition={true} />
+                                <BasketProduct product={item} key={item.id} onlyView={true} />
                             ))
                         }
                     </div>

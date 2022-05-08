@@ -47,14 +47,19 @@ const Layout: FC<LayoutProps> = ({ children }) => {
                 <meta charSet="utf-8" />
                 <link rel="icon" href="/favicon.ico" />
             </Head> */}
+
             {router.pathname === '/order' ? <OrderNavbar /> : <Navbar navbarStyles={navbarStyles}  />}
             <div
                 onTransitionEnd={() => {
+                    setTimeout(() => {
                     if (transitionStage === "fadeOut") {
                       console.log("fading out");
-                      setDisplayChildren(children);
-                      setTransitionStage("fadeIn");
+
+                        setDisplayChildren(children);
+                        setTransitionStage("fadeIn");
+
                     }
+                }, 400)
                   }}
                   className={`__global-layout ${transitionStage}`}
             >

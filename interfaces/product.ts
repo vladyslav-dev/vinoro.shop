@@ -47,8 +47,9 @@ export interface ISearchProduct {
 }
 
 export interface IProductService {
-    getAll: () => Promise<IProduct[]>;
-    getSearchProducts: () => Promise<ISearchProduct[]>
-    getByCategoryId: (categoryId: string) => Promise<IProduct[]>;
-    getOne: (id: string) => Promise<IProduct>;
+    getAll: () => Promise<IProduct[]>; // all products
+    getSearchProducts: () => Promise<ISearchProduct[]> // compressed products for fast search results (in search modal)
+    getSearchProductsByIds: (ids: string[]) => Promise<IProduct[]>; // products (for search page) by [id, id, id, ...]
+    getByCategoryId: (categoryId: string) => Promise<IProduct[]>; // products (for category page) by category id
+    getOne: (id: string) => Promise<IProduct>; // product by id (for product page)
 }

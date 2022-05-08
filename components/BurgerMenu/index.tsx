@@ -1,28 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Router from 'next/router';
 import styles from "./BurgerMenu.module.scss";
 import HeaderIcon from "@/components/HeaderIcon";
 import BurgerMenuTree from "@/components/BurgerMenuTree";
 import useTranslation from 'next-translate/useTranslation';
 import useLightElements from '@/hooks/useLightElements';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store/index';
+import { setMenuOpen } from '@/store/slices/catalog';
 
-interface BurgerMenuProps {
-    openSearchHandler: () => void;
-}
+interface BurgerMenuProps {}
 
-const BurgerMenu: React.FC<BurgerMenuProps> = ({ openSearchHandler }) => {
+const BurgerMenu: React.FC<BurgerMenuProps> = () => {
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const dispatch = useDispatch();
+
+    const { isMenuOpen } = useSelector((state: RootState) => state.catalogReducer);
 
     const { isLight } = useLightElements();
 
     const { t } = useTranslation();
 
-    Router.events.on('routeChangeStart', () => setIsMenuOpen(false));
+    Router.events.on('routeChangeStart', () => dispatch(setMenuOpen(false)));
 
     return (
         <>
-            <div className={styles.burgerMenu} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <div className={styles.burgerMenu} onClick={() => dispatch(setMenuOpen(!isMenuOpen))}>
                 <HeaderIcon label={t("common:navbarIcons.menu")} className={isMenuOpen ? styles.hideLabel : ''}>
                     <div className={`${styles.burger} ${isMenuOpen ? styles.burgerActive : null} ${isLight ? styles.light : ''}`} >
                         <div />
@@ -31,10 +34,10 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ openSearchHandler }) => {
                     </div>
                 </HeaderIcon>
             </div>
-            <BurgerMenuTree isActive={isMenuOpen} openSearchHandler={openSearchHandler} />
+            <BurgerMenuTree isActive={isMenuOpen} />
             <div
                 className={`${styles.menuBackground} ${isMenuOpen ? styles.menuBackgroundActive : null}`}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => dispatch(setMenuOpen(false))}
             />
         </>
     )

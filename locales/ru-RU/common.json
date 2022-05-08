@@ -12,6 +12,13 @@
         "basket": "КОРЗИНА",
         "lang": "ЯЗЫК"
     },
+    "toolbar": {
+        "sortBy": "Сортировать по",
+        "default": "По умолчанию",
+        "ascendingPrice": "По возрастанию цены",
+        "descendingPrice": "По убыванию цены",
+        "totalProducts": "Всего"
+    },
     "scrollDown": "ПРОКРУЧИВАЙ",
     "swipeDown": "СВАЙПАЙ",
     "copyright": "© Все права защищены. Vinoro - 2020-2022",
@@ -24,5 +31,28 @@
     "next": "Далее",
     "back": "Назад",
     "shoppingCart": "Корзина",
-    "exit": "Выйти"
+    "exit": "Выйти",
+    "searchKeywords": {
+        "coffee": "Кофе",
+        "liquor": "Ликер",
+        "passion": "Passion",
+        "chocolate": "Шоколад",
+        "persil": "Persil",
+        "macaroni": "Макароны",
+        "cheese": "Сыр",
+        "ariel": "Ariel",
+        "oliveOil": "Оливковое масло",
+        "wine": "Вино",
+        "tea": "Чай",
+        "caviar": "Икра",
+        "whiskey": "Виски",
+        "hellmanns": "Hellmann's",
+        "fragolino": "Fragolino"
+    },
+    "findTheProductHere": "Найди нужный товар тут...",
+    "search": "Поиск",
+    "popularQueries": "Популярные запросы",
+    "faunded": "Найдено",
+    "category": "Категория",
+    "moreInCategory": "... еще {{variable}} в категории"
 }

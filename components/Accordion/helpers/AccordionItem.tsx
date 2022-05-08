@@ -43,7 +43,7 @@ const AccordionItem: React.FC<IAccordionItem> = ({title, description, controller
                 className={styles.accordionItemDescription}
                 style={{ maxHeight: isCurrentAccord ? `${height}px` : '0' }}
             >
-                <div dangerouslySetInnerHTML={{__html: description}} />
+                {/* <div dangerouslySetInnerHTML={{__html: description}} /> */}
             </div>
         </li>
     )

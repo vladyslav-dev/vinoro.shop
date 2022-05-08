@@ -22,3 +22,7 @@ export interface ICategoryService {
 export interface ICategoryCollection {
     [categoryId: string]: ICategory;
 }
+
+export interface ISearchCategoryCollection {
+    [categoryId: string]: ILangData
+}

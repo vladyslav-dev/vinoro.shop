@@ -26,21 +26,27 @@ const CategoryTree = () => {
         catalogCollection,
         categoryCollection,
         currentCategory,
+        currentCatalog: currCatalog,
         isLoaded
     }: {
         catalogCollection: ICatalogCollection;
         categoryCollection: ICategoryCollection;
         currentCategory: string
+        currentCatalog: string;
         isLoaded: boolean;
     } = useSelector((state: RootState) => state.catalogReducer);
 
     const [catalogHeight, setCatalogHeight] = useState(0);
 
-    const [currentCatalog, setCurrentCatalog] = useState<string>('') // catalog id
+    const [currentCatalog, setCurrentCatalog] = useState<string>(currCatalog) // catalog id
 
     const catalogCollectionValues = useMemo(() => Object.values(catalogCollection), [catalogCollection])
 
     const catalogRefs = useRef<ICatalogRef>({});
+
+    useEffect(() => {
+        setCurrentCatalog(currCatalog);
+    }, [currCatalog])
 
     useEffect(() => {
         if (isLoaded && currentCategory in categoryCollection) {

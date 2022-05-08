@@ -26,7 +26,6 @@ const Catalog: React.FC<CatalogProps> = ({ products, alt: alternateComponent }) 
                         <div className={styles.catalogList}>
                             <CardList
                                 products={productList}
-                                removeButton={router.pathname === '/favorite'}
                             />
                         </div>
                     </>

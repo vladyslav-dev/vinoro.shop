@@ -3,20 +3,17 @@ import React from 'react'
 import styles from './Card.module.scss'
 
 import Img from '@/components/Img';
-import { TrashSvg } from '@/icons/Trash';
-import { IProductCard } from '@/interfaces/IFavorite'
 
 import { NewSvg } from '../Icons/New';
 import useLanguage from '@/hooks/useLanguage';
 import useTranslation from 'next-translate/useTranslation';
-import { useRouter } from 'next/router';
+import { IProduct } from '@/interfaces/product';
 
 interface CardProps {
-    product: IProductCard;
-    removeButton?: boolean;
+    product: IProduct;
 }
 
-const CardComponent = ({ product, removeButton }: CardProps) => {
+const CardComponent = ({ product }: CardProps) => {
 
     const { t } = useTranslation();
     const { language } = useLanguage();
@@ -65,11 +62,6 @@ const CardComponent = ({ product, removeButton }: CardProps) => {
                             <NewSvg />
                         </div>
                     )}
-                    {removeButton ?
-                        <div className={styles.imageButton} onClick={(e) => removeFromFavotite(e)}>
-                            <TrashSvg color="#FFFFFF" />
-                        </div> : null
-                    }
                 </a>
             </Link>
         </div>

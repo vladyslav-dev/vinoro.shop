@@ -8,7 +8,7 @@ function useOnClickOutside<T extends HTMLElement = HTMLElement>(
 ): void {
     useEffect(() => {
         const listener = (event: AnyEvent) => {
-            if (!refs.length || refs.some(el => el.current.contains(event.target as Node))) {
+            if (!refs.length || refs.some(el => el.current!.contains(event.target as Node))) {
                 return
             }
             handler(event)

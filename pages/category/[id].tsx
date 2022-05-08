@@ -8,11 +8,15 @@ import useCurrentCategory from '@/hooks/useCurrentCategory';
 import useSWR from 'swr';
 import ProductService from 'services/ProductService';
 import Loader from '@/components/Loader';
+import { setCatalogOpen } from '@/store/slices/catalog';
+import { useDispatch } from 'react-redux';
 
 
 const Category: React.FC = () => {
 
     const router = useRouter();
+
+    const dispatch = useDispatch();
 
     const { data: products } = useSWR(`GET-PRODUCTS-BY-CATEGORY-${router.query.id}`, async () => {
         return await ProductService.getByCategoryId(router.query.id as string)
@@ -24,6 +28,9 @@ const Category: React.FC = () => {
 
     useEffect(() => setCurrentCategory(router.query.id as string), [router])
 
+    useEffect(() => {
+        dispatch(setCatalogOpen(true));
+    }, [])
 
     useEffect(() => {
         if (products) setProductList(products)

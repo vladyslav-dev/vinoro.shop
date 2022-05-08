@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Accordion.module.scss';
 import AccordionItem from './helpers/AccordionItem';
-import { IAccordion } from '@/interfaces/IAccordion';
+import { IAccordion } from '@/interfaces/accordion';
 import useTranslation from 'next-translate/useTranslation';
 
 export interface IAccordionController {

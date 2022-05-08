@@ -1,4 +1,4 @@
-import { SvgIconProps } from "@/interfaces/IIcon";
+import { SvgIconProps } from "@/interfaces/icon";
 import { COLORS } from '@/constants/colors';
 import React from "react";
 

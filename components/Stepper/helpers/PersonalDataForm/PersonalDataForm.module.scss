@@ -64,7 +64,7 @@
     .formWrapper {
         max-width: 660px;
         width: 100%;
-        padding: 30px 0;
+        padding: 60px 0;
 
         .formHeader {
             width: 100%;
@@ -82,7 +82,7 @@
                 & > h3 {
                     color: $COLOR-COD-GRAY;
                     font-size: ptr(22);
-                    font-weight: 600;
+                    font-weight: 500;
                 }
 
                 .formHeaderItemText {
@@ -147,8 +147,10 @@
                         outline: none;
                         padding: 0 5px;
 
+                        font-weight: 600;
+                        letter-spacing: .5px;
                         color: $COLOR-COD-GRAY;
-                        font-size: ptr(16);
+                        font-size: ptr(14);
 
                         &:focus ~ .formRowLabel {
                           top: -25px;

@@ -1,7 +1,7 @@
 @import '../../../../styles/index.scss';
 
 .content {
-    padding-top: 60px;
+    padding-top: 50px;
     min-height: calc(100vh - 128px);
     color: $COLOR-COD-GRAY;
     font-weight: 600;
@@ -14,7 +14,8 @@
     }
 
     .stepContent {
-        padding: 100px 0;
+        padding: 50px 0;
+        padding-bottom: 130px;
     }
 
     .buttonFiled {

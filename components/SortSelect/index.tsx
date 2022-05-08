@@ -35,16 +35,16 @@ const SortSelect = (props: SortSelectProps) => {
     useOnClickOutside(() => setIsSelectOpen(false), titleRef)
 
     const [optionList, setOptionList] = useState<Array<SelectOptions>>([
-        { method: 'default', label: t("category:toolbar.default"), selected: true },
-        { method: 'ascendingPrice', label: t("category:toolbar.ascendingPrice"), selected: false },
-        { method: 'descendingPrice', label: t("category:toolbar.descendingPrice"), selected: false },
+        { method: 'default', label: t("common:toolbar.default"), selected: true },
+        { method: 'ascendingPrice', label: t("common:toolbar.ascendingPrice"), selected: false },
+        { method: 'descendingPrice', label: t("common:toolbar.descendingPrice"), selected: false },
     ])
 
     useEffect(() => {
         setOptionList((prev) => {
             return prev.map(item => ({
                 ...item,
-                label: t(`category:toolbar.${item.method}`),
+                label: t(`common:toolbar.${item.method}`),
             } as SelectOptions))
         })
     }, [t])
@@ -69,7 +69,7 @@ const SortSelect = (props: SortSelectProps) => {
     return (
         <div className={styles.selectWrapper}>
             <span className={styles.selectTitle} ref={titleRef} onClick={() => setIsSelectOpen(!isSelectOpen)}>
-                <span>{t("category:toolbar.sortBy")}</span>
+                <span>{t("common:toolbar.sortBy")}</span>
                 <span className={isSelectOpen ? styles.selectTitleArrowActive : styles.selectTitleArrow}>
                     <SortArrorSvg />
                 </span>

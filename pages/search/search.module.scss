@@ -1,1 +1,18 @@
 @import "../../styles/index.scss";
+
+.search {
+    background-color: $COLOR-WHITE;
+    .searchWrapper {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 50px;
+
+        .searchContent {
+            flex: 1;
+
+            .searchList {
+                height: 100%;
+            }
+        }
+    }
+}

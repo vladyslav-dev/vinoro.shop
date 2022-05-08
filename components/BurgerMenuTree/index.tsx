@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import styles from "./BurgerMenuTree.module.scss";
-import { useRouter } from 'next/router';
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 
-import HeaderIcon from '@/components/HeaderIcon';
 import CategoryTree from '@/components/CategoryTree';
 
 import { ContactsSvg } from '@/icons/Contacts';
@@ -12,24 +10,27 @@ import { CatalogSvg } from '@/icons/Catalog';
 import { SortArrorSvg } from '@/icons/Arrow';
 import { HomeSvg } from '@/icons/Home';
 import { HelpSvg } from '@/icons/Help';
-import { LoupeSvg } from '../Icons/Loupe';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/index';
+import { useDispatch } from 'react-redux';
+import { setCatalogOpen } from '@/store/slices/catalog';
 
 interface BurgerMenuTreeProps {
     isActive?: boolean;
-    openSearchHandler: () => void;
 }
 
 const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
-    const { isActive, openSearchHandler } = props;
+    const { isActive } = props;
 
-    const router = useRouter();
+    const dispatch = useDispatch();
+
+    const { currentCatalog, isCatalogOpen } = useSelector((state: RootState) => state.catalogReducer);
+
     const { t } = useTranslation();
 
-    const isShowCatalog = () => {
-        return router.pathname.includes("/category") || router.pathname.includes("/product")
-    }
-
-    const [isCatalogOpen, setIsCatalogOpen] = useState<boolean>(() => isShowCatalog());
+    useEffect(() => {
+        dispatch(setCatalogOpen(true));
+    }, [currentCatalog])
 
     return (
         <div className={`${styles.menu} ${isActive ? styles.menuActive : null}`}>
@@ -43,7 +44,7 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
                     </Link>
                 </li>
                 <li className={styles.menuListItem}>
-                    <a onClick={() => setIsCatalogOpen(true)}>
+                    <a onClick={() => dispatch(setCatalogOpen(true))}>
                         <CatalogSvg color='#fff' />
                         <span>{t("common:menu.catalog")}</span>
                     </a>
@@ -70,7 +71,7 @@ const BurgerMenuTree = (props: BurgerMenuTreeProps) => {
             </div>
             <button
                 className={`${styles.catalogBack} ${isCatalogOpen ? styles.catalogBackActive : null}`}
-                onClick={() => setIsCatalogOpen(false)}
+                onClick={() => dispatch(setCatalogOpen(false))}
             >
                 <SortArrorSvg color='#fff' />
                 <span>{t("common:menu.catalog")}</span>

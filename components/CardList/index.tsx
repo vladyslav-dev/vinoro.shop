@@ -1,16 +1,15 @@
 import React from 'react';
-import styles from './CardList.module.scss'
-import { IProductCard } from '@/interfaces/IFavorite'
+import styles from './CardList.module.scss';
 
 import Card from '@/components/Card';
+import { IProduct } from '@/interfaces/product';
 export interface CardListProps {
-    products?: Array<IProductCard>;
-    removeButton?: boolean;
+    products?: Array<IProduct>;
 }
 
-const CardList = ({ products, removeButton }: CardListProps) => (
+const CardList = ({ products }: CardListProps) => (
     <div className={`${styles.cardList}`}>
-        {products?.map(product => <Card product={product} key={product?.id} removeButton={removeButton} />)}
+        {products?.map(product => <Card product={product} key={product?.id} />)}
     </div>
 )
 

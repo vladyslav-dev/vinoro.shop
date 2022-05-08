@@ -3,18 +3,22 @@
 .product {
     border-bottom: 1px solid $COLOR-MERCURY;
     padding-bottom: 22px;
-    margin-bottom: 22px;
     position: relative;
     display: flex;
 
     .productImage {
         min-width: 90px;
         position: relative;
+
+        img {
+            @include radius-sm;
+        }
     }
 
     .productInfo {
         color: $COLOR-COD-GRAY;
         margin-left: 16px;
+        flex: 1;
 
         .productInfoTitle {
             font-weight: 600;

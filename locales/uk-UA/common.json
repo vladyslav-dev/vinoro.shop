@@ -12,6 +12,13 @@
         "basket": "КОШИК",
         "lang": "МОВА"
     },
+    "toolbar": {
+        "sortBy": "Сортувати за",
+        "default": "За замовчуванням",
+        "ascendingPrice": "За зростанням ціни",
+        "descendingPrice": "За спаданням ціни",
+        "totalProducts": "Всього"
+    },
     "scrollDown": "СКРОЛЬ",
     "swipeDown": "СВАЙПАЙ",
     "copyright": "© Усі права захищені. Vinoro - 2020-2022",
@@ -24,5 +31,28 @@
     "next": "Далі",
     "back": "Назад",
     "shoppingCart": "Кошик",
-    "exit": "Вийти"
+    "exit": "Вийти",
+    "searchKeywords": {
+        "coffee": "Кава",
+        "liquor": "Лікер",
+        "passion": "Passion",
+        "chocolate": "Шоколад",
+        "persil": "Persil",
+        "macaroni": "Макарони",
+        "cheese": "Сир",
+        "ariel": "Ariel",
+        "oliveOil": "Оливкова олія",
+        "wine": "Вино",
+        "tea": "Чай",
+        "caviar": "Ікра",
+        "whiskey": "Віскі",
+        "hellmanns": "Hellmann's",
+        "fragolino": "Fragolino"
+    },
+    "findTheProductHere": "Знайди потрібний товар тут...",
+    "search": "Пошук",
+    "popularQueries": "Популярні запити",
+    "faunded": "Знайдено",
+    "category": "Категорія",
+    "moreInCategory": "... ще {{variable}} у категорії"
 }

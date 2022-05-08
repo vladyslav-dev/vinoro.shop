@@ -3,16 +3,18 @@
 .contentRow {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid $COLOR-SILVER;
-    height: 40px;
-    padding-top: 4px;
-    padding-left: 5px;
+    border-bottom: 1px solid $COLOR-MERCURY;
+    min-height: 40px;
+    padding: 12px 5px;
 
     .contentColumn {
         flex: 1;
+        font-size: ptr(14);
+        line-height: 24px;
 
         &:last-child {
             flex: 2;
+            margin-left: 18px;
         }
     }
 }

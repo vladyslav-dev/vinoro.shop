@@ -13,7 +13,7 @@ const TotalItemCount = ( {products}: TotalItemCountProps) => {
 
     return (
         <div className={styles.content}>
-            <p>{t("category:toolbar.totalProducts")}: {products?.length}</p>
+            <p>{t("common:toolbar.totalProducts")}: {products?.length}</p>
         </div>
     )
 }

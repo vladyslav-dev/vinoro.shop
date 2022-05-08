@@ -8,11 +8,14 @@ import { AppProps } from 'next/app';
 import Layout from 'layout';
 import { Provider, useDispatch } from 'react-redux';
 import store from '@/store/index';
-import useSWR from 'swr';
+import useSWR, { SWRConfig } from 'swr'
 import CategoryService from 'services/CategoryService';
 import CatalogService from 'services/CatalogService';
 import { setData } from '@/store/slices/catalog';
 import { initBasket } from '@/store/slices/basket';
+import ProductService from 'services/ProductService';
+import { setSearchData } from '@/store/slices/search';
+
 
 NProgress.configure({ showSpinner: false });
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -32,13 +35,21 @@ const InnerApp: React.FC<InnerAppProps> = ({ children }) => {
 
   const { data: swrCatalog } = useSWR(`GET-CATALOG`, async () => await CatalogService.getAll());
   const { data: swrCategory } = useSWR(`GET-CATEGORY`, async () => await CategoryService.getAll());
+  const { data: swrSearchCategory } = useSWR(`GET-SEARCH-CATEGORY`, async () => await CategoryService.getAll());
+  const { data: swrSearchProducts } = useSWR(`GET-SEARCH-PRODUCTS`, async () => await ProductService.getSearchProducts());
 
   useEffect(() => {
-    console.log('new get catalog and get category')
     if (swrCatalog && swrCategory) {
       dispatch(setData({ catalog: swrCatalog, category: swrCategory }));
     }
   }, [swrCatalog, swrCategory])
+
+  useEffect(() => {
+    if (swrSearchCategory && swrSearchProducts) {
+      dispatch(setSearchData({ searchCategory: swrSearchCategory, searchProducts: swrSearchProducts }));
+    }
+  }, [swrSearchCategory, swrSearchProducts])
+
 
   useEffect(() => {
     // Restore basket from localStorage
@@ -50,14 +61,26 @@ const InnerApp: React.FC<InnerAppProps> = ({ children }) => {
 
 const RootApp = ({ Component, pageProps }: RootAppProps) => {
   return (
-    <Provider store={store}>
-      <InnerApp>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </InnerApp>
-    </Provider>
+    <SWRConfig value={{ provider: () => new Map() }}>
+      <Provider store={store}>
+        <InnerApp>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </InnerApp>
+      </Provider>
+    </SWRConfig>
   );
 }
+
+// RootApp.getInitialProps = async ({ Component, router, ctx }: AppContext) => {
+
+//   const pageContext = { ...ctx };
+//   const pageProps = Component.getInitialProps ? await Component.getInitialProps(pageContext) : {};
+
+//   return {
+//     ...pageProps,
+//   }
+// }
 
 export default RootApp;

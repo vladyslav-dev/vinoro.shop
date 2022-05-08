@@ -6,7 +6,7 @@
 
         .orderTitle {
             font-weight: 600;
-            font-size: ptr(24);
+            font-size: ptr(20);
             line-height: ptr(28);
             text-align: center;
         }
@@ -14,7 +14,7 @@
         .orderDescription {
             margin-top: 36px;
             margin-bottom: 50px;
-            font-size: ptr(16);
+            font-size: ptr(14);
             line-height: ptr(28);
         }
 
@@ -31,15 +31,27 @@
                     line-height: ptr(22);
                     margin-left: 15px;
                 }
+
+                & > svg {
+                    width: 24px;
+                    height: 24px;
+                }
             }
 
             .infoBlockContent {
                 margin-top: 25px;
+                display: flex;
+                flex-direction: column;
+            }
 
-                .totalPrice {
-                    background: #F6F6F6;
-                    display: inline;
-                    margin-bottom: 40px;
+            .totalPrice {
+                display: inline-block;
+                margin-top: 20px;
+            }
+
+            &:last-child {
+                .infoBlockContent {
+                    row-gap: 20px;
                 }
             }
         }

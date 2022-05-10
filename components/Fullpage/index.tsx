@@ -8,11 +8,9 @@ import HeaderTitle from '../HeaderTitle';
 import SocialMedia from '../SocialMedia';
 import GoAhead from '../GoAhead';
 import FoollpageBottom from '../FoollpageBottom';
-import Img from '../Img';
 
 
 const Fullpage: React.FC = () => {
-
   const { catalogCollection, isLoaded } = useSelector((state: RootState) => state.catalogReducer);
 
   const [currentPage, setCurrentPage] = useState<number>(0);

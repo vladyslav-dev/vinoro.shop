@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useContext, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { useRouter } from 'next/router';
@@ -13,7 +13,6 @@ export interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
 
-    // const state = useContext(GlobalContext)
     const router = useRouter()
 
     const [displayChildren, setDisplayChildren] = useState(children);
@@ -27,10 +26,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
         if (children !== displayChildren) setTransitionStage("fadeOut");
       }, [children, setDisplayChildren, displayChildren]);
 
-
-
     const isNavbarTransparent = router.pathname === '/' || router.pathname === '/help';
-
 
     const isShowFooter = pagesWithoutFooter.every(route => router.pathname !== route);
 

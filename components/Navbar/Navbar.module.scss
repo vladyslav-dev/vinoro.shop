@@ -132,22 +132,3 @@
     bottom: 15px;
     right: -2px;
 }
-
-.searchModal {
-    visibility: hidden;
-    opacity: 0;
-    transition: all .3s ease-in-out;
-
-    position: fixed;
-    z-index: 999;
-    @include glassBackground;
-    color: $COLOR-COD-GRAY;
-    width: 100vw;
-    height: 100vh;
-    display: block;
-
-    &.active {
-        visibility: visible;
-        opacity: 1;
-    }
-}

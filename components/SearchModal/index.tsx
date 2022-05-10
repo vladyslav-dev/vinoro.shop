@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useRef } from 'react'
 import styles from './SearchModal.module.scss';
 import Router from 'next/router';
-import axios from 'axios';
 
 import { SearchBackArrowSvg } from '@/icons/Arrow';
 import { LoupeSvg } from '@/icons/Loupe';
 
-import ToolBar from '@/components/ToolBar';
-import CardList from '@/components/CardList';
 import { RootState } from '@/store/index';
 import { useSelector } from 'react-redux';
 import { ISearchProduct } from '@/interfaces/product';
@@ -22,6 +19,12 @@ interface SearchModalProps {
 }
 
 const SearchModal = ({ closeSearch }: SearchModalProps) => {
+
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (inputRef?.current) inputRef.current.focus();
+    }, [inputRef])
 
     const {
         searchCategory,
@@ -128,6 +131,7 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
                                     type="text"
                                     placeholder={t(`common:search`)}
                                     value={searchQuery}
+                                    ref={inputRef}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
                                 <span className={styles.inputIcon} onClick={submitHandler}>
@@ -195,4 +199,4 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
     )
 }
 
-export default SearchModal
+export default React.memo(SearchModal);

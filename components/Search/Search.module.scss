@@ -1,0 +1,20 @@
+@import '../../styles/index.scss';
+
+.searchModal {
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s ease-in-out;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    @include glassBackground;
+    color: $COLOR-COD-GRAY;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
+}

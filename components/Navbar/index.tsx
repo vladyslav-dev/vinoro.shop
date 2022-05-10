@@ -1,23 +1,17 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import styles from './Navbar.module.scss';
 import Link from 'next/link'
-import useOnClickOutside from '@/hooks/useOnClickOutside';
 import useTranslation from 'next-translate/useTranslation';
-
 import { BagSvg } from '@/icons/Bag';
-import { WorldSvg } from '@/icons/World';
-import { LoupeSvg } from '@/icons/Loupe';
-
 import Logo from "@/components/Logo";
 import Basket from '@/components/Basket';
 import BurgerMenu from "@/components/BurgerMenu";
 import HeaderIcon from '@/components/HeaderIcon';
-import SearchModal from '@/components/SearchModal';
-import LanguageModal from '@/components/LanguageModal';
+import Language from '@/components/Language';
 import useLightElements from '@/hooks/useLightElements';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/index';
-
+import Search from '@/components/Search';
 
 export interface NavbarProps {
     navbarStyles?: React.CSSProperties;
@@ -25,24 +19,15 @@ export interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ navbarStyles }) => {
 
+    const { t } = useTranslation();
+
     const { isLight } = useLightElements();
 
     const { basketProducts } = useSelector((state: RootState) => state.basketReducer);
 
     const productsNumber = useMemo(() => Object.keys(basketProducts).length, [basketProducts]);
 
-    const { t } = useTranslation();
-
-    const [showSearch, setShowSearch] = useState<boolean>(false)
     const [basketIsOpen, setBasketIsOpen] = useState<boolean>(false);
-    const [isLanguageModalOpen, setIsLanguageModalOpen] = useState<boolean>(false);
-
-    const iconRef = useRef<HTMLDivElement>(null)
-
-    useOnClickOutside(() => setIsLanguageModalOpen(false), iconRef)
-
-    const openModalSearch = () => setShowSearch(true)
-    const closeModalSearch = () => setShowSearch(false)
 
     const showBasket = () => setBasketIsOpen(true)
     const hideBasket = () => setBasketIsOpen(false)
@@ -57,9 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ navbarStyles }) => {
                                 <BurgerMenu />
                             </div>
                             <div className={styles.navbarIcon}>
-                                <HeaderIcon label={t("common:navbarIcons.search")} click={() => openModalSearch()}>
-                                    <LoupeSvg color={isLight ? '#fff' : ''} />
-                                </HeaderIcon>
+                                <Search />
                             </div>
                         </div>
                         <div className={styles.navbarLogo}>
@@ -80,22 +63,13 @@ const Navbar: React.FC<NavbarProps> = ({ navbarStyles }) => {
                                         {productsNumber ? <div className={styles.basketCount}>{productsNumber}</div> : null}
                                     </HeaderIcon>
                                 </div>
-
                             </div>
                             <div className={styles.navbarIcon}>
-                                <div ref={iconRef} onClick={() => setIsLanguageModalOpen(!isLanguageModalOpen)}>
-                                    <HeaderIcon label={t("common:navbarIcons.lang")}>
-                                        <WorldSvg color={isLight ? '#fff' : ''} />
-                                    </HeaderIcon>
-                                    {isLanguageModalOpen && <LanguageModal />}
-                                </div>
+                                <Language />
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className={`${styles.searchModal} ${showSearch ? styles.active : ''}`}>
-                {showSearch && <SearchModal closeSearch={closeModalSearch} />}
             </div>
             <div className={styles.navbarSimulator} style={{
                 display: navbarStyles?.background === 'transparent' ? 'none' : 'block'
@@ -104,4 +78,4 @@ const Navbar: React.FC<NavbarProps> = ({ navbarStyles }) => {
     );
 };
 
-export default Navbar;
+export default React.memo(Navbar);

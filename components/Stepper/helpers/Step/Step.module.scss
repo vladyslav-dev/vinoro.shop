@@ -6,6 +6,10 @@
     align-items: center;
     width: 25%;
     position: relative;
+
+    @include lg {
+        width: 15%;
+    }
 }
 
 .content:not(:last-child)::after {
@@ -19,6 +23,22 @@
     right: calc(-70%  / 2);
     z-index: 1;
     border-radius: 2px;
+
+    @include lg {
+        top: 23px;
+        right: calc(-208% / 2);
+        width: 120%;
+    }
+
+    @include sm {
+        right: calc(-188% / 2);
+        width: 100%;
+    }
+
+    @media (max-width: 400px) {
+        right: calc(-158% / 2);
+        width: 70%;
+    }
 }
 
 .icon {
@@ -32,9 +52,33 @@
     display: flex;
     justify-content: center;
     z-index: 1;
+
+    @include lg {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 .lable {
     font-size: 13px;
+    font-weight: 600;
     margin-top: 20px;
+    white-space: nowrap;
+
+    @include lg {
+        font-size: 11px;
+    }
+
+    @include md {
+        font-size: 10px;
+    }
+
+
+    @include sm {
+        font-size: 9px;
+        font-weight: 800;
+        line-height: 16px;
+        text-align: center;
+        white-space: normal;
+    }
 }

@@ -31,7 +31,6 @@ const StepperBox: React.FC<StepperBoxProps> = (
 ) => {
     const [currentStep, setCurrentStep] = React.useState<IStepContent>();
 
-    console.log(currentStep)
     const { t } = useTranslation();
 
     const { totalPrice } = useSelector((state: RootState) => state.basketReducer);

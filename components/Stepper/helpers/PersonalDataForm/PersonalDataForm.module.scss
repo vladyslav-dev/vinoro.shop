@@ -176,15 +176,11 @@
 
                     .formRowError {
                         color: #DC143C;
-                        font-size: ptr(13);
+                        font-size: ptr(11);
                         width: 100%;
                         height: 13px;
                         text-align: right;
                         line-height: ptr(18);
-
-                        @include sm {
-                            font-size: ptr(12);
-                        }
                     }
                 }
             }

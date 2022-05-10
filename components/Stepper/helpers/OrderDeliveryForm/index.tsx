@@ -23,7 +23,7 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
     const CASH_ON_DELIVERY = t(`order:paymentType.cashOnDelivery`);
 
     const { personData } = useSelector((state: RootState) => state.orderReducer);
-    console.log(personData)
+
     const [delivery, setDelivery] = useState<string>((personData.city === LOCAL_CITY || personData.isLocal) ? LOCAL_CITY : ""); // LOCAL_CITY | ANOTHER_CITY
     const [payment, setPayment] = useState<string>(personData.payment || ""); // CARD_PAYMENT | CASH_PAYMENT | CASH_ON_DELIVERY
 
@@ -53,9 +53,7 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
 
             dispatch(setPaymentValid(true))
             updateButtonDisabled(false)
-            console.log('enable button')
         } else {
-            console.log('disable button')
             dispatch(setPaymentValid(false))
             updateButtonDisabled(true)
         }

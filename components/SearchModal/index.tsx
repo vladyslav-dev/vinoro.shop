@@ -34,10 +34,6 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
     const { t } = useTranslation();
     const { language } = useLanguage();
 
-    console.log(language)
-    console.log(searchCategory)
-
-
     const [relateQueries, setRelateQueries] = useState<string[]>([]);
     const [searchQuery, setSearchQuery] = useState('')
 

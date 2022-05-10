@@ -15,6 +15,8 @@ import useTranslation from 'next-translate/useTranslation';
 import { ICollectedOrder } from '@/interfaces/order';
 import { clearBasket } from '@/store/slices/basket';
 import { resetData } from '@/store/slices/order';
+import OrderService from 'services/OrderService';
+import useLanguage from '@/hooks/useLanguage';
 
 export interface ValidDdata {
     label?: string,
@@ -24,6 +26,8 @@ export interface ValidDdata {
 const PlacedOrder = () => {
 
     const { t, lang } = useTranslation();
+
+    const { language } = useLanguage();
 
     const disaptch = useDispatch();
 
@@ -35,24 +39,30 @@ const PlacedOrder = () => {
     const [collectedOrder, setCollectedOrder] = useState<ICollectedOrder | null>(null)
 
     const [validData, setValidData] = useState<Array<ValidDdata>>([])
-    console.log(personData)
-    console.log(validData)
 
 
     useEffect(() => {
-        setCollectedOrder({
+        const orderData = {
             ...personData,
             order_id: `${Date.now()}`,
             created_at: `${new Date().toLocaleString('uk')}`
+        }
+
+        setCollectedOrder(orderData)
+
+        OrderService.sendMail({
+            ...orderData,
+            products: basketProducts,
+            mailLanguage: language
         })
 
-        disaptch(clearBasket());
-        disaptch(resetData());
+        return () => {
+            disaptch(resetData());
+            disaptch(clearBasket());
+        }
     }, [])
 
-
     useEffect(() => {
-
         if (collectedOrder !== null) {
             setValidData([
                 {
@@ -77,7 +87,7 @@ const PlacedOrder = () => {
                 },
                 {
                     label: t(`order:delivery`),
-                    value: collectedOrder.isLocal ? personData.local_address || isNotDefined : `${personData.post_adress} ${personData.post_number}`
+                    value: collectedOrder.isLocal ? (personData.local_address || isNotDefined) : `Нова Пошта, ${personData.post_adress}, №${personData.post_number}`
                 },
                 {
                     label: t(`order:payment`),
@@ -92,7 +102,6 @@ const PlacedOrder = () => {
 
 
     }, [lang, collectedOrder])
-
 
     return (
         <div className={styles.wrapper}>

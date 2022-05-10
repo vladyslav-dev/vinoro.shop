@@ -1,3 +1,4 @@
+import { ILangData } from './general';
 import { IBasketProductCollection } from "@/interfaces/product";
 
 export interface IOrder {
@@ -19,8 +20,16 @@ export interface ICollectedOrder extends IOrder  {
     created_at?: string;
 }
 
+export interface IOrderData extends Omit<ICollectedOrder, 'isLocal'> {
+    mailLanguage?: keyof ILangData;
+}
+
 export interface IOrderState {
     personData: IOrder;
     isPersonDataValid: boolean;
     isPaymentValid: boolean;
+}
+
+export interface IOrderService {
+    sendMail: (order: IOrderData) => Promise<void>;
 }

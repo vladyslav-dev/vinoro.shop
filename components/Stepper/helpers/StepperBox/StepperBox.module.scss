@@ -11,6 +11,18 @@
         justify-content: space-between;
         max-width: 1100px;
         margin: 0 auto;
+
+        @include lg {
+            width: 90%;
+        }
+
+        @include md {
+            width: 92%;
+        }
+
+        @include sm {
+            width: 98%;
+        }
     }
 
     .stepContent {

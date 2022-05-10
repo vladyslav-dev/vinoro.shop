@@ -18,7 +18,6 @@ const Basket: React.FC<BasketProps> = ({ closeBasketHandler }) => {
 
     const { t } = useTranslation();
 
-    console.log(basketProducts)
     const basketProductsValues = useMemo(() => Object.values(basketProducts), [basketProducts]);
 
     const closeHandler = (event: React.MouseEvent) => {

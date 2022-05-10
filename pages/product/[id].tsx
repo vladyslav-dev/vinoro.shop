@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './product.module.scss'
 import Product from '@/components/Product';
 import { useRouter } from 'next/router';

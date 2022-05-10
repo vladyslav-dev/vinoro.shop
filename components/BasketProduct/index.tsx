@@ -32,8 +32,8 @@ const BasketProduct: React.FC<BasketProductProps> = ({ product, onlyView = false
             <div className={styles.productInfo}>
                 <h2 className={styles.productInfoTitle}>{product.name[language]}</h2>
                 <div className={styles.productInfoCost}>
-                    <span>{product.current_price} ₴ {product.quantity > 1 && <span> &#xA0;&#xA0; x &#xA0;&#xA0; {product.quantity}</span>}</span>
-                    {product.quantity > 1 && <span>{product.total_price} ₴</span>}
+                    <span>{product.current_price} ₴ <span> &#xA0;&#xA0; x &#xA0;&#xA0; {product.quantity}</span></span>
+                    <span>{product.total_price} ₴</span>
                 </div>
                 {!onlyView && (
                     <div className={styles.productQuantity}>

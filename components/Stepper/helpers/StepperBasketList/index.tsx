@@ -17,9 +17,8 @@ const StepperBasketList = () => {
 
     const dispatch = useDispatch();
     const { basketProducts } = useSelector((state: RootState) => state.basketReducer);
-    console.log(basketProducts)
+
     useEffect(() => {
-        console.log(basketProducts)
         if (!Object.keys(basketProducts).length) {
             router.push('/');
         }

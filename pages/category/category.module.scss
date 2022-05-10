@@ -2,6 +2,8 @@
 
 .category {
     background-color: $COLOR-WHITE;
+    animation: fadein .4s ease-in-out forwards;
+
     .categoryWrapper {
         display: flex;
         justify-content: space-between;

@@ -50,20 +50,18 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 
             {router.pathname === '/order' ? <OrderNavbar /> : <Navbar navbarStyles={navbarStyles}  />}
             <div
-                onTransitionEnd={() => {
-                    setTimeout(() => {
-                    if (transitionStage === "fadeOut") {
-                      console.log("fading out");
+                // onTransitionEnd={() => {
+                //     if (transitionStage === "fadeOut") {
+                //         console.log("fading out");
 
-                        setDisplayChildren(children);
-                        setTransitionStage("fadeIn");
+                //         // setDisplayChildren(children);
+                //             setTransitionStage("fadeIn");
 
-                    }
-                }, 400)
-                  }}
-                  className={`__global-layout ${transitionStage}`}
+                //         }
+                // }}
+                className={`__global-layout ${transitionStage}`}
             >
-                {displayChildren}
+                {children}
             </div>
             {isShowFooter && <Footer /> }
         </>

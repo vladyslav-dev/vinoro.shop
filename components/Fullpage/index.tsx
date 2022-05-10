@@ -8,6 +8,7 @@ import HeaderTitle from '../HeaderTitle';
 import SocialMedia from '../SocialMedia';
 import GoAhead from '../GoAhead';
 import FoollpageBottom from '../FoollpageBottom';
+import Img from '../Img';
 
 
 const Fullpage: React.FC = () => {

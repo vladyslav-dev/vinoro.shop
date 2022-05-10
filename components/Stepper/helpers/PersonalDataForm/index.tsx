@@ -48,16 +48,16 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
     const { register, getValues, watch, formState: { errors, isValid } } = useForm<IFormState>({
         mode: 'onChange',
         defaultValues: {
-            name: 'Владислав',
-            surname: 'Григоренко',
-            email: 'vladyslav@gmail.com',
-            phone: '0501709392',
-            city: 'Запоріжжя',
-            // name: personData.name || '',
-            // surname: personData.surname || '',
-            // email: personData.email || '',
-            // phone: personData.phone || '',
-            // city: personData.city || '',
+            // name: 'Владислав',
+            // surname: 'Григоренко',
+            // email: 'vladyslav@gmail.com',
+            // phone: '0501709392',
+            // city: 'Запоріжжя',
+            name: personData.name || '',
+            surname: personData.surname || '',
+            email: personData.email || '',
+            phone: personData.phone || '',
+            city: personData.city || '',
         },
         resolver: yupResolver(schema)
     })
@@ -70,10 +70,6 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
         }
 
         return () => {
-            console.log('set personal data state')
-            console.log(isValid)
-            console.log(errors)
-            console.log(getValues())
             if (isValid) {
                 dispatch(setData(getValues()))
                 dispatch(setPersonalDataValid(true))

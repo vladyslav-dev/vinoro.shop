@@ -138,7 +138,7 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
                                 className={`${styles.formRowLabel} ${watch('email') ? styles.formRowLabelActive : ""}`}
                             >
                                 {t(`order:form.email`)}
-                        </label>
+                            </label>
                             <p className={styles.formRowError}>
                                 {errors.email?.message}
                             </p>
@@ -158,7 +158,7 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
                                 className={`${styles.formRowLabel} ${watch('phone') ? styles.formRowLabelActive : ""}`}
                             >
                                 {t(`order:form.phone`)}
-                        </label>
+                            </label>
                             <p className={styles.formRowError}>
                                 {errors.phone?.message}
                             </p>

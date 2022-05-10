@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './PlacedOrder.module.scss'
 import { RootState } from '@/store/index';
 
@@ -17,6 +17,7 @@ import { clearBasket } from '@/store/slices/basket';
 import { resetData } from '@/store/slices/order';
 import OrderService from 'services/OrderService';
 import useLanguage from '@/hooks/useLanguage';
+import { IBasketProduct, IBasketProductCollection } from '@/interfaces/product';
 
 export interface ValidDdata {
     label?: string,
@@ -34,7 +35,10 @@ const PlacedOrder = () => {
     const isNotDefined: string = t(`order:notFilled`);
 
     const { personData } = useSelector((state: RootState) => state.orderReducer);
-    const { totalPrice, basketProducts } = useSelector((state: RootState) => state.basketReducer);
+    const { totalPrice: tprice, basketProducts } = useSelector((state: RootState) => state.basketReducer);
+
+    const productList = useRef<Array<IBasketProduct>>(Object.values(basketProducts));
+    const totalPrice = useRef<number>(tprice);
 
     const [collectedOrder, setCollectedOrder] = useState<ICollectedOrder | null>(null)
 
@@ -56,9 +60,10 @@ const PlacedOrder = () => {
             mailLanguage: language
         })
 
+        disaptch(clearBasket());
+
         return () => {
             disaptch(resetData());
-            disaptch(clearBasket());
         }
     }, [])
 
@@ -128,13 +133,13 @@ const PlacedOrder = () => {
                     </div>
                     <div className={styles.infoBlockContent}>
                         {
-                            Object.values(basketProducts).map(item => (
+                            productList?.current?.map(item => (
                                 <BasketProduct product={item} key={item.id} onlyView={true} />
                             ))
                         }
                     </div>
                     <div className={styles.totalPrice}>
-                        <TotalPrice totalPrice={totalPrice} />
+                        <TotalPrice totalPrice={totalPrice.current} />
                     </div>
                 </div>
             </div>

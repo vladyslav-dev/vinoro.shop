@@ -4,6 +4,7 @@ import Stepper from '@/components/Stepper';
 import useTranslation from 'next-translate/useTranslation';
 import { RootState } from '@/store/index';
 import { useSelector } from 'react-redux';
+import Head from 'next/head';
 
 
 const Order = () => {
@@ -52,7 +53,15 @@ const Order = () => {
     };
     }, [unsavedChanges]);
 
-    return <Stepper />
+    return (
+        <>
+            <Head>
+                <title>{t(`common:pagesMeta.order.title`)}</title>
+                <meta name="robots" content="noindex"></meta>
+            </Head>
+            <Stepper />
+        </>
+    )
 }
 
 export default Order

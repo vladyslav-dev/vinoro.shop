@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styles from './BasketProduct.module.scss';
 import { IBasketProduct } from '@/interfaces/product';
 import Img from '@/components/Img';
@@ -56,4 +56,4 @@ const BasketProduct: React.FC<BasketProductProps> = ({ product, onlyView = false
     );
 };
 
-export default BasketProduct;
+export default React.memo(BasketProduct);

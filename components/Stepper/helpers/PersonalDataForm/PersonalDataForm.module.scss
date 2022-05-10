@@ -154,13 +154,13 @@
 
                         &:focus ~ .formRowLabel {
                           top: -25px;
-                          font-size: ptr(13);
+                          font-size: ptr(12);
                         }
                     }
 
                     .formRowLabel {
                         color: $COLOR-SILVER-CHALICE;
-                        font-size: ptr(16);
+                        font-size: ptr(14);
                         line-height: ptr(34);
                         position: absolute;
                         top: 0;
@@ -171,7 +171,7 @@
 
                     .formRowLabelActive {
                         top: -25px;
-                        font-size: ptr(13);
+                        font-size: ptr(12);
                     }
 
                     .formRowError {

@@ -1,9 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './search.module.scss';
 import { useRouter } from 'next/router';
-import Catalog from '@/components/Catalog';
 import EmptyCatalog from '@/components/EmptyCatalog';
-import useSWR, { useSWRConfig } from 'swr';
+import { useSWRConfig } from 'swr';
 import ProductService from 'services/ProductService';
 import useLanguage from '@/hooks/useLanguage';
 import { IProduct, ISearchProduct } from '@/interfaces/product';
@@ -12,11 +11,14 @@ import { RootState } from '@/store/index';
 import Loader from '@/components/Loader';
 import ToolBar from '@/components/ToolBar';
 import CardList from '@/components/CardList';
+import Head from 'next/head';
+import useTranslation from 'next-translate/useTranslation';
 
 type ProductId = string
 
-
 const Search = () => {
+
+    const { t } = useTranslation();
 
     const router = useRouter();
 
@@ -58,22 +60,29 @@ const Search = () => {
 
 
     return (
-        <div className={styles.search}>
-            <div className={styles["container-xl"]}>
-                <div className={styles.searchWrapper}>
-                    {productList === null ? <EmptyCatalog textWarnings="No products" /> : !productList?.length ? (
-                        <Loader />
-                    ) : (
-                        <div className={styles.searchContent}>
-                            <ToolBar products={productList} updateProductList={setProductList} />
-                            <div className={styles.searchList}>
-                                <CardList products={productList} />
+        <>
+            <Head>
+                <title>{t(`common:pagesMeta.search.title`)}</title>
+                <meta name="robots" content="noindex"></meta>
+            </Head>
+            <div className={styles.search}>
+                <div className={styles["container-xl"]}>
+                    <div className={styles.searchWrapper}>
+                        {productList === null ? <EmptyCatalog textWarnings="No products" /> : !productList?.length ? (
+                            <Loader />
+                        ) : (
+                            <div className={styles.searchContent}>
+                                <ToolBar products={productList} updateProductList={setProductList} />
+                                <div className={styles.searchList}>
+                                    <CardList products={productList} />
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
+
     )
 }
 

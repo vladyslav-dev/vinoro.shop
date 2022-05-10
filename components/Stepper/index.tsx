@@ -100,10 +100,6 @@ const Stepper = () => {
         setStep(step > 0 ? step - 1 : 0)
     }
 
-    // if (!Object.keys(basketProducts).length) {
-    //     return null
-    // }
-
     return (
         <div className={styles.wrraper}>
             <StepperBox

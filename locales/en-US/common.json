@@ -54,5 +54,26 @@
     "popularQueries": "Popular queries",
     "faunded": "Found",
     "category": "Category",
-    "moreInCategory": "... {{variable}} more in the category"
+    "moreInCategory": "... {{variable}} more in the category",
+    "pagesMeta": {
+        "home": {
+            "title": "Vinoro (Products from Europe) – Best European Products"
+        },
+        "contacts": {
+            "title": "Vinoro — Contacts"
+        },
+        "help": {
+            "title": "Vinoro — Help"
+        },
+        "search": {
+            "title": "Vinoro — Search"
+        },
+        "order": {
+            "title": "Vinoro — Placing an order"
+        },
+        "general": {
+            "description": "Vinoro online store (Products from Europe). In assortment Foodstuff, Alcohol, Household chemicals. Pleasant prices. Delivery in Ukraine",
+            "keywords": "vinoro, products, alcohol, goods from Europe, Zaporozhye, delivery, household chemicals, prices, price, buy, European goods, cheap, Ukraine, online, online store"
+        }
+    }
 }

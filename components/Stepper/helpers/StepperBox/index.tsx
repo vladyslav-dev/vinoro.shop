@@ -5,12 +5,12 @@ import Link from 'next/link'
 //Components
 import Button from '@/components/Button'
 import Step from '@/components/Stepper/helpers/Step'
-import TotalPrice from '@/components/TotalPrice'
 import { IStepContent } from '../..'
 import { IBasketProductCollection } from '@/interfaces/product'
-import { RootState } from '@/store/index'
-import { useSelector } from 'react-redux'
 import useTranslation from 'next-translate/useTranslation'
+import TotalPrice from '@/components/TotalPrice'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store/index'
 
 interface StepperBoxProps {
     stepsContent: Array<IStepContent>;
@@ -72,16 +72,16 @@ const StepperBox: React.FC<StepperBoxProps> = (
                     <div className={styles.buttonFiled}>
                          <div className={styles['container-xl']}>
                             <div className={styles.prevButton}>
-                                {!currentStep?.isFirst && (
-                                    <Button label={t(`common:back`)} type="without" styles={{ fontSize: "15px" }} click={backButtonHandler} />
+                                {!currentStep?.isFirst ? (
+                                    <Button label={t(`common:back`)} type="outlined" click={backButtonHandler} />
+                                ) : (
+                                    <TotalPrice totalPrice={totalPrice} />
                                 )}
                             </div>
                             <div className={styles.nextButton}>
-                                <TotalPrice totalPrice={totalPrice} />
                                 <Button
                                     label={t(`common:next`)}
                                     click={nextButtonHandler}
-                                    styles={{ width: "220px", marginLeft: '26px' }}
                                     type={currentStep?.isButtonDisabled || !Object.keys(products).length ? "disabled" : "default"}
                                 />
                             </div>

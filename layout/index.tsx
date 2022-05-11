@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import { useRouter } from 'next/router';
 import OrderNavbar from '@/components/OrderNavbar';
 
-const pagesWithoutFooter = ['/', '/help', '/order'];
+const pagesWithoutFooter = ['/', '/help', '/order', '/contacts'];
 
 type TTransitionStage = 'fadeIn' | 'fadeOut';
 export interface LayoutProps {
@@ -36,14 +36,6 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 
     return (
         <>
-            {/* <Head>
-                <title>Vinoro 2.0</title>
-                <meta name="keywords" content="next,javascript,nextjs,react" />
-                <meta name="description" content="this is youtube tutorial for next" />
-                <meta charSet="utf-8" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head> */}
-
             {router.pathname === '/order' ? <OrderNavbar /> : <Navbar navbarStyles={navbarStyles}  />}
             <div
                 // onTransitionEnd={() => {
@@ -55,7 +47,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 
                 //         }
                 // }}
-                className={`__global-layout ${transitionStage}`}
+                className={`__global-layout`}
             >
                 {children}
             </div>

@@ -42,15 +42,22 @@
 
         .container-xl {
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-end;
             align-items: center;
             height: 100%;
 
-            .nextButton {
-                display: flex;
-                justify-content: space-between;
-                margin-left: auto;
+            .prevButton, .nextButton {
+                button {
+                    width: 160px;
+                    margin-left: 20px;
+
+                    @include sm {
+                        width: 140px;
+                    }
+                }
+
             }
+
             .finalButton {
                 display: flex;
                 justify-content: center;

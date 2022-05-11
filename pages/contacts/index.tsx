@@ -56,7 +56,7 @@ const ContactPage = () => {
                                     <Link href="viber://chat?number=+380689125456">
                                         <a>
                                             <ViberFilledSvg />
-                                            <span className={styles.contactItemLink}>068-912-54-56</span>
+                                            <span className={styles.contactItemLink}>099-523-86-07</span>
                                             {/* <span className={styles.contactTooltip}>Нажмите для открития в Viber</span> */}
                                         </a>
                                     </Link>

@@ -132,6 +132,11 @@
                     width: 100%;
                     margin-bottom: 10px;
 
+                    &.formRowCheckbox {
+                        display: flex;
+                        align-items: center;
+                    }
+
                     @include sm {
                         margin-bottom: 22px;
                     }
@@ -158,6 +163,35 @@
                         }
                     }
 
+                    .formRowCheckbox {
+                        -moz-appearance:none;
+                        -webkit-appearance:none;
+                        -o-appearance:none;
+                        min-width: 16px;
+                        min-height: 16px;
+                        border-radius: 4px;
+                        border: 1.6px solid $COLOR-COD-GRAY;
+                        position: relative;
+                        cursor: pointer;
+
+                        &:checked {
+                            &::after {
+                                content: "";
+                                display: block;
+                                box-sizing: border-box;
+                                position: absolute;
+                                left: 2px;
+                                top: -9px;
+                                width: 6px;
+                                height: 16px;
+                                border-width: 0 2px 2px 0;
+                                border-style: solid;
+                                transform-origin: bottom left;
+                                transform: rotate(45deg)
+                            }
+                        }
+                    }
+
                     .formRowLabel {
                         color: $COLOR-SILVER-CHALICE;
                         font-size: ptr(14);
@@ -167,6 +201,15 @@
                         left: 5px;
                         transition: all .4s;
                         user-select: none;
+
+                        &.formRowLabelCheckbox {
+                            position: relative;
+                            margin-left: 5px;
+                            font-size: 12px;
+                            color: $COLOR-COD-GRAY;
+                            opacity: .5;
+                            line-height: 20px;
+                        }
                     }
 
                     .formRowLabelActive {
@@ -183,6 +226,21 @@
                         line-height: ptr(18);
                     }
                 }
+            }
+        }
+
+        .ruleModal {
+            z-index: 500;
+            visibility: hidden;
+            position: fixed;
+            inset: 0;
+            opacity: 0;
+            transition: all .4s ease-in-out;
+
+            &.active {
+
+                visibility: visible;
+                opacity: 1;
             }
         }
     }

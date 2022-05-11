@@ -43,8 +43,13 @@
     "orderDate": "Order date",
     "Order": "Order",
     "confirmed": "sent for processing",
-    "orderDescription": "Your order will be reviewed as soon as possible, you will be contacted to confirm it. We have also sent a copy of the order to your email address. For all questions write to Viber +380689125456",
+    "orderDescription": "Your order will be reviewed as soon as possible, you will be contacted to confirm it. We have also sent a copy of the order to your email address. For all questions write to Viber +380995238607",
     "BuyerData": "Buyer data",
     "Goods": "Goods",
-    "notFilled": "Not filled"
+    "notFilled": "Not filled",
+    "rule": {
+        "readAndAgree": "I have read and agree with",
+        "termsOfTheUser": "terms of the user agreement",
+        "UserAgreementTerms": "Terms of the user agreement"
+    }
 }

@@ -18,15 +18,8 @@
             background-position: center 15%;
             position: absolute;
             inset: 0;
-
-            // @include xl {
-            //     background-position: right 50% center;
-            // }
-
-            @include lg {
-                background: none;
-                display: none;
-            }
+            height: calc(100vh - 68px);
+            min-height: 715px;
         }
 
         .content {
@@ -36,23 +29,12 @@
             @include flexBetween;
             flex-direction: column;
             row-gap: 14px;
-            // column-gap: 20px;
             color: $COLOR-COD-GRAY;
-            // margin-left: 50px;
-
-            @include lg {
-                display: flex;
-                justify-content: center;
-                margin-left: 0;
-                margin-top: 26px;
-                align-self: initial;
-                max-height: 330px;
-            }
 
             @include md {
-                flex-direction: column;
                 margin-top: 0;
                 max-height: none;
+                inset: 0 15px;
             }
 
             @media (max-width: 490px) {
@@ -62,7 +44,7 @@
             .contentInfo, .contentForm {
 
                 @include radius-md;
-                background: #ffffffb0;
+                background: #ffffffe3;
                 padding: 40px;
                 @include dropShadow;
                 width: clamp(270px, 100%, 400px);
@@ -70,28 +52,12 @@
                 @media (max-width: 490px) {
 
                     width: calc(100% - 30px);
-                    padding: 20px 15px;
+                    padding: 40px 15px;
                 }
             }
 
             .contentInfo {
                 position: relative;
-
-                // &:after {
-                //     content: "";
-                //     display: block;
-                //     height: 100%;
-                //     width: 3px;
-                //     border-radius: 3px;
-                //     background-color: $COLOR-COD-GRAY;
-                //     position: absolute;
-                //     right: 0;
-                //     bottom: -1px;
-
-                //     @include md {
-                //         display: none;
-                //     }
-                // }
 
                 .contactList {
 
@@ -107,29 +73,6 @@
                             .contactItemLink {
                                 margin-left: 12px;
                             }
-
-                            // .contactTooltip {
-                            //     position: absolute;
-                            //     width: max-content;
-                            //     bottom: -24px;
-                            //     transform-origin: left;
-                            //     opacity: .5;
-                            //     transition: all 200ms linear;
-                            //     transform: scale(0);
-                            //     background-color: $COLOR-COD-GRAY;
-                            //     color: $COLOR-WHITE;
-                            //     font-size: ptr(10);
-                            //     font-weight: 600;
-                            //     padding: 6px 8px;
-                            //     border-radius: 20px;
-
-                            // }
-
-                            // &:hover .contactTooltip {
-                            //     opacity: 1;
-                            //     transform:  scale(1);
-                            //     transition: all 200ms linear;
-                            // }
                         }
 
                         &:not(:last-child) {
@@ -141,38 +84,6 @@
 
             .contentForm {
                 position: relative;
-
-                // &:before {
-                //     content: "";
-                //     display: block;
-                //     height: 100%;
-                //     width: 3px;
-                //     border-radius: 3px;
-                //     background-color: $COLOR-COD-GRAY;
-                //     position: absolute;
-                //     left: 0;
-                //     top: 0;
-
-                //     @include lg {
-                //         display: none;
-                //     }
-                // }
-
-                // &:after {
-                //     content: "";
-                //     display: block;
-                //     height: 3px;
-                //     width: 100%;
-                //     border-radius: 3px;
-                //     background-color: $COLOR-COD-GRAY;
-                //     position: absolute;
-                //     left: 0;
-                //     top: 0;
-
-                //     @include lg {
-                //         display: none;
-                //     }
-                // }
             }
         }
 

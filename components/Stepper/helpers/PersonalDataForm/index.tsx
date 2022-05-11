@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './PersonalDataForm.module.scss'
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/index';
 import { setData, setPersonalDataValid } from '@/store/slices/order';
 import useTranslation from 'next-translate/useTranslation';
+import RuleModal from '@/components/RuleModal';
 
 interface IFormState {
     name: string;
@@ -14,6 +15,7 @@ interface IFormState {
     email: string;
     phone: string;
     city: string;
+    rules: boolean;
 }
 
 const phoneRegExp = /^\+?3?8?(0\d{9})$/
@@ -39,13 +41,16 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
             .matches(phoneRegExp, t(`order:formErrors.correctPhone`)),
         city: yup.string()
             .required(t(`order:formErrors.city`)),
+        rules: yup.boolean().oneOf([true])
     }).required();
 
     const dispatch = useDispatch();
 
-    const { personData } = useSelector((state: RootState) => state.orderReducer);
+    const [showRule, setShowRule] = useState<boolean>(false);
 
-    const { register, getValues, watch, formState: { errors, isValid } } = useForm<IFormState>({
+    const { personData } = useSelector((state: RootState) => state.orderReducer);
+    console.log(personData)
+    const { register, getValues, watch, control, formState: { errors, isValid } } = useForm<IFormState>({
         mode: 'onChange',
         defaultValues: {
             // name: 'Владислав',
@@ -58,6 +63,7 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
             email: personData.email || '',
             phone: personData.phone || '',
             city: personData.city || '',
+            rules: personData.terms || false,
         },
         resolver: yupResolver(schema)
     })
@@ -177,13 +183,39 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
                                 className={`${styles.formRowLabel} ${watch('city') ? styles.formRowLabelActive : ""}`}
                             >
                                 {t(`order:form.city`)}
-                        </label>
+                            </label>
                             <p className={styles.formRowError}>
                                 {errors.city?.message}
                             </p>
                         </div>
                     </div>
+                    <div className={styles.formRowWrapper}>
+                        <div className={`${styles.formRow} ${styles.formRowCheckbox}`}>
+                            <Controller
+                                name="rules"
+                                control={control}
+                                rules={{ required: true }}
+                                render={({ field: { onChange, value } }) => (
+                                    <input
+                                        type={'checkbox'}
+                                        onChange={onChange}
+                                        checked={value}
+                                        autoComplete="none"
+                                        className={styles.formRowCheckbox}
+                                    />
+                                )}
+                            />
+                            <label
+                                className={`${styles.formRowLabel} ${styles.formRowLabelCheckbox}`}
+                            >
+                                {t(`order:rule.readAndAgree`)} <u onClick={() => setShowRule(true)} style={{ cursor: "pointer" }}>{t(`order:rule.termsOfTheUser`)}</u>
+                            </label>
+                        </div>
+                    </div>
                 </form>
+                <div className={`${styles.ruleModal} ${showRule ? styles.active : ''}`}>
+                    <RuleModal closeRule={() => setShowRule(false)} />
+                </div>
             </div>
         </div>
     );

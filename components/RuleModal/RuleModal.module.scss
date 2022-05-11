@@ -1,0 +1,87 @@
+@import '../../styles/index.scss';
+
+.ruleBackground {
+    z-index: 505;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+
+    .ruleModal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $COLOR-WHITE;
+        @include radius-md;
+        padding: 16px 14px;
+        width: clamp(290px, 90vw, 500px);
+        height: clamp(300px, 80vh, 900px);
+
+        .ruleHeader {
+            display: flex;
+            justify-content: space-between;
+
+            h4 {
+                color: $COLOR-COD-GRAY;
+                font-size: 18px;
+                line-height: 24px;
+            }
+
+            .closeRule {
+                cursor: pointer;
+                box-sizing: border-box;
+                position: relative;
+                display: block;
+                transform: scale(1.1);
+                width: 22px;
+                height: 22px;
+                border: 2px solid transparent;
+                border-radius: 40px;
+                @include transitionLow;
+
+                &::after,
+                &::before {
+                    content: "";
+                    display: block;
+                    box-sizing: border-box;
+                    position: absolute;
+                    width: 16px;
+                    height: 2px;
+                    background: $COLOR-COD-GRAY;
+                    transform: rotate(45deg);
+                    border-radius: 5px;
+                    top: 8px;
+                    left: 1px
+                }
+                &::after {
+                    transform: rotate(-45deg)
+                }
+            }
+        }
+
+        .ruleBox {
+            margin-top: 16px;
+            padding-right: 14px;
+            overflow: auto;
+            max-height: 71vh;
+            overscroll-behavior: contain;
+
+            pre {
+                page-break-inside: avoid;
+                display: block;
+                word-wrap: break-word;
+
+                color: $COLOR-COD-GRAY;
+                font-size: 13px;
+                font-weight: 600;
+                font-family: inherit;
+                line-height: 20px;
+
+                white-space: pre-wrap;
+            }
+
+        }
+    }
+}

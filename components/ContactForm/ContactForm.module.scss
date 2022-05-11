@@ -6,10 +6,13 @@
     .formRow {
         position: relative;
         width: 100%;
-        margin-bottom: 10px;
 
-        @include sm {
-            margin-bottom: 22px;
+        &:not(:last-child) {
+            margin-bottom: 10px;
+
+            @include sm {
+                margin-bottom: 22px;
+            }
         }
 
         .formRowInput {

@@ -12,10 +12,9 @@ const Index = () => {
     const { t } = useTranslation();
 
     useEffect(() => {
-        dispatch(setCatalogOpen(true));
+        dispatch(setCatalogOpen(false));
     }, [])
 
-    console.log(t(`common:pagesMeta.home.title`))
     return (
         <>
             <Head>

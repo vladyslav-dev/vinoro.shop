@@ -7,7 +7,6 @@ import { IProduct } from '@/interfaces/product';
 import useCurrentCategory from '@/hooks/useCurrentCategory';
 import useSWR from 'swr';
 import ProductService from 'services/ProductService';
-import Loader from '@/components/Loader';
 import { setCatalogOpen } from '@/store/slices/catalog';
 import { useDispatch } from 'react-redux';
 import Head from 'next/head';
@@ -48,17 +47,19 @@ const Category: React.FC = () => {
     }, [])
 
     useEffect(() => {
-        if (products) setProductList(products)
+        if (products) {
+            setProductList(products)
+        }
     }, [products])
 
-    if (!productList.length) {
+    if (!productList.length || !category) {
         return null;
     }
 
     return (
         <>
             <Head>
-                <title>{category.category_name[language]}</title>
+                <title>{category?.category_name[language]}</title>
                 <meta
                     name="description"
                     content={t(`common:pagesMeta.general.description`)}
@@ -69,7 +70,7 @@ const Category: React.FC = () => {
                 />
                 <meta
                     property="og:title"
-                    content={category.category_name[language]}
+                    content={category?.category_name[language]}
                 />
                 <meta
                     property="og:description"
@@ -79,7 +80,7 @@ const Category: React.FC = () => {
             <div className={styles.category}>
                 <div className={styles["container-xl"]}>
                     <div className={styles.categoryWrapper}>
-                        {!productList.length ? <Loader /> : (
+                        {!productList.length ? null : (
                             <div className={styles.categoryContent}>
                                 <ToolBar products={productList} updateProductList={setProductList} />
                                 <div className={styles.categoryList}>

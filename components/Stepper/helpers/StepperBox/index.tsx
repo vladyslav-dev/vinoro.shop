@@ -80,7 +80,7 @@ const StepperBox: React.FC<StepperBoxProps> = (
                             </div>
                             <div className={styles.nextButton}>
                                 <Button
-                                    label={t(`common:next`)}
+                                    label={currentStep?.id === 2 ? t(`order:placeAnOrder`) : t(`common:next`)}
                                     click={nextButtonHandler}
                                     type={currentStep?.isButtonDisabled || !Object.keys(products).length ? "disabled" : "default"}
                                 />

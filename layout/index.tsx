@@ -1,12 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { useRouter } from 'next/router';
 import OrderNavbar from '@/components/OrderNavbar';
 
 const pagesWithoutFooter = ['/', '/help', '/order', '/contacts'];
-
-type TTransitionStage = 'fadeIn' | 'fadeOut';
+const pagesWithTransparentNavbar = ['/', '/help'];
 export interface LayoutProps {
     children?: React.ReactElement;
 }
@@ -15,20 +14,9 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 
     const router = useRouter()
 
-    const [displayChildren, setDisplayChildren] = useState(children);
-    const [transitionStage, setTransitionStage] = useState<TTransitionStage>("fadeOut");
+    const isNavbarTransparent = !pagesWithTransparentNavbar.every(path => path !== router.pathname);
 
-    useEffect(() => {
-        setTransitionStage("fadeIn");
-      }, []);
-
-      useEffect(() => {
-        if (children !== displayChildren) setTransitionStage("fadeOut");
-      }, [children, setDisplayChildren, displayChildren]);
-
-    const isNavbarTransparent = router.pathname === '/' || router.pathname === '/help';
-
-    const isShowFooter = pagesWithoutFooter.every(route => router.pathname !== route);
+    const isShowFooter = pagesWithoutFooter.every(path => router.pathname !== path);
 
     const navbarStyles = {
         background: isNavbarTransparent ? 'transparent' : '#FFFFFF'
@@ -38,15 +26,6 @@ const Layout: FC<LayoutProps> = ({ children }) => {
         <>
             {router.pathname === '/order' ? <OrderNavbar /> : <Navbar navbarStyles={navbarStyles}  />}
             <div
-                // onTransitionEnd={() => {
-                //     if (transitionStage === "fadeOut") {
-                //         console.log("fading out");
-
-                //         // setDisplayChildren(children);
-                //             setTransitionStage("fadeIn");
-
-                //         }
-                // }}
                 className={`__global-layout`}
             >
                 {children}

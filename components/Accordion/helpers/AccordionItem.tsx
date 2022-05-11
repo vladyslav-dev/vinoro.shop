@@ -1,31 +1,35 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from '../Accordion.module.scss';
 import { SortArrorSvg } from '@/icons/Arrow';
-import { IAccordionController } from '../index';
+import { IAccordionData } from '@/interfaces/accordion';
+import { IAccordionController } from '..';
+import useLanguage from '@/hooks/useLanguage';
+
 
 interface IAccordionItem {
-    title: string;
-    description: string;
+    data: IAccordionData;
     controller: IAccordionController;
 }
 
-const AccordionItem: React.FC<IAccordionItem> = ({title, description, controller}) => {
+const AccordionItem: React.FC<IAccordionItem> = ({data, controller}) => {
+
+    const { language } = useLanguage();
 
     const [height, setHeight] = useState<number>(0);
 
     const hiddenBlockRef = useRef<HTMLParagraphElement>(null);
     const hiddenBlockHeight = hiddenBlockRef?.current?.scrollHeight as number;
-    const isCurrentAccord: boolean = controller.checkIsCurrentAccord(title);
+    const isCurrentAccord: boolean = controller.checkIsCurrentAccord(data[language]?.title);
 
     useEffect(() => setHeight(hiddenBlockHeight), [hiddenBlockHeight])
 
     const accordHandler = () => {
-        if (controller?.getCurrentAccord() === title) {
+        if (controller?.getCurrentAccord() === data[language]?.title) {
             setHeight(0)
             controller.toggleAccord('')
         } else {
             setHeight(hiddenBlockHeight)
-            controller?.toggleAccord(title)
+            controller?.toggleAccord(data[language]?.title)
         }
     }
 
@@ -35,7 +39,7 @@ const AccordionItem: React.FC<IAccordionItem> = ({title, description, controller
             onClick={accordHandler}
         >
             <div className={styles.accordionItemRow}>
-                <h6 className={styles.accordionItemTitle}>{title}</h6>
+                <h6 className={styles.accordionItemTitle}>{data[language]?.title}</h6>
                 <SortArrorSvg color='#FFFFFF' />
             </div>
             <div
@@ -43,7 +47,7 @@ const AccordionItem: React.FC<IAccordionItem> = ({title, description, controller
                 className={styles.accordionItemDescription}
                 style={{ maxHeight: isCurrentAccord ? `${height}px` : '0' }}
             >
-                {/* <div dangerouslySetInnerHTML={{__html: description}} /> */}
+                <div dangerouslySetInnerHTML={{__html: data[language]?.description}} />
             </div>
         </li>
     )

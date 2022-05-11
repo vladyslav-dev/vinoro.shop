@@ -73,14 +73,4 @@ const RootApp = ({ Component, pageProps }: RootAppProps) => {
   );
 }
 
-// RootApp.getInitialProps = async ({ Component, router, ctx }: AppContext) => {
-
-//   const pageContext = { ...ctx };
-//   const pageProps = Component.getInitialProps ? await Component.getInitialProps(pageContext) : {};
-
-//   return {
-//     ...pageProps,
-//   }
-// }
-
 export default RootApp;

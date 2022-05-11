@@ -3,20 +3,33 @@ import styles from './ContactForm.module.scss';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-
-const schema = yup.object().shape({
-    email: yup.string()
-        .email("Введите корректный email")
-        .required("Введите ваш email. Пример example@gmail.com"),
-    message: yup.string()
-        .required("Введите ваше сообщение"),
-}).required();
+import useTranslation from 'next-translate/useTranslation';
+import { IQuestion } from '@/interfaces/question';
+import QuestionService from 'services/QuestionService';
+import useLanguage from '@/hooks/useLanguage';
 
 const ContactForm = () => {
 
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const { t } = useTranslation();
+    const { language } = useLanguage();
 
-    const { register, getValues, watch, formState: { errors, isValid } } = useForm({
+    const [showAlert, setShowAlert] = useState<boolean>(false);
+
+    const schema = yup.object().shape({
+        email: yup.string()
+            .email(t(`contacts:errors.validEmail`))
+            .required(t(`contacts:errors.validEmail`)),
+        message: yup.string()
+            .required(t(`contacts:errors.enterMessage`)),
+    }).required();
+
+    const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
+
+    const { register, handleSubmit, watch, reset, formState: { errors, isValid } } = useForm<IQuestion>({
+        defaultValues: {
+            email: '',
+            message: ''
+        },
         mode: 'onChange',
         resolver: yupResolver(schema)
     })
@@ -29,13 +42,21 @@ const ContactForm = () => {
         }
     }, [isValid])
 
-    const submitHandler = (event: React.FormEvent) => {
-        event.preventDefault()
+    const submitHandler = (data: IQuestion) => {
+        QuestionService.sendQuestion({
+            ...data,
+            lang: language
+        });
+
+        reset();
+
+        setShowAlert(true);
+
+        setTimeout(() => setShowAlert(false), 3000);
     }
 
-
     return (
-        <form className={styles.form} onSubmit={(e) => e.preventDefault()} autoComplete="none" >
+        <form className={styles.form} onSubmit={handleSubmit(submitHandler)} autoComplete="none" >
             <div className={styles.formRow}>
                 <input
                     {...register("email")}
@@ -64,15 +85,16 @@ const ContactForm = () => {
                     htmlFor="message"
                     className={`${styles.formRowLabel} ${watch('message') ? styles.formRowLabelActive : ""}`}
                 >
-                    Сообщение
+                    {t(`contacts:message`)}
                 </label>
                 <p className={styles.formRowError}>
                     {errors.message?.message}
                 </p>
             </div>
             <div className={styles.formRow}>
-                <input type="submit" className={`${styles.formButton} ${isButtonDisabled ? styles.formButtonDisabled : null}`} onSubmit={submitHandler} value="Отправить" />
+                <input type="submit" className={`${styles.formButton} ${isButtonDisabled ? styles.formButtonDisabled : null}`} onSubmit={handleSubmit(submitHandler)} value={t(`contacts:send`)} />
             </div>
+            <div className={`${styles.alert} ${showAlert ? styles.active : ''}`}>{t(`contacts:messageSent`)}</div>
         </form>
     )
 }

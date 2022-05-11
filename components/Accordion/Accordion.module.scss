@@ -33,14 +33,23 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                height: 62px;
+                height: 68px;
 
                 .accordionItemTitle {
                     font-size: ptr(17);
                     font-weight: 600;
+                    line-height: 24px;
+                    margin-right: 10px;
+
+                    @include sm {
+                        font-size: ptr(15);
+                        line-height: 22px;
+                    }
                 }
 
                 svg {
+                    min-width: 15px;
+                    min-height: 14px;
                     transition: .4s ease-in-out;
                     transform: rotate(180deg);
                 }
@@ -68,7 +77,7 @@
 
         .active {
             .accordionItemDescription {
-                opacity: .9;
+                opacity: .75;
                 transform: translateY(0);
                 transition: all .4s ease-in-out;
                 padding-bottom: 28px;

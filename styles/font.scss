@@ -1,19 +1,10 @@
-// @import url('http://fonts.cdnfonts.com/css/days-2');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
-
 body {
     font-family: 'Montserrat', sans-serif;
-    // font-family: 'Noto Sans Display', sans-serif, Arial, Helvetica;
     font-size: 16px;
     font-weight: 600;
     height: auto;
     background-color: #ffffff;
 }
-
-// body::-webkit-scrollbar {background-color:#fff;width:10px}
-// body::-webkit-scrollbar-track {background-color:#fff}
-// body::-webkit-scrollbar-thumb {background-color:#BBBBBB;border-radius:16px;border:2px solid #fff}
-
 
 body::-webkit-scrollbar-thumb {
     background-color: rgba(0,0,0,0);

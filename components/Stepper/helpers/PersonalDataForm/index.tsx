@@ -49,15 +49,14 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
     const [showRule, setShowRule] = useState<boolean>(false);
 
     const { personData } = useSelector((state: RootState) => state.orderReducer);
-    console.log(personData)
     const { register, getValues, watch, control, formState: { errors, isValid } } = useForm<IFormState>({
         mode: 'onChange',
         defaultValues: {
-            // name: 'Владислав',
-            // surname: 'Григоренко',
-            // email: 'vladyslav@gmail.com',
+            // name: 'Vladyslav',
+            // surname: 'Hryhorenko',
+            // email: 'grigovlad09112002@gmail.com',
             // phone: '0501709392',
-            // city: 'Запоріжжя',
+            // city: 'Zaporizhia',
             name: personData.name || '',
             surname: personData.surname || '',
             email: personData.email || '',

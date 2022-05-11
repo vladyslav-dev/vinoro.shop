@@ -1,0 +1,11 @@
+{
+    "contacts": "CONTACTS",
+    "contactUs": "CONTACT US",
+    "message": "Message",
+    "errors": {
+        "validEmail": "Please enter a valid email",
+        "enterMessage": "Enter your message"
+    },
+    "send": "Send",
+    "messageSent": "Message sent"
+}

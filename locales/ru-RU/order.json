@@ -6,6 +6,7 @@
         "deliveryAndPayment": "ДОСТАВКА И ОПЛАТА",
         "orderConfirmed": "ЗАКАЗ ОФОРМЛЕН"
     },
+    "placeAnOrder": "Оформить",
     "delivery": "Доставка",
     "payment": "Оплата",
     "goHome": "На главную",

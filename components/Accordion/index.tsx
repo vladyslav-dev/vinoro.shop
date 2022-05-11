@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './Accordion.module.scss';
 import AccordionItem from './helpers/AccordionItem';
-import { IAccordion } from '@/interfaces/accordion';
+import { IAccordionData } from '@/interfaces/accordion';
 import useTranslation from 'next-translate/useTranslation';
+import { ACCORDION_DATA } from '@/constants/accordion';
 
 export interface IAccordionController {
     getCurrentAccord: () => string;
@@ -16,7 +17,7 @@ const Accordion: React.FC= () => {
 
     const { t } = useTranslation();
 
-    const accordionData: IAccordion[] = t(`help:FAQ.questions`, { count: 1}, { returnObjects: true } );
+    const accordionData = useRef<Array<IAccordionData>>(ACCORDION_DATA);
 
     const accordionController: IAccordionController = {
         getCurrentAccord: () => currentAccord,
@@ -24,7 +25,7 @@ const Accordion: React.FC= () => {
         checkIsCurrentAccord: (title) => currentAccord === title
     }
 
-    if (!Array.isArray(accordionData)) {
+    if (!Array.isArray(accordionData.current)) {
         return null
     }
 
@@ -32,8 +33,8 @@ const Accordion: React.FC= () => {
         <div className={styles.accordion}>
             <h2 className={styles.accordionTitle}>{t("help:FAQ.title")}</h2>
             <ul className={styles.accordionList}>
-                {accordionData?.map((acc: IAccordion) => (
-                   <AccordionItem key={acc?.title} {...acc}  controller={accordionController}  />
+                {accordionData?.current?.map((acc: IAccordionData, index) => (
+                   <AccordionItem key={index} data={acc} controller={accordionController}  />
                 ))}
             </ul>
         </div>

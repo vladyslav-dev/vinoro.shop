@@ -6,8 +6,17 @@ import { MailSvg } from '@/icons/Mail';
 import ContactForm from '@/components/ContactForm';
 import Head from 'next/head';
 import useTranslation from 'next-translate/useTranslation';
+import { useDispatch } from 'react-redux';
+import { setCatalogOpen } from '@/store/slices/catalog';
+import { useEffect } from 'react';
 
 const ContactPage = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(setCatalogOpen(false));
+    }, [])
 
     const { t } = useTranslation();
 
@@ -41,23 +50,21 @@ const ContactPage = () => {
                     <div className={styles.image} />
                     <div className={styles.content}>
                         <div className={styles.contentInfo}>
-                            <h2 className={styles.title}>КОНТАКТИ</h2>
+                            <h2 className={styles.title}>{t(`contacts:contacts`)}</h2>
                             <ul className={styles.contactList}>
                                 <li className={styles.contactItem}>
                                     <Link href="tel:+380995238607">
                                         <a>
                                             <PhoneSvg />
                                             <span className={styles.contactItemLink}>099-523-86-07</span>
-                                            {/* <span className={styles.contactTooltip}>Нажмите для мгновенного визова</span> */}
                                         </a>
                                     </Link>
                                 </li>
                                 <li className={styles.contactItem}>
-                                    <Link href="viber://chat?number=+380689125456">
+                                    <Link href="viber://chat?number=+380995238607">
                                         <a>
                                             <ViberFilledSvg />
                                             <span className={styles.contactItemLink}>099-523-86-07</span>
-                                            {/* <span className={styles.contactTooltip}>Нажмите для открития в Viber</span> */}
                                         </a>
                                     </Link>
                                 </li>
@@ -66,14 +73,13 @@ const ContactPage = () => {
                                         <a>
                                             <MailSvg />
                                             <span className={styles.contactItemLink}>vinorosend@gmail.com</span>
-                                            {/* <span className={styles.contactTooltip}>Нажмите чтоби написать письмо</span> */}
                                         </a>
                                     </Link>
                                 </li>
                             </ul>
                         </div>
                         <div className={styles.contentForm}>
-                            <h2 className={styles.title}>СВЯЖИТЕСЬ С НАМИ</h2>
+                            <h2 className={styles.title}>{t(`contacts:contactUs`)}</h2>
                             <ContactForm />
                         </div>
                     </div>

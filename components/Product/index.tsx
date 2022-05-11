@@ -35,8 +35,6 @@ const Product: React.FC<ProductPageProps> = ({ product }) => {
 
     const isProductInBasket = Object.values(basketProducts).some(item => item?.id === product?.id)
 
-    // const isPrductInFavorites = FAVORITES.state.products?.some(item => item?._id === product?._id)
-
     const addToBasket = () => dispatch(addOne({
         id: product.id,
         name: product.name,

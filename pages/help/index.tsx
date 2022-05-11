@@ -3,8 +3,17 @@ import Accordion from '@/components/Accordion';
 import HelpBrowsers from '@/components/HelpBrowsers';
 import Head from 'next/head';
 import useTranslation from 'next-translate/useTranslation';
+import { useDispatch } from 'react-redux';
+import { setCatalogOpen } from '@/store/slices/catalog';
+import { useEffect } from 'react';
 
 const Help = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(setCatalogOpen(false));
+    }, [])
 
     const { t } = useTranslation();
 
@@ -48,6 +57,11 @@ const Help = () => {
                     </div>
                 </div>
             </div>
+            <style global jsx>{`
+                #nprogress .bar {
+                    background: #fff;
+                }
+            `}</style>
         </>
     )
 }

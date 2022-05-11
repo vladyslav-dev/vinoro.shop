@@ -6,6 +6,7 @@
         "deliveryAndPayment": "SHIPPING AND PAYMENT",
         "orderConfirmed": "ORDER IS PROCESSED"
     },
+    "placeAnOrder": "Place an order",
     "delivery": "Delivery",
     "payment": "Payment",
     "goHome": "Go to home",

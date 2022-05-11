@@ -1,20 +1,6 @@
 {
     "FAQ": {
-        "title": "title",
-        "questions": [
-            {
-                "title": "question 1 title",
-                "description": "desk 1"
-            },
-            {
-                "title": "question 2 title",
-                "description": "desck 2"
-            },
-            {
-                "title": "question 3 title",
-                "description": "desk 3"
-            }
-        ]
+        "title": "Часто задаваемые вопросы"
     },
     "browsers": {
         "title": "Проблемы с сайтом",

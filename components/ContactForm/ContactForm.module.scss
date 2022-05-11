@@ -11,7 +11,7 @@
             margin-bottom: 10px;
 
             @include sm {
-                margin-bottom: 22px;
+                margin-bottom: 16px;
             }
         }
 
@@ -71,11 +71,30 @@
             background-color: $COLOR-COD-GRAY;
             color: $COLOR-WHITE;
             margin-top: 12px;
+            cursor: pointer;
         }
 
         .formButtonDisabled {
             pointer-events: none;
             opacity: .4;
+        }
+    }
+
+    .alert {
+        position: fixed;
+        bottom: 60px;
+        right: -200px;
+        background-color: $COLOR-COD-GRAY;
+        color: $COLOR-WHITE;
+        padding: 16px 24px;
+        border-radius: 4px;
+        font-size: ptr(11);
+        font-weight: 600;
+        box-shadow: 3px 4px 9px 1px rgba(82, 82, 82, 0.44);
+        transition: all 0.4s ease-in-out;
+
+        &.active {
+            right: 20px;
         }
     }
 }

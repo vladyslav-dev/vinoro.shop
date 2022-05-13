@@ -210,18 +210,17 @@
             flex-direction: column;
             align-items: center;
 
-            .leftPart {
+            .leftPart, .rightPart {
                 max-width: 700px;
                 width: 70%;
             }
-
             .rightPart {
                 margin-left: 0;
             }
         }
 
         @media screen and (max-width: 600px) {
-            .leftPart {
+            .leftPart, .rightPart {
                 width: 100%;
             }
         }

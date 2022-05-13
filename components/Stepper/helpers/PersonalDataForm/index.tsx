@@ -52,11 +52,6 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
     const { register, getValues, watch, control, formState: { errors, isValid } } = useForm<IFormState>({
         mode: 'onChange',
         defaultValues: {
-            // name: 'Vladyslav',
-            // surname: 'Hryhorenko',
-            // email: 'grigovlad09112002@gmail.com',
-            // phone: '0501709392',
-            // city: 'Zaporizhia',
             name: personData.name || '',
             surname: personData.surname || '',
             email: personData.email || '',

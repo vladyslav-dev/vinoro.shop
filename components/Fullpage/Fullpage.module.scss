@@ -1,7 +1,6 @@
 @import '../../styles/index.scss';
 
 .fullpageWrapper {
-    touch-action: none; /* prevent scrolling */
     animation: fadein .4s ease-in-out backwards .4s;
 
     .sectionContainer {

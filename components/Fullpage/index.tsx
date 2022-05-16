@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Fullpage.module.scss';
 import ReactPageScroller from 'react-page-scroller';
 import { useSelector } from 'react-redux';
@@ -14,6 +14,18 @@ const Fullpage: React.FC = () => {
   const { catalogCollection, isLoaded } = useSelector((state: RootState) => state.catalogReducer);
 
   const [currentPage, setCurrentPage] = useState<number>(0);
+
+  const onTouchStart = (event: any) => {
+    event.prevetDefault();
+  }
+
+  useEffect(() => {
+    document.addEventListener('touchstart', onTouchStart, {passive: true});
+
+    return () => {
+      document.removeEventListener('touchstart', onTouchStart);
+    }
+  }, [])
 
   if (!isLoaded) {
     return null;

@@ -1,5 +1,12 @@
 @import "../../styles/index.scss";
 
+@font-face {
+    font-family: "Days";
+    src: url("../../public/fonts/Days.ttf");
+    font-style: normal;
+    font-display: swap;
+}
+
 .headerTitle {
     position: absolute;
     width: 100%;

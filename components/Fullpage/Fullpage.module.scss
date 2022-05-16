@@ -2,10 +2,6 @@
 
 .fullpageWrapper {
     overscroll-behavior-y: contain;
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
     animation: fadein .4s ease-in-out backwards .4s;
 
     .sectionContainer {

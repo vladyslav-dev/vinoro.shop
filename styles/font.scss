@@ -1,3 +1,7 @@
+html {
+    overscroll-behavior-y: contain;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     overscroll-behavior-y: contain; /* disable pull to refresh, keeps glow effects */

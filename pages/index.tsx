@@ -41,10 +41,16 @@ const Index = () => {
                 />
             </Head>
             <Fullpage />
-            <style global jsx>{`
+            <style jsx>{`
                 body {
                     overscroll-behavior-y: none;
+                    position: fixed;
+                    inset: 0;
+                    height: 100vh;
+                    width: 100vw;
                 }
+            `}</style>
+            <style global jsx>{`
                 #nprogress .bar {
                     background: #fff;
                 }

@@ -42,6 +42,9 @@ const Index = () => {
             </Head>
             <Fullpage />
             <style global jsx>{`
+                body {
+                    overscroll-behavior-y: none;
+                }
                 #nprogress .bar {
                     background: #fff;
                 }

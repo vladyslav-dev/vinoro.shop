@@ -1,5 +1,10 @@
+html {
+    overscroll-behavior-y: contain; /* disable pull to refresh, keeps glow effects */
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
+    overscroll-behavior-y: contain; /* disable pull to refresh, keeps glow effects */
     font-size: 16px;
     font-weight: 600;
     height: auto;

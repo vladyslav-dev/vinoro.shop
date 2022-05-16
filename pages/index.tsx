@@ -48,6 +48,8 @@ const Index = () => {
                     inset: 0;
                     height: 100vh;
                     width: 100vw;
+                    touch-action: none;
+                    pointer-events: none;
                 }
             `}</style>
             <style global jsx>{`

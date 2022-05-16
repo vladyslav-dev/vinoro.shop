@@ -16,14 +16,17 @@ const Fullpage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   const onTouchStart = (event: any) => {
-    event.prevetDefault();
+    // event.prevetDefault();
+    event.stopPropagation();
+
+    console.log(event)
   }
 
   useEffect(() => {
-    document.addEventListener('touchstart', onTouchStart, {passive: true});
+    document.addEventListener('touchmove', onTouchStart, {passive: true});
 
     return () => {
-      document.removeEventListener('touchstart', onTouchStart);
+      document.removeEventListener('touchmove', onTouchStart);
     }
   }, [])
 

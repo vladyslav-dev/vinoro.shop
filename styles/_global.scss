@@ -1,6 +1,7 @@
 .__global-layout {
     transition: all .8s ease-in-out;
     min-height: calc(100vh - 68px);
+    overscroll-behavior-y: contain; /* disable pull to refresh, keeps glow effects */
 }
 
 .container {

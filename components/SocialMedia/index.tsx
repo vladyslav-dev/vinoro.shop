@@ -9,17 +9,17 @@ interface SocialMediaProps {
 
 const SocialMedia = ({ color }: SocialMediaProps) => (
     <div className={styles.socialMedia}>
-        <Link href={process.env.FACEBOOK_LINK || "/"} >
+        <Link href={process.env.NEXT_PUBLIC_FACEBOOK_LINK || "/"} >
             <a target="_blank">
                 <FacebookSvg color={color} />
             </a>
         </Link>
-        <Link href={process.env.INSTAGRAM_LINK || "/"} >
+        <Link href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK|| "/"} >
             <a target="_blank">
                 <InstSvg color={color} />
             </a>
         </Link>
-        <Link href={process.env.VIBER_LINK || "/"} >
+        <Link href={process.env.NEXT_PUBLIC_VIBER_LINK || "/"} >
             <a target="_blank">
                 <ViberSvg color={color} />
             </a>

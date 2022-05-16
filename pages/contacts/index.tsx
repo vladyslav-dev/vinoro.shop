@@ -85,11 +85,6 @@ const ContactPage = () => {
                     </div>
                 </div>
             </div>
-            <style jsx>{`
-                body {
-                    overscroll-behavior: contain;
-                }
-            `}</style>
         </>
     )
 }

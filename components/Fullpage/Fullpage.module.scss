@@ -2,15 +2,18 @@
 
 .fullpageWrapper {
     animation: fadein .4s ease-in-out backwards .4s;
+    overscroll-behavior: contain;
 
     .sectionContainer {
         z-index: 4;
         position: relative;
+        overscroll-behavior: contain;
 
         .section {
             position: relative;
             background-position: center center;
             background-size: cover;
+            overscroll-behavior: contain;
             width: 100vw;
             height: 100vh;
 

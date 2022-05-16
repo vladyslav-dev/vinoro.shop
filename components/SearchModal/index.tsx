@@ -3,7 +3,7 @@ import styles from './SearchModal.module.scss';
 import Router from 'next/router';
 
 import { SearchBackArrowSvg } from '@/icons/Arrow';
-import { LoupeSvg } from '@/icons/Loupe';
+import { LoupeSvg } from '@/components/Icons/Loupe';
 
 import { RootState } from '@/store/index';
 import { useSelector } from 'react-redux';

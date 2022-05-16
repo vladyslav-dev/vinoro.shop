@@ -4,7 +4,7 @@ import useTranslation from 'next-translate/useTranslation';
 import HeaderIcon from '@/components/HeaderIcon';
 import SearchModal from '@/components/SearchModal';
 import useLightElements from '@/hooks/useLightElements';
-import { LoupeSvg } from '@/icons/Loupe';
+import { LoupeSvg } from '@/components/Icons/Loupe';
 
 const Search: React.FC = () => {
 

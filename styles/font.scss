@@ -1,10 +1,17 @@
+html {
+    overscroll-behavior-y: contain;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     overscroll-behavior-y: contain; /* disable pull to refresh, keeps glow effects */
     font-size: 16px;
     font-weight: 600;
-    height: auto;
     background-color: #ffffff;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
 
     &::-webkit-scrollbar-thumb {
         background-color: rgba(0,0,0,0);

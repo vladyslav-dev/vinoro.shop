@@ -43,7 +43,7 @@ const Index = () => {
             <Fullpage />
             <style jsx>{`
                 body {
-                    overscroll-behavior-y: none;
+                    overscroll-behavior-y: contain;
                 }
             `}</style>
             <style global jsx>{`

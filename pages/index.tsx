@@ -41,6 +41,14 @@ const Index = () => {
                 />
             </Head>
             <Fullpage />
+            <style jsx>{`
+                body {
+                    position: fixed;
+                    inset: 0;
+                    width: 100vw;
+                    height: 100vh;
+                }
+            `}</style>
             <style global jsx>{`
                 #nprogress .bar {
                     background: #fff;

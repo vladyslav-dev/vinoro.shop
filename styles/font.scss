@@ -1,12 +1,14 @@
 @import './media.scss';
 
-// html {
-
-// }
+html {
+    overscroll-behavior-y: contain; /* disable pull to refresh, keeps glow effects */
+    position: fixed;
+    height: 100%;
+}
 
 body {
     font-family: 'Montserrat', sans-serif;
-    overscroll-behavior-y: contain; /* disable pull to refresh, keeps glow effects */
+
     font-size: 16px;
     font-weight: 600;
     background-color: #ffffff;
@@ -15,8 +17,6 @@ body {
       //  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
         // height: calc(var(--vh, 1vh) * 100);
 
-        position: fixed;
-        height: 100%;
     }
 
     &::-webkit-scrollbar-thumb {

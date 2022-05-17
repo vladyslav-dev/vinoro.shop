@@ -112,9 +112,9 @@
             transform: translateX(-50%);
             z-index: 6;
 
-            @media (max-width: 450px) {
-                bottom: 70px;
-            }
+            // @media (max-width: 450px) {
+            //     bottom: 70px;
+            // }
         }
 
         .foollpageBottom {
@@ -124,9 +124,9 @@
             right: 0;
             z-index: 6;
 
-            @media (max-width: 450px) {
-                display: none;
-            }
+            // @media (max-width: 450px) {
+            //     display: none;
+            // }
         }
     }
 }

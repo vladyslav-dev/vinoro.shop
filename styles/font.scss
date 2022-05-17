@@ -1,9 +1,17 @@
+@import './media.scss';
+
 body {
     font-family: 'Montserrat', sans-serif;
     overscroll-behavior-y: contain; /* disable pull to refresh, keeps glow effects */
     font-size: 16px;
     font-weight: 600;
     background-color: #ffffff;
+
+    @include sm {
+        position: fixed;
+        inset: 0;
+        height: calc(100vh - 68px);
+    }
 
     &::-webkit-scrollbar-thumb {
         background-color: rgba(0,0,0,0);

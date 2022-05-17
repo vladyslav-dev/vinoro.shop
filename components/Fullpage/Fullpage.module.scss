@@ -107,18 +107,26 @@
         .goAhead {
             position: absolute;
             user-select: none;
-            bottom: 80px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 6;
+
+            @media (max-width: 450px) {
+                bottom: 70px;
+            }
         }
 
         .foollpageBottom {
             position: absolute;
-            bottom: 86px;
+            bottom: 46px;
             left: 0;
             right: 0;
             z-index: 6;
+
+            @media (max-width: 450px) {
+                display: none;
+            }
         }
     }
 }

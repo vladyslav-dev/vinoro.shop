@@ -9,7 +9,7 @@ body {
     inset: 0;
     width: 100vw;
 
-    min-height: -webkit-fill-available;
+    height: calc(100vh - calc(100vh - 100%));
 
     &::-webkit-scrollbar-thumb {
         background-color: rgba(0,0,0,0);

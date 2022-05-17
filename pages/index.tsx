@@ -13,11 +13,13 @@ const Index = () => {
 
     useEffect(() => {
 
-        // const vh: number = window.innerHeight * 0.01;
-        // // Then we set the value in the --vh custom property to the root of the document
-        // document.body.style.setProperty('--vh', `${vh}px`);
+        document.body.style.position = 'fixed';
 
         dispatch(setCatalogOpen(false));
+
+        return () => {
+            document.body.style.position = 'unset';
+        }
     }, [])
 
     return (

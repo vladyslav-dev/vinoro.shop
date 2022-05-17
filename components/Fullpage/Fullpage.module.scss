@@ -13,7 +13,7 @@
             background-position: center center;
             background-size: cover;
             width: 100vw;
-            height: 100vh;
+            height: 100%;
 
             &::after {
                 content: "";
@@ -34,7 +34,7 @@
                 position: absolute;
                 inset: 0;
                 width: 100vw;
-                height: 100vh;
+                height: 100%;
                 img {
                     object-fit: cover;
                     object-position: center center;
@@ -46,7 +46,7 @@
 
     .container-xl {
         inset: 0;
-        height: 100vh;
+        height: 100%;
         position: absolute;
 
 
@@ -111,10 +111,6 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 6;
-
-            // @media (max-width: 450px) {
-            //     bottom: 70px;
-            // }
         }
 
         .foollpageBottom {
@@ -123,10 +119,6 @@
             left: 0;
             right: 0;
             z-index: 6;
-
-            // @media (max-width: 450px) {
-            //     display: none;
-            // }
         }
     }
 }

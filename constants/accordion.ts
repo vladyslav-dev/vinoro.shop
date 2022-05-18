@@ -55,7 +55,7 @@ export const ACCORDION_DATA: IAccordionData[] = [
             `<div>
                 <p>Стоимость доставки товара по Украине устанавливается компаниями по предоставлению логистических услуг такими как “НоваПошта” или “DELIVERY”</p>
                 <br />
-                <p>Для жителей Запорожья доставка по Коммунарскому и Александровскому районам на сумму от 500 ₴ — бесплатная. Остальные районы по договорённости.</p>
+                <p>Для жителей Запорожья доставка по Коммунарскому и Александровскому районам на сумму от 1000 ₴ — бесплатная. Остальные районы по договорённости.</p>
             </div>`
         },
         uk: {
@@ -64,7 +64,7 @@ export const ACCORDION_DATA: IAccordionData[] = [
             `<div>
                 <p>Вартість доставки товару по Україні встановлюється компаніями з надання логістичних послуг такими як “НоваПошта“ або “DELIVERY“</p>
                 <br />
-                <p>Для мешканців Запоріжжя доставка по Комунарському та Олександрівському районам на суму від 500 ₴ – безкоштовна. Інші райони за домовленістю.</p>
+                <p>Для мешканців Запоріжжя доставка по Комунарському та Олександрівському районам на суму від 1000 ₴ – безкоштовна. Інші райони за домовленістю.</p>
             </div>`
         },
         en: {
@@ -73,7 +73,7 @@ export const ACCORDION_DATA: IAccordionData[] = [
             `<div>
                 <p>The cost of delivery of goods in Ukraine is set by companies providing logistics services such as “НоваПошта“ or "DELIVERY"</p>
                 <br />
-                <p>For residents of Zaporozhye, delivery in Kommunarsky and Aleksandrovsky districts in the amount of 500 ₴ or more is free. Other areas by agreement.</p>
+                <p>For residents of Zaporozhye, delivery in Kommunarsky and Aleksandrovsky districts in the amount of 1000 ₴ or more is free. Other areas by agreement.</p>
             </div>`
         }
     },

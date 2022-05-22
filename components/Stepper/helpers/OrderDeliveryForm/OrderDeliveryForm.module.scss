@@ -15,7 +15,60 @@
             margin-bottom: 32px;
             font-size: ptr(22);
             line-height: ptr(27);
-            font-weight: 500;
+            font-weight: 600;
+        }
+
+        .paymentInfo {
+
+            .paymentDropDown {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                padding: 40px 0 60px 0;
+
+                span {
+                    font-size: ptr(14);
+                    font-weight: 600;
+                }
+
+                svg {
+                    margin-left: 8px;
+                    transform: rotate(90deg);
+                    transition: all .4s ease-in-out;
+                }
+
+                &.active {
+                    svg {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+
+            .infoList {
+                transition: all .4s ease-in-out;
+                max-height: 0;
+                overflow: hidden;
+
+                &.active {
+                    max-height: 600px;
+                }
+
+                .infoItem {
+
+                    h3 {
+                        font-weight: 600;
+                        font-size: 17px;
+                        margin-bottom: 18px;
+                    }
+
+                    p {
+                        font-size: ptr(13);
+                        line-height: ptr(26);
+                        color: $COLOR-COD-GRAY;
+                        margin-bottom: 34px;
+                    }
+                }
+            }
         }
 
         .radioGroup {
@@ -28,8 +81,12 @@
                 .deliveryInfoText {
                     font-size: ptr(13);
                     line-height: ptr(26);
-                    color: $COLOR-SILVER-CHALICE;
+                    color: $COLOR-COD-GRAY;
                     margin-bottom: 30px;
+
+                    a {
+                        color: #f23c32;
+                    }
                 }
 
                 .deliveryWrapper {
@@ -98,7 +155,10 @@
 
             .radioItem {
                 position: relative;
-                margin-bottom: 30px;
+
+                &:not(:last-child) {
+                    margin-bottom: 30px;
+                }
 
                 .radioLabel {
 
@@ -117,7 +177,7 @@
                         transition: all 0.2s ease-in-out;
                         width: 11px;
                         height: 11px;
-                        background-color: $COLOR-SILVER-CHALICE;
+                        background-color: $COLOR-COD-GRAY;
                         border-radius: 50%;
                         position: absolute;
                         left: 4px;
@@ -133,7 +193,7 @@
 
                         &::before {
                             content: "";
-                            border: 2px solid $COLOR-SILVER;
+                            border: 2px solid $COLOR-COD-GRAY;
                             width: 15px;
                             height: 15px;
                             display: flex;

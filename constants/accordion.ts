@@ -73,7 +73,7 @@ export const ACCORDION_DATA: IAccordionData[] = [
             `<div>
                 <p>The cost of delivery of goods in Ukraine is set by companies providing logistics services such as “НоваПошта“ or "DELIVERY"</p>
                 <br />
-                <p>For residents of Zaporozhye, delivery in Kommunarsky and Aleksandrovsky districts in the amount of 1000 ₴ or more is free. Other areas by agreement.</p>
+                <p>For residents of Zaporizhzhia, delivery in Kommunarsky and Aleksandrovsky districts in the amount of 1000 ₴ or more is free. Other areas by agreement.</p>
             </div>`
         }
     },

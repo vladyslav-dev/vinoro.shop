@@ -12,7 +12,8 @@ const initialPersonData = {
     post_adress: '',
     post_number: '',
     payment: '',
-    products: {}
+    products: {},
+    terms: false,
 }
 
 const orderSlice = createSlice({

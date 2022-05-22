@@ -97,7 +97,7 @@
     width: 420px;
     height: 100%;
     z-index: 999;
-    transition: all .4s ease-in-out .15s;
+    transition: all .4s ease-in-out .05s;
     cursor: default;
 
     @include sm {

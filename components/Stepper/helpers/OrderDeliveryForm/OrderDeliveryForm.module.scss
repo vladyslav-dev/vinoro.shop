@@ -21,10 +21,10 @@
         .paymentInfo {
 
             .paymentDropDown {
-                display: flex;
+                display: inline-flex;
                 align-items: center;
                 cursor: pointer;
-                padding: 40px 0 60px 0;
+                margin: 40px 0 60px 0;
 
                 span {
                     font-size: ptr(14);

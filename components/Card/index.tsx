@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useMemo } from 'react'
 import styles from './Card.module.scss'
 
 import Img from '@/components/Img';
@@ -8,6 +8,11 @@ import { NewSvg } from '../Icons/New';
 import useLanguage from '@/hooks/useLanguage';
 import useTranslation from 'next-translate/useTranslation';
 import { IProduct } from '@/interfaces/product';
+import { AddToCartSvg } from '../Icons/addToCart';
+import { InCartSvg } from '../Icons/inCart';
+import { useDispatch, useSelector } from 'react-redux';
+import { addOne } from '@/store/slices/basket';
+import { RootState } from '@/store/index';
 
 interface CardProps {
     product: IProduct;
@@ -16,16 +21,23 @@ interface CardProps {
 const CardComponent = ({ product }: CardProps) => {
 
     const { t } = useTranslation();
+    const { basketProducts } = useSelector((state: RootState) => state.basketReducer);
+    const dispatch = useDispatch();
     const { language } = useLanguage();
 
-    const removeFromFavotite = (e: React.MouseEvent) => {
-        e.stopPropagation()
+    const isInBasket = useMemo(() => Object.keys(basketProducts).includes(product.id), [basketProducts, product]);
+
+    const addToCart = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.preventDefault();
+        if (isInBasket) return
+
+        dispatch(addOne(product))
     }
 
     return (
         <div className={styles.defaultCard} id={product.id}>
             <Link href={`/product/[id]`} as={`/product/${product.id}`} scroll={false} >
-                <a className={styles.cardLink}>
+                <a className={styles.cardLink} onTouchStart={(event) => event.preventDefault()}>
                     <div className={styles.cardImage}>
                         <Img src={product.image} />
                     </div>
@@ -62,6 +74,9 @@ const CardComponent = ({ product }: CardProps) => {
                             <NewSvg />
                         </div>
                     )}
+                    <div className={`${styles.addToCart} ${isInBasket ? styles.active : ''}`} onClick={addToCart}>
+                        {isInBasket ? <InCartSvg /> : <AddToCartSvg />}
+                    </div>
                 </a>
             </Link>
         </div>

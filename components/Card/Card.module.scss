@@ -7,9 +7,18 @@
     position: relative;
     animation: fadein .6s forwards;
 
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+
     .cardLink {
         text-decoration: none;
         color: $COLOR-COD-GRAY;
+        user-select: none;
 
         .cardImage {
             width: 100%;
@@ -131,6 +140,39 @@
                 opacity: 1;
                 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
             }
+        }
+
+        .addToCart {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            @include radius-sm;
+            background-color: #a0a0a0a3;
+            padding: 7px;
+            box-sizing: border-box;
+            @include flexCenter;
+            opacity: 0;
+            transition: all .3s ease-in-out;
+            width: clamp(34px, 34px, 34px);
+            height: clamp(34px, 34px, 34px);;
+
+            &.active {
+                opacity: 1;
+                background-color: #3d3d3da3;
+            }
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+
+            @media (hover: none) {
+                opacity: 1;
+              }
+        }
+
+        &:hover > .addToCart {
+            opacity: 1;
         }
     }
 }

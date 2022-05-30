@@ -15,7 +15,7 @@ class MyDocument extends Document {
                     <link rel="manifest" href="/manifest.json" />
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
-                <body>
+                <body id='body-tag'>
                     <Main />
                     <NextScript />
 

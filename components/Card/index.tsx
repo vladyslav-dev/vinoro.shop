@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import styles from './Card.module.scss'
 
 import Img from '@/components/Img';
@@ -13,6 +13,7 @@ import { InCartSvg } from '../Icons/inCart';
 import { useDispatch, useSelector } from 'react-redux';
 import { addOne } from '@/store/slices/basket';
 import { RootState } from '@/store/index';
+import { useRouter } from 'next/router';
 
 interface CardProps {
     product: IProduct;
@@ -20,10 +21,16 @@ interface CardProps {
 
 const CardComponent = ({ product }: CardProps) => {
 
+    const router = useRouter();
+
     const { t } = useTranslation();
     const { basketProducts } = useSelector((state: RootState) => state.basketReducer);
     const dispatch = useDispatch();
     const { language } = useLanguage();
+
+    useEffect(() => {
+        router.prefetch(`/product/${product.id}`);
+      }, []);
 
     const isInBasket = useMemo(() => Object.keys(basketProducts).includes(product.id), [basketProducts, product]);
 
@@ -36,8 +43,8 @@ const CardComponent = ({ product }: CardProps) => {
 
     return (
         <div className={styles.defaultCard} id={product.id}>
-            <Link href={`/product/[id]`} as={`/product/${product.id}`} scroll={false} >
-                <a className={styles.cardLink} onTouchStart={(event) => event.preventDefault()}>
+            <Link href={`/product/[id]`} as={`/product/${product.id}`} >
+                <a className={styles.cardLink}>
                     <div className={styles.cardImage}>
                         <Img src={product.image} />
                     </div>

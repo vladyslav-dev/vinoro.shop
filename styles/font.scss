@@ -7,7 +7,10 @@ body {
     font-weight: 600;
     background-color: #ffffff;
     inset: 0;
-    overscroll-behavior: contain;
+
+    @media (max-width: 500px) {
+        overscroll-behavior: contain;
+    }
 
     &::-webkit-scrollbar-thumb {
         background-color: rgba(0,0,0,0);

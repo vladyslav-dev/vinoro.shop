@@ -15,7 +15,7 @@ interface IFormState {
     email: string;
     phone: string;
     city: string;
-    rules: boolean;
+    terms: boolean;
 }
 
 const phoneRegExp = /^\+?3?8?(0\d{9})$/
@@ -41,7 +41,7 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
             .matches(phoneRegExp, t(`order:formErrors.correctPhone`)),
         city: yup.string()
             .required(t(`order:formErrors.city`)),
-        rules: yup.boolean().oneOf([true])
+        terms: yup.boolean().oneOf([true])
     }).required();
 
     const dispatch = useDispatch();
@@ -49,6 +49,7 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
     const [showRule, setShowRule] = useState<boolean>(false);
 
     const { personData } = useSelector((state: RootState) => state.orderReducer);
+
     const { register, getValues, watch, control, formState: { errors, isValid } } = useForm<IFormState>({
         mode: 'onChange',
         defaultValues: {
@@ -57,7 +58,7 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
             email: personData.email || '',
             phone: personData.phone || '',
             city: personData.city || '',
-            rules: personData.terms || false,
+            terms: personData.terms,
         },
         resolver: yupResolver(schema)
     })
@@ -186,7 +187,7 @@ const PersonalDataForm: React.FC<PersonalDataFormProps> = ({ updateButtonDisable
                     <div className={styles.formRowWrapper}>
                         <div className={`${styles.formRow} ${styles.formRowCheckbox}`}>
                             <Controller
-                                name="rules"
+                                name="terms"
                                 control={control}
                                 rules={{ required: true }}
                                 render={({ field: { onChange, value } }) => (

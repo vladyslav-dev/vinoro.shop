@@ -1,6 +1,7 @@
 @import '../../styles/index.scss';
 
 .fullpageWrapper {
+    overscroll-behavior-y: contain;
     animation: fadein .4s ease-in-out backwards .4s;
 
     .sectionContainer {
@@ -12,7 +13,7 @@
             background-position: center center;
             background-size: cover;
             width: 100vw;
-            height: 100vh;
+            height: 100%;
 
             &::after {
                 content: "";
@@ -33,7 +34,7 @@
                 position: absolute;
                 inset: 0;
                 width: 100vw;
-                height: 100vh;
+                height: 100%;
                 img {
                     object-fit: cover;
                     object-position: center center;
@@ -42,9 +43,9 @@
         }
     }
 
-
     .container-xl {
         inset: 0;
+        height: 100%;
         position: absolute;
 
         .controller {

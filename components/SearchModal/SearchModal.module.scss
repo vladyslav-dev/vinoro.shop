@@ -35,7 +35,12 @@
                     top: 40%;
                     left: 0;
                     width: 100%;
-                    transform: translate(0, -50%);
+                    transform: translate(0, -40%);
+
+                    @media (max-width: 450px) {
+                        top: 30%;
+                        transform: translate(0, -30%);
+                    }
 
                     h3 {
                         color: $COLOR-WHITE;
@@ -81,6 +86,89 @@
                         svg {
                             width: 20px;
                         }
+
+                        .searchOutput {
+                            position: absolute;
+                            width: clamp(270px, 100%, 620px);
+                            max-height: calc(100vh - 378px);
+                            overflow-y: auto;
+                            top: 52px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            background-color: $COLOR-WHITE;
+                            @include radius-md;
+                            @include dropShadow;
+                            padding: 12px;
+                            box-sizing: border-box;
+                            z-index: 2;
+
+                            @media (max-width: 450px) {
+                                max-height: calc(100vh - 162px);
+                            }
+
+                            .searchOutputLength {
+                                color: $COLOR-SILVER-CHALICE;
+                                font-size: 13px;
+                                font-weight: 600;
+                            }
+
+                            .searchList {
+                                margin-top: 22px;
+                                display: flex;
+                                flex-direction: column;
+
+                                .searchItem {
+
+                                    .searchItemCategory {
+                                        font-size: 11px;
+                                        color: $COLOR-SILVER-CHALICE;
+                                        font-weight: 600;
+
+                                        .categoryName {
+                                            color: $COLOR-COD-GRAY;
+                                        }
+                                    }
+
+                                    .searchItemOutput {
+                                        margin: 12px 0;
+                                        width: 100%;
+                                        display: flex;
+                                        flex-direction: column;
+
+                                        .searchItemCategoryRest {
+                                            padding: 12px 8px;
+                                        }
+
+                                        .itemOutputLink {
+                                            display: inline-block;
+                                            padding: 10px 8px;
+                                            line-height: 22px;
+                                            font-weight: 600;
+                                            color: $COLOR-COD-GRAY;
+                                            font-size: 14px;
+                                            text-decoration: none;
+                                            @include radius-md;
+
+                                            &:hover {
+                                                background-color: $COLOR-MERCURY;
+                                            }
+
+                                            .itemOutput {
+                                                @include textOverflow(1);
+                                                .letter {
+                                                    opacity: .75;
+                                                    &.highlight {
+                                                        color: $COLOR-COD-GRAY;
+                                                        font-weight: 700;
+                                                        opacity: 1;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
 
                     .relateQuery {
@@ -116,89 +204,6 @@
 
                             &:not(:last-child) {
                                 margin-right: 6px;
-                            }
-                        }
-                    }
-
-                    .searchOutput {
-                        position: absolute;
-                        width: clamp(270px, 100%, 620px);
-                        max-height: calc(100vh - 378px);
-                        overflow-y: auto;
-                        top: 122px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        background-color: $COLOR-WHITE;
-                        @include radius-md;
-                        @include dropShadow;
-                        padding: 12px;
-                        box-sizing: border-box;
-                        z-index: 2;
-
-                        @media (max-width: 450px) {
-                            max-height: calc(100vh - 162px);
-                        }
-
-                        .searchOutputLength {
-                            color: $COLOR-SILVER-CHALICE;
-                            font-size: 13px;
-                            font-weight: 600;
-                        }
-
-                        .searchList {
-                            margin-top: 22px;
-                            display: flex;
-                            flex-direction: column;
-
-                            .searchItem {
-
-                                .searchItemCategory {
-                                    font-size: 11px;
-                                    color: $COLOR-SILVER-CHALICE;
-                                    font-weight: 600;
-
-                                    .categoryName {
-                                        color: $COLOR-COD-GRAY;
-                                    }
-                                }
-
-                                .searchItemOutput {
-                                    margin: 12px 0;
-                                    width: 100%;
-                                    display: flex;
-                                    flex-direction: column;
-
-                                    .searchItemCategoryRest {
-                                        padding: 12px 8px;
-                                    }
-
-                                    .itemOutputLink {
-                                        display: inline-block;
-                                        padding: 10px 8px;
-                                        line-height: 22px;
-                                        font-weight: 600;
-                                        color: $COLOR-COD-GRAY;
-                                        font-size: 14px;
-                                        text-decoration: none;
-                                        @include radius-md;
-
-                                        &:hover {
-                                            background-color: $COLOR-MERCURY;
-                                        }
-
-                                        .itemOutput {
-                                            @include textOverflow(1);
-                                            .letter {
-                                                opacity: .75;
-                                                &.highlight {
-                                                    color: $COLOR-COD-GRAY;
-                                                    font-weight: 700;
-                                                    opacity: 1;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
                             }
                         }
                     }

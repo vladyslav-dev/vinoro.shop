@@ -3,7 +3,7 @@ const nextTranslate = require('next-translate')
 
 module.exports = withPWA({
   reactStrictMode: true,
-  optimizeFonts: false,
+  optimizeFonts: true,
   images: {
     domains: ["res.cloudinary.com"],
   },

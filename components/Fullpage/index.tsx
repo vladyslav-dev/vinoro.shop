@@ -15,6 +15,7 @@ const Fullpage: React.FC = () => {
 
   const [currentPage, setCurrentPage] = useState<number>(0);
 
+
   if (!isLoaded) {
     return null;
   }

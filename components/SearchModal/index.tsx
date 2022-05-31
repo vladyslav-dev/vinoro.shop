@@ -137,6 +137,53 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
                                 <span className={styles.inputIcon} onClick={submitHandler}>
                                     <LoupeSvg />
                                 </span>
+                                {search?.searchResult && (
+                                    <div className={styles.searchOutput}>
+                                        <span className={styles.searchOutputLength}>{t(`common:faunded`)}: {search.totalProducts}</span>
+                                            {!!search.searchResult.length && (
+                                                <ul className={styles.searchList}>
+                                                {search.searchResult.map((item: any, key: any) => (
+                                                    <li key={key} className={styles.searchItem}>
+                                                        <span className={styles.searchItemCategory}>
+                                                            {t(`common:category`)}: <span className={styles.categoryName}>{item.categoryName[language]}</span>
+                                                        </span>
+                                                        <div className={styles.searchItemOutput}>
+                                                            {item.products.map((product: ISearchProduct, index: number) => {
+                                                                if (index < 5) {
+                                                                    return (
+                                                                        <Link href={`/product/[id]`} as={`/product/${product?.id}`} key={product.id}>
+                                                                            <a className={styles.itemOutputLink} onClick={() => setSearchQuery('')}>
+                                                                                <span className={styles.itemOutput}>
+                                                                                    {highlightSearchedLetters(product.name[language], searchQuery).map((item, innerKey) => {
+                                                                                        return (
+                                                                                            <span key={innerKey} className={`${styles.letter} ${item.isHighlighted ? styles.highlight : ''}`}>
+                                                                                                {item.letter}
+                                                                                            </span>
+                                                                                        )
+                                                                                    })}
+                                                                                </span>
+                                                                            </a>
+                                                                        </Link>
+                                                                    )
+                                                                }
+                                                                if (item.products.length - 1 === index) {
+                                                                    return (
+                                                                        <Link href={`/category/[id]`} as={`/category/${product?.category}`} key={product.id}>
+                                                                            <a className={`${styles.searchItemCategory} ${styles.searchItemCategoryRest}`} onClick={() => setSearchQuery('')}>
+                                                                                {t(`common:moreInCategory`, { variable: item.products.length - 5 })}&nbsp;
+                                                                                <span className={styles.categoryName}>{searchCategory[product.category][language]}</span>
+                                                                            </a>
+                                                                        </Link>
+                                                                    )
+                                                                }
+                                                            })}
+                                                        </div>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </div>
+                                )}
                             </form>
                             <div className={styles.relateQuery}>
                                 <span className={styles.relateQueryTitle}>{t(`common:popularQueries`)}:</span>
@@ -144,53 +191,6 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
                                     <button onClick={relateQueryHandler} className={styles.query} key={query}>{query}</button>
                                 ))}
                             </div>
-                            {search?.searchResult && (
-                                <div className={styles.searchOutput}>
-                                    <span className={styles.searchOutputLength}>{t(`common:faunded`)}: {search.totalProducts}</span>
-                                        {!!search.searchResult.length && (
-                                            <ul className={styles.searchList}>
-                                            {search.searchResult.map((item: any, key: any) => (
-                                                <li key={key} className={styles.searchItem}>
-                                                    <span className={styles.searchItemCategory}>
-                                                        {t(`common:category`)}: <span className={styles.categoryName}>{item.categoryName[language]}</span>
-                                                    </span>
-                                                    <div className={styles.searchItemOutput}>
-                                                        {item.products.map((product: ISearchProduct, index: number) => {
-                                                            if (index < 5) {
-                                                                return (
-                                                                    <Link href={`/product/[id]`} as={`/product/${product?.id}`} key={product.id}>
-                                                                        <a className={styles.itemOutputLink} onClick={() => setSearchQuery('')}>
-                                                                            <span className={styles.itemOutput}>
-                                                                                {highlightSearchedLetters(product.name[language], searchQuery).map((item, innerKey) => {
-                                                                                    return (
-                                                                                        <span key={innerKey} className={`${styles.letter} ${item.isHighlighted ? styles.highlight : ''}`}>
-                                                                                            {item.letter}
-                                                                                        </span>
-                                                                                    )
-                                                                                })}
-                                                                            </span>
-                                                                        </a>
-                                                                    </Link>
-                                                                )
-                                                            }
-                                                            if (item.products.length - 1 === index) {
-                                                                return (
-                                                                    <Link href={`/category/[id]`} as={`/category/${product?.category}`} key={product.id}>
-                                                                        <a className={`${styles.searchItemCategory} ${styles.searchItemCategoryRest}`} onClick={() => setSearchQuery('')}>
-                                                                            {t(`common:moreInCategory`, { variable: item.products.length - 5 })}&nbsp;
-                                                                            <span className={styles.categoryName}>{searchCategory[product.category][language]}</span>
-                                                                        </a>
-                                                                    </Link>
-                                                                )
-                                                            }
-                                                        })}
-                                                    </div>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,14 @@ const Index = () => {
     const { t } = useTranslation();
 
     useEffect(() => {
+
+        document.body.style.position = 'fixed';
+
         dispatch(setCatalogOpen(false));
+
+        return () => {
+            document.body.style.position = 'unset';
+        }
     }, [])
 
     return (

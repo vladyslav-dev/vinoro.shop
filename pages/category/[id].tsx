@@ -15,7 +15,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/index';
 import useLanguage from '@/hooks/useLanguage';
 
-
 const Category: React.FC = () => {
 
     const { t } = useTranslation();

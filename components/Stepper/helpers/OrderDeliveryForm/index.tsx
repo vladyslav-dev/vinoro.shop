@@ -1,9 +1,10 @@
 import { RootState } from '@/store/index';
 import useTranslation from 'next-translate/useTranslation';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './OrderDeliveryForm.module.scss'
 import { setPaymentValid, setData } from '@/store/slices/order';
+import { SortArrorSvg } from '@/components/Icons/Arrow';
 
 interface OrderDeliveryFormProps {
     updateButtonDisabled: (bool: boolean) => void;
@@ -22,7 +23,13 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
     const CASH_PAYMENT = t(`order:paymentType.cashPayment`);
     const CASH_ON_DELIVERY = t(`order:paymentType.cashOnDelivery`);
 
+    const tarrifLink = <a href='https://novaposhta.ua/basic_tariffs' rel="noopener noreferrer" target='_blank'>{t(`order:tariffs`)}</a>
+
     const { personData } = useSelector((state: RootState) => state.orderReducer);
+
+    const anchorRef = useRef<HTMLDivElement>(null);
+
+    const [paymentDropDown, setPaymentDropDown] = useState<boolean>(false);
 
     const [delivery, setDelivery] = useState<string>((personData.city === LOCAL_CITY || personData.isLocal) ? LOCAL_CITY : ""); // LOCAL_CITY | ANOTHER_CITY
     const [payment, setPayment] = useState<string>(personData.payment || ""); // CARD_PAYMENT | CASH_PAYMENT | CASH_ON_DELIVERY
@@ -39,6 +46,18 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
     const paymentHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setPayment(e.target.value as string)
     }
+
+    useEffect(() => {
+        if (paymentDropDown) {
+            setTimeout(() => {
+                // window.scrollBy({
+                //     top: window.innerHeight,
+                //     behavior: 'smooth'
+                // });
+                anchorRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }, 400)
+        }
+    }, [paymentDropDown])
 
     useEffect(() => {
         const isPostDataValid = postNumber && postAddress.trim();
@@ -114,7 +133,7 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
                         </label>
                         {delivery === ANOTHER_CITY && (
                             <div className={styles.deliveryInfo}>
-                                <p className={styles.deliveryInfoText}>{t(`order:otherCityDelivery`)}</p>
+                                <p className={styles.deliveryInfoText}>{t(`order:otherCityDelivery`)} {tarrifLink}.</p>
                                 <div className={styles.deliveryWrapper}>
                                     <div className={styles.deliveryInfoRow}>
                                         <input
@@ -196,6 +215,26 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
                             />
                             <p className={styles.radioText}>{CASH_ON_DELIVERY}</p>
                         </label>
+                    </div>
+                </div>
+                <div className={styles.paymentInfo}>
+                    <div className={`${styles.paymentDropDown} ${paymentDropDown ? styles.active : ''}`} onClick={() => setPaymentDropDown(!paymentDropDown)}>
+                        <span ref={anchorRef}>{t(`order:more`)}</span>
+                        <SortArrorSvg />
+                    </div>
+                    <div className={`${styles.infoList} ${paymentDropDown ? styles.active : ''}`} >
+                        <div className={styles.infoItem}>
+                            <h3>{t(`order:paymentType.cardPayment`)}</h3>
+                            <p>{t(`order:paymentType.description.cardPayment`)}</p>
+                        </div>
+                        <div className={styles.infoItem}>
+                            <h3>{t(`order:paymentType.cashPayment`)}</h3>
+                            <p>{t(`order:paymentType.description.cashPayment`)}</p>
+                        </div>
+                        <div className={styles.infoItem}>
+                            <h3>{t(`order:paymentType.cashOnDelivery`)}</h3>
+                            <p>{t(`order:paymentType.description.cashOnDelivery`)}</p>
+                        </div>
                     </div>
                 </div>
             </div>

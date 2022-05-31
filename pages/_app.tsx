@@ -16,7 +16,6 @@ import { initBasket } from '@/store/slices/basket';
 import ProductService from 'services/ProductService';
 import { setSearchData } from '@/store/slices/search';
 
-
 NProgress.configure({ showSpinner: false });
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());

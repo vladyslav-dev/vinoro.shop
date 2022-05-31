@@ -28,10 +28,6 @@ const ProductPage: React.FC= () => {
         dispatch(setCatalogOpen(true));
     }, [])
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [])
-
     if (!product) {
         return null;
     }

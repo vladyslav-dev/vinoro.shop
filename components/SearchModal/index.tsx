@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react'
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react'
 import styles from './SearchModal.module.scss';
 import Router from 'next/router';
 
@@ -11,7 +11,7 @@ import { ISearchProduct } from '@/interfaces/product';
 import Link from 'next/link';
 import useLanguage from '@/hooks/useLanguage';
 import { ISearchCategoryCollection } from '@/interfaces/category';
-import { highlightSearchedLetters } from '@/utils/search';
+import { highlight } from '@/utils/search';
 import useTranslation from 'next-translate/useTranslation';
 
 interface SearchModalProps {
@@ -84,6 +84,8 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
 
     }, [searchQuery])
 
+    const enlighten = useCallback(string => highlight(searchQuery, string), [searchQuery])
+
     Router.events.on('routeChangeComplete', () => closeSearch())
 
     useEffect(() => {
@@ -152,15 +154,9 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
                                                                 if (index < 5) {
                                                                     return (
                                                                         <Link href={`/product/[id]`} as={`/product/${product?.id}`} key={product.id}>
-                                                                            <a className={styles.itemOutputLink} onClick={() => setSearchQuery('')}>
+                                                                            <a className={styles.itemOutputLink} onClick={closeModal}>
                                                                                 <span className={styles.itemOutput}>
-                                                                                    {highlightSearchedLetters(product.name[language], searchQuery).map((item, innerKey) => {
-                                                                                        return (
-                                                                                            <span key={innerKey} className={`${styles.letter} ${item.isHighlighted ? styles.highlight : ''}`}>
-                                                                                                {item.letter}
-                                                                                            </span>
-                                                                                        )
-                                                                                    })}
+                                                                                    {enlighten(product.name[language])}
                                                                                 </span>
                                                                             </a>
                                                                         </Link>

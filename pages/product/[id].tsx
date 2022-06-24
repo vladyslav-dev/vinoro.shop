@@ -52,6 +52,10 @@ const ProductPage: React.FC= () => {
                     property="og:description"
                     content={t(`common:pagesMeta.general.description`)}
                 />
+                <meta
+                    property="og:image"
+                    content={product?.image}
+                />
             </Head>
             <div className={styles.product}>
                 <div className={styles['container-xl']}>

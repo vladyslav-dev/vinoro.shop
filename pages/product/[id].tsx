@@ -54,7 +54,7 @@ const ProductPage: React.FC= () => {
                 />
                 <meta
                     property="og:image"
-                    content={product?.image}
+                    content={product?.image.replace('.webp', '.jpeg')}
                 />
             </Head>
             <div className={styles.product}>

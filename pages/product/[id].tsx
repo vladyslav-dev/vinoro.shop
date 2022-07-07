@@ -50,7 +50,7 @@ const ProductPage: React.FC= () => {
                 />
                 <meta
                     property="og:image"
-                    content={product?.image.replace('.webp', '.jpg')}
+                    content={'https://res.cloudinary.com/vinoro-media-storage/image/upload/v1656074891/vinoro/products/tea/cff9329e6c300c6869cb77961061e845.jpg'}
                 />
             </Head>
             <div className={styles.product}>

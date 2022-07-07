@@ -28,14 +28,10 @@ const ProductPage: React.FC= () => {
         dispatch(setCatalogOpen(true));
     }, [])
 
-    if (!product) {
-        return null;
-    }
-
     return (
         <>
             <Head>
-                <title>{product.name[language]}</title>
+                <title>{product?.name[language] || ''}</title>
                 <meta
                     name="description"
                     content={t(`common:pagesMeta.general.description`)}
@@ -46,11 +42,11 @@ const ProductPage: React.FC= () => {
                 />
                 <meta
                     property="og:title"
-                    content={product.name[language]}
+                    content={product?.name[language] || ''}
                 />
                 <meta
                     property="og:description"
-                    content={t(`common:pagesMeta.general.description`)}
+                    content={t(`common:pagesMeta.general.description`) || ''}
                 />
                 <meta
                     property="og:image"

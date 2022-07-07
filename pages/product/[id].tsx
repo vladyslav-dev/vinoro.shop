@@ -10,8 +10,7 @@ import useTranslation from 'next-translate/useTranslation';
 import { IProduct } from '@/interfaces/product';
 
 export async function getServerSideProps(context) {
-    const { id } = context.query;
-    const data = await ProductService.getOne(id as string)
+    const data = await ProductService.getOne(context.query.id as string)
     return {
       props: {
         product: data
@@ -53,7 +52,7 @@ const ProductPage: React.FC<{ product: IProduct }>= ({ product }) => {
                 />
                 <meta
                     property="og:image"
-                    content={product?.image}
+                    content={product?.image.replace('.webp', '.jpg')}
                 />
             </Head>
             <div className={styles.product}>

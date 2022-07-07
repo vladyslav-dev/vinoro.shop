@@ -1,28 +1,31 @@
 import React, { useEffect } from 'react';
 import styles from './product.module.scss'
 import Product from '@/components/Product';
-import { useRouter } from 'next/router';
-import useSWR from 'swr';
 import ProductService from 'services/ProductService';
 import { useDispatch } from 'react-redux';
 import { setCatalogOpen } from '@/store/slices/catalog';
 import Head from 'next/head';
 import useLanguage from '@/hooks/useLanguage';
 import useTranslation from 'next-translate/useTranslation';
+import { IProduct } from '@/interfaces/product';
 
-const ProductPage: React.FC= () => {
+export async function getServerSideProps(context) {
+    const { id } = context.query;
+    const data = await ProductService.getOne(id as string)
+    return {
+      props: {
+        product: data
+       }
+    }
+}
+
+const ProductPage: React.FC<{ product: IProduct }>= ({ product }) => {
 
     const { language } = useLanguage();
 
     const { t } = useTranslation();
 
-    const router = useRouter()
-
     const dispatch = useDispatch();
-
-    const { data: product } = useSWR(`PRODUCT-GET-ONE-${router.query.id}`, async () => {
-        return await ProductService.getOne(router.query.id as string)
-    })
 
     useEffect(() => {
         dispatch(setCatalogOpen(true));
@@ -31,7 +34,7 @@ const ProductPage: React.FC= () => {
     return (
         <>
             <Head>
-                <title>{product?.name[language] || ''}</title>
+                <title>{product?.name[language]}</title>
                 <meta
                     name="description"
                     content={t(`common:pagesMeta.general.description`)}
@@ -42,15 +45,15 @@ const ProductPage: React.FC= () => {
                 />
                 <meta
                     property="og:title"
-                    content={product?.name[language] || ''}
+                    content={product?.name[language]}
                 />
                 <meta
                     property="og:description"
-                    content={t(`common:pagesMeta.general.description`) || ''}
+                    content={t(`common:pagesMeta.general.description`)}
                 />
                 <meta
                     property="og:image"
-                    content={'https://res.cloudinary.com/vinoro-media-storage/image/upload/v1656074891/vinoro/products/tea/cff9329e6c300c6869cb77961061e845.jpg'}
+                    content={product?.image}
                 />
             </Head>
             <div className={styles.product}>

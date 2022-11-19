@@ -101,10 +101,12 @@ const Product: React.FC<ProductPageProps> = ({ product }) => {
                     <div className={styles.productAvailability}>
                         {product.availability ? <p className={styles.cardAvailabilityGreen}>{t("product:availability.inStock")}&nbsp; &#10004;</p> : <p className={styles.cardAvailabilityRed}>{t("product:availability.outOfStock")}&nbsp; &#10008;</p>}
                     </div>
-                    <button className={styles.productLink} onClick={copyLink}>
-                        <p>{t("product:copyLink")}</p>
-                        <LinkSvg />
-                    </button>
+                    {navigator?.clipboard && (
+                        <button className={styles.productLink} onClick={copyLink}>
+                            <p>{t("product:copyLink")}</p>
+                            <LinkSvg />
+                        </button>
+                    )}
                     <div className={styles.addButtons}>
                         <Button
                             label={isProductInBasket ? t("product:alreadyInBasket") : t("product:addToBasket")}

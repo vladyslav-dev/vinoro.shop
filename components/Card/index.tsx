@@ -44,7 +44,7 @@ const CardComponent = ({ product }: CardProps) => {
     return (
         <div className={styles.defaultCard} id={product.id}>
             <Link href={`/product/[id]`} as={`/product/${product.id}`} >
-                <a className={styles.cardLink}>
+                <a className={styles.cardLink} style={{ opacity: product.availability ? "1" : "0.5" }}>
                     <div className={styles.cardImage}>
                         <Img src={product.image} />
                     </div>
@@ -72,7 +72,6 @@ const CardComponent = ({ product }: CardProps) => {
                                 {product.price !== 1 && (
                                     <span>{product.price} ₴</span>
                                 )}
-
                             </div>
                         )}
                     </div>

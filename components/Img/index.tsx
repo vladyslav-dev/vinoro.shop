@@ -17,9 +17,8 @@ const Img: React.FC<ImgProps> = (
         errorSrc = 'https://res.cloudinary.com/vinoro-media-storage/image/upload/v1626027250/vinoro/empty_xjuljc.jpg',
     }
 ) => {
-
     const [isImageReady, setIsImageReady] = React.useState(false);
-    const [errorSource, setErrorSource] = React.useState(src);
+    const [isError, setIsError] = React.useState(false);
 
     return (
         <div className={styles.imageContainer}>
@@ -28,8 +27,8 @@ const Img: React.FC<ImgProps> = (
                 {src && (
                     <Image
                         onLoadingComplete={() => setIsImageReady(true)}
-                        onError={() => setErrorSource(errorSrc)}
-                        src={errorSource}
+                        onError={() => setIsError(true)}
+                        src={isError ? errorSrc : src}
                         layout="fill"
                         lazyBoundary="500px"
                         className={`${styles.image}`}

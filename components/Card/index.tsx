@@ -80,9 +80,11 @@ const CardComponent = ({ product }: CardProps) => {
                             <NewSvg />
                         </div>
                     )}
-                    <div className={`${styles.addToCart} ${isInBasket ? styles.active : ''}`} onClick={addToCart}>
-                        {isInBasket ? <InCartSvg /> : <AddToCartSvg />}
-                    </div>
+                    {product.availability && (
+                        <div className={`${styles.addToCart} ${isInBasket ? styles.active : ''}`} onClick={addToCart}>
+                            {isInBasket ? <InCartSvg /> : <AddToCartSvg />}
+                        </div>
+                    )}
                 </a>
             </Link>
         </div>

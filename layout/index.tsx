@@ -4,8 +4,8 @@ import Navbar from '@/components/Navbar';
 import { useRouter } from 'next/router';
 import OrderNavbar from '@/components/OrderNavbar';
 
-const pagesWithoutFooter = ['/', '/help', '/order', '/contacts'];
-const pagesWithTransparentNavbar = ['/', '/help'];
+const pagesWithoutFooter = ['/', '/order', '/contacts'];
+const pagesWithTransparentNavbar = ['/'];
 export interface LayoutProps {
     children?: React.ReactElement;
 }

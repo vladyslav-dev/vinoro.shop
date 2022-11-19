@@ -1,37 +1,11 @@
 @import '../../styles/index.scss';
 
 .help {
-    min-height: 100vh;
-    overflow: hidden;
-    color: $COLOR-WHITE;
-
-    .helpBackground {
-        background-image: url(../../public/static/images/help-background.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: fixed;
-        width: 100vw;
-        height: 100vh;
-
-        &::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(159.76deg, rgba(38, 38, 38, 0.4785) 0%, rgba(51, 51, 51, 0.4089) 50%, rgba(38, 38, 38, 0.4263) 71.35%, rgba(58, 58, 58, 0.4872) 100%);
-            backdrop-filter: blur(96px);
-        }
-    }
 
     .helpContent {
         z-index: 3;
         width: 100%;
-        min-height: calc(100vh - 133px);
-        overflow: hidden;
-        margin-top: 98px;
+        margin-top: 48px;
         margin-bottom: 30px;
 
         .helpInnerContent {
@@ -39,10 +13,6 @@
             display: flex;
             gap: 90px;
             justify-content: space-between;
-            position: absolute;
-            overflow: scroll;
-            min-height: calc(100vh - 117px);
-            inset: 0;
 
             &::-webkit-scrollbar {background-color: transparent;width:6px; }
             &::-webkit-scrollbar-track {background-color: transparent;}
@@ -56,11 +26,17 @@
 
             @media (max-width: 420px) {
                 padding: 0 10px;
+                gap: 38px;
             }
 
             .helpInnerContentItem {
                 flex: 1;
             }
+        }
+
+        @media (max-width: 420px) {
+            margin-top: 22px;
+            margin-bottom: 22px;
         }
     }
 }

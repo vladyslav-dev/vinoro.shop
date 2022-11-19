@@ -40,7 +40,7 @@ const AccordionItem: React.FC<IAccordionItem> = ({data, controller}) => {
         >
             <div className={styles.accordionItemRow}>
                 <h6 className={styles.accordionItemTitle}>{data[language]?.title}</h6>
-                <SortArrorSvg color='#FFFFFF' />
+                <SortArrorSvg color='#1C1C1C' />
             </div>
             <div
                 ref={hiddenBlockRef}

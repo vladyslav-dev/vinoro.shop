@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-const lightURLs = ['/', '/help'];
+const lightURLs = ['/'];
 
 const useLightElements = () => {
 

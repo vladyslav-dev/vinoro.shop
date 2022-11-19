@@ -43,7 +43,6 @@ const Help = () => {
                 />
             </Head>
             <div className={styles.help}>
-                <div className={styles.helpBackground} />
                 <div className={styles.helpContent}>
                     <div className={styles["container-xl"]}>
                         <div className={styles.helpInnerContent}>
@@ -57,11 +56,6 @@ const Help = () => {
                     </div>
                 </div>
             </div>
-            <style global jsx>{`
-                #nprogress .bar {
-                    background: #fff;
-                }
-            `}</style>
         </>
     )
 }

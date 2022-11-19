@@ -20,13 +20,6 @@
             inset: 0;
             height: calc(100vh - 68px);
             min-height: 715px;
-
-            &::after {
-                content: '';
-                backdrop-filter: blur(6px);
-                position: absolute;
-                inset: 0;
-            }
         }
 
         .content {

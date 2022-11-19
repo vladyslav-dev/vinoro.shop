@@ -45,11 +45,11 @@ const Button = (props: ButtonProps) => {
     }
 
     const initialStyles = {
-        ...styles,
         background: backgroudStyle,
         border: borderStyle,
         color: colorStyle,
-        cursor: type === "disabled" ? "default" : "pointer"
+        cursor: type === "disabled" ? "default" : "pointer",
+        ...styles,
         //   ["pointer-events"]: eventStyle // make sure that it's work correctly
     }
 

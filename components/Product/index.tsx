@@ -22,7 +22,13 @@ const Product: React.FC<ProductPageProps> = ({ product }) => {
 
     const { setCurrentCategory } = useCurrentCategory(product.category as string);
 
+    const [isCopyProductLinkShown, setIsCopyProductLinkShown] = useState<boolean>(false);
+
     useEffect(() => setCurrentCategory(product.category as string), [product])
+
+    useEffect(() => {
+        setIsCopyProductLinkShown((typeof window !== "undefined") && Boolean(window?.navigator?.clipboard))
+    }, [])
 
     const dispatch = useDispatch();
 
@@ -101,17 +107,20 @@ const Product: React.FC<ProductPageProps> = ({ product }) => {
                     <div className={styles.productAvailability}>
                         {product.availability ? <p className={styles.cardAvailabilityGreen}>{t("product:availability.inStock")}&nbsp; &#10004;</p> : <p className={styles.cardAvailabilityRed}>{t("product:availability.outOfStock")}&nbsp; &#10008;</p>}
                     </div>
-                    {navigator?.clipboard && (
-                        <button className={styles.productLink} onClick={copyLink}>
-                            <p>{t("product:copyLink")}</p>
-                            <LinkSvg />
-                        </button>
-                    )}
+                    <button
+                        className={styles.productLink}
+                        onClick={copyLink}
+                        style={{ display: isCopyProductLinkShown ? "inline-flex" : "none" }}
+                    >
+                        <p>{t("product:copyLink")}</p>
+                        <LinkSvg />
+                    </button>
                     <div className={styles.addButtons}>
                         <Button
+                            type={product.availability ? "default" : "disabled"}
                             label={isProductInBasket ? t("product:alreadyInBasket") : t("product:addToBasket")}
                             click={() => { !isProductInBasket ? addToBasket() : null }}
-                            styles={{ fontWeight: 600, fontSize: '11px' }}
+                            styles={{ fontWeight: 600, fontSize: '11px', cursor: product.availability ? "pointer" : "not-allowed" }}
                         />
                     </div>
                     <div className={styles.productDescriptions}>

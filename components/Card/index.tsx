@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styles from './Card.module.scss'
 
 import Img from '@/components/Img';
@@ -23,13 +23,49 @@ const CardComponent = ({ product }: CardProps) => {
 
     const router = useRouter();
 
+    const [isRouteChangeState, setIsRouteChangeStart] = useState(false);
+
     const { t } = useTranslation();
     const { basketProducts } = useSelector((state: RootState) => state.basketReducer);
     const dispatch = useDispatch();
     const { language } = useLanguage();
 
+    const scrollIntoView = useCallback((element: HTMLElement) => {
+        const yOffset = -68;
+        const y: number = Number(element.getBoundingClientRect().top + window.pageYOffset + yOffset);
+        window.scrollTo({ top: y, behavior: "smooth" })
+    }, [])
+
     useEffect(() => {
         router.prefetch(`/product/${product.id}`);
+
+        const URL = router.asPath;
+        const currentId = URL.split('#')?.at(1);
+
+        if (currentId && currentId === product.id) {
+            const cardElement = document.getElementById(String(currentId)) as HTMLDivElement;
+            scrollIntoView(cardElement);
+        }
+
+        const handleRouteChange = (nextURL: string) => {
+
+            setIsRouteChangeStart(true);
+
+            const nextProductURL = nextURL.split("/product/")?.at(1);
+
+            const isCurrentProduct = nextProductURL === product?.id;
+
+            if (isCurrentProduct) {
+                const currentURL = URL.split('#')?.at(0);
+                router.replace(`${currentURL}#${product.id}`);
+            }
+        }
+
+        router.events.on('routeChangeStart', handleRouteChange)
+
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChange)
+          }
       }, []);
 
     const isInBasket = useMemo(() => Object.keys(basketProducts).includes(product.id), [basketProducts, product]);
@@ -87,6 +123,7 @@ const CardComponent = ({ product }: CardProps) => {
                     )}
                 </a>
             </Link>
+            <div className={styles.routeChangeWhiteBack} style={{ display: isRouteChangeState ? "block" : "none" }} />
         </div>
     )
 }

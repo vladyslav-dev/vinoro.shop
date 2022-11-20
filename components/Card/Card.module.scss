@@ -179,6 +179,13 @@
             opacity: 1;
         }
     }
+
+    .routeChangeWhiteBack {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background-color: $COLOR-WHITE;
+    }
 }
 
 

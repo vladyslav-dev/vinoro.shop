@@ -7,8 +7,7 @@
     "build": "next build",
     "profile": "next build --profile",
     "debug": "next build --debug",
-    "start": "next start -p 80",
-    "start:https": "next start -p 443",
+    "start": "next start",
     "lint": "next lint",
     "eject": "react-scripts eject"
   },

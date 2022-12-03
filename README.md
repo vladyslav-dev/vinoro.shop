@@ -4,5 +4,5 @@
 Start command:
 
 ```bash
-pm2 start "yarn start:https" --name vinoro-next-https --watch
+pm2 start "yarn start" --name vinoro-next --watch
 ```

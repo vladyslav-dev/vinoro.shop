@@ -2,6 +2,15 @@
   "extends": "next/core-web-vitals",
   "rules": {
     "prefer-const": "error",
-    "@next/next/no-document-import-in-page": "off"
+    "@next/next/no-document-import-in-page": "off",
+    "react/no-unknown-property": [
+      2,
+      {
+        "ignore": [
+          "jsx",
+          "global"
+        ]
+      }
+    ]
   }
 }

@@ -11,3 +11,30 @@
 @function ptr($px) {
     @return #{$px/16}rem;
 }
+
+
+.socMedia {
+    // position: absolute;
+    // z-index: 6;
+    // right: 0;
+    // top: 50%;
+    // transform: translateY(-50%);
+
+    & > div {
+        flex-direction: row;
+
+
+        a {
+            margin: 20px 0;
+
+
+            svg {
+                width: 32px;
+                height: 32px;
+                padding: 0 20px;
+            }
+
+            @include hoverEffect
+        }
+    }
+}

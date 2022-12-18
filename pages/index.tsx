@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setCatalogOpen } from '@/store/slices/catalog';
 import Head from 'next/head';
 import useTranslation from 'next-translate/useTranslation';
+import SocialMedia from '@/components/SocialMedia';
 
 const Index = () => {
 
@@ -48,6 +49,8 @@ const Index = () => {
                 />
             </Head>
             <Fullpage />
+
+
             <style global jsx>{`
                 #nprogress .bar {
                     background: #fff;

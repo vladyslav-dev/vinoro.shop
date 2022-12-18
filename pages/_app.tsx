@@ -15,6 +15,8 @@ import { setData } from '@/store/slices/catalog';
 import { initBasket } from '@/store/slices/basket';
 import ProductService from 'services/ProductService';
 import { setSearchData } from '@/store/slices/search';
+import SocialMedia from '@/components/SocialMedia';
+import Link from 'next/link';
 
 NProgress.configure({ showSpinner: false });
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -64,7 +66,33 @@ const RootApp = ({ Component, pageProps }: RootAppProps) => {
       <Provider store={store}>
         <InnerApp>
           <Layout>
+            <>
             <Component {...pageProps} />
+            <div style={{
+                width: "100vw",
+                minHeight: "70px",
+                background: "black",
+                color: "white",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                position: "fixed",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                zIndex: 99999,
+                padding: "12px 20px",
+                boxSizing: "border-box",
+            }}>
+                <p style={{ textAlign: "center", fontSize: "13px", lineHeight: "28px"}}>
+                Сайт тимчасово <span style={{ textTransform: "uppercase", fontWeight: "bold", color: '#7c7bff'}}>не приймає замовлення</span>, але ви маєте можливість переглянути товар та за бажанням зробити замовлення написавши на <Link href="viber://chat?number=+380995238607"><a style={{ color: '#7c7bff'}}>Viber 099-523-86-07</a></Link>. Дякуємо за розуміння.
+                  </p>
+                {/* <div className="socMedia">
+                    <SocialMedia color="#fff" />
+                </div> */}
+            </div>
+            </>
           </Layout>
         </InnerApp>
       </Provider>

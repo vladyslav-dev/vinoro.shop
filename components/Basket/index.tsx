@@ -41,11 +41,9 @@ const Basket: React.FC<BasketProps> = ({ closeBasketHandler }) => {
             {!!basketProductsValues.length && (
                  <div className={styles.confirmOrder}>
                     <TotalPrice totalPrice={totalPrice} />
-                    <Link href="/order/" passHref replace>
-                        <a className={styles.buttonWrapper}>
-                            <Button label={t(`common:next`)} styles={{ width: '100%' }} click={() => null} type="default" />
-                        </a>
-                    </Link>
+                    <a className={styles.buttonWrapper}>
+                        <Button label={t(`common:next`)}  styles={{ width: '100%' }} click={() => null} type="disabled" />
+                    </a>
                 </div>
             )}
         </div>

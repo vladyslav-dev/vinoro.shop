@@ -32,5 +32,5 @@ export interface IOrderState {
 }
 
 export interface IOrderService {
-    sendMail: (order: IOrderData) => Promise<void>;
+    sendMail: (order: IOrderData) => Promise<any>;
 }

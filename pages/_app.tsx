@@ -1,7 +1,7 @@
 import '@/styles/reset.scss';
 import '@/styles/font.scss';
 import '@/styles/index.scss';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 import { AppProps } from 'next/app';
@@ -15,6 +15,7 @@ import { setData } from '@/store/slices/catalog';
 import { initBasket } from '@/store/slices/basket';
 import ProductService from 'services/ProductService';
 import { setSearchData } from '@/store/slices/search';
+import Loader from '@/components/Loader';
 
 NProgress.configure({ showSpinner: false });
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -55,20 +56,37 @@ const InnerApp: React.FC<InnerAppProps> = ({ children }) => {
     dispatch(initBasket())
   }, [])
 
-  return <>{children}</>
+  return (
+    <>
+      {children}
+    </>
+  )
 }
 
 const RootApp = ({ Component, pageProps }: RootAppProps) => {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+  }, []);
+
   return (
-    <SWRConfig value={{ provider: () => new Map() }}>
-      <Provider store={store}>
-        <InnerApp>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </InnerApp>
-      </Provider>
-    </SWRConfig>
+    <>
+      {loading ? (
+         <SWRConfig value={{ provider: () => new Map() }}>
+          <Provider store={store}>
+            <InnerApp>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </InnerApp>
+          </Provider>
+        </SWRConfig>
+      ) : (
+        <Loader />
+      )}
+    </>
+
   );
 }
 

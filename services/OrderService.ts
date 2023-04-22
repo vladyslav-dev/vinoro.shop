@@ -3,7 +3,8 @@ import { IOrderService } from "@/interfaces/order"
 
 const OrderService: IOrderService = {
     sendMail: async (data) => {
-        await $api.post("/api/order", { data });
+        const response = await $api.post("/api/order", { data });
+        return response;
     }
 }
 

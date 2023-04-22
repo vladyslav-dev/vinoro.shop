@@ -8,7 +8,6 @@
     "profile": "next build --profile",
     "debug": "next build --debug",
     "start": "next start -p 80",
-    "start:https": "next start -p 443",
     "lint": "next lint",
     "eject": "react-scripts eject"
   },
@@ -31,7 +30,6 @@
     "react-select": "^5.1.0",
     "react-slick": "^0.28.1",
     "sass": "^1.56.1",
-    "sharp": "^0.29.3",
     "slick-carousel": "^1.8.1",
     "swr": "^1.3.0",
     "yup": "^0.32.11"
@@ -45,7 +43,7 @@
     "@types/react-slick": "^0.23.5",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
-    "typescript": "^4.4.3"
+    "typescript": "4.9.3"
   },
   "resolutions": {
     "@types/react": "17.0.2",

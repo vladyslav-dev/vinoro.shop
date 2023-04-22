@@ -58,6 +58,13 @@ const PlacedOrder = () => {
             ...orderData,
             products: basketProducts,
             mailLanguage: language
+        }).then(response => {
+            if ("error" in response.data) {
+                alert("Упс, здається сталася помилка. Замовлення не було оформлене / Oops, there seems to have been an error. The order was not processed.")
+            }
+        }).catch(error => {
+            console.error(error)
+            alert("Упс, здається сталася помилка. Замовлення не було оформлене / Oops, there seems to have been an error. The order was not processed.")
         })
 
         disaptch(clearBasket());

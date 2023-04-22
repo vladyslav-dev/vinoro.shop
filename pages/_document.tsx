@@ -15,10 +15,9 @@ class MyDocument extends Document {
                     <link rel="manifest" href="/manifest.json" />
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
-                <body id='body-tag'>
+                <body id='body-tag' style={{display: "block"}}>
                     <Main />
                     <NextScript />
-
                 </body>
             </Html>
         )

@@ -23,27 +23,54 @@ const ContactPage = () => {
     return (
         <>
             <Head>
-                <title>{t(`common:pagesMeta.contacts.title`)}</title>
+                {/* <title>{"Vinoro — Контакти"}</title>
                 <meta
                     name="description"
-                    content={t(`common:pagesMeta.general.description`)}
+                    content={"Інтернет-магазин Vinoro (Товари з Європи). В асортименті Алкоголь, Побутова хімія. Приємні ціни. Доставка по Україні"}
                 />
                 <meta
                     name="keywords"
-                    content={t(`common:pagesMeta.general.keywords`)}
+                    content={"vinoro, продукти, алкгоголь, товари з Європи, запоріжжя, доставка, побутова хімія, ціни, ціна, купити, європейські товари, недорого, Україна, онлайн, інтернет-магазин"}
                 />
                 <meta
                     property="og:title"
-                    content={t(`common:pagesMeta.contacts.title`)}
+                    content={"Vinoro — Контакти"}
                 />
                 <meta
                     property="og:description"
-                    content={t(`common:pagesMeta.general.description`)}
+                    content={"Інтернет-магазин Vinoro (Товари з Європи). В асортименті Алкоголь, Побутова хімія. Приємні ціни. Доставка по Україні [og:description]"}
+                />
+                <meta 
+                    property="og:site_name" 
+                    content={"Інтернет-магазин Vinoro (Товари з Європи). В асортименті Алкоголь, Побутова хімія. Приємні ціни. Доставка по Україні [og:site_name]"}
                 />
                 <meta
                     property="og:image"
                     content="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2948&q=80"
-                />
+                /> */}
+
+               {/* HTML Meta Tags */}
+                <title>Vinoro — Контакти</title>
+                <meta name="description" content="Інтернет-магазин Vinoro (Товари з Європи). В асортименті Алкоголь, Побутова хімія. Приємні ціни. Доставка по Україні" />
+
+                {/* Google / Search Engine Tags */}
+                <meta itemProp="name" content="Vinoro — Контакти" />
+                <meta itemProp="description" content="Інтернет-магазин Vinoro (Товари з Європи). В асортименті Алкоголь, Побутова хімія. Приємні ціни. Доставка по Україні" />
+                <meta itemProp="image" content="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2948&q=80" />
+
+                {/* Facebook Meta Tags */}
+                <meta property="og:url" content="http://vinoro.shop" />
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content="Vinoro — Контакти" />
+                <meta property="og:description" content="Інтернет-магазин Vinoro (Товари з Європи). В асортименті Алкоголь, Побутова хімія. Приємні ціни. Доставка по Україні" />
+                <meta property="og:image" content="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2948&q=80" />
+
+                {/* Twitter Meta Tags */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Vinoro — Контакти" />
+                <meta name="twitter:description" content="Інтернет-магазин Vinoro (Товари з Європи). В асортименті Алкоголь, Побутова хімія. Приємні ціни. Доставка по Україні" />
+                <meta name="twitter:image" content="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2948&q=80" />
+        
             </Head>
             <div className={styles.contacts}>
                 <div className={styles['container-xl']}>

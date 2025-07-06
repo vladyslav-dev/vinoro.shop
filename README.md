@@ -12,3 +12,7 @@ pm2 start "yarn start" --name vinoro-next --watch
 Main docker branch - master-docker
 
 Website temporary doesn't work branch - master-docker-warning
+
+Node Version:
+
+15.14.0

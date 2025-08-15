@@ -34,7 +34,7 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
         searchProducts: ISearchProduct[];
     }  = useSelector((state: RootState) => state.searchReducer);
 
-    const { t } = useTranslation();
+    const { t, lang } = useTranslation();
     const { language } = useLanguage();
 
     const [relateQueries, setRelateQueries] = useState<string[]>([]);
@@ -164,7 +164,7 @@ const SearchModal = ({ closeSearch }: SearchModalProps) => {
                                                                 }
                                                                 if (item.products.length - 1 === index) {
                                                                     return (
-                                                                        <Link href={`/category/[id]`} as={`/category/${product?.category}`} key={product.id}>
+                                                                        <Link href={`/${lang}/category/[id]`} as={`/${lang}/category/${product?.category}`} key={product.id}>
                                                                             <a className={`${styles.searchItemCategory} ${styles.searchItemCategoryRest}`} onClick={() => setSearchQuery('')}>
                                                                                 {t(`common:moreInCategory`, { variable: item.products.length - 5 })}&nbsp;
                                                                                 <span className={styles.categoryName}>{searchCategory[product.category][language]}</span>

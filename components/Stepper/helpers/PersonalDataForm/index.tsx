@@ -18,7 +18,7 @@ interface IFormState {
     terms: boolean;
 }
 
-const phoneRegExp = /^\+?3?8?(0\d{9})$/
+const phoneRegExp = /^\+?[1-9]\d{7,14}$/
 
 interface PersonalDataFormProps {
     updateButtonDisabled: (param: boolean) => void;

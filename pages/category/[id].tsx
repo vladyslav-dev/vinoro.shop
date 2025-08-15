@@ -14,6 +14,8 @@ import useTranslation from 'next-translate/useTranslation';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/index';
 import useLanguage from '@/hooks/useLanguage';
+import EmptyCatalog from '@/components/EmptyCatalog';
+import Loader from '@/components/Loader';
 
 const Category: React.FC = () => {
 
@@ -32,12 +34,12 @@ const Category: React.FC = () => {
     })
 
     const category = useMemo(() => {
-        return categoryCollection[currentCategory]
+        return categoryCollection[currentCategory] || null
     }, [categoryCollection, currentCategory]);
 
     const { setCurrentCategory } = useCurrentCategory(router.query.id as string)
 
-    const [productList, setProductList] = useState<Array<IProduct>>([]);
+    const [productList, setProductList] = useState<Array<IProduct> | null>(null);
 
     useEffect(() => setCurrentCategory(router.query.id as string), [router])
 
@@ -51,8 +53,12 @@ const Category: React.FC = () => {
         }
     }, [products])
 
-    if (!productList.length || !category) {
-        return null;
+    if (productList === null || category === null) {
+        return <Loader />
+    }
+
+    if (!productList?.length || !category) {
+        return <EmptyCatalog textWarnings="No products found" />
     }
 
     return (

@@ -13,7 +13,7 @@ const Breadcrumb: React.FC = () => {
 
     const { language } = useLanguage();
 
-    const { t } = useTranslation();
+    const { t, lang } = useTranslation();
 
     const { currentCategory, categoryCollection, isLoaded } = useSelector((state: RootState) => state.catalogReducer)
 
@@ -49,7 +49,7 @@ const Breadcrumb: React.FC = () => {
                 <SortArrorSvg color="#1C1C1C" />
             </div>
             <div className={styles.breadcrumbItem}>
-                <Link href={`/category/[id]`} as={`/category/${currentCategory}`}>
+                <Link href={`/${lang}/category/[id]`} as={`/${lang}/category/${currentCategory}`}>
                     <a>
                         <span>{categoryName}</span>
                     </a>

@@ -7,6 +7,7 @@ import { RootState } from '@/store/index';
 import { ICatalogCollection } from '@/interfaces/catalog';
 import { ICategory, ICategoryCollection } from '@/interfaces/category';
 import useLanguage from '@/hooks/useLanguage';
+import useTranslation from 'next-translate/useTranslation';
 
 interface ICatalogRef {
     [catalogId: string]: {
@@ -18,6 +19,7 @@ interface ICatalogRef {
 const CategoryTree = () => {
 
     const { language } = useLanguage();
+    const { lang } = useTranslation();
 
     const categoryTreeRef = useRef<HTMLDivElement>(null);
     const currentCategoryRef = useRef<HTMLLIElement>(null);
@@ -76,7 +78,7 @@ const CategoryTree = () => {
                     className={`${styles.subCategotyItem} ${isCurrentCategory ? styles.subCategoryItemActive : null}`}
                     {...additionalProps}
                 >
-                    <Link href={`/category/[id]`} as={`/category/${item?.id}`} >
+                    <Link href={`/${lang}/category/[id]`} as={`/${lang}/category/${item?.id}`} >
                         <a>{item?.category_name[language]}</a>
                     </Link>
                 </li>

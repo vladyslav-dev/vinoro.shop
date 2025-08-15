@@ -36,7 +36,7 @@ const CardComponent = ({ product }: CardProps) => {
         window.scrollTo({ top: y, behavior: "smooth" })
     }, [])
 
-    useEffect(() => {
+   useEffect(() => {
         router.prefetch(`/product/${product.id}`);
 
         const URL = router.asPath;
@@ -47,26 +47,33 @@ const CardComponent = ({ product }: CardProps) => {
             scrollIntoView(cardElement);
         }
 
-        const handleRouteChange = (nextURL: string) => {
-
+        const handleRouteChangeStart = (nextURL: string) => {
             setIsRouteChangeStart(true);
 
-            const nextProductURL = nextURL.split("/product/")?.at(1);
-
+            const nextProductURL = nextURL.split('/product/')?.at(1);
             const isCurrentProduct = nextProductURL === product?.id;
 
             if (isCurrentProduct) {
-                const currentURL = URL.split('#')?.at(0);
-                router.replace(`${currentURL}#${product.id}`);
+            const currentURL = URL.split('#')?.at(0);
+            router.replace(`${currentURL}#${product.id}`);
             }
-        }
+        };
 
-        router.events.on('routeChangeStart', handleRouteChange)
+        const handleRouteChangeComplete = () => {
+            setIsRouteChangeStart(false);
+        };
+
+        router.events.on('routeChangeStart', handleRouteChangeStart);
+        router.events.on('routeChangeComplete', handleRouteChangeComplete);
+        router.events.on('routeChangeError', handleRouteChangeComplete); // in case of failure
 
         return () => {
-            router.events.off('routeChangeStart', handleRouteChange)
-          }
-      }, []);
+            router.events.off('routeChangeStart', handleRouteChangeStart);
+            router.events.off('routeChangeComplete', handleRouteChangeComplete);
+            router.events.off('routeChangeError', handleRouteChangeComplete);
+        };
+    }, []);
+
 
     const isInBasket = useMemo(() => Object.keys(basketProducts).includes(product.id), [basketProducts, product]);
 

@@ -2,7 +2,7 @@
 
 .formRow {
     width: 100%;
-    max-width: 620px;
+    max-width: 680px;
 
     .formCol {
         flex: 1;
@@ -74,7 +74,6 @@
         .radioGroup {
 
             .deliveryInfo {
-                padding-left: 30px;
                 margin-top: 24px;
                 margin-right: 60px;
 
@@ -85,7 +84,7 @@
                     margin-bottom: 30px;
 
                     a {
-                        color: #f23c32;
+                        color: $COLOR-DANGER;
                     }
                 }
 
@@ -161,7 +160,6 @@
                 }
 
                 .radioLabel {
-
                     .radioInput {
                         position: absolute;
                         left: -9999px;
@@ -181,7 +179,7 @@
                         border-radius: 50%;
                         position: absolute;
                         left: 4px;
-                        top: 4px;
+                        top: 6px;
                         cursor: pointer;
                     }
 
@@ -190,6 +188,8 @@
                         display: inline;
                         padding-left: 30px;
                         padding-top: 2px;
+                        display: inline-block;
+                        line-height: 20px;
 
                         &::before {
                             content: "";
@@ -206,6 +206,25 @@
                         &::after {
                             transform: scale(0);
 	                        content: "";
+                        }
+                    }
+                    
+                    .radioTextAddition {
+                        padding-left: 6px;
+                        line-height: 24px;
+                        font-size: 12px;
+                        display: inline;
+                        color: $COLOR-DANGER;
+                    }
+
+                    &.disabled {
+                        & > input, & > p {
+                            cursor: not-allowed;
+                            opacity: 0.3;
+                        }
+
+                        .radioText:before, .radioText:after {
+                            cursor: not-allowed;
                         }
                     }
                 }

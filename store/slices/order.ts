@@ -7,8 +7,6 @@ const initialPersonData = {
     email: '',
     phone: '',
     city: '',
-    isLocal: undefined,
-    local_address: '',
     post_adress: '',
     post_number: '',
     payment: '',

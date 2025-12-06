@@ -48,4 +48,4 @@ jspm_packages
 .env.local
 
 **/.DS_Store
-.env
+.env.*

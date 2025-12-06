@@ -17,7 +17,7 @@ import { clearBasket } from '@/store/slices/basket';
 import { resetData } from '@/store/slices/order';
 import OrderService from 'services/OrderService';
 import useLanguage from '@/hooks/useLanguage';
-import { IBasketProduct, IBasketProductCollection } from '@/interfaces/product';
+import { IBasketProduct } from '@/interfaces/product';
 
 export interface ValidDdata {
     label?: string,
@@ -99,7 +99,7 @@ const PlacedOrder = () => {
                 },
                 {
                     label: t(`order:delivery`),
-                    value: collectedOrder.isLocal ? (personData.local_address || isNotDefined) : `Нова Пошта, ${personData.post_adress}, №${personData.post_number}`
+                    value: `Нова Пошта, ${personData.post_adress}, №${personData.post_number}`
                 },
                 {
                     label: t(`order:payment`),

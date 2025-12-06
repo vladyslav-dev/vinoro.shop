@@ -1,5 +1,5 @@
 export interface ILangData {
-    ru: string;
+    ru?: string;
     uk: string;
     en: string;
 }

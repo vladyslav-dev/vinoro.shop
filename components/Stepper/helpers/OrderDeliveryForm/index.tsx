@@ -16,32 +16,26 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
 
     const dispatch = useDispatch();
 
-    const LOCAL_CITY = t(`order:deliveryType.zpCity`);
-    const ANOTHER_CITY = t(`order:deliveryType.otherCity`);
-
     const CARD_PAYMENT = t(`order:paymentType.cardPayment`);
-    const CASH_PAYMENT = t(`order:paymentType.cashPayment`);
     const CASH_ON_DELIVERY = t(`order:paymentType.cashOnDelivery`);
+    const CASH_ON_DELIVERY_ADDITIONAL = t(`order:paymentType.cashOnDeliveryAdditional`);
 
     const tarrifLink = <a href='https://novaposhta.ua/basic_tariffs' rel="noopener noreferrer" target='_blank'>{t(`order:tariffs`)}</a>
 
     const { personData } = useSelector((state: RootState) => state.orderReducer);
+    const { totalPrice } = useSelector((state: RootState) => state.basketReducer);
+    
+    const minPayOnDeliveryPrice = 2000;
+    const isCashOnDeliveryDisabled = totalPrice < minPayOnDeliveryPrice;
 
     const anchorRef = useRef<HTMLDivElement>(null);
 
     const [paymentDropDown, setPaymentDropDown] = useState<boolean>(false);
 
-    const [delivery, setDelivery] = useState<string>((personData.city === LOCAL_CITY || personData.isLocal) ? LOCAL_CITY : ""); // LOCAL_CITY | ANOTHER_CITY
-    const [payment, setPayment] = useState<string>(personData.payment || ""); // CARD_PAYMENT | CASH_PAYMENT | CASH_ON_DELIVERY
-
-    const [localAdress, setLocalAdress] = useState<string>(personData.local_address || "");
+    const [payment, setPayment] = useState<string>(personData.payment || ""); // CARD_PAYMENT | CASH_ON_DELIVERY
 
     const [postAddress, setPostAddress] = useState<string>(personData.post_adress || "");
     const [postNumber, setPostNumber] = useState<string>(personData.post_number || "");
-
-    const deliveryHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setDelivery(e.target.value as string)
-    }
 
     const paymentHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setPayment(e.target.value as string)
@@ -61,10 +55,8 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
 
     useEffect(() => {
         const isPostDataValid = postNumber && postAddress.trim();
-        if (delivery && payment && (isPostDataValid || delivery === LOCAL_CITY)) {
+        if (payment && (isPostDataValid)) {
             dispatch(setData({
-                isLocal: !!(delivery === LOCAL_CITY),
-                local_address: localAdress || null,
                 post_adress: postAddress || null,
                 post_number: postNumber || null,
                 payment: payment,
@@ -77,7 +69,7 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
             updateButtonDisabled(true)
         }
 
-    }, [payment, delivery, localAdress, postAddress, postNumber])
+    }, [payment, postAddress, postNumber])
 
     return (
         <div className={styles.formRow}>
@@ -85,92 +77,44 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
                 <div className={styles.formTitle}>{t(`order:delivery`)}</div>
                 <div className={styles.radioGroup}>
                     <div className={styles.radioItem}>
-                        <label className={styles.radioLabel}>
-                            <input
-                                type="radio"
-                                value={LOCAL_CITY}
-                                onChange={deliveryHandler}
-                                checked={delivery === LOCAL_CITY}
-                                name="city"
-                                className={styles.radioInput}
-                            />
-                            <p className={styles.radioText}>{t(`order:fromZp`)}</p>
-                        </label>
-                        {delivery === LOCAL_CITY && (
-                            <div className={styles.deliveryInfo}>
-                                <p className={styles.deliveryInfoText}>{t(`order:zpDeliveryInfo`)}</p>
-                                <div className={styles.deliveryWrapper}>
-                                    <div className={styles.deliveryInfoRow}>
-                                        <input
-                                            id="localAdress"
-                                            autoComplete="none"
-                                            value={localAdress}
-                                            onChange={(e) => setLocalAdress(e.target.value)}
-                                        />
-                                        <label
-                                            htmlFor="localAdress"
-                                            className={`${localAdress ? styles.labelActive : ""}`}
-                                        >
-                                            {t(`order:localAdress`)}
-                                        </label>
-                                    </div>
+                        <div className={styles.deliveryInfo}>
+                            <p className={styles.deliveryInfoText}>{t(`order:otherCityDelivery`)} {tarrifLink}.</p>
+                            <div className={styles.deliveryWrapper}>
+                                <div className={styles.deliveryInfoRow}>
+                                    <input
+                                        id="postAddress"
+                                        autoComplete="none"
+                                        value={postAddress}
+                                        onChange={(e) => setPostAddress(e.target.value)}
+                                    />
+                                    <label
+                                        htmlFor="postAddress"
+                                        className={`${postAddress ? styles.labelActive : ""}`}
+                                    >
+                                        {t(`order:departmentAdress`)}
+                                </label>
                                 </div>
-
-                            </div>
-                        )}
-                    </div>
-                    <div className={styles.radioItem}>
-                        <label className={styles.radioLabel}>
-                            <input
-                                type="radio"
-                                value={ANOTHER_CITY}
-                                onChange={deliveryHandler}
-                                checked={delivery === ANOTHER_CITY}
-                                name="city"
-                                className={styles.radioInput}
-                            />
-                            <p className={styles.radioText}>{t(`order:deliveryType.otherCity`)}</p>
-                        </label>
-                        {delivery === ANOTHER_CITY && (
-                            <div className={styles.deliveryInfo}>
-                                <p className={styles.deliveryInfoText}>{t(`order:otherCityDelivery`)} {tarrifLink}.</p>
-                                <div className={styles.deliveryWrapper}>
-                                    <div className={styles.deliveryInfoRow}>
-                                        <input
-                                            id="postAddress"
-                                            autoComplete="none"
-                                            value={postAddress}
-                                            onChange={(e) => setPostAddress(e.target.value)}
-                                        />
-                                        <label
-                                            htmlFor="postAddress"
-                                            className={`${postAddress ? styles.labelActive : ""}`}
-                                        >
-                                            {t(`order:departmentAdress`)}
+                                <div className={styles.deliveryInfoRow}>
+                                    <input
+                                        id="postNumber"
+                                        autoComplete="none"
+                                        type="text"
+                                        value={postNumber}
+                                        onChange={(e: React.ChangeEvent) => {
+                                            const { value } = e.target as HTMLInputElement;
+                                            const pattern = /^\d*$/.test(value);
+                                            return pattern && (value === "" || parseInt(value)) && setPostNumber(value)
+                                        }}
+                                    />
+                                    <label
+                                        htmlFor="postNumber"
+                                        className={`${postNumber ? styles.labelActive : ""}`}
+                                    >
+                                        №
                                     </label>
-                                    </div>
-                                    <div className={styles.deliveryInfoRow}>
-                                        <input
-                                            id="postNumber"
-                                            autoComplete="none"
-                                            type="text"
-                                            value={postNumber}
-                                            onChange={(e: React.ChangeEvent) => {
-                                                const { value } = e.target as HTMLInputElement;
-                                                const pattern = /^\d*$/.test(value);
-                                                return pattern && (value === "" || parseInt(value)) && setPostNumber(value)
-                                            }}
-                                        />
-                                        <label
-                                            htmlFor="postNumber"
-                                            className={`${postNumber ? styles.labelActive : ""}`}
-                                        >
-                                            №
-                                        </label>
-                                    </div>
                                 </div>
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -191,20 +135,7 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
                         </label>
                     </div>
                     <div className={styles.radioItem}>
-                        <label className={styles.radioLabel}>
-                            <input
-                                type="radio"
-                                checked={payment === CASH_PAYMENT}
-                                name="payment"
-                                className={styles.radioInput}
-                                onChange={paymentHandler}
-                                value={CASH_PAYMENT}
-                            />
-                            <p className={styles.radioText}>{CASH_PAYMENT}</p>
-                        </label>
-                    </div>
-                    <div className={styles.radioItem}>
-                        <label className={styles.radioLabel}>
+                        <label className={`${styles.radioLabel} ${isCashOnDeliveryDisabled ? styles.disabled : ''}`}>
                             <input
                                 type="radio"
                                 checked={payment === CASH_ON_DELIVERY}
@@ -212,8 +143,10 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
                                 className={styles.radioInput}
                                 onChange={paymentHandler}
                                 value={CASH_ON_DELIVERY}
+                                disabled={isCashOnDeliveryDisabled}
                             />
                             <p className={styles.radioText}>{CASH_ON_DELIVERY}</p>
+                            <span className={styles.radioTextAddition}>{isCashOnDeliveryDisabled ? CASH_ON_DELIVERY_ADDITIONAL : ''}</span>
                         </label>
                     </div>
                 </div>
@@ -226,14 +159,6 @@ const OrderDeliveryForm: React.FC<OrderDeliveryFormProps> = ({ updateButtonDisab
                         <div className={styles.infoItem}>
                             <h3>{t(`order:paymentType.cardPayment`)}</h3>
                             <p>{t(`order:paymentType.description.cardPayment`)}</p>
-                        </div>
-                        <div className={styles.infoItem}>
-                            <h3>{t(`order:paymentType.cashPayment`)}</h3>
-                            <p>{t(`order:paymentType.description.cashPayment`)}</p>
-                        </div>
-                        <div className={styles.infoItem}>
-                            <h3>{t(`order:paymentType.cashOnDelivery`)}</h3>
-                            <p>{t(`order:paymentType.description.cashOnDelivery`)}</p>
                         </div>
                     </div>
                 </div>

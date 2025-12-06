@@ -7,8 +7,6 @@ export interface IOrder {
     email?: string;
     phone?: string;
     city?: string;
-    isLocal?: boolean;
-    local_address?: string | null; // Zaporizhzhia address
     post_adress?: string | null; // post address
     post_number?: string | null; // post index
     payment?: string;
@@ -21,7 +19,7 @@ export interface ICollectedOrder extends IOrder  {
     created_at?: string;
 }
 
-export interface IOrderData extends Omit<ICollectedOrder, 'isLocal'> {
+export interface IOrderData extends ICollectedOrder {
     mailLanguage?: keyof ILangData;
 }
 

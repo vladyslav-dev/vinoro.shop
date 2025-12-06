@@ -28,22 +28,15 @@
     },
     "paymentType": {
         "cardPayment": "Card payment",
-        "cashPayment": "Cash payment",
         "cashOnDelivery": "Payment on delivery",
+        "cashOnDeliveryAdditional": "(Cash on delivery is available only for orders from 2000 UAH)",
         "description": {
-            "cardPayment": "After placing the order, we will contact you to clarify all the details, and send the card number to any of the proposed messengers (Viber, Telegram, WhatsApp, Messenger) to pay for the order.",
-            "cashPayment": "Cash payment is available only to residents of Zaporizhzhia upon delivery by courier.",
-            "cashOnDelivery": "On a small prepayment on the card in the amount of the cost in both directions. The cost is determined by the tariffs of the NovaPoshta logistics company. Payment on delivery is available for orders over 500₴."
+            "cardPayment": "After placing the order, we will contact you to clarify all the details, and send the card number to any of the proposed messengers (Viber, Telegram, WhatsApp, Messenger) to pay for the order."
         }
     },
-    "deliveryType": {
-        "zpCity": "Zaporizhzhia",
-        "otherCity": "Another city"
-    },
     "fromZp": "I am from Zaporizhzhia",
-    "zpDeliveryInfo": "Free delivery in Kommunarsky and Aleksandrovsky districts in the amount of 300 ₴ or more. Other areas by agreement after ordering.",
     "localAdress": "Address (optional)",
-    "otherCityDelivery": "For delivery to other cities of Ukraine, we use the delivery service \"NovaPoshta\" (НоваПошта). Delivery is carried out within 1-3 days, depending on your region. Shipping cost according to",
+    "otherCityDelivery": "Delivery across the entire territory of Ukraine is carried out by the \"Nova Poshta\" service. The delivery time is typically 1–3 days, depending on your region. Shipping cost according to",
     "departmentAdress": "Department address",
     "tariffs": "tariffs",
     "orderDate": "Order date",
